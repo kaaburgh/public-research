@@ -1,0 +1,2 @@
+# Мониторинг
+24.11.2026 14:42 Europe/Berlin: проверены VIctory README, XCL README/issues, Leonida (404), Rockstar VI, Take-Two IR https://www.take2games.com/ir и два поисковых запроса за 3 дня. Newswire https://www.rockstargames.com/newswire не дал читаемого текста. Курсоры: VIctory статус 23.11; XCL issue #1164; IR релиз 19.11. SHA проектов не установлены. Следующий цикл: проверить тела issues, активные форки, PS5 upstream, официальные заявления; не считать непроверенные каналы пустыми. Baseline частичная, предыдущие циклы не восстановлены.
