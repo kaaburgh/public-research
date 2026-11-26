@@ -8,7 +8,6 @@ S24-634E8DB5-C432-43BE-A653-9CA2922CC458|1|PE32 image section|1	1.24→1.32	P1	N
 S24-E5E2C9D9-5BF5-497E-8860-94F81A09ADE0|1|MM dependency section|1	1.24→1.32	P1	NvmeSmm	MM dependency section	частично объяснено (предыдущий разбор)		
 S24-E5E2C9D9-5BF5-497E-8860-94F81A09ADE0|1|PE32 image section|1	1.24→1.32	P1	NvmeSmm	PE32 image section	частично объяснено (предыдущий разбор)		
 S24-1807040D-5934-41A2-A088-8E0F777F71AB|1|PE32 image section|1	1.24→1.32	P1	NvramDxe	PE32 image section	частично объяснено		
-S24-838DCF34-907B-4D55-9A4B-A0EF7167B5F4|1|TE image section|1	1.24→1.32	P1	NvramPei	TE image section	кандидат на изменение Setup	1	1
 S24-447A1B58-8F3E-4658-ABAA-9E7B2280B90A|1|PE32 image section|1	1.24→1.32	P1	NvramSmm	PE32 image section	частично объяснено		
 S24-68744031-8608-4B25-BBA1-DB4EA319D6EA|1|PE32 image section|1	1.24→1.32	P1	OememDxe	PE32 image section	частично объяснено		
 S24-3F9A7CA0-A30E-45E8-9CBB-B628D54A3588|1|TE image section|1	1.24→1.32	P1	OemPei	TE image section	кандидат на изменение Setup	4	1

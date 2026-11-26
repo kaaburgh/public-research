@@ -38,3 +38,9 @@ See MAILBOX_UI_UMA_CHECKPOINT.md.
 - E67: P2-72 B04: native Save & Exit / CBS routing — Both BIOS UI engines support dynamic buffer VarStore lookup and persistence through HII RouteConfig; the native callback is not a direct NVRAM write. Save loop ignores individual write status.
 - E68: P2-73 S24: LEMComputraceApiDxe/Smm — All 26 changed bytes in each PE attributed to Setup size and compensating stack displacement; no changed condition or call target.
 See MMIO_BROWSER_SAVE_CHECKPOINT.md.
+
+## E69–71: FastBoot and NvramPei follow-up
+- E69: P2-74 B02: FastBootOption trigger and BootFlow producer — ExitBootServices callback and BootFlow=7 producer identified; unchanged preexisting gate, not universal boot-time execution.
+- E70: P2-75 B02: FastBootOption edge cases — New maximum-based numbering can leave allocated BootOrder tail partly uninitialized; old and new ignore Boot####/BootOrder write results.
+- E71: P2-76 B05: NvramPei Setup size check — Entire normalized TE difference attributed to expected Setup size check, not changed variable-validation algorithm.
+See FASTBOOT_TRIGGER_CHECKPOINT.md.
