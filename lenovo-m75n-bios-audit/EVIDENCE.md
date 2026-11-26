@@ -63,3 +63,6 @@ Two S33 PE sections closed: old code/data preserved under mapping, new mailbox p
 
 ## E80: complete S33 mailbox producer layout
 All S33 differences attributed to added mailbox handler and registration, supporting variables and code/data layout. See SWSMI_MAILBOX_LAYOUT_CHECKPOINT.md.
+
+## E81: SecureBootDXE reordered functions
+Normalized per-function pairs 2A0→2A0 (45/45),328→5AC (74/84 old;100 new),4A0→328 (60/60),5B4→774 (59/62 old;65 new),668→830 onward (465/471); total 703/722 exact normalized matches (not semantic proof). Init boot mode comparisons 0x12/0x20 order swapped; new callback uses same GUID 7739f24c-93d7-11d4-9a3a-0090273fc14d, helper now takes GUID in RDX and preserves it via RDI. New init 71E–75F creates event and registers protocol notify; callback starts 43C. Remaining matched-body indexed references/date constants, full raw data and relocation validation pending.

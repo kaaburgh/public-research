@@ -47,3 +47,5 @@ P2-80–83 / E75–78: OEM dispatcher two entries removed, WMI standard registra
 P2-84/E79: full 1.32→1.33 layout/relocation attribution of NvramDxe and NvramSmm; 2 S33 closures. 103 S24 + 3 S33 =106 pending; 41/44 S33 attributed. Actual hardware and mailbox authorization behavior remain open. Next: remaining three S33 modules, then risk-specific S24 core, SMM, NVMe and USB.
 
 P2-85/E80: full S33 SwSmi534D0040 attribution; 103 S24 + 2 S33 =105 pending, 42/44 S33 attributed. Remaining S33 SecureBootDXE and EsaFull. Next complete remaining two S33 maps, then risk-specific S24.
+
+P2-86/E81: SecureBootDXE old function reordering separated from new event callback; 703/722 normalized old instructions match in five segmented comparisons, remaining code/data/relocation verification open. 105 pending, 42/44 S33 attributed unchanged. Resume with complete SecureBootDXE target/data/relocation mapping, then EsaFull.
