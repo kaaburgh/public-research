@@ -84,3 +84,6 @@ New EndOfDxe callback 4524–477E enumerates PCI NVMe, preallocates five 4 KiB b
 
 ## E87: PiSmmIpl / S24
 Old1B7C–1EF8→new1B7C–1F54 checked range arithmetic/split path; old2C18–2EE8→new2C74–2F50 section RVA+size overflow guard. Outside ranges 2184 mapped instructions, 93 raw changes only branch/RIP encoding; 281 branch and 78 changed RIP references verified. All 33 DIR64 slots and other sections byte identical; header alignment and .text growth accounted. 32=33. No claim of global overflow safety or hardware equivalence; actual SMM initialization untested.
+
+## E88: PiSmmCore
+All 7491 outside instructions mapped, 603 raw changes explained by target shifts, 539 RIP references and 1381 direct transfers verified. All 57 DIR64 slot/target mappings and masked .data exact; other sections exact. Four changed ranges: DB0–F4C→DB0–F98, two boundary helpers 5148→5194 and51A8→51F8, 6610–68E0→6664–6940. 32=33. See PISMMCORE_CHECKPOINT.md. Boundary mismatch static; practical reachability and impact unknown. SMM latency/physical behavior not measured. No claim of complete safety.

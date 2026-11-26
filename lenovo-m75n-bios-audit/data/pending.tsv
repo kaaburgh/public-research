@@ -7,7 +7,6 @@ S24-E5E2C9D9-5BF5-497E-8860-94F81A09ADE0|1|PE32 image section|1	1.24→1.32	P1	N
 S24-1807040D-5934-41A2-A088-8E0F777F71AB|1|PE32 image section|1	1.24→1.32	P1	NvramDxe	PE32 image section	частично объяснено		
 S24-447A1B58-8F3E-4658-ABAA-9E7B2280B90A|1|PE32 image section|1	1.24→1.32	P1	NvramSmm	PE32 image section	частично объяснено		
 S24-68744031-8608-4B25-BBA1-DB4EA319D6EA|1|PE32 image section|1	1.24→1.32	P1	OememDxe	PE32 image section	частично объяснено		
-S24-E94F54CD-81EB-47ED-AEC3-856F5DC157A9|1|PE32 image section|1	1.24→1.32	P1	PiSmmCore	PE32 image section	частично объяснено		
 S24-899407D7-99FE-43D8-9A21-79EC328CAC21|1|PE32 image section|1	1.24→1.32	P1	Setup	PE32 image section	частично объяснено		
 S24-A46D9EE7-C6B4-42C0-8378-6E4BDC50406B|1|PE32 image section|1	1.24→1.32	P1	SetupLoadDefault	PE32 image section	частично объяснено		
 S24-BE216BA8-38C4-4535-A6CA-5DCA5B43ADDF|1|PE32 image section|1	1.24→1.32	P1	SmiVariable	PE32 image section	частично объяснено		

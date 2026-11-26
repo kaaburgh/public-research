@@ -1,0 +1,13 @@
+# PiSmmCore — full static attribution (P2-93/E88)
+
+M33KT24A→M33KT32A; 32=33. SHA256 24 288852eb33507f32a047056e5d26e0029140c670483c317005fb53cd91404993 (34176 B); 32/33 08e12909d96c7aca57fffeb09c31a2daec11dac754d7cd5c6ee108c7c487f606 (34272 B). Offline only, no SMI invocation, no physical test.
+
+## Full outside mapping
+Disassemble objdump -d -M intel --insn-width=16. Map old ranges [start,end), RVA delta (hex):
+[280,DB0) 0; [F4C,5148) +4C; [514C,5160) +4F; [5160,51A8) +50; [51AC,51CB) +53; [51CC,6610) +54; [68E0,7430) +60. Changed entries DB0→DB0, 5148→5194, 51A8→51F8, 6610→6664. Exclude padding added after helpers (old51CB, new521E–521F). For all 7491 outside instructions incl padding, same-length mapping checked, 603 raw differences; 539 RIP targets and 1381 direct branches/calls verified, no unexplained mismatches. New outside coverage exactly same 7491 instructions, no extras. Map data addresses +60. All 57 DIR64 slots +60, corresponding target exact under map; 58th relocation ABSOLUTE padding. Mask slots then compare .data raw: all bytes equal. Unnamed/xdata raw identical; reloc tail identical; .text tail padding zero.
+PE offset B0 unchanged. Header changes at CC–CD,100,160,168,1C0–1C1,1C8–1C9,1EC,1F4,214–215,21C–21D,23C,244,264,26C account for size/placement. .text VS71B0→7210, raw71C0→7220, RVA280. Data7440→74A0 VS970/raw980; unnamed7DC0→7E20, xdata8160→81C0, reloc8500→8560. Debug directory all zero, exception directory absent.
+
+## Changed code
+DB0–F4C→DB0–F98 communication processing: same request path and dispatch, changed local allocation; 64-bit end calculations at new E66–EB3 check carry and set invalid flag, size>=0x18 guard EB5–EC6; range validation ED2, dispatch EF3, error F2A. Invalid flags prevent request dispatch. No new periodic trigger.
+Two range helpers: old 5148 and51A8 compute exclusive end, new5194–5198 and51F8–51FC compute inclusive last byte. Existing comparison predicates unchanged. Producer at old5CA2–5CD3 copies SMRAM descriptor CPU start and PhysicalSize into 16-byte start/length records; producer55CF–55E2 writes start and page-count*4096 for another memory list. Thus changing only the end expression introduces a one-byte boundary mismatch candidate for nonzero lengths. Further upstream checks and practical reachability unknown; no runtime tests or vulnerability claim. Zero-length behavior separate.
+Loader6610–68E0→6664–6940: old66E6–66E9 nonzero check replaced with new6738–6747 nonzero and 32-bit section RVA+size overflow guard, other changes register allocation and zeroing. Existing return/error paths retained. Static attribution covers all code/data differences, not correctness proof. Runtime communication frequency and latency need B12.
