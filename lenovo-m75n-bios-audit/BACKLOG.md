@@ -82,3 +82,5 @@ P2-116/E111: BDS expands existing malformed Boot#### deletion policy to a second
 P2-117–119/E112–114: NVMe lifecycle follow-up finds conditional Stop zeroing beyond allocated I/O buffer, overwritten initial mapping/retained lazy pages, new EndOfDxe initialization dependency and limited basic admin count. No hardware execution; 86 S24 + 1 S33 =87 pending unchanged. See [NVME_LIFECYCLE_CHECKPOINT.md](NVME_LIFECYCLE_CHECKPOINT.md).
 
 P2-120/E115: native Setup[61] minimal-device Fast Boot vs separate [3C] POST-state option; BDS BootMode/BootNext gate and 21-entry table traced, normalized chunks match across all releases. Actual BootFlow7/EBS path and other BDS differences remain. 87 pending unchanged. See [BDS_FASTBOOT_ACTIVATION_CHECKPOINT.md](BDS_FASTBOOT_ACTIVATION_CHECKPOINT.md).
+
+P2-121/E116: Uhcd shared callback installation and request-size contract traced, unchanged DXE DEPEX and callback producer; three explicit SMI calls match new filter. Missing-callback scenario remains conditional. 87 pending unchanged. See [USB_CALLBACK_CONTRACT_CHECKPOINT.md](USB_CALLBACK_CONTRACT_CHECKPOINT.md).
