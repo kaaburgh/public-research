@@ -6,7 +6,7 @@ Start with [HANDOFF.md](HANDOFF.md), [METHODOLOGY.md](METHODOLOGY.md), [EVIDENCE
 
 - [data/inventory.tsv](data/inventory.tsv): 2256 original inventory records, 22 columns; private 1.24 non-executable hashes and free-text conclusions omitted.
 - [data/changes.tsv](data/changes.tsv): 283 changed records (corrected from 284; see REPRODUCTION.md), same schema.
-- [data/pending.tsv](data/pending.tsv): 95 pair-specific rows: 94 open/partial/candidate in 1.24→1.32 and 1 remaining partial section in 1.32→1.33 (43 of 44 attributed). Heuristic priority, not a finding.
+- [data/pending.tsv](data/pending.tsv): 94 pair-specific rows: 93 open/partial/candidate in 1.24→1.32 and 1 remaining partial section in 1.32→1.33 (43 of 44 attributed). Heuristic priority, not a finding.
 - [data/p1-public.tsv](data/p1-public.tsv), [data/p2-public.tsv](data/p2-public.tsv): selected historical evidence records; omitted rows remain in private ledger.
 - [tools/audit_verify.py](tools/audit_verify.py): executable hash and relocation verifier.
 - [tools/inventory.py](tools/inventory.py), [tools/compare_inventory.py](tools/compare_inventory.py): independently regenerated inventory and multiset verification.
@@ -67,3 +67,5 @@ P2-94–95/E89–90: SmiVariable static attribution closed (legacy output-copy i
 P2-96–97/E91–92: OememDxe and FastBootOption static PE maps closed. Mandatory Setup write gates UMA notify, FastBoot failure handling and pool/ID risks refined. 97 S24 + 1 S33 =98 pending; 43/44 S33 attributed. Runtime still untested. See [OEM_FASTBOOT_FINAL_CHECKPOINT.md](OEM_FASTBOOT_FINAL_CHECKPOINT.md).
 
 P2-98–99/E93–94: both S3 script writer PE maps and S3Resume2Pei TE map closed. Record-length guards and resume statistics source/rollover changes identified; 94 S24 + 1 S33 =95 pending, 43/44 S33 attributed. Hardware S3 open. See [S3_SCRIPT_RESUME_CHECKPOINT.md](S3_SCRIPT_RESUME_CHECKPOINT.md).
+
+P2-100/E95: BootScriptExecutorDxe PE closed, PE/TE relocation-directory range guard identified. 93 S24 + 1 S33 =94 pending; 43/44 S33 attributed. All four examined S3 components statically attributed, hardware S3 remains open. See [S3_EXECUTOR_CHECKPOINT.md](S3_EXECUTOR_CHECKPOINT.md).

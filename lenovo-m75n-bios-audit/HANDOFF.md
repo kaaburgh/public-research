@@ -61,3 +61,5 @@ P2-94–95/E89–90: SmiVariable static attribution closed (legacy output-copy i
 P2-96–97/E91–92: OememDxe and FastBootOption static PE maps closed. Mandatory Setup write gates UMA notify, FastBoot failure handling and pool/ID risks refined. 97 S24 + 1 S33 =98 pending; 43/44 S33 attributed. Runtime still untested. See [OEM_FASTBOOT_FINAL_CHECKPOINT.md](OEM_FASTBOOT_FINAL_CHECKPOINT.md).
 
 P2-98–99/E93–94: both S3 script writer PE maps and S3Resume2Pei TE map closed. Record-length guards and resume statistics source/rollover changes identified; 94 S24 + 1 S33 =95 pending, 43/44 S33 attributed. Hardware S3 open. See [S3_SCRIPT_RESUME_CHECKPOINT.md](S3_SCRIPT_RESUME_CHECKPOINT.md).
+
+P2-100/E95: BootScriptExecutorDxe PE closed, PE/TE relocation-directory range guard identified. 93 S24 + 1 S33 =94 pending; 43/44 S33 attributed. All four examined S3 components statically attributed, hardware S3 remains open. See [S3_EXECUTOR_CHECKPOINT.md](S3_EXECUTOR_CHECKPOINT.md).

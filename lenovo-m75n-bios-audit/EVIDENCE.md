@@ -105,3 +105,6 @@ DXE 2551 outside instructions,226 raw changes,135 RIP,506 branches,4 DIR64; SMM2
 
 ## E94: S3Resume2Pei / S24
 1682 instructions outside changed file range239–33C→239–350; 251 direct transfers mapped, all 33 retained HIGHLOW slots/targets verified; three removed with old variable read. Masked data equal under mapping; removed GUID and old UTF16 variable name; zero padding. S3PT signature/frequency checks and arithmetic retained, ResumeCount FFFFFFFF resets to0 before increment. 32=33. Producer of new LockBox GUID not established, failure skips statistics; no observed effect on functional resume or timing. Hardware S3 separate.
+
+## E95: BootScriptExecutorDxe / S24
+6993 instructions outside old3640–3910→new3640–391C; 239 raw changed, 199 RIP and36 relative transfers,3 indexed references and96 DIR64 mapped, masked data identical. New guard at3714–3723 rejects zero Size or (Size-1)>=~RVA, skips relocation loop; existing caller ignores return. 32=33. Actual execution with malformed or ordinary images and S3 resume not tested. Guard is not proof of comprehensive validation.
