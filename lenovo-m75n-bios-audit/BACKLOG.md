@@ -1,5 +1,5 @@
 # Active backlog
-See data/pending.tsv for machine-generated queue. It has 101 pair-specific records: 100 candidate/partial/open rows for 1.24→1.32 and 1 remaining partial section for 1.32→1.33 (43 of 44 attributed). Review of existing evidence is not a claim that every row is unresolved. Review each pair separately; priority is provisional and not measured likelihood. Private P1/P2 blocker fields provide details; historical third-party AFU incident is out of scope.
+See data/pending.tsv for machine-generated queue. It has 100 pair-specific records: 99 candidate/partial/open rows for 1.24→1.32 and 1 remaining partial section for 1.32→1.33 (43 of 44 attributed). Review of existing evidence is not a claim that every row is unresolved. Review each pair separately; priority is provisional and not measured likelihood. Private P1/P2 blocker fields provide details; historical third-party AFU incident is out of scope.
 
 | ID | Priority | Work | Completion condition |
 |---|---|---|---|
@@ -48,3 +48,5 @@ P2-87–89 / E82–84: SecureBootDXE fully statically attributed; corrected EsaF
 P2-90–92 / E85–87: NVMe EndOfDxe preallocation/fixed queues and lost allocation status; NvmeSmm DEPEX closed, legacy gate/local copies identified; PiSmmIpl static attribution closed. 101 S24 + 1 S33 =102 pending, 43/44 S33 attributed; NVMe PE bodies remain partial. See [NVME_SMM_IPL_CHECKPOINT.md](NVME_SMM_IPL_CHECKPOINT.md).
 
 P2-93/E88: PiSmmCore static attribution closed, full outside mapping and 57 relocations verified; communication/loader checks and two end-address boundary mismatch candidates identified. 100 S24 + 1 S33 =101 pending, 43/44 S33 attributed. See [PISMMCORE_CHECKPOINT.md](PISMMCORE_CHECKPOINT.md).
+
+P2-94–95/E89–90: SmiVariable static attribution closed (legacy output-copy issue and unused temporary data copy); new OememDxe serial-ring wake enforcement and default change identified. 99 S24 + 1 S33 =100 pending; 43/44 S33 attributed. OememDxe remains partial. See [SMIVARIABLE_SERIAL_WAKE_CHECKPOINT.md](SMIVARIABLE_SERIAL_WAKE_CHECKPOINT.md).

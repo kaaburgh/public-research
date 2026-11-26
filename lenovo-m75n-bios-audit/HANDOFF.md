@@ -55,3 +55,5 @@ P2-87–89 / E82–84: SecureBootDXE fully statically attributed; corrected EsaF
 P2-90–92 / E85–87: NVMe EndOfDxe preallocation/fixed queues and lost allocation status; NvmeSmm DEPEX closed, legacy gate/local copies identified; PiSmmIpl static attribution closed. 101 S24 + 1 S33 =102 pending, 43/44 S33 attributed; NVMe PE bodies remain partial. See [NVME_SMM_IPL_CHECKPOINT.md](NVME_SMM_IPL_CHECKPOINT.md).
 
 P2-93/E88: PiSmmCore static attribution closed, full outside mapping and 57 relocations verified; communication/loader checks and two end-address boundary mismatch candidates identified. 100 S24 + 1 S33 =101 pending, 43/44 S33 attributed. See [PISMMCORE_CHECKPOINT.md](PISMMCORE_CHECKPOINT.md).
+
+P2-94–95/E89–90: SmiVariable static attribution closed (legacy output-copy issue and unused temporary data copy); new OememDxe serial-ring wake enforcement and default change identified. 99 S24 + 1 S33 =100 pending; 43/44 S33 attributed. OememDxe remains partial. See [SMIVARIABLE_SERIAL_WAKE_CHECKPOINT.md](SMIVARIABLE_SERIAL_WAKE_CHECKPOINT.md).

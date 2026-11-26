@@ -87,3 +87,9 @@ Old1B7C–1EF8→new1B7C–1F54 checked range arithmetic/split path; old2C18–2
 
 ## E88: PiSmmCore
 All 7491 outside instructions mapped, 603 raw changes explained by target shifts, 539 RIP references and 1381 direct transfers verified. All 57 DIR64 slot/target mappings and masked .data exact; other sections exact. Four changed ranges: DB0–F4C→DB0–F98, two boundary helpers 5148→5194 and51A8→51F8, 6610–68E0→6664–6940. 32=33. See PISMMCORE_CHECKPOINT.md. Boundary mismatch static; practical reachability and impact unknown. SMM latency/physical behavior not measured. No claim of complete safety.
+
+## E89: SmiVariable / S24
+782 outside instructions, 91 raw encoding changes, 87 RIP and 113 direct targets verified; .data exact shifted +120, no relocations, other sections zero. Changed old438–480→438–460 and6C4–AA8→6A4–B94; new free helper10FC–1131. New local copies and cleanup; GetNext updated size/GUID local at A1E–A27, no request copyback; SetVariable r12 copy not used by actual call98A. 32=33. Separate legacy SW-SMI, not normal Linux efivarfs path (P2-77). No proof of runtime failure, latency or security impact.
+
+## E90: OememDxe / S24 serial-port wake
+Setup VarStore1 offset0B Wake from Serial Port Ring (0 Enabled/2 Disabled), 19C/19D Serial Port1/2 Address (6 Disabled), confirmed IFR in 24/32. StdDefaults all copies 02/02/01 in24, 00/02/01 in32/33. New AC8 forces 0B=2 when MMIO FED81522 bit0 clear; ACE–AE6 same if both ports disabled. SetVariable B0A, then new UMA notify registration. Old7EE–85C lacks enforcement. New path calls preexisting MMIO helper D20 with cl8/dl0. 32=33. Exact hardware register semantics and actual port/wake state unknown; remaining OememDxe mapping partial. Do not equate with WOL or general AC-loss recovery.
