@@ -1,5 +1,5 @@
 # Active backlog
-See data/pending.tsv for machine-generated queue. It has 88 pair-specific records: 87 candidate/partial/open rows for 1.24→1.32 and 1 remaining partial section for 1.32→1.33 (43 of 44 attributed). Review of existing evidence is not a claim that every row is unresolved. Review each pair separately; priority is provisional and not measured likelihood. Private P1/P2 blocker fields provide details; historical third-party AFU incident is out of scope.
+See data/pending.tsv for machine-generated queue. It has 87 pair-specific records: 86 candidate/partial/open rows for 1.24→1.32 and 1 remaining partial section for 1.32→1.33 (43 of 44 attributed). Review of existing evidence is not a claim that every row is unresolved. Review each pair separately; priority is provisional and not measured likelihood. Private P1/P2 blocker fields provide details; historical third-party AFU incident is out of scope.
 
 | ID | Priority | Work | Completion condition |
 |---|---|---|---|
@@ -74,3 +74,5 @@ P2-111–112/E106–107: NVMe DXE/SMM initial admin queue size contract mismatch
 P2-113/E108: EsaFull S33 conservative data map proposes 5120/5832 .data relocation slots (4266 target-consistent, 848 unknown, six inference conflicts); independent unique vtable-like runs propose 3192 slots, reject two false byte-map pairs, union 5235 old slot proposals. Remaining attribution incomplete; 89 pending, 43/44 S33 attributed. See [ESAFULL_DATA_MAPPING_CHECKPOINT.md](ESAFULL_DATA_MAPPING_CHECKPOINT.md).
 
 P2-114/E109: Tpm20PlatformDxe S24 static PE attribution closed, including vendor-specific RDRAND helper (INTC TPM only), PCR7 buffer cleanup, capacity corrections and existing PCR1 helper regression. Runtime remains open. 87 S24 + 1 S33 =88 pending, 43/44 S33 attributed. See [TPM20_PLATFORM_FINAL_CHECKPOINT.md](TPM20_PLATFORM_FINAL_CHECKPOINT.md).
+
+P2-115/E110: AmiTcgPlatformDxe legacy PE static attribution closed, preserves P2-40 conditional PCR1/PCR7 risks. 86 S24 + 1 S33 =87 pending, 43/44 S33 attributed. See [AMI_TCG_PLATFORM_FINAL_CHECKPOINT.md](AMI_TCG_PLATFORM_FINAL_CHECKPOINT.md).
