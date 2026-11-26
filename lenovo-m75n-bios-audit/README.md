@@ -31,3 +31,5 @@ B10 checkpoint: [RELEASE_132_133.md](RELEASE_132_133.md) and [data/s33-attributi
 Further B10: P2-51/52 validate 27,253 actual relocation slots and targets; four more PE sections attributed; 7 S33 sections remain partial. Tool `tools/pe_layout_audit.py`.
 
 Latest B10 checkpoint P2-53/54: 38/44 changed sections attributed; six partial. Active queue 174 rows (168 S24 + 6 S33). The 4096-byte RSA signature metadata block is attributed; EsaFull has real expanded GUI code, not merely layout.
+
+Checkpoint P2-55/56: [VENDOR_PCR1_CHECKPOINT.md](VENDOR_PCR1_CHECKPOINT.md) independently corroborates SRWINx64-only factory-key reset support in 1.33 and provides a synthetic-tested read-only PCR1 audit tool. No binary section reclassified; 174 pending rows.

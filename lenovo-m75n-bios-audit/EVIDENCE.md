@@ -12,3 +12,6 @@ CCID removed: old USB interface class 0x0b branch DXE 0x4394 vs 0x430c; removed 
  
 ## Other core evidence
 P2-08, 16, 23–25 provide detailed AmdSetup migration, native Setup selective defaults, UMA callbacks. P1-33–35 establish unchanged static flash map and compatible two formats, correcting earlier speculation. Do not pursue incident. Public rows exclude personal live variable values. 33 static checksum-valid ACPI tables match (one DSDT +32 SSDT variants); dynamic tables not proven. CPU patch changes and factory APCB comparison described in HANDOFF. More proof: private sheet, exact ROMs; absent intermediate scripts must be reconstructed, not invented.
+
+## E50–51: vendor corroboration and PCR1 experiment
+P2-55: Lenovo HT518672 M75n M33KT33A SRWINX64=Y, WMI=N, HT518129 M33KT32A certificate transition. Independent support for earlier ISO changelog; exact SRWIN-to-mailbox call chain open. P2-56: new PCR1 replay/boot variable summary tool, exact blob 25cd7f013e6ce18c27894f202d27ac2c8daf9bb6, eight synthetic checks, no actual M75n data. See VENDOR_PCR1_CHECKPOINT.md for sources, protocol and limitations.
