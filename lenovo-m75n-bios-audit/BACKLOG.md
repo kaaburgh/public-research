@@ -28,3 +28,5 @@ P2-57–59: B04 conditional model and read-only UMA observation prepared; B12 RN
 P2-60–62: B03 PMU counter 0x2B confirmed in AMD OSRR; B09 type63 is documented APOB NV, payload/active state remains open; B02/B05 boot inventory and B12 experimental controls added. No binary closure. See SMM_APOB_BOOT_CHECKPOINT.md.
 
 P2-63–65: verified ROMs supplied; B10 Setup resolved; B09 APOB NV actual region accounted, cache selection and other residuals open; thermal module prior closure reverified. Next B10 mailbox and EsaFull. See ROM_RESTORED_CHECKPOINT.md.
+
+P2-66–70 / E61–65: all three ROMs verified; mailbox producer/consumer and NVRAM policy scope narrowed, conditional restore/deletion failure risk; EsaFull UI selection/position logic narrowed; native UMA callback CHANGING and ignored browser-update status confirmed; EFS page pointers exact, two tail bytes still unresolved. No new section closure: 39/44 S33, 173 pending. Hardware and complete mapping remain open.

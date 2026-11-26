@@ -39,3 +39,5 @@ P2-57–59: [UMA_RUNTIME_CHECKPOINT.md](UMA_RUNTIME_CHECKPOINT.md) documents con
 P2-60–62: [SMM_APOB_BOOT_CHECKPOINT.md](SMM_APOB_BOOT_CHECKPOINT.md) confirms the Picasso SMI PMU event and APOB NV entry type from external documentation, and adds a synthetic-tested read-only boot inventory. No pending reclassification.
 
 P2-63–65: [ROM_RESTORED_CHECKPOINT.md](ROM_RESTORED_CHECKPOINT.md) verifies source access and Setup internal alias, closes S33 Setup, attributes APOB live-state region and rechecks thermal modules. Current queue 173; 39/44 S33 attributed.
+
+P2-66–70 / E61–65: all three ROMs verified; mailbox producer/consumer and NVRAM policy scope narrowed, conditional restore/deletion failure risk; EsaFull UI selection/position logic narrowed; native UMA callback CHANGING and ignored browser-update status confirmed; EFS page pointers exact, two tail bytes still unresolved. No new section closure: 39/44 S33, 173 pending. Hardware and complete mapping remain open. See [MAILBOX_UI_UMA_CHECKPOINT.md](MAILBOX_UI_UMA_CHECKPOINT.md).

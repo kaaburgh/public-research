@@ -24,3 +24,11 @@ P2-60 AMD OSRR #56255 p153 PMCx02B; target measurement pending. P2-61 coreboot P
 
 ## E58–60: restored ROMs
 P2-63 HII ID0x809 = existing Performance Mode, exact forms and normal strings; S33 Setup closed. P2-64 vendor APOB NV erased, live record accounts for 41436 bytes. P2-65 thermal PE/TE exact difference attribution independently repeated. See ROM_RESTORED_CHECKPOINT.md.
+
+## E61–65: targeted binary follow-up
+- E61: P2-66 B10: SecureBootDXE and mailbox producer — Confirmed request-specific handling and incomplete error aggregation; no new ordinary-boot key reset identified.
+- E62: P2-67 B10: NvramDxe/NvramSmm policy scope — Both new predicates add mailbox-read success to existing Secure Boot policy decision, not a generic NVRAM write path.
+- E63: P2-68 B10: EsaFull expanded GUI paths — Expanded functions are called from UI object selection and position-update handlers; likely focus/visibility/layout behavior, not a demonstrated OS-runtime change.
+- E64: P2-69 B04: native UMA browser callback — Confirms CHANGING action and full IFR value pointer; browser-data update errors are ignored, distinct from persistent CBS RouteConfig.
+- E65: P2-70 B09: remaining unmapped raw bytes — Located two changed bytes within EFS-containing page; directory pointers identical.
+See MAILBOX_UI_UMA_CHECKPOINT.md.

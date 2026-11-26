@@ -61,3 +61,5 @@ raw_coverage.py d3d54850bd9118f34f7bcc888b990077d07debda
 All original ROM contents and machine-specific generated reports stay private. No flashing, EFI variable writes, or hardware tests performed.
 
 P2-64 follow-up: type63 APOB NV at 0x2BA000 size0x10000 is all FF in both vendor ROMs; live 1.24 APOB record accounts for all 41436 differing bytes in that region. Cache validity/selection and remaining B09 residuals open. See ROM_RESTORED_CHECKPOINT.md.
+
+P2-70: two changed unmapped bytes localized to EFS page at 0x20000; known directory pointers exact, field semantics unresolved. See MAILBOX_UI_UMA_CHECKPOINT.md.

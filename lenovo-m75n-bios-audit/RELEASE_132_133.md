@@ -113,3 +113,5 @@ print(sha256(normalized).hexdigest())
 EsaFull: split GNU objdump .text rows at INT3 padding; remove padding; normalize candidate RIP/branch targets and indexed data addresses only for candidate matching. Compare multisets, then use uniquely paired chunks to map actual call/jump addresses. Do not treat identical clones as actual targets. Inspect the expanded target ranges given above. Remaining branch targets/data and UI semantics not proven. Final B10: 38/44 attributed, six partial.
 
 P2-63 follow-up: Setup HII ID2057 is existing Performance Mode, no new visible form or option; combined with P2-51 this closes S33 Setup. 39/44 attributed, 5 partial. See ROM_RESTORED_CHECKPOINT.md.
+
+P2-66–68 follow-up: request-specific Secure Boot handling and existing last-status restore helper, three policy caller groups per NVRAM module, UI selection/position functions. All five S33 residuals remain partial; see MAILBOX_UI_UMA_CHECKPOINT.md.
