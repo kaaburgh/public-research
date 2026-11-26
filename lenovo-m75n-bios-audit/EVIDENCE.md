@@ -93,3 +93,9 @@ All 7491 outside instructions mapped, 603 raw changes explained by target shifts
 
 ## E90: OememDxe / S24 serial-port wake
 Setup VarStore1 offset0B Wake from Serial Port Ring (0 Enabled/2 Disabled), 19C/19D Serial Port1/2 Address (6 Disabled), confirmed IFR in 24/32. StdDefaults all copies 02/02/01 in24, 00/02/01 in32/33. New AC8 forces 0B=2 when MMIO FED81522 bit0 clear; ACE–AE6 same if both ports disabled. SetVariable B0A, then new UMA notify registration. Old7EE–85C lacks enforcement. New path calls preexisting MMIO helper D20 with cl8/dl0. 32=33. Exact hardware register semantics and actual port/wake state unknown; remaining OememDxe mapping partial. Do not equate with WOL or general AC-loss recovery.
+
+## E91: OememDxe / S24 full map
+Outside main/new callback:443 instructions,36 raw changes,15 RIP and34 branch targets mapped;20 Setup frame/size instructions. Data exact except two added GUIDs; no relocs. Main old410–870→new63C–B6C: prior feature setup/hardware fields preserved under register/stack mapping; final GetVariable A62 and SetVariable B0A mandatory before B12 notify registration. CreateEvent error is suppressed, RegisterProtocolNotify result ignored. 32=33. Delivery, actual NVRAM errors and physical UMA/wake behavior untested; B04 remains runtime-open.
+
+## E92: FastBootOption / S24 full map
+744 outside instructions;26 raw changes,22 RIP,139 direct targets verified;3 indexed data offsets moved. Three DIR64 targets mapped; BBS descriptor table reordered around unchanged device-path template. Main2F4–6F8→2F4–7AC: second GetVariable failure 3BB→4F4 returns success without freeing allocated input; old error path 3C7→523 could create options. Dynamic BootOrder, max-ID and write-status issues P2-74/75; signed 16-bit indices, extreme count behavior untested. 32=33. No evidence of ordinary UEFI boot regression; FastBoot/BootFlow7 conditional, BDS selected path and actual failure behavior untested.
