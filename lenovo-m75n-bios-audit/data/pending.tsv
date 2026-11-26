@@ -28,10 +28,10 @@ S24-580DD900-385D-11D7-883A-00500473D4EB|1|PE32 image section|1	1.24→1.32	P1	U
 S24-4C006CD9-19BA-4617-8483-609194A1ACFC|1|PE32 image section|1	1.24→1.32	P1	UsbInt13	PE32 image section	не завершено	4	0
 S24-171F43DC-C4D9-47A6-9641-65DDCDD5AA30|1|PE32 image section|1	1.24→1.32	P1	UsbRtDxe	PE32 image section	частично объяснено (предыдущий разбор)		
 S24-04EAAAA1-29A1-11D7-8838-00500473D4EB|1|PE32 image section|1	1.24→1.32	P1	UsbRtSmm	PE32 image section	частично объяснено (предыдущий разбор)		
-S33-8F4B8F82-9B91-4028-86E6-F4DB7D4C1DFF|1|PE32 image section|1	1.32→1.33	P1	Bds	PE32 image section	review evidence (not necessarily open)	different after relocation	
-S33-1807040D-5934-41A2-A088-8E0F777F71AB|1|PE32 image section|1	1.32→1.33	P1	NvramDxe	PE32 image section	review evidence (not necessarily open)	different after relocation	
-S33-447A1B58-8F3E-4658-ABAA-9E7B2280B90A|1|PE32 image section|1	1.32→1.33	P1	NvramSmm	PE32 image section	review evidence (not necessarily open)	different after relocation	
-S33-899407D7-99FE-43D8-9A21-79EC328CAC21|1|PE32 image section|1	1.32→1.33	P1	Setup	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S33-8F4B8F82-9B91-4028-86E6-F4DB7D4C1DFF|1|PE32 image section|1	1.32→1.33	P1	Bds	PE32 image section	частично объяснено	different after relocation	
+S33-1807040D-5934-41A2-A088-8E0F777F71AB|1|PE32 image section|1	1.32→1.33	P1	NvramDxe	PE32 image section	частично объяснено	different after relocation	
+S33-447A1B58-8F3E-4658-ABAA-9E7B2280B90A|1|PE32 image section|1	1.32→1.33	P1	NvramSmm	PE32 image section	частично объяснено	different after relocation	
+S33-899407D7-99FE-43D8-9A21-79EC328CAC21|1|PE32 image section|1	1.32→1.33	P1	Setup	PE32 image section	частично объяснено	different after relocation	
 S24-0EEAB920-CEFA-4E68-8FE8-892A1D37EEB6|1|Raw section|1	1.24→1.32	P2	0EEAB920-CEFA-4E68-8FE8-892A1D37EEB6	Raw section	не завершено		
 S24-147923CE-D0E9-4C4F-9B7B-AC02F8BD2763|1|72BCFBE0-FCEC-4F0F-8CD2-AC3A424539CD|1	1.24→1.32	P2	147923CE-D0E9-4C4F-9B7B-AC02F8BD2763	72BCFBE0-FCEC-4F0F-8CD2-AC3A424539CD	частично объяснено		
 S24-3FD1D3A2-99F7-420B-BC69-8BB1D492A332|1|2EBE0275-6458-4AF9-91ED-D3F4EDB100AA|1	1.24→1.32	P2	3FD1D3A2-99F7-420B-BC69-8BB1D492A332	2EBE0275-6458-4AF9-91ED-D3F4EDB100AA	частично объяснено		
@@ -171,36 +171,10 @@ S24-E4F61863-FE2C-4B56-A8F4-08519BC439DF|1|PE32 image section|1	1.24→1.32	P2	V
 S24-E4F61863-FE2C-4B56-A8F4-08519BC439DF|1|Raw section|1	1.24→1.32	P2	VlanConfigDxe	Raw section	не завершено		
 S24-10E88749-28D1-49A0-AC9E-0324E40211A8|1|MM dependency section|1	1.24→1.32	P2	WMISwSmi	MM dependency section	не завершено		
 S24-10E88749-28D1-49A0-AC9E-0324E40211A8|1|PE32 image section|1	1.24→1.32	P2	WMISwSmi	PE32 image section	не завершено		
-S33-147923CE-D0E9-4C4F-9B7B-AC02F8BD2763|1|72BCFBE0-FCEC-4F0F-8CD2-AC3A424539CD|1	1.32→1.33	P2	147923CE-D0E9-4C4F-9B7B-AC02F8BD2763	72BCFBE0-FCEC-4F0F-8CD2-AC3A424539CD	review evidence (not necessarily open)	non-executable diff	
-S33-3FD1D3A2-99F7-420B-BC69-8BB1D492A332|1|2EBE0275-6458-4AF9-91ED-D3F4EDB100AA|1	1.32→1.33	P2	3FD1D3A2-99F7-420B-BC69-8BB1D492A332	2EBE0275-6458-4AF9-91ED-D3F4EDB100AA	review evidence (not necessarily open)	non-executable diff	
-S33-414D94AD-998D-47D2-BFCD-4E882241DE32|1|5A88641B-BBB9-4AA6-80F7-498AE407C31F|1	1.32→1.33	P2	414D94AD-998D-47D2-BFCD-4E882241DE32	5A88641B-BBB9-4AA6-80F7-498AE407C31F	review evidence (not necessarily open)	non-executable diff	
-S33-709E6472-1BCD-43BD-8B6B-CD2D6D08B967|1|Raw section|1	1.32→1.33	P2	709E6472-1BCD-43BD-8B6B-CD2D6D08B967	Raw section	review evidence (not necessarily open)	non-executable diff	
-S33-72BCFBE0-FCEC-4F0F-8CD2-AC3A424539CD|1|raw file|1	1.32→1.33	P2	72BCFBE0-FCEC-4F0F-8CD2-AC3A424539CD	raw file	review evidence (not necessarily open)	non-executable diff	
-S33-86E3F707-B273-49EC-9C50-C38F419FCE65|1|raw file|1	1.32→1.33	P2	86E3F707-B273-49EC-9C50-C38F419FCE65	raw file	review evidence (not necessarily open)	non-executable diff	
-S33-9E21FD93-9C72-4C15-8C4B-E77F1DB2D792|1|Volume free space|1	1.32→1.33	P2	9E21FD93-9C72-4C15-8C4B-E77F1DB2D792	Volume free space	review evidence (not necessarily open)	non-executable diff	
-S33-9FE7DE69-0AEA-470A-B50A-139813649189|1|Raw section|1	1.32→1.33	P2	9FE7DE69-0AEA-470A-B50A-139813649189	Raw section	review evidence (not necessarily open)	non-executable diff	
-S33-A59A0056-3341-44B5-9C9C-6D76F7673817|1|2EBE0275-6458-4AF9-91ED-D3F4EDB100AA|1	1.32→1.33	P2	A59A0056-3341-44B5-9C9C-6D76F7673817	2EBE0275-6458-4AF9-91ED-D3F4EDB100AA	review evidence (not necessarily open)	non-executable diff	
-S33-3548423A-2B2C-4393-9826-B202959D2362|1|PE32 image section|1	1.32→1.33	P2	AbtCryptoDriver	PE32 image section	review evidence (not necessarily open)	different after relocation	
-S33-95ECB758-627E-4A2E-B7B8-DC863EFE3425|1|PE32 image section|1	1.32→1.33	P2	AmiDeviceGuardApi	PE32 image section	review evidence (not necessarily open)	different after relocation	
-S33-D4395796-6F4C-4C6B-B9D1-92DAA7199A84|1|PE32 image section|1	1.32→1.33	P2	AmiRedFishApi	PE32 image section	review evidence (not necessarily open)	different after relocation	
-S33-B1DA0ADF-4F77-4070-A88E-BFFE1C60529A|1|PE32 image section|1	1.32→1.33	P2	AMITSE	PE32 image section	review evidence (not necessarily open)	different after relocation	
-S33-C0492C7F-75E2-487C-B2DD-000E6CF7B905|1|Volume free space|1	1.32→1.33	P2	C0492C7F-75E2-487C-B2DD-000E6CF7B905	Volume free space	review evidence (not necessarily open)	non-executable diff	
-S33-17AF0060-A98C-4A03-90AD-6ABED75045BD|1|PE32 image section|1	1.32→1.33	P2	CbsBaseDxeRV	PE32 image section	review evidence (not necessarily open)	different after relocation	
-S33-045E78D8-3D5D-4EE5-90AA-42121E1EEE49|1|TE image section|1	1.32→1.33	P2	CbsBasePeiRV	TE image section	review evidence (not necessarily open)	different after relocation	
-S33-3E7788CA-2BFC-4FCE-8122-5176CA492D9F|1|PE32 image section|1	1.32→1.33	P2	CbsSetupDxeRV	PE32 image section	review evidence (not necessarily open)	different after relocation	
-S33-CC0F8A3F-3DEA-4376-9679-5426BA0A907E|1|Raw section|1	1.32→1.33	P2	CC0F8A3F-3DEA-4376-9679-5426BA0A907E	Raw section	review evidence (not necessarily open)	non-executable diff	
-S33-1BA0ADA4-526B-4F11-A9BD-3F83EE17EA30|1|PE32 image section|1	1.32→1.33	P2	CopyRight	PE32 image section	review evidence (not necessarily open)	different after relocation	
-S33-16271FCA-55D9-4A33-93FC-5A3EB128DEB6|1|PE32 image section|1	1.32→1.33	P2	CrbDxe	PE32 image section	review evidence (not necessarily open)	different after relocation	
-S33-0D1ED2F7-E92B-4562-92DD-5C82EC917EAE|1|TE image section|1	1.32→1.33	P2	CrbPei	TE image section	review evidence (not necessarily open)	different after relocation	
-S33-67451698-1825-4AC5-999D-F350CC7D5D72|1|PE32 image section|1	1.32→1.33	P2	CryptoPPI	PE32 image section	review evidence (not necessarily open)	different after relocation	
-S33-858031F3-96A2-406E-ABCC-ED264A3A31D6|1|PE32 image section|1	1.32→1.33	P2	CryptRuntimeDxe	PE32 image section	review evidence (not necessarily open)	different after relocation	
-S33-A062CF1F-8473-4AA3-8793-600BC4FFE9A8|1|PE32 image section|1	1.32→1.33	P2	CsmDxe	PE32 image section	review evidence (not necessarily open)	different after relocation	
-S33-DAF4BF89-CE71-4917-B522-C89D32FBC59F|1|AB56DC60-0057-11DA-A8DB-000102EEE626|1	1.32→1.33	P2	DAF4BF89-CE71-4917-B522-C89D32FBC59F	AB56DC60-0057-11DA-A8DB-000102EEE626	review evidence (not necessarily open)	non-executable diff	
-S33-A2DF5376-C2ED-49C0-90FF-8B173B0FD066|1|PE32 image section|1	1.32→1.33	P2	EsaFull	PE32 image section	review evidence (not necessarily open)	different after relocation	
-S33-FBF95065-427F-47B3-8077-D13C60710998|1|Raw section|1	1.32→1.33	P2	FBF95065-427F-47B3-8077-D13C60710998	Raw section	review evidence (not necessarily open)	non-executable diff	
-S33-B7EE4835-84CE-4B15-BF52-2D11574CE470|1|PE32 image section|1	1.32→1.33	P2	HardwareSignatureEntry	PE32 image section	review evidence (not necessarily open)	different after relocation	
-S33-57E56594-CE95-46AD-9531-3C49310CA7CE|1|PE32 image section|1	1.32→1.33	P2	Ofbd	PE32 image section	review evidence (not necessarily open)	different after relocation	
-S33-4551F2F5-C684-4F27-936F-C7B04A5C5FF1|1|PE32 image section|1	1.32→1.33	P2	SecureBootDXE	PE32 image section	review evidence (not necessarily open)	different after relocation	
-S33-7BB61314-11B5-4833-BCAD-B1601CA088C9|1|PE32 image section|1	1.32→1.33	P2	SmbiosType0	PE32 image section	review evidence (not necessarily open)	different after relocation	
-S33-B6E17DD5-5CA0-4E3A-858C-A14345AE0B83|1|PE32 image section|1	1.32→1.33	P2	SwSmi534D0040	PE32 image section	review evidence (not necessarily open)	different after relocation	
-S33-3ACEB0C0-3C72-11E4-9A56-74D435052646|1|PE32 image section|1	1.32→1.33	P2	TlsDxe	PE32 image section	review evidence (not necessarily open)	different after relocation
+S33-414D94AD-998D-47D2-BFCD-4E882241DE32|1|5A88641B-BBB9-4AA6-80F7-498AE407C31F|1	1.32→1.33	P2	414D94AD-998D-47D2-BFCD-4E882241DE32	5A88641B-BBB9-4AA6-80F7-498AE407C31F	частично объяснено	non-executable diff	
+S33-3548423A-2B2C-4393-9826-B202959D2362|1|PE32 image section|1	1.32→1.33	P2	AbtCryptoDriver	PE32 image section	частично объяснено	different after relocation	
+S33-858031F3-96A2-406E-ABCC-ED264A3A31D6|1|PE32 image section|1	1.32→1.33	P2	CryptRuntimeDxe	PE32 image section	частично объяснено	different after relocation	
+S33-A2DF5376-C2ED-49C0-90FF-8B173B0FD066|1|PE32 image section|1	1.32→1.33	P2	EsaFull	PE32 image section	частично объяснено	different after relocation	
+S33-4551F2F5-C684-4F27-936F-C7B04A5C5FF1|1|PE32 image section|1	1.32→1.33	P2	SecureBootDXE	PE32 image section	частично объяснено	different after relocation	
+S33-B6E17DD5-5CA0-4E3A-858C-A14345AE0B83|1|PE32 image section|1	1.32→1.33	P2	SwSmi534D0040	PE32 image section	частично объяснено	different after relocation	
+S33-3ACEB0C0-3C72-11E4-9A56-74D435052646|1|PE32 image section|1	1.32→1.33	P2	TlsDxe	PE32 image section	частично объяснено	different after relocation
