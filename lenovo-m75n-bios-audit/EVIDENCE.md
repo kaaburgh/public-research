@@ -99,3 +99,9 @@ Outside main/new callback:443 instructions,36 raw changes,15 RIP and34 branch ta
 
 ## E92: FastBootOption / S24 full map
 744 outside instructions;26 raw changes,22 RIP,139 direct targets verified;3 indexed data offsets moved. Three DIR64 targets mapped; BBS descriptor table reordered around unchanged device-path template. Main2F4–6F8→2F4–7AC: second GetVariable failure 3BB→4F4 returns success without freeing allocated input; old error path 3C7→523 could create options. Dynamic BootOrder, max-ID and write-status issues P2-74/75; signed 16-bit indices, extreme count behavior untested. 32=33. No evidence of ordinary UEFI boot regression; FastBoot/BootFlow7 conditional, BDS selected path and actual failure behavior untested.
+
+## E93: S3SaveStateDxe / SmmS3SaveState
+DXE 2551 outside instructions,226 raw changes,135 RIP,506 branches,4 DIR64; SMM2318/218/136/450/6; zero mapping mismatch. IO/MEM/PCI writes cap count255 and payload236 (19-byte header); PCI2 payload234 (21-byte header); SMBus payload236; information/vendor record payload248 (7-byte header). Returns EFI_OUT_OF_RESOURCES on violation. 32=33. Whether actual S3 producers exceed new limits and handle rejection unknown. No S3 hardware test; separate executor/resume validation.
+
+## E94: S3Resume2Pei / S24
+1682 instructions outside changed file range239–33C→239–350; 251 direct transfers mapped, all 33 retained HIGHLOW slots/targets verified; three removed with old variable read. Masked data equal under mapping; removed GUID and old UTF16 variable name; zero padding. S3PT signature/frequency checks and arithmetic retained, ResumeCount FFFFFFFF resets to0 before increment. 32=33. Producer of new LockBox GUID not established, failure skips statistics; no observed effect on functional resume or timing. Hardware S3 separate.

@@ -69,8 +69,6 @@ S24-52C05B14-0B98-496C-BC3B-04B50211D680|1|TE image section|1	1.24→1.32	P2	Pei
 S24-5FECEF6B-5FA4-4570-8163-0CF72A9C04C5|1|PE32 image section|1	1.24→1.32	P2	Ps2Main	PE32 image section	не завершено		
 S24-70E1A818-0BE1-4449-BFD4-9EF68C7F02A8|1|PE32 image section|1	1.24→1.32	P2	ReFlash	PE32 image section	частично объяснено		
 S24-E90A7B5E-37B2-43E4-B281-4C8E349045E9|1|PE32 image section|1	1.24→1.32	P2	ReFlashSmm	PE32 image section	частично объяснено		
-S24-89E549B0-7CFE-449D-9BA3-10D8B2312D71|1|TE image section|1	1.24→1.32	P2	S3Resume2Pei	TE image section	частично объяснено		
-S24-BDCE85BB-FBAA-4F4E-9264-501A2C249581|1|PE32 image section|1	1.24→1.32	P2	S3SaveStateDxe	PE32 image section	частично объяснено		
 S24-F80697E9-7FD6-4665-8646-88E33EF71DFC|1|PE32 image section|1	1.24→1.32	P2	SecurityStubDxe	PE32 image section	не завершено		
 S24-B13EDD38-684C-41ED-A305-D7B7E32497DF|1|PE32 image section|1	1.24→1.32	P2	Smbios	PE32 image section	не завершено		
 S24-E2A74738-8934-48F5-8412-99E948C8DC1B|1|PE32 image section|1	1.24→1.32	P2	SmbiosDmiEdit	PE32 image section	не завершено	12457	0
@@ -79,7 +77,6 @@ S24-BC327DBD-B982-4F55-9F79-056AD7E987C5|1|PE32 image section|1	1.24→1.32	P2	S
 S24-BB8C2CF3-A5E3-49EF-941B-4A01FAC6FD5F|1|PE32 image section|1	1.24→1.32	P2	SmiFlashDxe	PE32 image section	частично объяснено		
 S24-2486829B-D3F3-47EC-827A-FC104907FC5C|1|PE32 image section|1	1.24→1.32	P2	SmmGenericSio	PE32 image section	не завершено		
 S24-316B1230-0500-4592-8C09-EABA0FB6B07F|1|PE32 image section|1	1.24→1.32	P2	SmmHddSecurity	PE32 image section	не завершено		
-S24-2D59F041-53A4-40D0-A6CD-844DC0DFEF17|1|PE32 image section|1	1.24→1.32	P2	SmmS3SaveState	PE32 image section	частично объяснено		
 S24-A2F436EA-A127-4EF8-957C-8048606FF670|1|PE32 image section|1	1.24→1.32	P2	SnpDxe	PE32 image section	не завершено		
 S24-B6E17DD5-5CA0-4E3A-858C-A14345AE0B83|1|PE32 image section|1	1.24→1.32	P2	SwSmi534D0040	PE32 image section	не завершено		
 S24-6F9B3CFA-1AF2-4174-A1C7-8F6310D68BE4|1|PE32 image section|1	1.24→1.32	P2	SwSmi534D0140	PE32 image section	не завершено	2758	1
