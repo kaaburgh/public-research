@@ -1,187 +1,221 @@
-priority	key	module	section	status_124_132	normalized_132_133	normalized_changed_bytes	setup_pattern_hits
-P1	8F5A2E02-538C-4D59-B920-C4786ACBC552|1|PE32 image section|1	Ahci	PE32 image section	кандидат на изменение Setup		10	1
-P1	501F30E9-D14F-47DA-AE60-B101E4189D07|1|MM dependency section|1	AhciInt13Smm	MM dependency section	не завершено			
-P1	501F30E9-D14F-47DA-AE60-B101E4189D07|1|PE32 image section|1	AhciInt13Smm	PE32 image section	не завершено			
-P1	2FC61DE6-1791-479C-8A32-7ABB69A4D8D0|1|TE image section|1	AmdPspFtpmPei	TE image section	кандидат на изменение Setup		6	1
-P1	0A9F795E-B9FC-4117-BC4E-138695D16562|1|PE32 image section|1	AmdSocFp5RvDxe	PE32 image section	кандидат на изменение Setup		12	1
-P1	01C827C2-7765-42E9-B31C-E03E89A09113|1|TE image section|1	AmdSocFp5RvPei	TE image section	кандидат на изменение Setup		15	2
-P1	9D5FD24C-53DF-44AC-A336-B4879CDB29D9|1|TE image section|1	AmdSpiRomProtectPei	TE image section	частично объяснено		1	0
-P1	8F4B8F82-9B91-4028-86E6-F4DB7D4C1DFF|1|PE32 image section|1	Bds	PE32 image section	частично объяснено	different after relocation		
-P1	E03ABADF-E536-4E88-B3A0-B77F78EB34FE|1|PE32 image section|1	CpuDxe	PE32 image section	не завершено			
-P1	2BB5AFA9-FF33-417B-8497-CB773C2B93BF|1|TE image section|1	CpuPei	TE image section	кандидат на изменение Setup		12	1
-P1	0C989D41-F4B4-4244-9D7F-E9FFB4163273|1|PE32 image section|1	FastBootOption	PE32 image section	не завершено			
-P1	80D7491A-F7D9-479D-A8F7-1B393B02ED66|1|PE32 image section|1	FastBootRuntime	PE32 image section	кандидат на изменение Setup		30	1
-P1	634E8DB5-C432-43BE-A653-9CA2922CC458|1|PE32 image section|1	Nvme	PE32 image section	частично объяснено (предыдущий разбор)			
-P1	E5E2C9D9-5BF5-497E-8860-94F81A09ADE0|1|MM dependency section|1	NvmeSmm	MM dependency section	частично объяснено (предыдущий разбор)			
-P1	E5E2C9D9-5BF5-497E-8860-94F81A09ADE0|1|PE32 image section|1	NvmeSmm	PE32 image section	частично объяснено (предыдущий разбор)			
-P1	1807040D-5934-41A2-A088-8E0F777F71AB|1|PE32 image section|1	NvramDxe	PE32 image section	частично объяснено	different after relocation		
-P1	838DCF34-907B-4D55-9A4B-A0EF7167B5F4|1|TE image section|1	NvramPei	TE image section	кандидат на изменение Setup		1	1
-P1	447A1B58-8F3E-4658-ABAA-9E7B2280B90A|1|PE32 image section|1	NvramSmm	PE32 image section	частично объяснено	different after relocation		
-P1	68744031-8608-4B25-BBA1-DB4EA319D6EA|1|PE32 image section|1	OememDxe	PE32 image section	частично объяснено			
-P1	3F9A7CA0-A30E-45E8-9CBB-B628D54A3588|1|TE image section|1	OemPei	TE image section	кандидат на изменение Setup		4	1
-P1	EB8DCCDA-D34D-4765-B989-ED96CA2CA8D5|1|PE32 image section|1	OemSwSmiDispatchProtocol	PE32 image section	не завершено		233	0
-P1	E94F54CD-81EB-47ED-AEC3-856F5DC157A9|1|PE32 image section|1	PiSmmCore	PE32 image section	не завершено			
-P1	2FA2A6DA-11D5-4DC3-999A-749648B03C56|1|PE32 image section|1	PiSmmIpl	PE32 image section	не завершено		6894	0
-P1	899407D7-99FE-43D8-9A21-79EC328CAC21|1|PE32 image section|1	Setup	PE32 image section	частично объяснено	different after relocation		
-P1	76D1059D-2E22-40EF-A31F-C49DBBC0DBCE|1|TE image section|1	SetupCheckSumPei	TE image section	кандидат на изменение Setup		3	1
-P1	634DF746-6F4B-4684-93E6-526653E7C35A|1|PE32 image section|1	SetupConfigDxe	PE32 image section	кандидат на изменение Setup		11	1
-P1	DB41E01B-A8B0-4E15-B619-4463975B357B|1|PE32 image section|1	SetupDataChecksumErr	PE32 image section	кандидат на изменение Setup		11	1
-P1	19AFD36B-F501-4446-9C9E-0457DB6E7888|1|PE32 image section|1	SetupItemLinkageDxe	PE32 image section	кандидат на изменение Setup		3	3
-P1	AE73630A-022D-4884-A696-F728CBF53AEF|1|PE32 image section|1	SetupItemLinkageSmm	PE32 image section	кандидат на изменение Setup		3	3
-P1	A46D9EE7-C6B4-42C0-8378-6E4BDC50406B|1|PE32 image section|1	SetupLoadDefault	PE32 image section	не завершено			
-P1	BE216BA8-38C4-4535-A6CA-5DCA5B43ADDF|1|PE32 image section|1	SmiVariable	PE32 image section	не завершено			
-P1	C7DD8530-96D8-40DD-BE88-CBDF446C6474|1|PE32 image section|1	Stibp	PE32 image section	кандидат на изменение Setup		2	1
-P1	0718AD81-F26A-4850-A6EC-F268E309D707|1|PE32 image section|1	Tpm20PlatformDxe	PE32 image section	не завершено			
-P1	2D07DCE9-CF98-408F-A13C-20E41746AE95|1|PE32 image section|1	TPMHwPresent	PE32 image section	кандидат на изменение Setup		37	3
-P1	580DD900-385D-11D7-883A-00500473D4EB|1|PE32 image section|1	Uhcd	PE32 image section	частично объяснено			
-P1	4C006CD9-19BA-4617-8483-609194A1ACFC|1|PE32 image section|1	UsbInt13	PE32 image section	не завершено		4	0
-P1	171F43DC-C4D9-47A6-9641-65DDCDD5AA30|1|PE32 image section|1	UsbRtDxe	PE32 image section	частично объяснено (предыдущий разбор)			
-P1	04EAAAA1-29A1-11D7-8838-00500473D4EB|1|PE32 image section|1	UsbRtSmm	PE32 image section	частично объяснено (предыдущий разбор)			
-P2	0EEAB920-CEFA-4E68-8FE8-892A1D37EEB6|1|Raw section|1	0EEAB920-CEFA-4E68-8FE8-892A1D37EEB6	Raw section	не завершено			
-P2	147923CE-D0E9-4C4F-9B7B-AC02F8BD2763|1|72BCFBE0-FCEC-4F0F-8CD2-AC3A424539CD|1	147923CE-D0E9-4C4F-9B7B-AC02F8BD2763	72BCFBE0-FCEC-4F0F-8CD2-AC3A424539CD	частично объяснено			
-P2	3FD1D3A2-99F7-420B-BC69-8BB1D492A332|1|2EBE0275-6458-4AF9-91ED-D3F4EDB100AA|1	3FD1D3A2-99F7-420B-BC69-8BB1D492A332	2EBE0275-6458-4AF9-91ED-D3F4EDB100AA	частично объяснено			
-P2	414D94AD-998D-47D2-BFCD-4E882241DE32|1|5A88641B-BBB9-4AA6-80F7-498AE407C31F|1	414D94AD-998D-47D2-BFCD-4E882241DE32	5A88641B-BBB9-4AA6-80F7-498AE407C31F	не завершено			
-P2	550CA2B8-4E82-41FF-AAC6-B6373D5DF77F|1|Raw section with PE32 image|1	550CA2B8-4E82-41FF-AAC6-B6373D5DF77F	Raw section with PE32 image	не завершено			
-P2	6C9013D0-4059-4723-AF2A-05E63FFECF19|1|Raw section|1	6C9013D0-4059-4723-AF2A-05E63FFECF19	Raw section	частично объяснено			
-P2	709E6472-1BCD-43BD-8B6B-CD2D6D08B967|1|Raw section|1	709E6472-1BCD-43BD-8B6B-CD2D6D08B967	Raw section	частично объяснено			
-P2	72BCFBE0-FCEC-4F0F-8CD2-AC3A424539CD|1|raw file|1	72BCFBE0-FCEC-4F0F-8CD2-AC3A424539CD	raw file	частично объяснено			
-P2	A59A0056-3341-44B5-9C9C-6D76F7673817|1|2EBE0275-6458-4AF9-91ED-D3F4EDB100AA|1	A59A0056-3341-44B5-9C9C-6D76F7673817	2EBE0275-6458-4AF9-91ED-D3F4EDB100AA	не завершено			
-P2	3548423A-2B2C-4393-9826-B202959D2362|1|PE32 image section|1	AbtCryptoDriver	PE32 image section	не завершено	different after relocation		
-P2	9D933189-EEE7-457C-981E-581C1A639FC3|1|PE32 image section|1	AbtExtendedMessageProtocol	PE32 image section	кандидат на изменение Setup		27	1
-P2	16D0A23E-C09C-407D-A14A-AD058FDD0CA1|1|PE32 image section|1	ACPI	PE32 image section	частично объяснено			
-P2	1DFB7BFA-BF8E-4D11-9766-2FB0D0442310|1|PE32 image section|1	AmiAgesaDxe	PE32 image section	кандидат на изменение Setup		21	1
-P2	586032E3-1386-4ECC-B547-EB285E21066D|1|TE image section|1	AmiAgesaPei	TE image section	кандидат на изменение Setup		9	1
-P2	95ECB758-627E-4A2E-B7B8-DC863EFE3425|1|PE32 image section|1	AmiDeviceGuardApi	PE32 image section	не завершено	different after relocation	6	0
-P2	D4926BEA-00A3-40E5-A2B9-C317960F31BF|1|TE image section|1	AmiPspFtpmPei	TE image section	кандидат на изменение Setup		4	1
-P2	D4395796-6F4C-4C6B-B9D1-92DAA7199A84|1|PE32 image section|1	AmiRedFishApi	PE32 image section	не завершено	different after relocation	6	0
-P2	50F6096D-7C98-4C78-9A1D-C5A1833B6A88|1|PE32 image section|1	AmiTcgNvflagSample	PE32 image section	не завершено		879	0
-P2	A29A63E3-E4E7-495F-8A6A-07738300CBB3|1|PE32 image section|1	AmiTcgPlatformDxe	PE32 image section	не завершено			
-P2	B1DA0ADF-4F77-4070-A88E-BFFE1C60529A|1|PE32 image section|1	AMITSE	PE32 image section	не завершено	different after relocation		
-P2	FE612B72-203C-47B1-8560-A66D946EB371|1|FE612B72-203C-47B1-8560-A66D946EB371|1	AMITSESetupData	FE612B72-203C-47B1-8560-A66D946EB371	не завершено			
-P2	529D3F93-E8E9-4E73-B1E1-BDF6A9D50113|1|PE32 image section|1	ArpDxe	PE32 image section	не завершено			
-P2	8AAFF1F7-D011-4AE5-8324-DFA470F75D33|1|PE32 image section|1	AsfDxe	PE32 image section	кандидат на изменение Setup		17	1
-P2	03417BF3-6D95-41DF-88EF-0DDA6E86DC34|1|TE image section|1	AsfPei	TE image section	кандидат на изменение Setup		8	1
-P2	996B4E92-D1EB-4E35-B194-BF9E0C524ACC|1|PE32 image section|1	AssetIDOnRecoveryModeDxe	PE32 image section	кандидат на изменение Setup		7	1
-P2	FA20568B-548B-4B2B-81EF-1BA08D4A3CEC|1|PE32 image section|1	BootScriptExecutorDxe	PE32 image section	не завершено			
-P2	17AF0060-A98C-4A03-90AD-6ABED75045BD|1|PE32 image section|1	CbsBaseDxeRV	PE32 image section	объяснено	different after relocation	4	0
-P2	045E78D8-3D5D-4EE5-90AA-42121E1EEE49|1|TE image section|1	CbsBasePeiRV	TE image section	объяснено	different after relocation	4	0
-P2	3E7788CA-2BFC-4FCE-8122-5176CA492D9F|1|PE32 image section|1	CbsSetupDxeRV	PE32 image section	объяснено	different after relocation	4	0
-P2	CC0F8A3F-3DEA-4376-9679-5426BA0A907E|1|Raw section|1	CC0F8A3F-3DEA-4376-9679-5426BA0A907E	Raw section	частично объяснено (новое)			
-P2	1FDF71C4-D46D-45FB-BF85-56F1C529725A|1|TE image section|1	ComTypeControlPei	TE image section	кандидат на изменение Setup	identical after relocation	5	1
-P2	1BA0ADA4-526B-4F11-A9BD-3F83EE17EA30|1|PE32 image section|1	CopyRight	PE32 image section	частично объяснено	different after relocation	2	0
-P2	75189FA6-7BCF-4F4F-81BD-A4F1C3BEA95A|1|PE32 image section|1	CptSwSmi	PE32 image section	не завершено			
-P2	4DF75915-6C88-4EF4-995D-834D866DBD20|1|TE image section|1	CpuSetAgesaPcd	TE image section	кандидат на изменение Setup		12	1
-P2	16271FCA-55D9-4A33-93FC-5A3EB128DEB6|1|PE32 image section|1	CrbDxe	PE32 image section	не завершено	different after relocation	1	0
-P2	0D1ED2F7-E92B-4562-92DD-5C82EC917EAE|1|TE image section|1	CrbPei	TE image section	кандидат на изменение Setup	different after relocation	18	4
-P2	77EB6C06-FD48-488B-A1B3-AE0A70801369|1|PE32 image section|1	CryptoDXE	PE32 image section	не завершено		47038	0
-P2	67451698-1825-4AC5-999D-F350CC7D5D72|1|PE32 image section|1	CryptoPPI	PE32 image section	не завершено	different after relocation		
-P2	2AD511C7-1B60-4002-841D-2998DDC138EE|1|PE32 image section|1	CryptoSMM	PE32 image section	не завершено			
-P2	858031F3-96A2-406E-ABCC-ED264A3A31D6|1|PE32 image section|1	CryptRuntimeDxe	PE32 image section	не завершено	different after relocation	90333	0
-P2	A062CF1F-8473-4AA3-8793-600BC4FFE9A8|1|PE32 image section|1	CsmDxe	PE32 image section	частично объяснено	different after relocation	53	1
-P2	DAC2B117-B5FB-4964-A312-0DCC77061B9B|1|A7FE7491-2C54-4F72-B80E-7649A8210193|1	DAC2B117-B5FB-4964-A312-0DCC77061B9B	A7FE7491-2C54-4F72-B80E-7649A8210193	не завершено			
-P2	DAF4BF89-CE71-4917-B522-C89D32FBC59F|1|AB56DC60-0057-11DA-A8DB-000102EEE626|1	DAF4BF89-CE71-4917-B522-C89D32FBC59F	AB56DC60-0057-11DA-A8DB-000102EEE626	не завершено			
-P2	1ED46147-76E3-4171-BCE5-42D368D26AA6|1|PE32 image section|1	DebugPortTableDxe	PE32 image section	кандидат на изменение Setup		13	1
-P2	4906415D-4B32-4D28-8557-21C390D76A3C|1|PE32 image section|1	DeleteUefiCaFromDb	PE32 image section	кандидат на изменение Setup		22	2
-P2	D903BF23-E1DE-4DF0-8B96-73B6F2C2B797|1|PE32 image section|1	DevFwUpd	PE32 image section	кандидат на изменение Setup		12	1
-P2	94734718-0BBC-47FB-96A5-EE7A5AE6A2AD|1|PE32 image section|1	Dhcp4Dxe	PE32 image section	не завершено			
-P2	95E3669D-34BE-4775-A651-7EA41B69D89E|1|PE32 image section|1	Dhcp6Dxe	PE32 image section	не завершено			
-P2	E12929EF-F08C-4E26-8290-281740D874DE|1|PE32 image section|1	DisableChassisIntrusion	PE32 image section	кандидат на изменение Setup		13	1
-P2	0FBEE984-33BF-4AC0-A871-B352AD59E337|1|PE32 image section|1	DisableLTEB	PE32 image section	кандидат на изменение Setup		9	1
-P2	B219E140-DFFC-11E3-B956-0022681E6906|1|PE32 image section|1	DnsDxe	PE32 image section	не завершено			
-P2	1062CB92-72A9-4FDC-9694-B1FE817EFAAF|1|PE32 image section|1	DustFilterAlertDxe	PE32 image section	кандидат на изменение Setup		15	1
-P2	D6A2CB7F-6A18-4E2F-B43B-9920A733700A|1|PE32 image section|1	DxeCore	PE32 image section	не завершено			
-P2	86D70125-BAA3-4296-A62F-602BEBBB9081|1|TE image section|1	DxeIpl	TE image section	не завершено			
-P2	FF761299-D41F-4C73-8380-A24055ADF4B9|1|PE32 image section|1	EDUDxe	PE32 image section	кандидат на изменение Setup		20	2
-P2	3FEDD4A3-8112-4534-8DB2-E886EB35075E|1|PE32 image section|1	ErrorMessage	PE32 image section	не завершено		12734	1
-P2	A2DF5376-C2ED-49C0-90FF-8B173B0FD066|1|PE32 image section|1	EsaFull	PE32 image section	не завершено	different after relocation		
-P2	999BD818-7DF7-4A9A-A502-9B75033E6A0F|1|PE32 image section|1	EsrtDxe	PE32 image section	кандидат на изменение Setup		10	1
-P2	56CD6FEF-9038-49DA-8275-1B2F5B9791A9|1|PE32 image section|1	EzFmpFwUpdate	PE32 image section	кандидат на изменение Setup		10	1
-P2	CBC59C4A-383A-41EB-A8EE-4498AEA567E4|1|PE32 image section|1	FlashDriver	PE32 image section	частично объяснено		12103	0
-P2	0C375A90-4C4C-4428-8EA0-531BE8959BF7|1|PE32 image section|1	FlashDriverSmm	PE32 image section	частично объяснено		11423	0
-P2	7ECD9C20-68B9-4A6F-B515-D64FF500B109|1|PE32 image section|1	FsRecovery	PE32 image section	частично объяснено			
-P2	8EEF9AD2-463E-425F-A4FE-2F6783D6F97E|1|PE32 image section|1	GenericSio	PE32 image section	не завершено			
-P2	B7EE4835-84CE-4B15-BF52-2D11574CE470|1|PE32 image section|1	HardwareSignatureEntry	PE32 image section	не завершено	different after relocation	6	0
-P2	A9B700CF-019E-4D8B-A3A7-88E1EA01699E|1|PE32 image section|1	HddSecurity	PE32 image section	не завершено			
-P2	348C4D62-BFBD-4882-9ECE-C80BB1C4783B|1|PE32 image section|1	HiiDatabase	PE32 image section	не завершено			
-P2	ECEBCB00-D9C8-11E4-AF3D-8CDCD426C973|1|PE32 image section|1	HttpBootDxe	PE32 image section	не завершено			
-P2	ECEBCB00-D9C8-11E4-AF3D-8CDCD426C973|1|Raw section|1	HttpBootDxe	Raw section	не завершено			
-P2	2366C20F-E15A-11E3-8BF1-E4115B28BC50|1|PE32 image section|1	HttpDxe	PE32 image section	не завершено			
-P2	22EA234F-E72A-11E4-91F9-28D2447C4829|1|PE32 image section|1	HttpUtilitiesDxe	PE32 image section	не завершено			
-P2	9FB1A1F3-3B71-4324-B39A-745CBB015FFF|1|PE32 image section|1	Ip4Dxe	PE32 image section	не завершено			
-P2	9FB1A1F3-3B71-4324-B39A-745CBB015FFF|1|Raw section|1	Ip4Dxe	Raw section	не завершено			
-P2	5BEDB5CC-D830-4EB2-8742-2D4CC9B54F2C|1|PE32 image section|1	Ip6Dxe	PE32 image section	не завершено			
-P2	5BEDB5CC-D830-4EB2-8742-2D4CC9B54F2C|1|Raw section|1	Ip6Dxe	Raw section	не завершено			
-P2	C8CAFFF9-C6E0-4443-B96F-45FE2AD480CD|1|TE image section|1	IsHdpRequiredPostFlag	TE image section	кандидат на изменение Setup		4	1
-P2	F99C0302-9256-4050-B41D-F24B87F702D2|1|PE32 image section|1	KeyboardLayouts	PE32 image section	кандидат на изменение Setup		36	2
-P2	9A595246-6F53-4526-B856-3C0667F4DA67|1|PE32 image section|1	LEMAllDriversConnectedEventHook	PE32 image section	не завершено		4040	1
-P2	FA327F24-2DE2-4B60-871A-436BC90605D4|1|PE32 image section|1	LEMComputraceApiDxe	PE32 image section	кандидат на изменение Setup		26	2
-P2	73852F31-9834-4EC7-97EE-41E584DC3C49|1|PE32 image section|1	LEMComputraceApiSmm	PE32 image section	кандидат на изменение Setup		26	2
-P2	CF009B23-17B9-43EE-BB69-4393CA186B1C|1|PE32 image section|1	LEMDeviceGuardInit	PE32 image section	кандидат на изменение Setup		11	2
-P2	279DB133-B4C6-4A34-9BE3-C98326DC27DC|1|PE32 image section|1	LEMHddSecurityEndProtocolHook	PE32 image section	кандидат на изменение Setup		1	1
-P2	55FFDD87-F6C2-49DD-A724-F197E60AB020|1|PE32 image section|1	LemKeyboardLayoutProtocol	PE32 image section	кандидат на изменение Setup		17	1
-P2	1755E35E-3B29-4F3A-AD20-80788159DA1F|1|PE32 image section|1	LEMPasswordStoreProtocolSmm	PE32 image section	кандидат на изменение Setup		12	1
-P2	868A660F-47F8-4088-A4C0-C55FF8DB0C96|1|PE32 image section|1	LEMPhyPresenceSet12	PE32 image section	кандидат на изменение Setup		23	1
-P2	19CE57CC-628E-4F96-93D4-3C21F823C343|1|PE32 image section|1	LEMPhyPresenceSet20	PE32 image section	кандидат на изменение Setup		18	1
-P2	C81C25C0-533B-48DF-93E5-B87807901CF6|1|TE image section|1	MiscFunctionPortingPpi	TE image section	кандидат на изменение Setup	identical after relocation	5	1
-P2	025BBFC7-E6A9-4B8B-82AD-6815A1AEAF4A|1|PE32 image section|1	MnpDxe	PE32 image section	не завершено			
-P2	DC3641B8-2FA8-4ED3-BC1F-F9962A03454B|1|PE32 image section|1	Mtftp4Dxe	PE32 image section	не завершено			
-P2	99F03B99-98D8-49DD-A8D3-3219D0FFE41E|1|PE32 image section|1	Mtftp6Dxe	PE32 image section	не завершено			
-P2	21891A9E-763E-4377-8841-8D5C90D88C51|1|PE32 image section|1	NetworkStackSetupScreen	PE32 image section	не завершено			
-P2	B9C0BEEA-3F1C-45C0-822B-B0908F668F65|1|PE32 image section|1	NTFS	PE32 image section	не завершено			
-P2	57E56594-CE95-46AD-9531-3C49310CA7CE|1|PE32 image section|1	Ofbd	PE32 image section	не завершено	different after relocation		
-P2	6A4B2718-CAF3-4D51-BD91-9EB1D6229F57|1|PE32 image section|1	PasswordEncodeProtocol	PE32 image section	кандидат на изменение Setup		12	2
-P2	3A18A5AF-F25B-42EE-8606-8D30A974916B|1|PE32 image section|1	PasswordEncodeSmmProtocol	PE32 image section	кандидат на изменение Setup		12	2
-P2	80CF7257-87AB-47F9-A3FE-D50B76D89541|1|Raw section|1	PcdDxe	Raw section	не завершено			
-P2	52C05B14-0B98-496C-BC3B-04B50211D680|1|TE image section|1	PeiCore	TE image section	не завершено			
-P2	CC9F5B7E-254B-4F8A-A648-034A40AEDA35|1|TE image section|1	PlatformCustomizePei	TE image section	частично объяснено		1	0
-P2	5FECEF6B-5FA4-4570-8163-0CF72A9C04C5|1|PE32 image section|1	Ps2Main	PE32 image section	не завершено			
-P2	70E1A818-0BE1-4449-BFD4-9EF68C7F02A8|1|PE32 image section|1	ReFlash	PE32 image section	частично объяснено			
-P2	E90A7B5E-37B2-43E4-B281-4C8E349045E9|1|PE32 image section|1	ReFlashSmm	PE32 image section	частично объяснено			
-P2	CF46C339-0651-407A-8E85-D0D72731CCD5|1|PE32 image section|1	RequestPOPOnReset	PE32 image section	кандидат на изменение Setup		23	1
-P2	8F3F1DE2-2FE4-4D5C-A8EC-49E8CCA17EBC|1|PE32 image section|1	RsdpPlus	PE32 image section	кандидат на изменение Setup		2	1
-P2	89E549B0-7CFE-449D-9BA3-10D8B2312D71|1|TE image section|1	S3Resume2Pei	TE image section	частично объяснено			
-P2	BDCE85BB-FBAA-4F4E-9264-501A2C249581|1|PE32 image section|1	S3SaveStateDxe	PE32 image section	частично объяснено			
-P2	510DF6A1-B6C1-4948-AEE7-59F220F898BD|1|PE32 image section|1	SataController	PE32 image section	кандидат на изменение Setup		5	1
-P2	B7D19491-E55A-470D-8508-85A5DFA41974|1|PE32 image section|1	SbDxe	PE32 image section	кандидат на изменение Setup		27	2
-P2	E23F86E1-056E-4888-B685-CFCD67C179D4|1|PE32 image section|1	SbRun	PE32 image section	кандидат на изменение Setup		6	1
-P2	C99E42D0-4964-4B09-B924-4A59E13E4F04|1|PE32 image section|1	SbRunSmm	PE32 image section	кандидат на изменение Setup		6	1
-P2	3370A4BD-8C23-4565-A2A2-065FEEDE6080|1|PE32 image section|1	SecSMIFlash	PE32 image section	кандидат на изменение Setup		6	1
-P2	4551F2F5-C684-4F27-936F-C7B04A5C5FF1|1|PE32 image section|1	SecureBootDXE	PE32 image section	частично объяснено	different after relocation	6	0
-P2	F80697E9-7FD6-4665-8646-88E33EF71DFC|1|PE32 image section|1	SecurityStubDxe	PE32 image section	не завершено			
-P2	4E82091E-32A1-4689-8A00-CDE41ED63CDD|1|PE32 image section|1	SioDxeInit	PE32 image section	кандидат на изменение Setup		25	1
-P2	B13EDD38-684C-41ED-A305-D7B7E32497DF|1|PE32 image section|1	Smbios	PE32 image section	не завершено			
-P2	E2A74738-8934-48F5-8412-99E948C8DC1B|1|PE32 image section|1	SmbiosDmiEdit	PE32 image section	не завершено		12457	0
-P2	7BB61314-11B5-4833-BCAD-B1601CA088C9|1|PE32 image section|1	SmbiosType0	PE32 image section	не завершено	different after relocation	6	0
-P2	AAD04E7E-F6E6-4694-B14F-E2D608740E29|1|PE32 image section|1	SmbiosType3	PE32 image section	не завершено			
-P2	BC327DBD-B982-4F55-9F79-056AD7E987C5|1|PE32 image section|1	SmiFlash	PE32 image section	частично объяснено			
-P2	BB8C2CF3-A5E3-49EF-941B-4A01FAC6FD5F|1|PE32 image section|1	SmiFlashDxe	PE32 image section	частично объяснено			
-P2	2486829B-D3F3-47EC-827A-FC104907FC5C|1|PE32 image section|1	SmmGenericSio	PE32 image section	не завершено			
-P2	316B1230-0500-4592-8C09-EABA0FB6B07F|1|PE32 image section|1	SmmHddSecurity	PE32 image section	не завершено			
-P2	2D59F041-53A4-40D0-A6CD-844DC0DFEF17|1|PE32 image section|1	SmmS3SaveState	PE32 image section	частично объяснено			
-P2	A2F436EA-A127-4EF8-957C-8048606FF670|1|PE32 image section|1	SnpDxe	PE32 image section	не завершено			
-P2	B6E17DD5-5CA0-4E3A-858C-A14345AE0B83|1|PE32 image section|1	SwSmi534D0040	PE32 image section	не завершено	different after relocation		
-P2	6F9B3CFA-1AF2-4174-A1C7-8F6310D68BE4|1|PE32 image section|1	SwSmi534D0140	PE32 image section	не завершено		2758	1
-P2	F6C5CE3D-2668-402A-952E-270786150DFB|1|PE32 image section|1	SwSmi534D3220	PE32 image section	кандидат на изменение Setup		8	1
-P2	E292BA71-812C-42B9-885D-3F0565B098C7|1|PE32 image section|1	SyncSetupCpt	PE32 image section	кандидат на изменение Setup		10	1
-P2	0C9C3169-6F39-409E-990B-5B8B48B9D2B9|1|TE image section|1	SyncUpNvramToPostFlag	TE image section	кандидат на изменение Setup		3	1
-P2	39045756-FCA3-49BD-8DAE-C7BAE8389AFF|1|PE32 image section|1	Tcg2Dxe	PE32 image section	кандидат на изменение Setup		12	2
-P2	5E9CABA3-F2B1-497A-ADAC-24F575E9CDE9|1|PE32 image section|1	TcgDxe	PE32 image section	не завершено			
-P2	0FE9DA53-043D-4265-A94D-FD77FEDE2EB4|1|TE image section|1	TcgPlatformSetupPeiPolicy	TE image section	кандидат на изменение Setup		22	1
-P2	196CA3D8-9A5A-4735-B328-8FFC1D93D188|1|PE32 image section|1	TcgPlatformSetupPolicy	PE32 image section	кандидат на изменение Setup		28	2
-P2	FD93F9E1-3C73-46E0-B7B8-2BBA3F718F6C|1|PE32 image section|1	TcgSmm	PE32 image section	кандидат на изменение Setup		3	1
-P2	1A7E4468-2F55-4A56-903C-01265EB7622B|1|PE32 image section|1	TcpDxe	PE32 image section	не завершено			
-P2	54891A9E-763E-4377-8841-8D5C90D88CDE|1|PE32 image section|1	TerminalSrc	PE32 image section	не завершено			
-P2	7CA1024F-EB17-11E5-9DBA-28D2447C4829|1|PE32 image section|1	TlsAuthConfigDxe	PE32 image section	не завершено			
-P2	7CA1024F-EB17-11E5-9DBA-28D2447C4829|1|Raw section|1	TlsAuthConfigDxe	Raw section	не завершено			
-P2	3ACEB0C0-3C72-11E4-9A56-74D435052646|1|PE32 image section|1	TlsDxe	PE32 image section	не завершено	different after relocation		
-P2	6D6963AB-906D-4A65-A7CA-BD40E5D6AF2B|1|PE32 image section|1	Udp4Dxe	PE32 image section	не завершено			
-P2	D912C7BC-F098-4367-92BA-E911083C7B0E|1|PE32 image section|1	Udp6Dxe	PE32 image section	не завершено			
-P2	A24FEE8C-AB1D-4B84-8E74-5DB474D8FEA8|1|PE32 image section|1	UefiDiagnostic	PE32 image section	кандидат на изменение Setup		9	1
-P2	7692B160-3591-47AA-BDEE-655297662E76|1|PE32 image section|1	UefiDMBMHooKInt13Protocol	PE32 image section	кандидат на изменение Setup		8	1
-P2	B95E9FDA-26DE-48D2-8807-1F9107AC5E3A|1|PE32 image section|1	UefiPxeBcDxe	PE32 image section	не завершено			
-P2	5D1C5BFF-3B25-4983-9A33-D4691BB3E9A3|1|PE32 image section|1	UltraFunctionSwSmi	PE32 image section	не завершено			
-P2	F193C257-3CB5-4D90-A694-2E371082E116|1|PE32 image section|1	UpdateSerial_NUM	PE32 image section	кандидат на изменение Setup		48	1
-P2	E4F61863-FE2C-4B56-A8F4-08519BC439DF|1|PE32 image section|1	VlanConfigDxe	PE32 image section	не завершено			
-P2	E4F61863-FE2C-4B56-A8F4-08519BC439DF|1|Raw section|1	VlanConfigDxe	Raw section	не завершено			
-P2	10E88749-28D1-49A0-AC9E-0324E40211A8|1|MM dependency section|1	WMISwSmi	MM dependency section	не завершено			
-P2	10E88749-28D1-49A0-AC9E-0324E40211A8|1|PE32 image section|1	WMISwSmi	PE32 image section	не завершено			
+id	pair	priority	module	section	status	normalized_diff	setup_pattern_hits
+S24-8F5A2E02-538C-4D59-B920-C4786ACBC552|1|PE32 image section|1	1.24→1.32	P1	Ahci	PE32 image section	кандидат на изменение Setup	10	1
+S24-501F30E9-D14F-47DA-AE60-B101E4189D07|1|MM dependency section|1	1.24→1.32	P1	AhciInt13Smm	MM dependency section	не завершено		
+S24-501F30E9-D14F-47DA-AE60-B101E4189D07|1|PE32 image section|1	1.24→1.32	P1	AhciInt13Smm	PE32 image section	не завершено		
+S24-2FC61DE6-1791-479C-8A32-7ABB69A4D8D0|1|TE image section|1	1.24→1.32	P1	AmdPspFtpmPei	TE image section	кандидат на изменение Setup	6	1
+S24-0A9F795E-B9FC-4117-BC4E-138695D16562|1|PE32 image section|1	1.24→1.32	P1	AmdSocFp5RvDxe	PE32 image section	кандидат на изменение Setup	12	1
+S24-01C827C2-7765-42E9-B31C-E03E89A09113|1|TE image section|1	1.24→1.32	P1	AmdSocFp5RvPei	TE image section	кандидат на изменение Setup	15	2
+S24-9D5FD24C-53DF-44AC-A336-B4879CDB29D9|1|TE image section|1	1.24→1.32	P1	AmdSpiRomProtectPei	TE image section	частично объяснено	1	0
+S24-8F4B8F82-9B91-4028-86E6-F4DB7D4C1DFF|1|PE32 image section|1	1.24→1.32	P1	Bds	PE32 image section	частично объяснено		
+S24-E03ABADF-E536-4E88-B3A0-B77F78EB34FE|1|PE32 image section|1	1.24→1.32	P1	CpuDxe	PE32 image section	не завершено		
+S24-2BB5AFA9-FF33-417B-8497-CB773C2B93BF|1|TE image section|1	1.24→1.32	P1	CpuPei	TE image section	кандидат на изменение Setup	12	1
+S24-0C989D41-F4B4-4244-9D7F-E9FFB4163273|1|PE32 image section|1	1.24→1.32	P1	FastBootOption	PE32 image section	не завершено		
+S24-80D7491A-F7D9-479D-A8F7-1B393B02ED66|1|PE32 image section|1	1.24→1.32	P1	FastBootRuntime	PE32 image section	кандидат на изменение Setup	30	1
+S24-634E8DB5-C432-43BE-A653-9CA2922CC458|1|PE32 image section|1	1.24→1.32	P1	Nvme	PE32 image section	частично объяснено (предыдущий разбор)		
+S24-E5E2C9D9-5BF5-497E-8860-94F81A09ADE0|1|MM dependency section|1	1.24→1.32	P1	NvmeSmm	MM dependency section	частично объяснено (предыдущий разбор)		
+S24-E5E2C9D9-5BF5-497E-8860-94F81A09ADE0|1|PE32 image section|1	1.24→1.32	P1	NvmeSmm	PE32 image section	частично объяснено (предыдущий разбор)		
+S24-1807040D-5934-41A2-A088-8E0F777F71AB|1|PE32 image section|1	1.24→1.32	P1	NvramDxe	PE32 image section	частично объяснено		
+S24-838DCF34-907B-4D55-9A4B-A0EF7167B5F4|1|TE image section|1	1.24→1.32	P1	NvramPei	TE image section	кандидат на изменение Setup	1	1
+S24-447A1B58-8F3E-4658-ABAA-9E7B2280B90A|1|PE32 image section|1	1.24→1.32	P1	NvramSmm	PE32 image section	частично объяснено		
+S24-68744031-8608-4B25-BBA1-DB4EA319D6EA|1|PE32 image section|1	1.24→1.32	P1	OememDxe	PE32 image section	частично объяснено		
+S24-3F9A7CA0-A30E-45E8-9CBB-B628D54A3588|1|TE image section|1	1.24→1.32	P1	OemPei	TE image section	кандидат на изменение Setup	4	1
+S24-EB8DCCDA-D34D-4765-B989-ED96CA2CA8D5|1|PE32 image section|1	1.24→1.32	P1	OemSwSmiDispatchProtocol	PE32 image section	не завершено	233	0
+S24-E94F54CD-81EB-47ED-AEC3-856F5DC157A9|1|PE32 image section|1	1.24→1.32	P1	PiSmmCore	PE32 image section	не завершено		
+S24-2FA2A6DA-11D5-4DC3-999A-749648B03C56|1|PE32 image section|1	1.24→1.32	P1	PiSmmIpl	PE32 image section	не завершено	6894	0
+S24-899407D7-99FE-43D8-9A21-79EC328CAC21|1|PE32 image section|1	1.24→1.32	P1	Setup	PE32 image section	частично объяснено		
+S24-76D1059D-2E22-40EF-A31F-C49DBBC0DBCE|1|TE image section|1	1.24→1.32	P1	SetupCheckSumPei	TE image section	кандидат на изменение Setup	3	1
+S24-634DF746-6F4B-4684-93E6-526653E7C35A|1|PE32 image section|1	1.24→1.32	P1	SetupConfigDxe	PE32 image section	кандидат на изменение Setup	11	1
+S24-DB41E01B-A8B0-4E15-B619-4463975B357B|1|PE32 image section|1	1.24→1.32	P1	SetupDataChecksumErr	PE32 image section	кандидат на изменение Setup	11	1
+S24-19AFD36B-F501-4446-9C9E-0457DB6E7888|1|PE32 image section|1	1.24→1.32	P1	SetupItemLinkageDxe	PE32 image section	кандидат на изменение Setup	3	3
+S24-AE73630A-022D-4884-A696-F728CBF53AEF|1|PE32 image section|1	1.24→1.32	P1	SetupItemLinkageSmm	PE32 image section	кандидат на изменение Setup	3	3
+S24-A46D9EE7-C6B4-42C0-8378-6E4BDC50406B|1|PE32 image section|1	1.24→1.32	P1	SetupLoadDefault	PE32 image section	не завершено		
+S24-BE216BA8-38C4-4535-A6CA-5DCA5B43ADDF|1|PE32 image section|1	1.24→1.32	P1	SmiVariable	PE32 image section	не завершено		
+S24-C7DD8530-96D8-40DD-BE88-CBDF446C6474|1|PE32 image section|1	1.24→1.32	P1	Stibp	PE32 image section	кандидат на изменение Setup	2	1
+S24-0718AD81-F26A-4850-A6EC-F268E309D707|1|PE32 image section|1	1.24→1.32	P1	Tpm20PlatformDxe	PE32 image section	не завершено		
+S24-2D07DCE9-CF98-408F-A13C-20E41746AE95|1|PE32 image section|1	1.24→1.32	P1	TPMHwPresent	PE32 image section	кандидат на изменение Setup	37	3
+S24-580DD900-385D-11D7-883A-00500473D4EB|1|PE32 image section|1	1.24→1.32	P1	Uhcd	PE32 image section	частично объяснено		
+S24-4C006CD9-19BA-4617-8483-609194A1ACFC|1|PE32 image section|1	1.24→1.32	P1	UsbInt13	PE32 image section	не завершено	4	0
+S24-171F43DC-C4D9-47A6-9641-65DDCDD5AA30|1|PE32 image section|1	1.24→1.32	P1	UsbRtDxe	PE32 image section	частично объяснено (предыдущий разбор)		
+S24-04EAAAA1-29A1-11D7-8838-00500473D4EB|1|PE32 image section|1	1.24→1.32	P1	UsbRtSmm	PE32 image section	частично объяснено (предыдущий разбор)		
+S33-8F4B8F82-9B91-4028-86E6-F4DB7D4C1DFF|1|PE32 image section|1	1.32→1.33	P1	Bds	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S33-1807040D-5934-41A2-A088-8E0F777F71AB|1|PE32 image section|1	1.32→1.33	P1	NvramDxe	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S33-447A1B58-8F3E-4658-ABAA-9E7B2280B90A|1|PE32 image section|1	1.32→1.33	P1	NvramSmm	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S33-899407D7-99FE-43D8-9A21-79EC328CAC21|1|PE32 image section|1	1.32→1.33	P1	Setup	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S24-0EEAB920-CEFA-4E68-8FE8-892A1D37EEB6|1|Raw section|1	1.24→1.32	P2	0EEAB920-CEFA-4E68-8FE8-892A1D37EEB6	Raw section	не завершено		
+S24-147923CE-D0E9-4C4F-9B7B-AC02F8BD2763|1|72BCFBE0-FCEC-4F0F-8CD2-AC3A424539CD|1	1.24→1.32	P2	147923CE-D0E9-4C4F-9B7B-AC02F8BD2763	72BCFBE0-FCEC-4F0F-8CD2-AC3A424539CD	частично объяснено		
+S24-3FD1D3A2-99F7-420B-BC69-8BB1D492A332|1|2EBE0275-6458-4AF9-91ED-D3F4EDB100AA|1	1.24→1.32	P2	3FD1D3A2-99F7-420B-BC69-8BB1D492A332	2EBE0275-6458-4AF9-91ED-D3F4EDB100AA	частично объяснено		
+S24-414D94AD-998D-47D2-BFCD-4E882241DE32|1|5A88641B-BBB9-4AA6-80F7-498AE407C31F|1	1.24→1.32	P2	414D94AD-998D-47D2-BFCD-4E882241DE32	5A88641B-BBB9-4AA6-80F7-498AE407C31F	не завершено		
+S24-550CA2B8-4E82-41FF-AAC6-B6373D5DF77F|1|Raw section with PE32 image|1	1.24→1.32	P2	550CA2B8-4E82-41FF-AAC6-B6373D5DF77F	Raw section with PE32 image	не завершено		
+S24-6C9013D0-4059-4723-AF2A-05E63FFECF19|1|Raw section|1	1.24→1.32	P2	6C9013D0-4059-4723-AF2A-05E63FFECF19	Raw section	частично объяснено		
+S24-709E6472-1BCD-43BD-8B6B-CD2D6D08B967|1|Raw section|1	1.24→1.32	P2	709E6472-1BCD-43BD-8B6B-CD2D6D08B967	Raw section	частично объяснено		
+S24-72BCFBE0-FCEC-4F0F-8CD2-AC3A424539CD|1|raw file|1	1.24→1.32	P2	72BCFBE0-FCEC-4F0F-8CD2-AC3A424539CD	raw file	частично объяснено		
+S24-A59A0056-3341-44B5-9C9C-6D76F7673817|1|2EBE0275-6458-4AF9-91ED-D3F4EDB100AA|1	1.24→1.32	P2	A59A0056-3341-44B5-9C9C-6D76F7673817	2EBE0275-6458-4AF9-91ED-D3F4EDB100AA	не завершено		
+S24-3548423A-2B2C-4393-9826-B202959D2362|1|PE32 image section|1	1.24→1.32	P2	AbtCryptoDriver	PE32 image section	не завершено		
+S24-9D933189-EEE7-457C-981E-581C1A639FC3|1|PE32 image section|1	1.24→1.32	P2	AbtExtendedMessageProtocol	PE32 image section	кандидат на изменение Setup	27	1
+S24-16D0A23E-C09C-407D-A14A-AD058FDD0CA1|1|PE32 image section|1	1.24→1.32	P2	ACPI	PE32 image section	частично объяснено		
+S24-1DFB7BFA-BF8E-4D11-9766-2FB0D0442310|1|PE32 image section|1	1.24→1.32	P2	AmiAgesaDxe	PE32 image section	кандидат на изменение Setup	21	1
+S24-586032E3-1386-4ECC-B547-EB285E21066D|1|TE image section|1	1.24→1.32	P2	AmiAgesaPei	TE image section	кандидат на изменение Setup	9	1
+S24-95ECB758-627E-4A2E-B7B8-DC863EFE3425|1|PE32 image section|1	1.24→1.32	P2	AmiDeviceGuardApi	PE32 image section	не завершено	6	0
+S24-D4926BEA-00A3-40E5-A2B9-C317960F31BF|1|TE image section|1	1.24→1.32	P2	AmiPspFtpmPei	TE image section	кандидат на изменение Setup	4	1
+S24-D4395796-6F4C-4C6B-B9D1-92DAA7199A84|1|PE32 image section|1	1.24→1.32	P2	AmiRedFishApi	PE32 image section	не завершено	6	0
+S24-50F6096D-7C98-4C78-9A1D-C5A1833B6A88|1|PE32 image section|1	1.24→1.32	P2	AmiTcgNvflagSample	PE32 image section	не завершено	879	0
+S24-A29A63E3-E4E7-495F-8A6A-07738300CBB3|1|PE32 image section|1	1.24→1.32	P2	AmiTcgPlatformDxe	PE32 image section	не завершено		
+S24-B1DA0ADF-4F77-4070-A88E-BFFE1C60529A|1|PE32 image section|1	1.24→1.32	P2	AMITSE	PE32 image section	не завершено		
+S24-FE612B72-203C-47B1-8560-A66D946EB371|1|FE612B72-203C-47B1-8560-A66D946EB371|1	1.24→1.32	P2	AMITSESetupData	FE612B72-203C-47B1-8560-A66D946EB371	не завершено		
+S24-529D3F93-E8E9-4E73-B1E1-BDF6A9D50113|1|PE32 image section|1	1.24→1.32	P2	ArpDxe	PE32 image section	не завершено		
+S24-8AAFF1F7-D011-4AE5-8324-DFA470F75D33|1|PE32 image section|1	1.24→1.32	P2	AsfDxe	PE32 image section	кандидат на изменение Setup	17	1
+S24-03417BF3-6D95-41DF-88EF-0DDA6E86DC34|1|TE image section|1	1.24→1.32	P2	AsfPei	TE image section	кандидат на изменение Setup	8	1
+S24-996B4E92-D1EB-4E35-B194-BF9E0C524ACC|1|PE32 image section|1	1.24→1.32	P2	AssetIDOnRecoveryModeDxe	PE32 image section	кандидат на изменение Setup	7	1
+S24-FA20568B-548B-4B2B-81EF-1BA08D4A3CEC|1|PE32 image section|1	1.24→1.32	P2	BootScriptExecutorDxe	PE32 image section	не завершено		
+S24-CC0F8A3F-3DEA-4376-9679-5426BA0A907E|1|Raw section|1	1.24→1.32	P2	CC0F8A3F-3DEA-4376-9679-5426BA0A907E	Raw section	частично объяснено (новое)		
+S24-1FDF71C4-D46D-45FB-BF85-56F1C529725A|1|TE image section|1	1.24→1.32	P2	ComTypeControlPei	TE image section	кандидат на изменение Setup	5	1
+S24-1BA0ADA4-526B-4F11-A9BD-3F83EE17EA30|1|PE32 image section|1	1.24→1.32	P2	CopyRight	PE32 image section	частично объяснено	2	0
+S24-75189FA6-7BCF-4F4F-81BD-A4F1C3BEA95A|1|PE32 image section|1	1.24→1.32	P2	CptSwSmi	PE32 image section	не завершено		
+S24-4DF75915-6C88-4EF4-995D-834D866DBD20|1|TE image section|1	1.24→1.32	P2	CpuSetAgesaPcd	TE image section	кандидат на изменение Setup	12	1
+S24-16271FCA-55D9-4A33-93FC-5A3EB128DEB6|1|PE32 image section|1	1.24→1.32	P2	CrbDxe	PE32 image section	не завершено	1	0
+S24-0D1ED2F7-E92B-4562-92DD-5C82EC917EAE|1|TE image section|1	1.24→1.32	P2	CrbPei	TE image section	кандидат на изменение Setup	18	4
+S24-77EB6C06-FD48-488B-A1B3-AE0A70801369|1|PE32 image section|1	1.24→1.32	P2	CryptoDXE	PE32 image section	не завершено	47038	0
+S24-67451698-1825-4AC5-999D-F350CC7D5D72|1|PE32 image section|1	1.24→1.32	P2	CryptoPPI	PE32 image section	не завершено		
+S24-2AD511C7-1B60-4002-841D-2998DDC138EE|1|PE32 image section|1	1.24→1.32	P2	CryptoSMM	PE32 image section	не завершено		
+S24-858031F3-96A2-406E-ABCC-ED264A3A31D6|1|PE32 image section|1	1.24→1.32	P2	CryptRuntimeDxe	PE32 image section	не завершено	90333	0
+S24-A062CF1F-8473-4AA3-8793-600BC4FFE9A8|1|PE32 image section|1	1.24→1.32	P2	CsmDxe	PE32 image section	частично объяснено	53	1
+S24-DAC2B117-B5FB-4964-A312-0DCC77061B9B|1|A7FE7491-2C54-4F72-B80E-7649A8210193|1	1.24→1.32	P2	DAC2B117-B5FB-4964-A312-0DCC77061B9B	A7FE7491-2C54-4F72-B80E-7649A8210193	не завершено		
+S24-DAF4BF89-CE71-4917-B522-C89D32FBC59F|1|AB56DC60-0057-11DA-A8DB-000102EEE626|1	1.24→1.32	P2	DAF4BF89-CE71-4917-B522-C89D32FBC59F	AB56DC60-0057-11DA-A8DB-000102EEE626	не завершено		
+S24-1ED46147-76E3-4171-BCE5-42D368D26AA6|1|PE32 image section|1	1.24→1.32	P2	DebugPortTableDxe	PE32 image section	кандидат на изменение Setup	13	1
+S24-4906415D-4B32-4D28-8557-21C390D76A3C|1|PE32 image section|1	1.24→1.32	P2	DeleteUefiCaFromDb	PE32 image section	кандидат на изменение Setup	22	2
+S24-D903BF23-E1DE-4DF0-8B96-73B6F2C2B797|1|PE32 image section|1	1.24→1.32	P2	DevFwUpd	PE32 image section	кандидат на изменение Setup	12	1
+S24-94734718-0BBC-47FB-96A5-EE7A5AE6A2AD|1|PE32 image section|1	1.24→1.32	P2	Dhcp4Dxe	PE32 image section	не завершено		
+S24-95E3669D-34BE-4775-A651-7EA41B69D89E|1|PE32 image section|1	1.24→1.32	P2	Dhcp6Dxe	PE32 image section	не завершено		
+S24-E12929EF-F08C-4E26-8290-281740D874DE|1|PE32 image section|1	1.24→1.32	P2	DisableChassisIntrusion	PE32 image section	кандидат на изменение Setup	13	1
+S24-0FBEE984-33BF-4AC0-A871-B352AD59E337|1|PE32 image section|1	1.24→1.32	P2	DisableLTEB	PE32 image section	кандидат на изменение Setup	9	1
+S24-B219E140-DFFC-11E3-B956-0022681E6906|1|PE32 image section|1	1.24→1.32	P2	DnsDxe	PE32 image section	не завершено		
+S24-1062CB92-72A9-4FDC-9694-B1FE817EFAAF|1|PE32 image section|1	1.24→1.32	P2	DustFilterAlertDxe	PE32 image section	кандидат на изменение Setup	15	1
+S24-D6A2CB7F-6A18-4E2F-B43B-9920A733700A|1|PE32 image section|1	1.24→1.32	P2	DxeCore	PE32 image section	не завершено		
+S24-86D70125-BAA3-4296-A62F-602BEBBB9081|1|TE image section|1	1.24→1.32	P2	DxeIpl	TE image section	не завершено		
+S24-FF761299-D41F-4C73-8380-A24055ADF4B9|1|PE32 image section|1	1.24→1.32	P2	EDUDxe	PE32 image section	кандидат на изменение Setup	20	2
+S24-3FEDD4A3-8112-4534-8DB2-E886EB35075E|1|PE32 image section|1	1.24→1.32	P2	ErrorMessage	PE32 image section	не завершено	12734	1
+S24-A2DF5376-C2ED-49C0-90FF-8B173B0FD066|1|PE32 image section|1	1.24→1.32	P2	EsaFull	PE32 image section	не завершено		
+S24-999BD818-7DF7-4A9A-A502-9B75033E6A0F|1|PE32 image section|1	1.24→1.32	P2	EsrtDxe	PE32 image section	кандидат на изменение Setup	10	1
+S24-56CD6FEF-9038-49DA-8275-1B2F5B9791A9|1|PE32 image section|1	1.24→1.32	P2	EzFmpFwUpdate	PE32 image section	кандидат на изменение Setup	10	1
+S24-CBC59C4A-383A-41EB-A8EE-4498AEA567E4|1|PE32 image section|1	1.24→1.32	P2	FlashDriver	PE32 image section	частично объяснено	12103	0
+S24-0C375A90-4C4C-4428-8EA0-531BE8959BF7|1|PE32 image section|1	1.24→1.32	P2	FlashDriverSmm	PE32 image section	частично объяснено	11423	0
+S24-7ECD9C20-68B9-4A6F-B515-D64FF500B109|1|PE32 image section|1	1.24→1.32	P2	FsRecovery	PE32 image section	частично объяснено		
+S24-8EEF9AD2-463E-425F-A4FE-2F6783D6F97E|1|PE32 image section|1	1.24→1.32	P2	GenericSio	PE32 image section	не завершено		
+S24-B7EE4835-84CE-4B15-BF52-2D11574CE470|1|PE32 image section|1	1.24→1.32	P2	HardwareSignatureEntry	PE32 image section	не завершено	6	0
+S24-A9B700CF-019E-4D8B-A3A7-88E1EA01699E|1|PE32 image section|1	1.24→1.32	P2	HddSecurity	PE32 image section	не завершено		
+S24-348C4D62-BFBD-4882-9ECE-C80BB1C4783B|1|PE32 image section|1	1.24→1.32	P2	HiiDatabase	PE32 image section	не завершено		
+S24-ECEBCB00-D9C8-11E4-AF3D-8CDCD426C973|1|PE32 image section|1	1.24→1.32	P2	HttpBootDxe	PE32 image section	не завершено		
+S24-ECEBCB00-D9C8-11E4-AF3D-8CDCD426C973|1|Raw section|1	1.24→1.32	P2	HttpBootDxe	Raw section	не завершено		
+S24-2366C20F-E15A-11E3-8BF1-E4115B28BC50|1|PE32 image section|1	1.24→1.32	P2	HttpDxe	PE32 image section	не завершено		
+S24-22EA234F-E72A-11E4-91F9-28D2447C4829|1|PE32 image section|1	1.24→1.32	P2	HttpUtilitiesDxe	PE32 image section	не завершено		
+S24-9FB1A1F3-3B71-4324-B39A-745CBB015FFF|1|PE32 image section|1	1.24→1.32	P2	Ip4Dxe	PE32 image section	не завершено		
+S24-9FB1A1F3-3B71-4324-B39A-745CBB015FFF|1|Raw section|1	1.24→1.32	P2	Ip4Dxe	Raw section	не завершено		
+S24-5BEDB5CC-D830-4EB2-8742-2D4CC9B54F2C|1|PE32 image section|1	1.24→1.32	P2	Ip6Dxe	PE32 image section	не завершено		
+S24-5BEDB5CC-D830-4EB2-8742-2D4CC9B54F2C|1|Raw section|1	1.24→1.32	P2	Ip6Dxe	Raw section	не завершено		
+S24-C8CAFFF9-C6E0-4443-B96F-45FE2AD480CD|1|TE image section|1	1.24→1.32	P2	IsHdpRequiredPostFlag	TE image section	кандидат на изменение Setup	4	1
+S24-F99C0302-9256-4050-B41D-F24B87F702D2|1|PE32 image section|1	1.24→1.32	P2	KeyboardLayouts	PE32 image section	кандидат на изменение Setup	36	2
+S24-9A595246-6F53-4526-B856-3C0667F4DA67|1|PE32 image section|1	1.24→1.32	P2	LEMAllDriversConnectedEventHook	PE32 image section	не завершено	4040	1
+S24-FA327F24-2DE2-4B60-871A-436BC90605D4|1|PE32 image section|1	1.24→1.32	P2	LEMComputraceApiDxe	PE32 image section	кандидат на изменение Setup	26	2
+S24-73852F31-9834-4EC7-97EE-41E584DC3C49|1|PE32 image section|1	1.24→1.32	P2	LEMComputraceApiSmm	PE32 image section	кандидат на изменение Setup	26	2
+S24-CF009B23-17B9-43EE-BB69-4393CA186B1C|1|PE32 image section|1	1.24→1.32	P2	LEMDeviceGuardInit	PE32 image section	кандидат на изменение Setup	11	2
+S24-279DB133-B4C6-4A34-9BE3-C98326DC27DC|1|PE32 image section|1	1.24→1.32	P2	LEMHddSecurityEndProtocolHook	PE32 image section	кандидат на изменение Setup	1	1
+S24-55FFDD87-F6C2-49DD-A724-F197E60AB020|1|PE32 image section|1	1.24→1.32	P2	LemKeyboardLayoutProtocol	PE32 image section	кандидат на изменение Setup	17	1
+S24-1755E35E-3B29-4F3A-AD20-80788159DA1F|1|PE32 image section|1	1.24→1.32	P2	LEMPasswordStoreProtocolSmm	PE32 image section	кандидат на изменение Setup	12	1
+S24-868A660F-47F8-4088-A4C0-C55FF8DB0C96|1|PE32 image section|1	1.24→1.32	P2	LEMPhyPresenceSet12	PE32 image section	кандидат на изменение Setup	23	1
+S24-19CE57CC-628E-4F96-93D4-3C21F823C343|1|PE32 image section|1	1.24→1.32	P2	LEMPhyPresenceSet20	PE32 image section	кандидат на изменение Setup	18	1
+S24-C81C25C0-533B-48DF-93E5-B87807901CF6|1|TE image section|1	1.24→1.32	P2	MiscFunctionPortingPpi	TE image section	кандидат на изменение Setup	5	1
+S24-025BBFC7-E6A9-4B8B-82AD-6815A1AEAF4A|1|PE32 image section|1	1.24→1.32	P2	MnpDxe	PE32 image section	не завершено		
+S24-DC3641B8-2FA8-4ED3-BC1F-F9962A03454B|1|PE32 image section|1	1.24→1.32	P2	Mtftp4Dxe	PE32 image section	не завершено		
+S24-99F03B99-98D8-49DD-A8D3-3219D0FFE41E|1|PE32 image section|1	1.24→1.32	P2	Mtftp6Dxe	PE32 image section	не завершено		
+S24-21891A9E-763E-4377-8841-8D5C90D88C51|1|PE32 image section|1	1.24→1.32	P2	NetworkStackSetupScreen	PE32 image section	не завершено		
+S24-B9C0BEEA-3F1C-45C0-822B-B0908F668F65|1|PE32 image section|1	1.24→1.32	P2	NTFS	PE32 image section	не завершено		
+S24-57E56594-CE95-46AD-9531-3C49310CA7CE|1|PE32 image section|1	1.24→1.32	P2	Ofbd	PE32 image section	не завершено		
+S24-6A4B2718-CAF3-4D51-BD91-9EB1D6229F57|1|PE32 image section|1	1.24→1.32	P2	PasswordEncodeProtocol	PE32 image section	кандидат на изменение Setup	12	2
+S24-3A18A5AF-F25B-42EE-8606-8D30A974916B|1|PE32 image section|1	1.24→1.32	P2	PasswordEncodeSmmProtocol	PE32 image section	кандидат на изменение Setup	12	2
+S24-80CF7257-87AB-47F9-A3FE-D50B76D89541|1|Raw section|1	1.24→1.32	P2	PcdDxe	Raw section	не завершено		
+S24-52C05B14-0B98-496C-BC3B-04B50211D680|1|TE image section|1	1.24→1.32	P2	PeiCore	TE image section	не завершено		
+S24-CC9F5B7E-254B-4F8A-A648-034A40AEDA35|1|TE image section|1	1.24→1.32	P2	PlatformCustomizePei	TE image section	частично объяснено	1	0
+S24-5FECEF6B-5FA4-4570-8163-0CF72A9C04C5|1|PE32 image section|1	1.24→1.32	P2	Ps2Main	PE32 image section	не завершено		
+S24-70E1A818-0BE1-4449-BFD4-9EF68C7F02A8|1|PE32 image section|1	1.24→1.32	P2	ReFlash	PE32 image section	частично объяснено		
+S24-E90A7B5E-37B2-43E4-B281-4C8E349045E9|1|PE32 image section|1	1.24→1.32	P2	ReFlashSmm	PE32 image section	частично объяснено		
+S24-CF46C339-0651-407A-8E85-D0D72731CCD5|1|PE32 image section|1	1.24→1.32	P2	RequestPOPOnReset	PE32 image section	кандидат на изменение Setup	23	1
+S24-8F3F1DE2-2FE4-4D5C-A8EC-49E8CCA17EBC|1|PE32 image section|1	1.24→1.32	P2	RsdpPlus	PE32 image section	кандидат на изменение Setup	2	1
+S24-89E549B0-7CFE-449D-9BA3-10D8B2312D71|1|TE image section|1	1.24→1.32	P2	S3Resume2Pei	TE image section	частично объяснено		
+S24-BDCE85BB-FBAA-4F4E-9264-501A2C249581|1|PE32 image section|1	1.24→1.32	P2	S3SaveStateDxe	PE32 image section	частично объяснено		
+S24-510DF6A1-B6C1-4948-AEE7-59F220F898BD|1|PE32 image section|1	1.24→1.32	P2	SataController	PE32 image section	кандидат на изменение Setup	5	1
+S24-B7D19491-E55A-470D-8508-85A5DFA41974|1|PE32 image section|1	1.24→1.32	P2	SbDxe	PE32 image section	кандидат на изменение Setup	27	2
+S24-E23F86E1-056E-4888-B685-CFCD67C179D4|1|PE32 image section|1	1.24→1.32	P2	SbRun	PE32 image section	кандидат на изменение Setup	6	1
+S24-C99E42D0-4964-4B09-B924-4A59E13E4F04|1|PE32 image section|1	1.24→1.32	P2	SbRunSmm	PE32 image section	кандидат на изменение Setup	6	1
+S24-3370A4BD-8C23-4565-A2A2-065FEEDE6080|1|PE32 image section|1	1.24→1.32	P2	SecSMIFlash	PE32 image section	кандидат на изменение Setup	6	1
+S24-4551F2F5-C684-4F27-936F-C7B04A5C5FF1|1|PE32 image section|1	1.24→1.32	P2	SecureBootDXE	PE32 image section	частично объяснено	6	0
+S24-F80697E9-7FD6-4665-8646-88E33EF71DFC|1|PE32 image section|1	1.24→1.32	P2	SecurityStubDxe	PE32 image section	не завершено		
+S24-4E82091E-32A1-4689-8A00-CDE41ED63CDD|1|PE32 image section|1	1.24→1.32	P2	SioDxeInit	PE32 image section	кандидат на изменение Setup	25	1
+S24-B13EDD38-684C-41ED-A305-D7B7E32497DF|1|PE32 image section|1	1.24→1.32	P2	Smbios	PE32 image section	не завершено		
+S24-E2A74738-8934-48F5-8412-99E948C8DC1B|1|PE32 image section|1	1.24→1.32	P2	SmbiosDmiEdit	PE32 image section	не завершено	12457	0
+S24-7BB61314-11B5-4833-BCAD-B1601CA088C9|1|PE32 image section|1	1.24→1.32	P2	SmbiosType0	PE32 image section	не завершено	6	0
+S24-AAD04E7E-F6E6-4694-B14F-E2D608740E29|1|PE32 image section|1	1.24→1.32	P2	SmbiosType3	PE32 image section	не завершено		
+S24-BC327DBD-B982-4F55-9F79-056AD7E987C5|1|PE32 image section|1	1.24→1.32	P2	SmiFlash	PE32 image section	частично объяснено		
+S24-BB8C2CF3-A5E3-49EF-941B-4A01FAC6FD5F|1|PE32 image section|1	1.24→1.32	P2	SmiFlashDxe	PE32 image section	частично объяснено		
+S24-2486829B-D3F3-47EC-827A-FC104907FC5C|1|PE32 image section|1	1.24→1.32	P2	SmmGenericSio	PE32 image section	не завершено		
+S24-316B1230-0500-4592-8C09-EABA0FB6B07F|1|PE32 image section|1	1.24→1.32	P2	SmmHddSecurity	PE32 image section	не завершено		
+S24-2D59F041-53A4-40D0-A6CD-844DC0DFEF17|1|PE32 image section|1	1.24→1.32	P2	SmmS3SaveState	PE32 image section	частично объяснено		
+S24-A2F436EA-A127-4EF8-957C-8048606FF670|1|PE32 image section|1	1.24→1.32	P2	SnpDxe	PE32 image section	не завершено		
+S24-B6E17DD5-5CA0-4E3A-858C-A14345AE0B83|1|PE32 image section|1	1.24→1.32	P2	SwSmi534D0040	PE32 image section	не завершено		
+S24-6F9B3CFA-1AF2-4174-A1C7-8F6310D68BE4|1|PE32 image section|1	1.24→1.32	P2	SwSmi534D0140	PE32 image section	не завершено	2758	1
+S24-F6C5CE3D-2668-402A-952E-270786150DFB|1|PE32 image section|1	1.24→1.32	P2	SwSmi534D3220	PE32 image section	кандидат на изменение Setup	8	1
+S24-E292BA71-812C-42B9-885D-3F0565B098C7|1|PE32 image section|1	1.24→1.32	P2	SyncSetupCpt	PE32 image section	кандидат на изменение Setup	10	1
+S24-0C9C3169-6F39-409E-990B-5B8B48B9D2B9|1|TE image section|1	1.24→1.32	P2	SyncUpNvramToPostFlag	TE image section	кандидат на изменение Setup	3	1
+S24-39045756-FCA3-49BD-8DAE-C7BAE8389AFF|1|PE32 image section|1	1.24→1.32	P2	Tcg2Dxe	PE32 image section	кандидат на изменение Setup	12	2
+S24-5E9CABA3-F2B1-497A-ADAC-24F575E9CDE9|1|PE32 image section|1	1.24→1.32	P2	TcgDxe	PE32 image section	не завершено		
+S24-0FE9DA53-043D-4265-A94D-FD77FEDE2EB4|1|TE image section|1	1.24→1.32	P2	TcgPlatformSetupPeiPolicy	TE image section	кандидат на изменение Setup	22	1
+S24-196CA3D8-9A5A-4735-B328-8FFC1D93D188|1|PE32 image section|1	1.24→1.32	P2	TcgPlatformSetupPolicy	PE32 image section	кандидат на изменение Setup	28	2
+S24-FD93F9E1-3C73-46E0-B7B8-2BBA3F718F6C|1|PE32 image section|1	1.24→1.32	P2	TcgSmm	PE32 image section	кандидат на изменение Setup	3	1
+S24-1A7E4468-2F55-4A56-903C-01265EB7622B|1|PE32 image section|1	1.24→1.32	P2	TcpDxe	PE32 image section	не завершено		
+S24-54891A9E-763E-4377-8841-8D5C90D88CDE|1|PE32 image section|1	1.24→1.32	P2	TerminalSrc	PE32 image section	не завершено		
+S24-7CA1024F-EB17-11E5-9DBA-28D2447C4829|1|PE32 image section|1	1.24→1.32	P2	TlsAuthConfigDxe	PE32 image section	не завершено		
+S24-7CA1024F-EB17-11E5-9DBA-28D2447C4829|1|Raw section|1	1.24→1.32	P2	TlsAuthConfigDxe	Raw section	не завершено		
+S24-3ACEB0C0-3C72-11E4-9A56-74D435052646|1|PE32 image section|1	1.24→1.32	P2	TlsDxe	PE32 image section	не завершено		
+S24-6D6963AB-906D-4A65-A7CA-BD40E5D6AF2B|1|PE32 image section|1	1.24→1.32	P2	Udp4Dxe	PE32 image section	не завершено		
+S24-D912C7BC-F098-4367-92BA-E911083C7B0E|1|PE32 image section|1	1.24→1.32	P2	Udp6Dxe	PE32 image section	не завершено		
+S24-A24FEE8C-AB1D-4B84-8E74-5DB474D8FEA8|1|PE32 image section|1	1.24→1.32	P2	UefiDiagnostic	PE32 image section	кандидат на изменение Setup	9	1
+S24-7692B160-3591-47AA-BDEE-655297662E76|1|PE32 image section|1	1.24→1.32	P2	UefiDMBMHooKInt13Protocol	PE32 image section	кандидат на изменение Setup	8	1
+S24-B95E9FDA-26DE-48D2-8807-1F9107AC5E3A|1|PE32 image section|1	1.24→1.32	P2	UefiPxeBcDxe	PE32 image section	не завершено		
+S24-5D1C5BFF-3B25-4983-9A33-D4691BB3E9A3|1|PE32 image section|1	1.24→1.32	P2	UltraFunctionSwSmi	PE32 image section	не завершено		
+S24-F193C257-3CB5-4D90-A694-2E371082E116|1|PE32 image section|1	1.24→1.32	P2	UpdateSerial_NUM	PE32 image section	кандидат на изменение Setup	48	1
+S24-E4F61863-FE2C-4B56-A8F4-08519BC439DF|1|PE32 image section|1	1.24→1.32	P2	VlanConfigDxe	PE32 image section	не завершено		
+S24-E4F61863-FE2C-4B56-A8F4-08519BC439DF|1|Raw section|1	1.24→1.32	P2	VlanConfigDxe	Raw section	не завершено		
+S24-10E88749-28D1-49A0-AC9E-0324E40211A8|1|MM dependency section|1	1.24→1.32	P2	WMISwSmi	MM dependency section	не завершено		
+S24-10E88749-28D1-49A0-AC9E-0324E40211A8|1|PE32 image section|1	1.24→1.32	P2	WMISwSmi	PE32 image section	не завершено		
+S33-147923CE-D0E9-4C4F-9B7B-AC02F8BD2763|1|72BCFBE0-FCEC-4F0F-8CD2-AC3A424539CD|1	1.32→1.33	P2	147923CE-D0E9-4C4F-9B7B-AC02F8BD2763	72BCFBE0-FCEC-4F0F-8CD2-AC3A424539CD	review evidence (not necessarily open)	non-executable diff	
+S33-3FD1D3A2-99F7-420B-BC69-8BB1D492A332|1|2EBE0275-6458-4AF9-91ED-D3F4EDB100AA|1	1.32→1.33	P2	3FD1D3A2-99F7-420B-BC69-8BB1D492A332	2EBE0275-6458-4AF9-91ED-D3F4EDB100AA	review evidence (not necessarily open)	non-executable diff	
+S33-414D94AD-998D-47D2-BFCD-4E882241DE32|1|5A88641B-BBB9-4AA6-80F7-498AE407C31F|1	1.32→1.33	P2	414D94AD-998D-47D2-BFCD-4E882241DE32	5A88641B-BBB9-4AA6-80F7-498AE407C31F	review evidence (not necessarily open)	non-executable diff	
+S33-709E6472-1BCD-43BD-8B6B-CD2D6D08B967|1|Raw section|1	1.32→1.33	P2	709E6472-1BCD-43BD-8B6B-CD2D6D08B967	Raw section	review evidence (not necessarily open)	non-executable diff	
+S33-72BCFBE0-FCEC-4F0F-8CD2-AC3A424539CD|1|raw file|1	1.32→1.33	P2	72BCFBE0-FCEC-4F0F-8CD2-AC3A424539CD	raw file	review evidence (not necessarily open)	non-executable diff	
+S33-86E3F707-B273-49EC-9C50-C38F419FCE65|1|raw file|1	1.32→1.33	P2	86E3F707-B273-49EC-9C50-C38F419FCE65	raw file	review evidence (not necessarily open)	non-executable diff	
+S33-9E21FD93-9C72-4C15-8C4B-E77F1DB2D792|1|Volume free space|1	1.32→1.33	P2	9E21FD93-9C72-4C15-8C4B-E77F1DB2D792	Volume free space	review evidence (not necessarily open)	non-executable diff	
+S33-9FE7DE69-0AEA-470A-B50A-139813649189|1|Raw section|1	1.32→1.33	P2	9FE7DE69-0AEA-470A-B50A-139813649189	Raw section	review evidence (not necessarily open)	non-executable diff	
+S33-A59A0056-3341-44B5-9C9C-6D76F7673817|1|2EBE0275-6458-4AF9-91ED-D3F4EDB100AA|1	1.32→1.33	P2	A59A0056-3341-44B5-9C9C-6D76F7673817	2EBE0275-6458-4AF9-91ED-D3F4EDB100AA	review evidence (not necessarily open)	non-executable diff	
+S33-3548423A-2B2C-4393-9826-B202959D2362|1|PE32 image section|1	1.32→1.33	P2	AbtCryptoDriver	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S33-95ECB758-627E-4A2E-B7B8-DC863EFE3425|1|PE32 image section|1	1.32→1.33	P2	AmiDeviceGuardApi	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S33-D4395796-6F4C-4C6B-B9D1-92DAA7199A84|1|PE32 image section|1	1.32→1.33	P2	AmiRedFishApi	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S33-B1DA0ADF-4F77-4070-A88E-BFFE1C60529A|1|PE32 image section|1	1.32→1.33	P2	AMITSE	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S33-C0492C7F-75E2-487C-B2DD-000E6CF7B905|1|Volume free space|1	1.32→1.33	P2	C0492C7F-75E2-487C-B2DD-000E6CF7B905	Volume free space	review evidence (not necessarily open)	non-executable diff	
+S33-17AF0060-A98C-4A03-90AD-6ABED75045BD|1|PE32 image section|1	1.32→1.33	P2	CbsBaseDxeRV	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S33-045E78D8-3D5D-4EE5-90AA-42121E1EEE49|1|TE image section|1	1.32→1.33	P2	CbsBasePeiRV	TE image section	review evidence (not necessarily open)	different after relocation	
+S33-3E7788CA-2BFC-4FCE-8122-5176CA492D9F|1|PE32 image section|1	1.32→1.33	P2	CbsSetupDxeRV	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S33-CC0F8A3F-3DEA-4376-9679-5426BA0A907E|1|Raw section|1	1.32→1.33	P2	CC0F8A3F-3DEA-4376-9679-5426BA0A907E	Raw section	review evidence (not necessarily open)	non-executable diff	
+S33-1BA0ADA4-526B-4F11-A9BD-3F83EE17EA30|1|PE32 image section|1	1.32→1.33	P2	CopyRight	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S33-16271FCA-55D9-4A33-93FC-5A3EB128DEB6|1|PE32 image section|1	1.32→1.33	P2	CrbDxe	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S33-0D1ED2F7-E92B-4562-92DD-5C82EC917EAE|1|TE image section|1	1.32→1.33	P2	CrbPei	TE image section	review evidence (not necessarily open)	different after relocation	
+S33-67451698-1825-4AC5-999D-F350CC7D5D72|1|PE32 image section|1	1.32→1.33	P2	CryptoPPI	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S33-858031F3-96A2-406E-ABCC-ED264A3A31D6|1|PE32 image section|1	1.32→1.33	P2	CryptRuntimeDxe	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S33-A062CF1F-8473-4AA3-8793-600BC4FFE9A8|1|PE32 image section|1	1.32→1.33	P2	CsmDxe	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S33-DAF4BF89-CE71-4917-B522-C89D32FBC59F|1|AB56DC60-0057-11DA-A8DB-000102EEE626|1	1.32→1.33	P2	DAF4BF89-CE71-4917-B522-C89D32FBC59F	AB56DC60-0057-11DA-A8DB-000102EEE626	review evidence (not necessarily open)	non-executable diff	
+S33-A2DF5376-C2ED-49C0-90FF-8B173B0FD066|1|PE32 image section|1	1.32→1.33	P2	EsaFull	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S33-FBF95065-427F-47B3-8077-D13C60710998|1|Raw section|1	1.32→1.33	P2	FBF95065-427F-47B3-8077-D13C60710998	Raw section	review evidence (not necessarily open)	non-executable diff	
+S33-B7EE4835-84CE-4B15-BF52-2D11574CE470|1|PE32 image section|1	1.32→1.33	P2	HardwareSignatureEntry	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S33-57E56594-CE95-46AD-9531-3C49310CA7CE|1|PE32 image section|1	1.32→1.33	P2	Ofbd	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S33-4551F2F5-C684-4F27-936F-C7B04A5C5FF1|1|PE32 image section|1	1.32→1.33	P2	SecureBootDXE	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S33-7BB61314-11B5-4833-BCAD-B1601CA088C9|1|PE32 image section|1	1.32→1.33	P2	SmbiosType0	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S33-B6E17DD5-5CA0-4E3A-858C-A14345AE0B83|1|PE32 image section|1	1.32→1.33	P2	SwSmi534D0040	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S33-3ACEB0C0-3C72-11E4-9A56-74D435052646|1|PE32 image section|1	1.32→1.33	P2	TlsDxe	PE32 image section	review evidence (not necessarily open)	different after relocation	
