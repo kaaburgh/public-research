@@ -103,8 +103,6 @@ S24-5BEDB5CC-D830-4EB2-8742-2D4CC9B54F2C|1|Raw section|1	1.24→1.32	P2	Ip6Dxe	R
 S24-C8CAFFF9-C6E0-4443-B96F-45FE2AD480CD|1|TE image section|1	1.24→1.32	P2	IsHdpRequiredPostFlag	TE image section	кандидат на изменение Setup	4	1
 S24-F99C0302-9256-4050-B41D-F24B87F702D2|1|PE32 image section|1	1.24→1.32	P2	KeyboardLayouts	PE32 image section	кандидат на изменение Setup	36	2
 S24-9A595246-6F53-4526-B856-3C0667F4DA67|1|PE32 image section|1	1.24→1.32	P2	LEMAllDriversConnectedEventHook	PE32 image section	не завершено	4040	1
-S24-FA327F24-2DE2-4B60-871A-436BC90605D4|1|PE32 image section|1	1.24→1.32	P2	LEMComputraceApiDxe	PE32 image section	кандидат на изменение Setup	26	2
-S24-73852F31-9834-4EC7-97EE-41E584DC3C49|1|PE32 image section|1	1.24→1.32	P2	LEMComputraceApiSmm	PE32 image section	кандидат на изменение Setup	26	2
 S24-CF009B23-17B9-43EE-BB69-4393CA186B1C|1|PE32 image section|1	1.24→1.32	P2	LEMDeviceGuardInit	PE32 image section	кандидат на изменение Setup	11	2
 S24-279DB133-B4C6-4A34-9BE3-C98326DC27DC|1|PE32 image section|1	1.24→1.32	P2	LEMHddSecurityEndProtocolHook	PE32 image section	кандидат на изменение Setup	1	1
 S24-55FFDD87-F6C2-49DD-A724-F197E60AB020|1|PE32 image section|1	1.24→1.32	P2	LemKeyboardLayoutProtocol	PE32 image section	кандидат на изменение Setup	17	1

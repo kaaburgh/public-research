@@ -32,3 +32,9 @@ P2-63 HII ID0x809 = existing Performance Mode, exact forms and normal strings; S
 - E64: P2-69 B04: native UMA browser callback — Confirms CHANGING action and full IFR value pointer; browser-data update errors are ignored, distinct from persistent CBS RouteConfig.
 - E65: P2-70 B09: remaining unmapped raw bytes — Located two changed bytes within EFS-containing page; directory pointers identical.
 See MAILBOX_UI_UMA_CHECKPOINT.md.
+
+## E66–68: MMIO and browser-save follow-up
+- E66: P2-71 B04/B09: APCB Data Fabric MMIO boundary — Unknown byte 0x125 is logical PCI memory-ceiling token, not UMA or DRAM timing. Existing dynamic resource calculation explains plausible live/factory difference.
+- E67: P2-72 B04: native Save & Exit / CBS routing — Both BIOS UI engines support dynamic buffer VarStore lookup and persistence through HII RouteConfig; the native callback is not a direct NVRAM write. Save loop ignores individual write status.
+- E68: P2-73 S24: LEMComputraceApiDxe/Smm — All 26 changed bytes in each PE attributed to Setup size and compensating stack displacement; no changed condition or call target.
+See MMIO_BROWSER_SAVE_CHECKPOINT.md.
