@@ -83,3 +83,5 @@ P2-113/E108: EsaFull S33 conservative data map proposes 5120/5832 .data relocati
 P2-114/E109: Tpm20PlatformDxe S24 static PE attribution closed, including vendor-specific RDRAND helper (INTC TPM only), PCR7 buffer cleanup, capacity corrections and existing PCR1 helper regression. Runtime remains open. 87 S24 + 1 S33 =88 pending, 43/44 S33 attributed. See [TPM20_PLATFORM_FINAL_CHECKPOINT.md](TPM20_PLATFORM_FINAL_CHECKPOINT.md).
 
 P2-115/E110: AmiTcgPlatformDxe legacy PE static attribution closed, preserves P2-40 conditional PCR1/PCR7 risks. 86 S24 + 1 S33 =87 pending, 43/44 S33 attributed. See [AMI_TCG_PLATFORM_FINAL_CHECKPOINT.md](AMI_TCG_PLATFORM_FINAL_CHECKPOINT.md).
+
+P2-116/E111: BDS expands existing malformed Boot#### deletion policy to a second path; both AFU NVAR stores' BootOrder instances pass bounded well-formed model (9+10). BDS remains partial; 87 pending unchanged. See [BDS_LOAD_OPTION_CHECKPOINT.md](BDS_LOAD_OPTION_CHECKPOINT.md).
