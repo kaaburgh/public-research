@@ -4,3 +4,5 @@
 - Leonida — https://github.com/ItsNotRexed/Leonida — ранее API 404; DMCA Take-Two и обработка сети 3 007 репозиториев подтверждены первичным документом (уточнение E-004). Преемники не проверены.
 - CGBJ — закрытая Xbox-сборка; заявленное происхождение VIctory + XCL, SHA и железо неизвестны; E-006, результат заявлен PortWatch, не воспроизведён.
 - KytyPS5 — https://github.com/KytyPS5/KytyPS5 — открытый PS5 emulator, main 93cce66564bdced2fc7054ca9794451dfeef4d9d, README не подтверждает GTA VI; #2404/#2406 прочитаны, не доказательство запуска. Форк ZazaJr24/KytyPs5-GTA-VI остаётся непроверенным lead.
+
+- fxceless/victory-fork — https://github.com/fxceless/victory-fork/blob/46bf5351707b1697c04e5d871c30973ebaa3e973/README.md — активный форк VIctory, использует отдельные изменения victory-amd, E-012: заявлены управляемое прохождение первых миссий и 5–12 FPS на RTX 4070, нестабильность GPU и отсутствие RT-освещения; независимого подтверждения нет.
