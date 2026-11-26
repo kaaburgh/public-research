@@ -111,3 +111,6 @@ DXE 2551 outside instructions,226 raw changes,135 RIP,506 branches,4 DIR64; SMM2
 
 ## E96: AhciInt13Smm / S24
 1625 outside instructions,118 raw changed,109 RIP refs,226 direct transfers verified; zero mismatches. Added Access2 GUID and zero globals; other data equal. Old count bound 1–31 retained. New init does not branch on GetCapabilities status; old input-null guard replaced by allocation-result check. 32=33. Failure paths and runtime dispatch not tested; no native Linux libata throughput evidence. No assertion of complete validation.
+
+## E97: SetupLoadDefault / S24
+1788 outside instructions,98 raw changed,63 RIP,328 direct transfers; 12 DIR64 mapped, two removed. Old 13-entry Setup preservation table becomes 11 (removed offset45 and44, each 1 B). IFR in 24/32 confirms Set Strong Password and Set Minimum Length; StdDefaults both0 in all three versions. Removed LnvAnyPasswordPresentVar query, name and flag. Other code/data mapped; 32=33. Actual reset route may include other preservation logic; no proof installed password changes or reset occurs during update. Explicitly verify password-policy settings after reset if used.
