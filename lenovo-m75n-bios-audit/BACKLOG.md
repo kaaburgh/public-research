@@ -94,3 +94,5 @@ P2-125/E120: NvmeSmm uses returned queue bases, unlike DXE Stop interior-pointer
 P2-126/E121: all named NVAR chains resolved on both banks; generous compact-size model with new defaults fits with ~53% headroom. Owner aggregates private; tool nvar_capacity.py. No exact write emulation or hardware test. 87 pending unchanged. See [NVAR_CAPACITY_CHECKPOINT.md](NVAR_CAPACITY_CHECKPOINT.md).
 
 P2-127/E122: owner Setup terminal vs new defaults matched by 287 common named IFR question keys; private thermal/device/boot/security drift list, TPM read-only and OS Optimized Defaults override caveats. 87 pending unchanged. See [SETUP_RESET_DRIFT_CHECKPOINT.md](SETUP_RESET_DRIFT_CHECKPOINT.md).
+
+P2-128/E123: BDS table has root bridge and PCI 06/01 nonrecursive connection before EndOfDxe; no direct early NVMe Start demonstrated. 87 pending unchanged.
