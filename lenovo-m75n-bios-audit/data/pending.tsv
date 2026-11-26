@@ -103,4 +103,3 @@ S24-E4F61863-FE2C-4B56-A8F4-08519BC439DF|1|PE32 image section|1	1.24→1.32	P2	V
 S24-E4F61863-FE2C-4B56-A8F4-08519BC439DF|1|Raw section|1	1.24→1.32	P2	VlanConfigDxe	Raw section	не завершено		
 S24-10E88749-28D1-49A0-AC9E-0324E40211A8|1|PE32 image section|1	1.24→1.32	P2	WMISwSmi	PE32 image section	не завершено		
 S33-A2DF5376-C2ED-49C0-90FF-8B173B0FD066|1|PE32 image section|1	1.32→1.33	P2	EsaFull	PE32 image section	частично объяснено	different after relocation	
-S33-4551F2F5-C684-4F27-936F-C7B04A5C5FF1|1|PE32 image section|1	1.32→1.33	P2	SecureBootDXE	PE32 image section	частично объяснено	different after relocation	

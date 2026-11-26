@@ -115,3 +115,5 @@ EsaFull: split GNU objdump .text rows at INT3 padding; remove padding; normalize
 P2-63 follow-up: Setup HII ID2057 is existing Performance Mode, no new visible form or option; combined with P2-51 this closes S33 Setup. 39/44 attributed, 5 partial. See ROM_RESTORED_CHECKPOINT.md.
 
 P2-66–68 follow-up: request-specific Secure Boot handling and existing last-status restore helper, three policy caller groups per NVRAM module, UI selection/position functions. All five S33 residuals remain partial; see MAILBOX_UI_UMA_CHECKPOINT.md.
+
+P2-87–89 / E82–84: SecureBootDXE fully statically attributed; corrected EsaFull wrong-class matches, verified 4491/4494 normalized pieces and isolated three actual code residuals; full data mapping still partial. 103 S24 + 1 S33 =104 pending, 43/44 S33 attributed. See [ESA_SECUREBOOT_FINAL_MAP_CHECKPOINT.md](ESA_SECUREBOOT_FINAL_MAP_CHECKPOINT.md).

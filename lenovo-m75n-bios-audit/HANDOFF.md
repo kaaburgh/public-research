@@ -49,3 +49,5 @@ P2-84/E79: full 1.32→1.33 layout/relocation attribution of NvramDxe and NvramS
 P2-85/E80: full S33 SwSmi534D0040 attribution; 103 S24 + 2 S33 =105 pending, 42/44 S33 attributed. Remaining S33 SecureBootDXE and EsaFull. Next complete remaining two S33 maps, then risk-specific S24.
 
 P2-86/E81: SecureBootDXE old function reordering separated from new event callback; 703/722 normalized old instructions match in five segmented comparisons, remaining code/data/relocation verification open. 105 pending, 42/44 S33 attributed unchanged. Resume with complete SecureBootDXE target/data/relocation mapping, then EsaFull.
+
+P2-87–89 / E82–84: SecureBootDXE fully statically attributed; corrected EsaFull wrong-class matches, verified 4491/4494 normalized pieces and isolated three actual code residuals; full data mapping still partial. 103 S24 + 1 S33 =104 pending, 43/44 S33 attributed. See [ESA_SECUREBOOT_FINAL_MAP_CHECKPOINT.md](ESA_SECUREBOOT_FINAL_MAP_CHECKPOINT.md).

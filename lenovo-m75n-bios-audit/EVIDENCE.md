@@ -66,3 +66,12 @@ All S33 differences attributed to added mailbox handler and registration, suppor
 
 ## E81: SecureBootDXE reordered functions
 Normalized per-function pairs 2A0→2A0 (45/45),328→5AC (74/84 old;100 new),4A0→328 (60/60),5B4→774 (59/62 old;65 new),668→830 onward (465/471); total 703/722 exact normalized matches (not semantic proof). Init boot mode comparisons 0x12/0x20 order swapped; new callback uses same GUID 7739f24c-93d7-11d4-9a3a-0090273fc14d, helper now takes GUID in RDX and preserves it via RDI. New init 71E–75F creates event and registers protocol notify; callback starts 43C. Remaining matched-body indexed references/date constants, full raw data and relocation validation pending.
+
+## E82: SecureBootDXE / S33
+All 18 DIR64 slots and targets, 101 direct transfers and 55 RIP references verified; four indexed references mapped; retained .data byte-identical under mapping after relocation masking. 722→839 nonpadding instructions. Header/zero sections and padding accounted for. See ESA_SECUREBOOT_FINAL_MAP_CHECKPOINT.md. Runtime behavior, request authentication and failure handling remain untested; S33 static closure only.
+
+## E83: EsaFull / class-specific method mapping
+CustomOrderedListLayoutEx and CustomOrderedListLayout strings→constructors→vtables→actual call targets traced; BestFit vs CustomBestFit field offsets likewise retained. Corrected code splitting: 4491/4494 normalized piece matches; 347077/347378 old rows. 62477/62488 mapped direct transfers verified, 11 unresolved, zero incongruent in accepted map. Candidate map is not semantic proof; ambiguous duplicate pieces, data/reloc mapping unresolved. EsaFull remains partial.
+
+## E84: EsaFull / actual residual code
+0x884 allocates 8 KiB before instead of after five LocateProtocol calls; only direct caller 0x710 ignores returned status. 0x1EA68 OEMRevision 0x1200→0x1210. D1928 descriptor table 147BD0: delete second 32-byte record (no string ID); remaining 17 exact including Enter Password and action pointers. Sizes 0x630→0x5D8, 0x240→0x220, 0x120→0x110, count12→11. Deleted element exact UI purpose and runtime behavior unknown; no evidence of password verification algorithm change. Data matching incomplete; no closure.
