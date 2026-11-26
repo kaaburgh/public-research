@@ -1,5 +1,5 @@
 # Active backlog
-See data/pending.tsv for machine-generated queue. It has 92 pair-specific records: 91 candidate/partial/open rows for 1.24→1.32 and 1 remaining partial section for 1.32→1.33 (43 of 44 attributed). Review of existing evidence is not a claim that every row is unresolved. Review each pair separately; priority is provisional and not measured likelihood. Private P1/P2 blocker fields provide details; historical third-party AFU incident is out of scope.
+See data/pending.tsv for machine-generated queue. It has 89 pair-specific records: 88 candidate/partial/open rows for 1.24→1.32 and 1 remaining partial section for 1.32→1.33 (43 of 44 attributed). Review of existing evidence is not a claim that every row is unresolved. Review each pair separately; priority is provisional and not measured likelihood. Private P1/P2 blocker fields provide details; historical third-party AFU incident is out of scope.
 
 | ID | Priority | Work | Completion condition |
 |---|---|---|---|
@@ -66,3 +66,5 @@ P2-103/E98: USB dispatcher state gate and retained 16 entries confirmed; previou
 P2-104/E99: B11 independent raw NVAR graph on verified 1.24 AFU: 1814 outer + 39 nested defaults records cross-checked, all valid named chains uniquely resolve; detached data chains accounted by invalidated roots. Both stores contain different terminal payloads; FFS state interpretation alone cannot select AMI active store. 91 S24 + 1 S33 =92 pending, unchanged. New ROMs not accessible in this session; next actual active-store selection and USB/NVMe/EsaFull mapping when supplied. See [RAW_NVAR_BASELINE_CHECKPOINT.md](RAW_NVAR_BASELINE_CHECKPOINT.md).
 
 P2-105/E100: B05/B11 1.24 active-store predicate reconstructed in PEI and DXE. With default addresses and captured E0/F0 FFS states, PEI selects second store (0x41000). Both are readable but Setup/BootOrder differ; no runtime/HOB or migration proof. 91 S24 + 1 S33 =92 pending. See [RAW_NVAR_BASELINE_CHECKPOINT.md](RAW_NVAR_BASELINE_CHECKPOINT.md#active-store-selection-follow-up-p2-105e100).
+
+P2-106–110/E101–105: all three ROMs hash-verified again; selector helpers byte-identical, DXE size-mismatch migration filter traced to vendor StdDefaults (13 keys); intended non-default key preservation, caller ignores migration result. Three small TPM/OEM PE bodies attributed (AmiTcgNvflagSample, LEMAllDriversConnectedEventHook, SwSmi534D0140). Queue: 88 S24 + 1 S33 = 89 pending; 43/44 S33 attributed. Actual flash/reset and runtime untested. See [NVRAM_MIGRATION_SMALL_OEM_CHECKPOINT.md](NVRAM_MIGRATION_SMALL_OEM_CHECKPOINT.md).

@@ -6,7 +6,7 @@ Start with [HANDOFF.md](HANDOFF.md), [METHODOLOGY.md](METHODOLOGY.md), [EVIDENCE
 
 - [data/inventory.tsv](data/inventory.tsv): 2256 original inventory records, 22 columns; private 1.24 non-executable hashes and free-text conclusions omitted.
 - [data/changes.tsv](data/changes.tsv): 283 changed records (corrected from 284; see REPRODUCTION.md), same schema.
-- [data/pending.tsv](data/pending.tsv): 92 pair-specific rows: 91 open/partial/candidate in 1.24→1.32 and 1 remaining partial section in 1.32→1.33 (43 of 44 attributed). Heuristic priority, not a finding.
+- [data/pending.tsv](data/pending.tsv): 89 pair-specific rows: 88 open/partial/candidate in 1.24→1.32 and 1 remaining partial section in 1.32→1.33 (43 of 44 attributed). Heuristic priority, not a finding.
 - [data/p1-public.tsv](data/p1-public.tsv), [data/p2-public.tsv](data/p2-public.tsv): selected historical evidence records; omitted rows remain in private ledger.
 - [tools/audit_verify.py](tools/audit_verify.py): executable hash and relocation verifier.
 - [tools/inventory.py](tools/inventory.py), [tools/compare_inventory.py](tools/compare_inventory.py): independently regenerated inventory and multiset verification.
@@ -75,3 +75,5 @@ P2-101/E96: AhciInt13Smm PE closed, local-copy/init/free routing and status cave
 P2-102/E97: SetupLoadDefault closed. Password algorithm preservation broadened; two password-policy preservation entries removed (minimum length and strong password, both default Disabled). 91 S24 + 1 S33 =92 pending; 43/44 S33 attributed. See [SETUP_DEFAULTS_POLICY_CHECKPOINT.md](SETUP_DEFAULTS_POLICY_CHECKPOINT.md).
 
 P2-103/E98: USB dispatcher state gate and retained 16 entries confirmed; previous SMM init/callback attribution corrected. Queue unchanged: 91 S24 + 1 S33 =92 pending. USB PE mapping incomplete. See [USB_DISPATCH_FOLLOWUP_CHECKPOINT.md](USB_DISPATCH_FOLLOWUP_CHECKPOINT.md).
+
+P2-106–110/E101–105: all three ROMs hash-verified again; selector helpers byte-identical, DXE size-mismatch migration filter traced to vendor StdDefaults (13 keys); intended non-default key preservation, caller ignores migration result. Three small TPM/OEM PE bodies attributed (AmiTcgNvflagSample, LEMAllDriversConnectedEventHook, SwSmi534D0140). Queue: 88 S24 + 1 S33 = 89 pending; 43/44 S33 attributed. Actual flash/reset and runtime untested. See [NVRAM_MIGRATION_SMALL_OEM_CHECKPOINT.md](NVRAM_MIGRATION_SMALL_OEM_CHECKPOINT.md).
