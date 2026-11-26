@@ -6,7 +6,7 @@ Start with [HANDOFF.md](HANDOFF.md), [METHODOLOGY.md](METHODOLOGY.md), [EVIDENCE
 
 - [data/inventory.tsv](data/inventory.tsv): 2256 original inventory records, 22 columns; private 1.24 non-executable hashes and free-text conclusions omitted.
 - [data/changes.tsv](data/changes.tsv): 283 changed records (corrected from 284; see REPRODUCTION.md), same schema.
-- [data/pending.tsv](data/pending.tsv): 106 pair-specific rows: 103 open/partial/candidate in 1.24→1.32 and 3 remaining partial sections in 1.32→1.33 (41 of 44 attributed). Heuristic priority, not a finding.
+- [data/pending.tsv](data/pending.tsv): 105 pair-specific rows: 103 open/partial/candidate in 1.24→1.32 and 2 remaining partial sections in 1.32→1.33 (42 of 44 attributed). Heuristic priority, not a finding.
 - [data/p1-public.tsv](data/p1-public.tsv), [data/p2-public.tsv](data/p2-public.tsv): selected historical evidence records; omitted rows remain in private ledger.
 - [tools/audit_verify.py](tools/audit_verify.py): executable hash and relocation verifier.
 - [tools/inventory.py](tools/inventory.py), [tools/compare_inventory.py](tools/compare_inventory.py): independently regenerated inventory and multiset verification.
@@ -51,3 +51,5 @@ P2-77–79 / E72–74: separate legacy SmiVariable and normal runtime-variable r
 P2-80–83 / E75–78: OEM dispatcher two entries removed, WMI standard registration retained for one, obsolete preload variable branch removed; WMI DEPEX closed, PE remains partial. UsbInt13 coherent shared structure layout. Seven Setup-size and nine build-time/version/layout sections closed. 103 S24 + 5 S33 =108 pending, 39/44 S33 attributed. Hardware untested. See [USB_SMM_SMALL_CHECKPOINT.md](USB_SMM_SMALL_CHECKPOINT.md).
 
 P2-84/E79: full 1.32→1.33 layout/relocation attribution of NvramDxe and NvramSmm; 2 S33 closures. 103 S24 + 3 S33 =106 pending; 41/44 S33 attributed. Actual hardware and mailbox authorization behavior remain open. See [NVRAM_PAIR_LAYOUT_CHECKPOINT.md](NVRAM_PAIR_LAYOUT_CHECKPOINT.md).
+
+P2-85/E80: full S33 SwSmi534D0040 attribution; 103 S24 + 2 S33 =105 pending, 42/44 S33 attributed. Remaining S33 SecureBootDXE and EsaFull. See [SWSMI_MAILBOX_LAYOUT_CHECKPOINT.md](SWSMI_MAILBOX_LAYOUT_CHECKPOINT.md).

@@ -60,3 +60,6 @@ See USB_SMM_SMALL_CHECKPOINT.md and data/usb-smm-small-followup.tsv.
 
 ## E79: complete S33 NvramDxe/NvramSmm layout
 Two S33 PE sections closed: old code/data preserved under mapping, new mailbox predicate and corresponding list entry plus build-time constants. See NVRAM_PAIR_LAYOUT_CHECKPOINT.md.
+
+## E80: complete S33 mailbox producer layout
+All S33 differences attributed to added mailbox handler and registration, supporting variables and code/data layout. See SWSMI_MAILBOX_LAYOUT_CHECKPOINT.md.
