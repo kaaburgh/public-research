@@ -44,3 +44,9 @@ See MMIO_BROWSER_SAVE_CHECKPOINT.md.
 - E70: P2-75 B02: FastBootOption edge cases — New maximum-based numbering can leave allocated BootOrder tail partly uninitialized; old and new ignore Boot####/BootOrder write results.
 - E71: P2-76 B05: NvramPei Setup size check — Entire normalized TE difference attributed to expected Setup size check, not changed variable-validation algorithm.
 See FASTBOOT_TRIGGER_CHECKPOINT.md.
+
+## E72–74: variable route and Setup-size batch
+- E72: P2-77 B03: separate legacy SmiVariable vs normal UEFI variable route — SmiVariable is a separate software-SMI interface, not the installed normal UEFI runtime-variable entrypoints; new local copy changes return handling in a legacy enumeration branch.
+- E73: P2-78 B02/B05: eight P1 Setup-size candidate PE/TE sections — All changed bytes mapped to Setup 446→449 and compensating stack displacement or relocation in eight high-priority modules.
+- E74: P2-79 B05 and other Setup-size candidates: 35 P2 PE/TE sections — All nonrelocation differences explained by Setup size, stack/local displacement or correlated metadata; no new condition/call target found.
+See SETUP_SIZE_BATCH_CHECKPOINT.md and data/setup-size-followup.tsv.

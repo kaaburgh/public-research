@@ -74,3 +74,5 @@
 Read-only capture before/after an official update with the same configuration, where TPM and securityfs are available: save `/sys/kernel/security/tpm0/binary_bios_measurements`, decode with `tpm2_eventlog`, record PCR1 and other relevant banks with `tpm2_pcrread`, repeat cold boots. Compare presence/order/content of EV_EFI_VARIABLE_BOOT records and PCR replay, not raw PCR equality across firmware versions. Establish recovery access for TPM-bound disk unlock before any update. Secure Boot disabled does not necessarily disable TPM measured boot. No flash, variable write or TPM clear is part of this audit.
 
 Status: B03/B06 partial, 2 section rows closed, 5 partially attributed; P2-38 separate candidate in the same TPM section. No CVE attribution and no measured performance regression.
+
+P2-77: NvramDxe installs normal EFI runtime variable callbacks, conditionally routes via SMM Communication to NvramSmm. SmiVariable separately registers software SMI and uses CPU save-state. New legacy enumeration size is stored locally rather than original response as in 1.24; compatibility candidate only. See SETUP_SIZE_BATCH_CHECKPOINT.md. No observed routine Linux overhead.
