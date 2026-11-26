@@ -101,3 +101,5 @@ P2-124/E119: NVRAM dual-bank physical backend mapping; 18 normalized pieces/1130
 P2-125/E120: NvmeSmm uses returned queue bases, unlike DXE Stop interior-pointer defect; separate conditional duplicate release/stale registration after resource failure. 26/38 normalized pieces matched, all 12 dispatch relocations mapped. 87 pending unchanged. See [NVME_SMM_LIFECYCLE_CHECKPOINT.md](NVME_SMM_LIFECYCLE_CHECKPOINT.md).
 
 P2-126/E121: all named NVAR chains resolved on both banks; generous compact-size model with new defaults fits with ~53% headroom. Owner aggregates private; tool nvar_capacity.py. No exact write emulation or hardware test. 87 pending unchanged. See [NVAR_CAPACITY_CHECKPOINT.md](NVAR_CAPACITY_CHECKPOINT.md).
+
+P2-127/E122: owner Setup terminal vs new defaults matched by 287 common named IFR question keys; private thermal/device/boot/security drift list, TPM read-only and OS Optimized Defaults override caveats. 87 pending unchanged. See [SETUP_RESET_DRIFT_CHECKPOINT.md](SETUP_RESET_DRIFT_CHECKPOINT.md).
