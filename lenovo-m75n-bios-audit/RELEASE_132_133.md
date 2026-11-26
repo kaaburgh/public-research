@@ -54,3 +54,23 @@
 ## Reproduction
 
 Extract exact FFS sections by GUID, instance and section key in inventory.tsv; check lengths and SHA256. Compare full bodies, normalize TE HIGHLOW relocation/ImageBase before comparing. Map PE sections using VirtualAddress and PointerToRawData. For HII .rsrc in AMITSE/EsaFull/Setup, package list starts at offset 0x60, header GUID+length 20 bytes, each package uses a 24-bit length and 8-bit type. Type 4 string package StringInfoOffset at +8, language name at +46. Decode UCS2 block 0x14, duplicate 0x20, SKIP2 0x21, SKIP1 0x22, END 0; compare string IDs, not shifted raw bytes. Type 2 forms compared byte-for-byte. For certificate containers compare authenticated-variable header EFI_TIME (16 bytes), WIN_CERTIFICATE_UEFI_GUID length at +16, then exact list payload at +40. Preserve all data locally. For large PE, compare disassembly and mask branch/RIP operands only for triage; prove resolved targets and data equivalence before closing. No raw firmware, SMI invocation, variable writes, or personal NVRAM exported.
+
+## Follow-up (supersedes provisional P2-50)
+
+### P2-51 / 1.32→1.33: exact PE layout/reference audit
+
+**Finding:** AbtCryptoDriver, TlsDxe, CryptRuntimeDxe, Bds closed for binary attribution; Setup code/layout explained; one HII ID unresolved
+
+**Evidence:** GNU objdump same instruction addresses incl padding: Abt 179160 rows/1216 changes (1207 RIP+9 index); TLS 262435/2802 (2793+9); CryptRuntime 177808/1274 (1268+6); Bds 200677/2623 (2613+10); Setup 205387/2625 (2599+23+3 version/time). Monotonic .data anchors 845/1140/843/1280/1583, zero conflicts. Compare anchor intervals after masking relocation slots, canonicalizing only exact old/new source-path prefixes and Setup UTF16 date/time literals; zero-only edits 11/18/10/10/10, no other edits. Then validate every relocation slot width and bijective actual pointer mapping: 5219/6052/5168/5366/5448 =27253, no missing/unknown/mismatched targets. .xdata and unnamed sections identical; section tail padding all zero. Bds resource only DataRVA at .rsrc+0x48 relocated by 0xE0. Setup code residual 0x79F version, 0x16C54/5E build date/time; HII internal ID LemPower000L remains. Test script pe_layout_audit.py.
+
+**Limits:** Static layout attribution, not semantic proof of arbitrary padding or runtime. Debug directory and build paths change; no new decoded instructions except Setup version/time. No crypto policy change identified. Setup kept partial for identifier meaning/native route.
+
+### P2-52 / SecureBootDXE/NvramDxe/NvramSmm — mailbox consumer and policy
+
+**Finding:** Новая логика срабатывает при наличии запроса; обычный путь сохранён
+
+**Evidence:** SecureBootDXE existing init relocated 0x328→0x5AC, same factory state processing plus protocol-notify registration 0x71E..75F, GUID 3aa83745-9454-4f7a-a7c0-90dbd02fab8e installed by Bds routine 0x1B2C→0x1A24; callback 0x43C checks boot mode HOB and mailbox read/signature, exits on failure/absence, performs requested state/restore actions, clears mailbox and conditionally resets. NvramDxe/Smm normalized rows 12255→12272 and 12103→12120, six diff groups each: three indexed .data offsets, two build-time immediate changes, added 17-instruction mailbox-presence predicate (DXE RVA0xC3D0, SMM0xB2C8) inserted into existing function-pointer policy list after SecureBootSetup string (DXE raw0xD490/SMM0xCFB0). Existing policy wrapper iterates list and uses SecureBootSetup byte1 condition; DXE caller around 0xAF1C in authenticated-variable handling. Without mailbox, extra predicate returns false and existing predicates run.
+
+**Limits:** No evidence of extra periodic SMI or autonomous reset from new callback without mailbox. Auth policy and request caller authorization need full static mapping; runtime ordering/failure cases not tested. Earlier migration reset P2-16–18 remains independent.
+
+Reproduce: `python3 tools/pe_layout_audit.py old.efi new.efi` (add `--setup` for native Setup). Tested against the five matching 1.32/1.33 payloads with GNU objdump. The program reports residual code and data edits, and validates pointer slots and targets, not arbitrary semantic equivalence. Four further sections attributed, so 37/44 total, seven partial.
