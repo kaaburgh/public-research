@@ -50,3 +50,10 @@ See FASTBOOT_TRIGGER_CHECKPOINT.md.
 - E73: P2-78 B02/B05: eight P1 Setup-size candidate PE/TE sections — All changed bytes mapped to Setup 446→449 and compensating stack displacement or relocation in eight high-priority modules.
 - E74: P2-79 B05 and other Setup-size candidates: 35 P2 PE/TE sections — All nonrelocation differences explained by Setup size, stack/local displacement or correlated metadata; no new condition/call target found.
 See SETUP_SIZE_BATCH_CHECKPOINT.md and data/setup-size-followup.tsv.
+
+## E75–78: OEM dispatch, USB layout, remaining small sections
+- E75: P2-80 B03: OEM SW dispatch and WMISwSmi dependency — Two legacy OEM table entries removed; one WMI operation re-registered via standard SW Dispatch2 and separate Lenovo_PRELOADElement path removed.
+- E76: P2-81 B07: UsbInt13 shared USB structure layout — All four changed bytes are coherent layout adaptation to USB global-data fields; no independent change to legacy INT13 logic.
+- E77: P2-82 Remaining Setup-size candidates (seven PE) — Seven more same-size PE bodies fully explained by length and compensating stack changes.
+- E78: P2-83 S24: version/time metadata and CSM layout (nine PE/TE) — Nine other S24 rows fully attributed to build date/version and in CrbPei/CsmDxe also Setup size/layout; no new branch discovered.
+See USB_SMM_SMALL_CHECKPOINT.md and data/usb-smm-small-followup.tsv.

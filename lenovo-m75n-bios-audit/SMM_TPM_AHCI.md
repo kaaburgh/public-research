@@ -76,3 +76,5 @@ Read-only capture before/after an official update with the same configuration, w
 Status: B03/B06 partial, 2 section rows closed, 5 partially attributed; P2-38 separate candidate in the same TPM section. No CVE attribution and no measured performance regression.
 
 P2-77: NvramDxe installs normal EFI runtime variable callbacks, conditionally routes via SMM Communication to NvramSmm. SmiVariable separately registers software SMI and uses CPU save-state. New legacy enumeration size is stored locally rather than original response as in 1.24; compatibility candidate only. See SETUP_SIZE_BATCH_CHECKPOINT.md. No observed routine Linux overhead.
+
+P2-80: OemSwSmiDispatchProtocol fully attributed, two legacy records removed with WMI standard SW Dispatch2 registration for retained operation and removed Lenovo_PRELOADElement branch. WMI DEPEX closed, PE residual open. No hardware invocation or proof of routine OS impact.

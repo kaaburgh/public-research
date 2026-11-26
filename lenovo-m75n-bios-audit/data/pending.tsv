@@ -8,7 +8,6 @@ S24-E5E2C9D9-5BF5-497E-8860-94F81A09ADE0|1|PE32 image section|1	1.24→1.32	P1	N
 S24-1807040D-5934-41A2-A088-8E0F777F71AB|1|PE32 image section|1	1.24→1.32	P1	NvramDxe	PE32 image section	частично объяснено		
 S24-447A1B58-8F3E-4658-ABAA-9E7B2280B90A|1|PE32 image section|1	1.24→1.32	P1	NvramSmm	PE32 image section	частично объяснено		
 S24-68744031-8608-4B25-BBA1-DB4EA319D6EA|1|PE32 image section|1	1.24→1.32	P1	OememDxe	PE32 image section	частично объяснено		
-S24-EB8DCCDA-D34D-4765-B989-ED96CA2CA8D5|1|PE32 image section|1	1.24→1.32	P1	OemSwSmiDispatchProtocol	PE32 image section	не завершено	233	0
 S24-E94F54CD-81EB-47ED-AEC3-856F5DC157A9|1|PE32 image section|1	1.24→1.32	P1	PiSmmCore	PE32 image section	частично объяснено		
 S24-2FA2A6DA-11D5-4DC3-999A-749648B03C56|1|PE32 image section|1	1.24→1.32	P1	PiSmmIpl	PE32 image section	частично объяснено	6894	0
 S24-899407D7-99FE-43D8-9A21-79EC328CAC21|1|PE32 image section|1	1.24→1.32	P1	Setup	PE32 image section	частично объяснено		
@@ -16,7 +15,6 @@ S24-A46D9EE7-C6B4-42C0-8378-6E4BDC50406B|1|PE32 image section|1	1.24→1.32	P1	S
 S24-BE216BA8-38C4-4535-A6CA-5DCA5B43ADDF|1|PE32 image section|1	1.24→1.32	P1	SmiVariable	PE32 image section	частично объяснено		
 S24-0718AD81-F26A-4850-A6EC-F268E309D707|1|PE32 image section|1	1.24→1.32	P1	Tpm20PlatformDxe	PE32 image section	частично объяснено		
 S24-580DD900-385D-11D7-883A-00500473D4EB|1|PE32 image section|1	1.24→1.32	P1	Uhcd	PE32 image section	частично объяснено		
-S24-4C006CD9-19BA-4617-8483-609194A1ACFC|1|PE32 image section|1	1.24→1.32	P1	UsbInt13	PE32 image section	не завершено	4	0
 S24-171F43DC-C4D9-47A6-9641-65DDCDD5AA30|1|PE32 image section|1	1.24→1.32	P1	UsbRtDxe	PE32 image section	частично объяснено (предыдущий разбор)		
 S24-04EAAAA1-29A1-11D7-8838-00500473D4EB|1|PE32 image section|1	1.24→1.32	P1	UsbRtSmm	PE32 image section	частично объяснено (предыдущий разбор)		
 S33-1807040D-5934-41A2-A088-8E0F777F71AB|1|PE32 image section|1	1.32→1.33	P1	NvramDxe	PE32 image section	частично объяснено	different after relocation	
@@ -31,10 +29,7 @@ S24-709E6472-1BCD-43BD-8B6B-CD2D6D08B967|1|Raw section|1	1.24→1.32	P2	709E6472
 S24-72BCFBE0-FCEC-4F0F-8CD2-AC3A424539CD|1|raw file|1	1.24→1.32	P2	72BCFBE0-FCEC-4F0F-8CD2-AC3A424539CD	raw file	частично объяснено		
 S24-A59A0056-3341-44B5-9C9C-6D76F7673817|1|2EBE0275-6458-4AF9-91ED-D3F4EDB100AA|1	1.24→1.32	P2	A59A0056-3341-44B5-9C9C-6D76F7673817	2EBE0275-6458-4AF9-91ED-D3F4EDB100AA	не завершено		
 S24-3548423A-2B2C-4393-9826-B202959D2362|1|PE32 image section|1	1.24→1.32	P2	AbtCryptoDriver	PE32 image section	не завершено		
-S24-9D933189-EEE7-457C-981E-581C1A639FC3|1|PE32 image section|1	1.24→1.32	P2	AbtExtendedMessageProtocol	PE32 image section	кандидат на изменение Setup	27	1
 S24-16D0A23E-C09C-407D-A14A-AD058FDD0CA1|1|PE32 image section|1	1.24→1.32	P2	ACPI	PE32 image section	частично объяснено		
-S24-95ECB758-627E-4A2E-B7B8-DC863EFE3425|1|PE32 image section|1	1.24→1.32	P2	AmiDeviceGuardApi	PE32 image section	не завершено	6	0
-S24-D4395796-6F4C-4C6B-B9D1-92DAA7199A84|1|PE32 image section|1	1.24→1.32	P2	AmiRedFishApi	PE32 image section	не завершено	6	0
 S24-50F6096D-7C98-4C78-9A1D-C5A1833B6A88|1|PE32 image section|1	1.24→1.32	P2	AmiTcgNvflagSample	PE32 image section	частично объяснено	879	0
 S24-A29A63E3-E4E7-495F-8A6A-07738300CBB3|1|PE32 image section|1	1.24→1.32	P1	AmiTcgPlatformDxe	PE32 image section	частично объяснено		
 S24-B1DA0ADF-4F77-4070-A88E-BFFE1C60529A|1|PE32 image section|1	1.24→1.32	P2	AMITSE	PE32 image section	не завершено		
@@ -42,19 +37,13 @@ S24-FE612B72-203C-47B1-8560-A66D946EB371|1|FE612B72-203C-47B1-8560-A66D946EB371|
 S24-529D3F93-E8E9-4E73-B1E1-BDF6A9D50113|1|PE32 image section|1	1.24→1.32	P2	ArpDxe	PE32 image section	не завершено		
 S24-FA20568B-548B-4B2B-81EF-1BA08D4A3CEC|1|PE32 image section|1	1.24→1.32	P2	BootScriptExecutorDxe	PE32 image section	не завершено		
 S24-CC0F8A3F-3DEA-4376-9679-5426BA0A907E|1|Raw section|1	1.24→1.32	P2	CC0F8A3F-3DEA-4376-9679-5426BA0A907E	Raw section	частично объяснено (новое)		
-S24-1BA0ADA4-526B-4F11-A9BD-3F83EE17EA30|1|PE32 image section|1	1.24→1.32	P2	CopyRight	PE32 image section	частично объяснено	2	0
 S24-75189FA6-7BCF-4F4F-81BD-A4F1C3BEA95A|1|PE32 image section|1	1.24→1.32	P2	CptSwSmi	PE32 image section	не завершено		
-S24-16271FCA-55D9-4A33-93FC-5A3EB128DEB6|1|PE32 image section|1	1.24→1.32	P2	CrbDxe	PE32 image section	не завершено	1	0
-S24-0D1ED2F7-E92B-4562-92DD-5C82EC917EAE|1|TE image section|1	1.24→1.32	P2	CrbPei	TE image section	кандидат на изменение Setup	18	4
 S24-77EB6C06-FD48-488B-A1B3-AE0A70801369|1|PE32 image section|1	1.24→1.32	P2	CryptoDXE	PE32 image section	не завершено	47038	0
 S24-67451698-1825-4AC5-999D-F350CC7D5D72|1|PE32 image section|1	1.24→1.32	P2	CryptoPPI	PE32 image section	не завершено		
 S24-2AD511C7-1B60-4002-841D-2998DDC138EE|1|PE32 image section|1	1.24→1.32	P2	CryptoSMM	PE32 image section	не завершено		
 S24-858031F3-96A2-406E-ABCC-ED264A3A31D6|1|PE32 image section|1	1.24→1.32	P2	CryptRuntimeDxe	PE32 image section	не завершено	90333	0
-S24-A062CF1F-8473-4AA3-8793-600BC4FFE9A8|1|PE32 image section|1	1.24→1.32	P2	CsmDxe	PE32 image section	частично объяснено	53	1
 S24-DAC2B117-B5FB-4964-A312-0DCC77061B9B|1|A7FE7491-2C54-4F72-B80E-7649A8210193|1	1.24→1.32	P2	DAC2B117-B5FB-4964-A312-0DCC77061B9B	A7FE7491-2C54-4F72-B80E-7649A8210193	не завершено		
 S24-DAF4BF89-CE71-4917-B522-C89D32FBC59F|1|AB56DC60-0057-11DA-A8DB-000102EEE626|1	1.24→1.32	P2	DAF4BF89-CE71-4917-B522-C89D32FBC59F	AB56DC60-0057-11DA-A8DB-000102EEE626	не завершено		
-S24-4906415D-4B32-4D28-8557-21C390D76A3C|1|PE32 image section|1	1.24→1.32	P2	DeleteUefiCaFromDb	PE32 image section	кандидат на изменение Setup	22	2
-S24-D903BF23-E1DE-4DF0-8B96-73B6F2C2B797|1|PE32 image section|1	1.24→1.32	P2	DevFwUpd	PE32 image section	кандидат на изменение Setup	12	1
 S24-94734718-0BBC-47FB-96A5-EE7A5AE6A2AD|1|PE32 image section|1	1.24→1.32	P2	Dhcp4Dxe	PE32 image section	не завершено		
 S24-95E3669D-34BE-4775-A651-7EA41B69D89E|1|PE32 image section|1	1.24→1.32	P2	Dhcp6Dxe	PE32 image section	не завершено		
 S24-B219E140-DFFC-11E3-B956-0022681E6906|1|PE32 image section|1	1.24→1.32	P2	DnsDxe	PE32 image section	не завершено		
@@ -66,7 +55,6 @@ S24-CBC59C4A-383A-41EB-A8EE-4498AEA567E4|1|PE32 image section|1	1.24→1.32	P2	F
 S24-0C375A90-4C4C-4428-8EA0-531BE8959BF7|1|PE32 image section|1	1.24→1.32	P2	FlashDriverSmm	PE32 image section	частично объяснено	11423	0
 S24-7ECD9C20-68B9-4A6F-B515-D64FF500B109|1|PE32 image section|1	1.24→1.32	P2	FsRecovery	PE32 image section	частично объяснено		
 S24-8EEF9AD2-463E-425F-A4FE-2F6783D6F97E|1|PE32 image section|1	1.24→1.32	P2	GenericSio	PE32 image section	не завершено		
-S24-B7EE4835-84CE-4B15-BF52-2D11574CE470|1|PE32 image section|1	1.24→1.32	P2	HardwareSignatureEntry	PE32 image section	не завершено	6	0
 S24-A9B700CF-019E-4D8B-A3A7-88E1EA01699E|1|PE32 image section|1	1.24→1.32	P2	HddSecurity	PE32 image section	не завершено		
 S24-348C4D62-BFBD-4882-9ECE-C80BB1C4783B|1|PE32 image section|1	1.24→1.32	P2	HiiDatabase	PE32 image section	не завершено		
 S24-ECEBCB00-D9C8-11E4-AF3D-8CDCD426C973|1|PE32 image section|1	1.24→1.32	P2	HttpBootDxe	PE32 image section	не завершено		
@@ -77,9 +65,7 @@ S24-9FB1A1F3-3B71-4324-B39A-745CBB015FFF|1|PE32 image section|1	1.24→1.32	P2	I
 S24-9FB1A1F3-3B71-4324-B39A-745CBB015FFF|1|Raw section|1	1.24→1.32	P2	Ip4Dxe	Raw section	не завершено		
 S24-5BEDB5CC-D830-4EB2-8742-2D4CC9B54F2C|1|PE32 image section|1	1.24→1.32	P2	Ip6Dxe	PE32 image section	не завершено		
 S24-5BEDB5CC-D830-4EB2-8742-2D4CC9B54F2C|1|Raw section|1	1.24→1.32	P2	Ip6Dxe	Raw section	не завершено		
-S24-F99C0302-9256-4050-B41D-F24B87F702D2|1|PE32 image section|1	1.24→1.32	P2	KeyboardLayouts	PE32 image section	кандидат на изменение Setup	36	2
 S24-9A595246-6F53-4526-B856-3C0667F4DA67|1|PE32 image section|1	1.24→1.32	P2	LEMAllDriversConnectedEventHook	PE32 image section	не завершено	4040	1
-S24-55FFDD87-F6C2-49DD-A724-F197E60AB020|1|PE32 image section|1	1.24→1.32	P2	LemKeyboardLayoutProtocol	PE32 image section	кандидат на изменение Setup	17	1
 S24-025BBFC7-E6A9-4B8B-82AD-6815A1AEAF4A|1|PE32 image section|1	1.24→1.32	P2	MnpDxe	PE32 image section	не завершено		
 S24-DC3641B8-2FA8-4ED3-BC1F-F9962A03454B|1|PE32 image section|1	1.24→1.32	P2	Mtftp4Dxe	PE32 image section	не завершено		
 S24-99F03B99-98D8-49DD-A8D3-3219D0FFE41E|1|PE32 image section|1	1.24→1.32	P2	Mtftp6Dxe	PE32 image section	не завершено		
@@ -93,11 +79,9 @@ S24-70E1A818-0BE1-4449-BFD4-9EF68C7F02A8|1|PE32 image section|1	1.24→1.32	P2	R
 S24-E90A7B5E-37B2-43E4-B281-4C8E349045E9|1|PE32 image section|1	1.24→1.32	P2	ReFlashSmm	PE32 image section	частично объяснено		
 S24-89E549B0-7CFE-449D-9BA3-10D8B2312D71|1|TE image section|1	1.24→1.32	P2	S3Resume2Pei	TE image section	частично объяснено		
 S24-BDCE85BB-FBAA-4F4E-9264-501A2C249581|1|PE32 image section|1	1.24→1.32	P2	S3SaveStateDxe	PE32 image section	частично объяснено		
-S24-4551F2F5-C684-4F27-936F-C7B04A5C5FF1|1|PE32 image section|1	1.24→1.32	P2	SecureBootDXE	PE32 image section	частично объяснено	6	0
 S24-F80697E9-7FD6-4665-8646-88E33EF71DFC|1|PE32 image section|1	1.24→1.32	P2	SecurityStubDxe	PE32 image section	не завершено		
 S24-B13EDD38-684C-41ED-A305-D7B7E32497DF|1|PE32 image section|1	1.24→1.32	P2	Smbios	PE32 image section	не завершено		
 S24-E2A74738-8934-48F5-8412-99E948C8DC1B|1|PE32 image section|1	1.24→1.32	P2	SmbiosDmiEdit	PE32 image section	не завершено	12457	0
-S24-7BB61314-11B5-4833-BCAD-B1601CA088C9|1|PE32 image section|1	1.24→1.32	P2	SmbiosType0	PE32 image section	не завершено	6	0
 S24-AAD04E7E-F6E6-4694-B14F-E2D608740E29|1|PE32 image section|1	1.24→1.32	P2	SmbiosType3	PE32 image section	не завершено		
 S24-BC327DBD-B982-4F55-9F79-056AD7E987C5|1|PE32 image section|1	1.24→1.32	P2	SmiFlash	PE32 image section	частично объяснено		
 S24-BB8C2CF3-A5E3-49EF-941B-4A01FAC6FD5F|1|PE32 image section|1	1.24→1.32	P2	SmiFlashDxe	PE32 image section	частично объяснено		
@@ -107,7 +91,6 @@ S24-2D59F041-53A4-40D0-A6CD-844DC0DFEF17|1|PE32 image section|1	1.24→1.32	P2	S
 S24-A2F436EA-A127-4EF8-957C-8048606FF670|1|PE32 image section|1	1.24→1.32	P2	SnpDxe	PE32 image section	не завершено		
 S24-B6E17DD5-5CA0-4E3A-858C-A14345AE0B83|1|PE32 image section|1	1.24→1.32	P2	SwSmi534D0040	PE32 image section	не завершено		
 S24-6F9B3CFA-1AF2-4174-A1C7-8F6310D68BE4|1|PE32 image section|1	1.24→1.32	P2	SwSmi534D0140	PE32 image section	не завершено	2758	1
-S24-F6C5CE3D-2668-402A-952E-270786150DFB|1|PE32 image section|1	1.24→1.32	P2	SwSmi534D3220	PE32 image section	кандидат на изменение Setup	8	1
 S24-5E9CABA3-F2B1-497A-ADAC-24F575E9CDE9|1|PE32 image section|1	1.24→1.32	P2	TcgDxe	PE32 image section	частично объяснено		
 S24-1A7E4468-2F55-4A56-903C-01265EB7622B|1|PE32 image section|1	1.24→1.32	P2	TcpDxe	PE32 image section	не завершено		
 S24-54891A9E-763E-4377-8841-8D5C90D88CDE|1|PE32 image section|1	1.24→1.32	P2	TerminalSrc	PE32 image section	не завершено		
@@ -118,10 +101,8 @@ S24-6D6963AB-906D-4A65-A7CA-BD40E5D6AF2B|1|PE32 image section|1	1.24→1.32	P2	U
 S24-D912C7BC-F098-4367-92BA-E911083C7B0E|1|PE32 image section|1	1.24→1.32	P2	Udp6Dxe	PE32 image section	не завершено		
 S24-B95E9FDA-26DE-48D2-8807-1F9107AC5E3A|1|PE32 image section|1	1.24→1.32	P2	UefiPxeBcDxe	PE32 image section	не завершено		
 S24-5D1C5BFF-3B25-4983-9A33-D4691BB3E9A3|1|PE32 image section|1	1.24→1.32	P2	UltraFunctionSwSmi	PE32 image section	не завершено		
-S24-F193C257-3CB5-4D90-A694-2E371082E116|1|PE32 image section|1	1.24→1.32	P2	UpdateSerial_NUM	PE32 image section	кандидат на изменение Setup	48	1
 S24-E4F61863-FE2C-4B56-A8F4-08519BC439DF|1|PE32 image section|1	1.24→1.32	P2	VlanConfigDxe	PE32 image section	не завершено		
 S24-E4F61863-FE2C-4B56-A8F4-08519BC439DF|1|Raw section|1	1.24→1.32	P2	VlanConfigDxe	Raw section	не завершено		
-S24-10E88749-28D1-49A0-AC9E-0324E40211A8|1|MM dependency section|1	1.24→1.32	P2	WMISwSmi	MM dependency section	не завершено		
 S24-10E88749-28D1-49A0-AC9E-0324E40211A8|1|PE32 image section|1	1.24→1.32	P2	WMISwSmi	PE32 image section	не завершено		
 S33-A2DF5376-C2ED-49C0-90FF-8B173B0FD066|1|PE32 image section|1	1.32→1.33	P2	EsaFull	PE32 image section	частично объяснено	different after relocation	
 S33-4551F2F5-C684-4F27-936F-C7B04A5C5FF1|1|PE32 image section|1	1.32→1.33	P2	SecureBootDXE	PE32 image section	частично объяснено	different after relocation	
