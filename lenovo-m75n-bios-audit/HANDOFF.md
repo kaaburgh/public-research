@@ -1,0 +1,13 @@
+# Handoff
+Read README, SOURCES, METHODOLOGY, EVIDENCE, BACKLOG, then the private sheet if authorized. The sheet is the live registry; this commit is a dated static snapshot. Preserve scope: assess post-upgrade risks from M33KT24A to M33KT33A. Do not restart the third-party update-error investigation or search for 1.31.
+
+Current conclusions:
+- Native Setup 446→449 bytes. PEI and DXE detect size mismatch; DXE rebuilds store with new StdDefaults, selectively preserves other variables. SecureBootSetup belongs to defaults; it may return to Enabled and affect actual SecureBoot state. BootOrder and AmdSetup absent from defaults; preservation still conditional on updater and later callbacks.
+- AmdSetup size 0x53F; IDs 0x420C3F32→0xEF162DFE→0xBA27F8CE; migration copies [0x20,0x164) on mismatch if variable survives. DDR4/AMD UMA settings in range.
+- Factory APCB payloads and key AGESA/SMU/memory drivers unchanged after normalization. Live override must be analyzed privately, not conflated with OEM policy. Microcode 08108109→0810810E for Picasso B1; effect unknown. Other patch 08200103→08200105, 08108002 unchanged.
+- PCIe/IOMMU baseline unchanged; NVMe and USB changes mostly preboot, not proof of runtime equivalence. S3 script validation tightened. No demonstrated runtime regression. Native UMA menu and a 32-bit callback width mismatch plus second sync path are important practical findings.
+- Recommended verification on local hardware, not remote-only flashing. First capture settings and baseline; use official procedure; compare identical configurations before changing UMA. No claim of guaranteed safe downgrade or update.
+
+Resume order: CPU policies (Stibp/CpuPei/CpuDxe), FastBoot, SMM variable/core/IPL, TPM/AHCI, remaining OEM callbacks, raw coverage, then hardware verification. Continue open rows in data/pending.tsv and private Backlog; do not close a row merely because a pattern or high instruction similarity exists. P1 and P2 historical IDs cross-reference evidence. Distinguish 1.24→1.32 from 1.32→1.33. Explicitly note old claims superseded by later findings.
+
+Consolidation limitations: original transient scripts were lost. Reconstructed verifier reproduces all 1522 expected executable hashes, but normalizer differs for two TE rows (AmdSpiRomProtectPei, PlatformCustomizePei), see BACKLOG. It is a hash-addressed verifier, not the original enumerator. Full raw-ROM coverage and all early function-level evidence need additional independent verification.
