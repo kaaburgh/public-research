@@ -1,7 +1,5 @@
 id	pair	priority	module	section	status	normalized_diff	setup_pattern_hits
-S24-8F5A2E02-538C-4D59-B920-C4786ACBC552|1|PE32 image section|1	1.24→1.32	P1	Ahci	PE32 image section	кандидат на изменение Setup	10	1
-S24-501F30E9-D14F-47DA-AE60-B101E4189D07|1|MM dependency section|1	1.24→1.32	P1	AhciInt13Smm	MM dependency section	не завершено		
-S24-501F30E9-D14F-47DA-AE60-B101E4189D07|1|PE32 image section|1	1.24→1.32	P1	AhciInt13Smm	PE32 image section	не завершено		
+S24-501F30E9-D14F-47DA-AE60-B101E4189D07|1|PE32 image section|1	1.24→1.32	P1	AhciInt13Smm	PE32 image section	частично объяснено		
 S24-2FC61DE6-1791-479C-8A32-7ABB69A4D8D0|1|TE image section|1	1.24→1.32	P1	AmdPspFtpmPei	TE image section	кандидат на изменение Setup	6	1
 S24-0A9F795E-B9FC-4117-BC4E-138695D16562|1|PE32 image section|1	1.24→1.32	P1	AmdSocFp5RvDxe	PE32 image section	кандидат на изменение Setup	12	1
 S24-01C827C2-7765-42E9-B31C-E03E89A09113|1|TE image section|1	1.24→1.32	P1	AmdSocFp5RvPei	TE image section	кандидат на изменение Setup	15	2
@@ -16,8 +14,8 @@ S24-447A1B58-8F3E-4658-ABAA-9E7B2280B90A|1|PE32 image section|1	1.24→1.32	P1	N
 S24-68744031-8608-4B25-BBA1-DB4EA319D6EA|1|PE32 image section|1	1.24→1.32	P1	OememDxe	PE32 image section	частично объяснено		
 S24-3F9A7CA0-A30E-45E8-9CBB-B628D54A3588|1|TE image section|1	1.24→1.32	P1	OemPei	TE image section	кандидат на изменение Setup	4	1
 S24-EB8DCCDA-D34D-4765-B989-ED96CA2CA8D5|1|PE32 image section|1	1.24→1.32	P1	OemSwSmiDispatchProtocol	PE32 image section	не завершено	233	0
-S24-E94F54CD-81EB-47ED-AEC3-856F5DC157A9|1|PE32 image section|1	1.24→1.32	P1	PiSmmCore	PE32 image section	не завершено		
-S24-2FA2A6DA-11D5-4DC3-999A-749648B03C56|1|PE32 image section|1	1.24→1.32	P1	PiSmmIpl	PE32 image section	не завершено	6894	0
+S24-E94F54CD-81EB-47ED-AEC3-856F5DC157A9|1|PE32 image section|1	1.24→1.32	P1	PiSmmCore	PE32 image section	частично объяснено		
+S24-2FA2A6DA-11D5-4DC3-999A-749648B03C56|1|PE32 image section|1	1.24→1.32	P1	PiSmmIpl	PE32 image section	частично объяснено	6894	0
 S24-899407D7-99FE-43D8-9A21-79EC328CAC21|1|PE32 image section|1	1.24→1.32	P1	Setup	PE32 image section	частично объяснено		
 S24-76D1059D-2E22-40EF-A31F-C49DBBC0DBCE|1|TE image section|1	1.24→1.32	P1	SetupCheckSumPei	TE image section	кандидат на изменение Setup	3	1
 S24-634DF746-6F4B-4684-93E6-526653E7C35A|1|PE32 image section|1	1.24→1.32	P1	SetupConfigDxe	PE32 image section	кандидат на изменение Setup	11	1
@@ -25,8 +23,8 @@ S24-DB41E01B-A8B0-4E15-B619-4463975B357B|1|PE32 image section|1	1.24→1.32	P1	S
 S24-19AFD36B-F501-4446-9C9E-0457DB6E7888|1|PE32 image section|1	1.24→1.32	P1	SetupItemLinkageDxe	PE32 image section	кандидат на изменение Setup	3	3
 S24-AE73630A-022D-4884-A696-F728CBF53AEF|1|PE32 image section|1	1.24→1.32	P1	SetupItemLinkageSmm	PE32 image section	кандидат на изменение Setup	3	3
 S24-A46D9EE7-C6B4-42C0-8378-6E4BDC50406B|1|PE32 image section|1	1.24→1.32	P1	SetupLoadDefault	PE32 image section	не завершено		
-S24-BE216BA8-38C4-4535-A6CA-5DCA5B43ADDF|1|PE32 image section|1	1.24→1.32	P1	SmiVariable	PE32 image section	не завершено		
-S24-0718AD81-F26A-4850-A6EC-F268E309D707|1|PE32 image section|1	1.24→1.32	P1	Tpm20PlatformDxe	PE32 image section	не завершено		
+S24-BE216BA8-38C4-4535-A6CA-5DCA5B43ADDF|1|PE32 image section|1	1.24→1.32	P1	SmiVariable	PE32 image section	частично объяснено		
+S24-0718AD81-F26A-4850-A6EC-F268E309D707|1|PE32 image section|1	1.24→1.32	P1	Tpm20PlatformDxe	PE32 image section	частично объяснено		
 S24-2D07DCE9-CF98-408F-A13C-20E41746AE95|1|PE32 image section|1	1.24→1.32	P1	TPMHwPresent	PE32 image section	кандидат на изменение Setup	37	3
 S24-580DD900-385D-11D7-883A-00500473D4EB|1|PE32 image section|1	1.24→1.32	P1	Uhcd	PE32 image section	частично объяснено		
 S24-4C006CD9-19BA-4617-8483-609194A1ACFC|1|PE32 image section|1	1.24→1.32	P1	UsbInt13	PE32 image section	не завершено	4	0
