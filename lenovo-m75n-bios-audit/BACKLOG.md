@@ -1,10 +1,10 @@
 # Active backlog
-See data/pending.tsv for machine-generated queue. It has 218 pair-specific records: 181 candidate/partial/open rows for 1.24→1.32 and all 37 non-relocation-equivalent differences for 1.32→1.33 (including non-executable sections). Review of existing evidence is not a claim that every row is unresolved. Review each pair separately; priority is provisional and not measured likelihood. Private P1/P2 blocker fields provide details; historical third-party AFU incident is out of scope.
+See data/pending.tsv for machine-generated queue. It has 214 pair-specific records: 177 candidate/partial/open rows for 1.24→1.32 and all 37 non-relocation-equivalent differences for 1.32→1.33 (including non-executable sections). Review of existing evidence is not a claim that every row is unresolved. Review each pair separately; priority is provisional and not measured likelihood. Private P1/P2 blocker fields provide details; historical third-party AFU incident is out of scope.
 
 | ID | Priority | Work | Completion condition |
 |---|---|---|---|
-| B01 | High | CPU policy Stibp/CpuPei/CpuDxe | attribute changes in MSR/CPUID/mitigation paths or state concrete blocker; distinguish microcode |
-| B02 | High | FastBootOption/FastBootRuntime, OEM init | attribute changed paths and config defaults; assess cold boot/device enumeration |
+| B01 | CLOSED (static) | CPU policy Stibp/CpuPei/CpuDxe | all changed code groups attributed, no new CPU policy operations; runtime B12 remains |
+| B02 | High / partial | FastBootOption/FastBootRuntime, OEM init | FastBootRuntime explained; FastBootOption BootOrder allocation/numbering attributed; remaining trigger/error paths and OEM init |
 | B03 | High | SmiVariable/PiSmmCore/PiSmmIpl, SMM latency | compare dispatch/data validation/DEPEX; distinguish runtime path from preboot |
 | B04 | High | UMA guard/order/error path, APCB byte 0x125 | prove callback input width, synchronization trigger and fallback; verify on hardware |
 | B05 | High | Setup/NVRAM remaining callbacks, actual boot/Secure Boot | verify boot state after official update, no destructive writes |

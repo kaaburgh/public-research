@@ -6,10 +6,7 @@ S24-2FC61DE6-1791-479C-8A32-7ABB69A4D8D0|1|TE image section|1	1.24→1.32	P1	Amd
 S24-0A9F795E-B9FC-4117-BC4E-138695D16562|1|PE32 image section|1	1.24→1.32	P1	AmdSocFp5RvDxe	PE32 image section	кандидат на изменение Setup	12	1
 S24-01C827C2-7765-42E9-B31C-E03E89A09113|1|TE image section|1	1.24→1.32	P1	AmdSocFp5RvPei	TE image section	кандидат на изменение Setup	15	2
 S24-8F4B8F82-9B91-4028-86E6-F4DB7D4C1DFF|1|PE32 image section|1	1.24→1.32	P1	Bds	PE32 image section	частично объяснено		
-S24-E03ABADF-E536-4E88-B3A0-B77F78EB34FE|1|PE32 image section|1	1.24→1.32	P1	CpuDxe	PE32 image section	не завершено		
-S24-2BB5AFA9-FF33-417B-8497-CB773C2B93BF|1|TE image section|1	1.24→1.32	P1	CpuPei	TE image section	кандидат на изменение Setup	12	1
-S24-0C989D41-F4B4-4244-9D7F-E9FFB4163273|1|PE32 image section|1	1.24→1.32	P1	FastBootOption	PE32 image section	не завершено		
-S24-80D7491A-F7D9-479D-A8F7-1B393B02ED66|1|PE32 image section|1	1.24→1.32	P1	FastBootRuntime	PE32 image section	кандидат на изменение Setup	30	1
+S24-0C989D41-F4B4-4244-9D7F-E9FFB4163273|1|PE32 image section|1	1.24→1.32	P1	FastBootOption	PE32 image section	частично объяснено		
 S24-634E8DB5-C432-43BE-A653-9CA2922CC458|1|PE32 image section|1	1.24→1.32	P1	Nvme	PE32 image section	частично объяснено (предыдущий разбор)		
 S24-E5E2C9D9-5BF5-497E-8860-94F81A09ADE0|1|MM dependency section|1	1.24→1.32	P1	NvmeSmm	MM dependency section	частично объяснено (предыдущий разбор)		
 S24-E5E2C9D9-5BF5-497E-8860-94F81A09ADE0|1|PE32 image section|1	1.24→1.32	P1	NvmeSmm	PE32 image section	частично объяснено (предыдущий разбор)		
@@ -29,7 +26,6 @@ S24-19AFD36B-F501-4446-9C9E-0457DB6E7888|1|PE32 image section|1	1.24→1.32	P1	S
 S24-AE73630A-022D-4884-A696-F728CBF53AEF|1|PE32 image section|1	1.24→1.32	P1	SetupItemLinkageSmm	PE32 image section	кандидат на изменение Setup	3	3
 S24-A46D9EE7-C6B4-42C0-8378-6E4BDC50406B|1|PE32 image section|1	1.24→1.32	P1	SetupLoadDefault	PE32 image section	не завершено		
 S24-BE216BA8-38C4-4535-A6CA-5DCA5B43ADDF|1|PE32 image section|1	1.24→1.32	P1	SmiVariable	PE32 image section	не завершено		
-S24-C7DD8530-96D8-40DD-BE88-CBDF446C6474|1|PE32 image section|1	1.24→1.32	P1	Stibp	PE32 image section	кандидат на изменение Setup	2	1
 S24-0718AD81-F26A-4850-A6EC-F268E309D707|1|PE32 image section|1	1.24→1.32	P1	Tpm20PlatformDxe	PE32 image section	не завершено		
 S24-2D07DCE9-CF98-408F-A13C-20E41746AE95|1|PE32 image section|1	1.24→1.32	P1	TPMHwPresent	PE32 image section	кандидат на изменение Setup	37	3
 S24-580DD900-385D-11D7-883A-00500473D4EB|1|PE32 image section|1	1.24→1.32	P1	Uhcd	PE32 image section	частично объяснено		
@@ -216,4 +212,4 @@ S33-57E56594-CE95-46AD-9531-3C49310CA7CE|1|PE32 image section|1	1.32→1.33	P2	O
 S33-4551F2F5-C684-4F27-936F-C7B04A5C5FF1|1|PE32 image section|1	1.32→1.33	P2	SecureBootDXE	PE32 image section	review evidence (not necessarily open)	different after relocation	
 S33-7BB61314-11B5-4833-BCAD-B1601CA088C9|1|PE32 image section|1	1.32→1.33	P2	SmbiosType0	PE32 image section	review evidence (not necessarily open)	different after relocation	
 S33-B6E17DD5-5CA0-4E3A-858C-A14345AE0B83|1|PE32 image section|1	1.32→1.33	P2	SwSmi534D0040	PE32 image section	review evidence (not necessarily open)	different after relocation	
-S33-3ACEB0C0-3C72-11E4-9A56-74D435052646|1|PE32 image section|1	1.32→1.33	P2	TlsDxe	PE32 image section	review evidence (not necessarily open)	different after relocation	
+S33-3ACEB0C0-3C72-11E4-9A56-74D435052646|1|PE32 image section|1	1.32→1.33	P2	TlsDxe	PE32 image section	review evidence (not necessarily open)	different after relocation
