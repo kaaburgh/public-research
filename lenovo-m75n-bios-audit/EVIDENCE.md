@@ -57,3 +57,6 @@ See SETUP_SIZE_BATCH_CHECKPOINT.md and data/setup-size-followup.tsv.
 - E77: P2-82 Remaining Setup-size candidates (seven PE) — Seven more same-size PE bodies fully explained by length and compensating stack changes.
 - E78: P2-83 S24: version/time metadata and CSM layout (nine PE/TE) — Nine other S24 rows fully attributed to build date/version and in CrbPei/CsmDxe also Setup size/layout; no new branch discovered.
 See USB_SMM_SMALL_CHECKPOINT.md and data/usb-smm-small-followup.tsv.
+
+## E79: complete S33 NvramDxe/NvramSmm layout
+Two S33 PE sections closed: old code/data preserved under mapping, new mailbox predicate and corresponding list entry plus build-time constants. See NVRAM_PAIR_LAYOUT_CHECKPOINT.md.
