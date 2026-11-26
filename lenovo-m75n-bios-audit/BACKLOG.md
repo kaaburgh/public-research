@@ -84,3 +84,5 @@ P2-117–119/E112–114: NVMe lifecycle follow-up finds conditional Stop zeroing
 P2-120/E115: native Setup[61] minimal-device Fast Boot vs separate [3C] POST-state option; BDS BootMode/BootNext gate and 21-entry table traced, normalized chunks match across all releases. Actual BootFlow7/EBS path and other BDS differences remain. 87 pending unchanged. See [BDS_FASTBOOT_ACTIVATION_CHECKPOINT.md](BDS_FASTBOOT_ACTIVATION_CHECKPOINT.md).
 
 P2-121/E116: Uhcd shared callback installation and request-size contract traced, unchanged DXE DEPEX and callback producer; three explicit SMI calls match new filter. Missing-callback scenario remains conditional. 87 pending unchanged. See [USB_CALLBACK_CONTRACT_CHECKPOINT.md](USB_CALLBACK_CONTRACT_CHECKPOINT.md).
+
+P2-122–123/E117–118: new scoped EFI global Timeout/PlatformLang validation, fixed 7-byte SecureBootSetup read no longer retries with increased capacity, and SMM variable communication copies/allocations; successful enumeration size/status path preserved, new allocation-failure paths. 87 pending unchanged. See [NVRAM_VARIABLE_CONTRACT_CHECKPOINT.md](NVRAM_VARIABLE_CONTRACT_CHECKPOINT.md).
