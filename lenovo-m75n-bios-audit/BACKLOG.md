@@ -19,7 +19,7 @@ See data/pending.tsv for machine-generated queue. It has 92 pair-specific record
  
 Completion criteria: all inventory differences explained/blocked with justification; raw-region coverage accounted; all critical static conclusions independently reproduced; distinguish unknown runtime effects and measurements. No requirement to solve historical third-party failure or obtain 1.31.
 
-Latest active queue: 173 pair-specific records (168 S24 + 5 S33).
+Earlier checkpoint queue: 173 pair-specific records (168 S24 + 5 S33).
 
 P2-55/56: B10 mailbox purpose corroborated by Lenovo documentation (SRWINx64 supported; WMI not supported on M75n); exact caller/authorization remains open. B06/B12 read-only PCR1 baseline tool prepared and synthetic-tested; physical data still needed. No change in pending counts. See VENDOR_PCR1_CHECKPOINT.md.
 
@@ -60,3 +60,5 @@ P2-100/E95: BootScriptExecutorDxe PE closed, PE/TE relocation-directory range gu
 P2-101/E96: AhciInt13Smm PE closed, local-copy/init/free routing and status caveats recorded. 92 S24 + 1 S33 =93 pending; 43/44 S33 attributed. See [AHCI_SMM_FINAL_CHECKPOINT.md](AHCI_SMM_FINAL_CHECKPOINT.md).
 
 P2-102/E97: SetupLoadDefault closed. Password algorithm preservation broadened; two password-policy preservation entries removed (minimum length and strong password, both default Disabled). 91 S24 + 1 S33 =92 pending; 43/44 S33 attributed. See [SETUP_DEFAULTS_POLICY_CHECKPOINT.md](SETUP_DEFAULTS_POLICY_CHECKPOINT.md).
+
+P2-103/E98: USB dispatcher state gate and retained 16 entries confirmed; previous SMM init/callback attribution corrected. Queue unchanged: 91 S24 + 1 S33 =92 pending. USB PE mapping incomplete. See [USB_DISPATCH_FOLLOWUP_CHECKPOINT.md](USB_DISPATCH_FOLLOWUP_CHECKPOINT.md).
