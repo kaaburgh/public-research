@@ -5,7 +5,6 @@ S24-501F30E9-D14F-47DA-AE60-B101E4189D07|1|PE32 image section|1	1.24→1.32	P1	A
 S24-2FC61DE6-1791-479C-8A32-7ABB69A4D8D0|1|TE image section|1	1.24→1.32	P1	AmdPspFtpmPei	TE image section	кандидат на изменение Setup	6	1
 S24-0A9F795E-B9FC-4117-BC4E-138695D16562|1|PE32 image section|1	1.24→1.32	P1	AmdSocFp5RvDxe	PE32 image section	кандидат на изменение Setup	12	1
 S24-01C827C2-7765-42E9-B31C-E03E89A09113|1|TE image section|1	1.24→1.32	P1	AmdSocFp5RvPei	TE image section	кандидат на изменение Setup	15	2
-S24-9D5FD24C-53DF-44AC-A336-B4879CDB29D9|1|TE image section|1	1.24→1.32	P1	AmdSpiRomProtectPei	TE image section	частично объяснено	1	0
 S24-8F4B8F82-9B91-4028-86E6-F4DB7D4C1DFF|1|PE32 image section|1	1.24→1.32	P1	Bds	PE32 image section	частично объяснено		
 S24-E03ABADF-E536-4E88-B3A0-B77F78EB34FE|1|PE32 image section|1	1.24→1.32	P1	CpuDxe	PE32 image section	не завершено		
 S24-2BB5AFA9-FF33-417B-8497-CB773C2B93BF|1|TE image section|1	1.24→1.32	P1	CpuPei	TE image section	кандидат на изменение Setup	12	1
@@ -134,7 +133,6 @@ S24-6A4B2718-CAF3-4D51-BD91-9EB1D6229F57|1|PE32 image section|1	1.24→1.32	P2	P
 S24-3A18A5AF-F25B-42EE-8606-8D30A974916B|1|PE32 image section|1	1.24→1.32	P2	PasswordEncodeSmmProtocol	PE32 image section	кандидат на изменение Setup	12	2
 S24-80CF7257-87AB-47F9-A3FE-D50B76D89541|1|Raw section|1	1.24→1.32	P2	PcdDxe	Raw section	не завершено		
 S24-52C05B14-0B98-496C-BC3B-04B50211D680|1|TE image section|1	1.24→1.32	P2	PeiCore	TE image section	не завершено		
-S24-CC9F5B7E-254B-4F8A-A648-034A40AEDA35|1|TE image section|1	1.24→1.32	P2	PlatformCustomizePei	TE image section	частично объяснено	1	0
 S24-5FECEF6B-5FA4-4570-8163-0CF72A9C04C5|1|PE32 image section|1	1.24→1.32	P2	Ps2Main	PE32 image section	не завершено		
 S24-70E1A818-0BE1-4449-BFD4-9EF68C7F02A8|1|PE32 image section|1	1.24→1.32	P2	ReFlash	PE32 image section	частично объяснено		
 S24-E90A7B5E-37B2-43E4-B281-4C8E349045E9|1|PE32 image section|1	1.24→1.32	P2	ReFlashSmm	PE32 image section	частично объяснено		

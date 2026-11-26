@@ -10,6 +10,6 @@ Public Lenovo download page: https://support.lenovo.com/de/de/downloads/ds544268
 | m33jy32usa.exe | 1eb506878ba105e67cf6d711699e3af3e032bd3df0a54b17e080a4bb8ce4f4db |
 | m33jy33usa.exe | 125774152cefe19e7ac0d81ddc31caee891845189b9b0d54c9e0802dfcb307c6 |
 
-1.24 input is a private live AFU dump, 16 MiB, not a clean vendor image. Obtain from owner privately, verify its hash against private manifest. Do not share or commit it. 1.31 not available and not needed for scope. OEM packages obtained from user uploads; EXE payload not unpacked (Inno Setup 6.1.0). ISO El Torito FAT32 contains matching ROM; outer ISO contains an unrelated 8 MiB M11 image, not the M33 image.
+1.24 input is a private live AFU dump, 16 MiB, not a clean vendor image. The owner will supply the ROMs and AFU dump to new sessions/agents. Their absence in the repository is intentional and not a reproducibility blocker. Verify 1.24 hash against private manifest. Do not commit it. 1.31 not available and not needed for scope. OEM packages obtained from user uploads; EXE payload not unpacked (Inno Setup 6.1.0). ISO El Torito FAT32 contains matching ROM; outer ISO contains an unrelated 8 MiB M11 image, not the M33 image.
 
 Tools: UEFIExtract NE A75, ifrextract-rs, GNU objdump, Python 3, openssl, ACPICA iasl. Toolchain archives were supplied separately; not redistributed here. Obtain exact versions from owner; a new UEFIExtract version can change section extraction and instance ordering.
