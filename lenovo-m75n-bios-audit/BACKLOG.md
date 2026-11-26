@@ -1,5 +1,5 @@
 # Active backlog
-See data/pending.tsv for machine-generated queue. It has 94 pair-specific records: 93 candidate/partial/open rows for 1.24→1.32 and 1 remaining partial section for 1.32→1.33 (43 of 44 attributed). Review of existing evidence is not a claim that every row is unresolved. Review each pair separately; priority is provisional and not measured likelihood. Private P1/P2 blocker fields provide details; historical third-party AFU incident is out of scope.
+See data/pending.tsv for machine-generated queue. It has 93 pair-specific records: 92 candidate/partial/open rows for 1.24→1.32 and 1 remaining partial section for 1.32→1.33 (43 of 44 attributed). Review of existing evidence is not a claim that every row is unresolved. Review each pair separately; priority is provisional and not measured likelihood. Private P1/P2 blocker fields provide details; historical third-party AFU incident is out of scope.
 
 | ID | Priority | Work | Completion condition |
 |---|---|---|---|
@@ -56,3 +56,5 @@ P2-96–97/E91–92: OememDxe and FastBootOption static PE maps closed. Mandator
 P2-98–99/E93–94: both S3 script writer PE maps and S3Resume2Pei TE map closed. Record-length guards and resume statistics source/rollover changes identified; 94 S24 + 1 S33 =95 pending, 43/44 S33 attributed. Hardware S3 open. See [S3_SCRIPT_RESUME_CHECKPOINT.md](S3_SCRIPT_RESUME_CHECKPOINT.md).
 
 P2-100/E95: BootScriptExecutorDxe PE closed, PE/TE relocation-directory range guard identified. 93 S24 + 1 S33 =94 pending; 43/44 S33 attributed. All four examined S3 components statically attributed, hardware S3 remains open. See [S3_EXECUTOR_CHECKPOINT.md](S3_EXECUTOR_CHECKPOINT.md).
+
+P2-101/E96: AhciInt13Smm PE closed, local-copy/init/free routing and status caveats recorded. 92 S24 + 1 S33 =93 pending; 43/44 S33 attributed. See [AHCI_SMM_FINAL_CHECKPOINT.md](AHCI_SMM_FINAL_CHECKPOINT.md).

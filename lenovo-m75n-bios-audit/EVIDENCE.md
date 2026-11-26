@@ -108,3 +108,6 @@ DXE 2551 outside instructions,226 raw changes,135 RIP,506 branches,4 DIR64; SMM2
 
 ## E95: BootScriptExecutorDxe / S24
 6993 instructions outside old3640–3910→new3640–391C; 239 raw changed, 199 RIP and36 relative transfers,3 indexed references and96 DIR64 mapped, masked data identical. New guard at3714–3723 rejects zero Size or (Size-1)>=~RVA, skips relocation loop; existing caller ignores return. 32=33. Actual execution with malformed or ordinary images and S3 resume not tested. Guard is not proof of comprehensive validation.
+
+## E96: AhciInt13Smm / S24
+1625 outside instructions,118 raw changed,109 RIP refs,226 direct transfers verified; zero mismatches. Added Access2 GUID and zero globals; other data equal. Old count bound 1–31 retained. New init does not branch on GetCapabilities status; old input-null guard replaced by allocation-result check. 32=33. Failure paths and runtime dispatch not tested; no native Linux libata throughput evidence. No assertion of complete validation.

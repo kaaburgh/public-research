@@ -63,3 +63,5 @@ P2-96–97/E91–92: OememDxe and FastBootOption static PE maps closed. Mandator
 P2-98–99/E93–94: both S3 script writer PE maps and S3Resume2Pei TE map closed. Record-length guards and resume statistics source/rollover changes identified; 94 S24 + 1 S33 =95 pending, 43/44 S33 attributed. Hardware S3 open. See [S3_SCRIPT_RESUME_CHECKPOINT.md](S3_SCRIPT_RESUME_CHECKPOINT.md).
 
 P2-100/E95: BootScriptExecutorDxe PE closed, PE/TE relocation-directory range guard identified. 93 S24 + 1 S33 =94 pending; 43/44 S33 attributed. All four examined S3 components statically attributed, hardware S3 remains open. See [S3_EXECUTOR_CHECKPOINT.md](S3_EXECUTOR_CHECKPOINT.md).
+
+P2-101/E96: AhciInt13Smm PE closed, local-copy/init/free routing and status caveats recorded. 92 S24 + 1 S33 =93 pending; 43/44 S33 attributed. See [AHCI_SMM_FINAL_CHECKPOINT.md](AHCI_SMM_FINAL_CHECKPOINT.md).
