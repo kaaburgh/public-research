@@ -75,3 +75,12 @@ CustomOrderedListLayoutEx and CustomOrderedListLayout strings→constructors→v
 
 ## E84: EsaFull / actual residual code
 0x884 allocates 8 KiB before instead of after five LocateProtocol calls; only direct caller 0x710 ignores returned status. 0x1EA68 OEMRevision 0x1200→0x1210. D1928 descriptor table 147BD0: delete second 32-byte record (no string ID); remaining 17 exact including Enter Password and action pointers. Sizes 0x630→0x5D8, 0x240→0x220, 0x120→0x110, count12→11. Deleted element exact UI purpose and runtime behavior unknown; no evidence of password verification algorithm change. Data matching incomplete; no closure.
+
+## E85: Nvme DXE / S24
+New EndOfDxe callback 4524–477E enumerates PCI NVMe, preallocates five 4 KiB buffers and 2 MiB per record (2 MiB also allocated conditionally in old driver). AllocateBuffer wrapper 4780–47B5 returns zero unconditionally. Missing preallocated record causes failure at 1A98; first queue NULL checked 1B5F. CAP.MPSMIN check 19DD; CC 460000 at1A70; AQA 003F003F at1C75–1C92. Old min(MQES+1,256). 32=33. See NVME_SMM_IPL_CHECKPOINT.md. Failure/late discovery and memory retention untested; no measured SSD throughput impact. Remaining mapping partial.
+
+## E86: NvmeSmm / S24
+54→72 byte DEPEX: append PUSH c2702b74-800c-4131-8746-8fb5b89ce4ac and AND; original operands unchanged. GetCapabilities 59D–5EF. Comm callback CFC validates lengths and local copies; handler 11F8 validates 0x62 structure, tests LegacyBoot flag at125E, set by callback1328 registered14CA–14D8. 32=33. DEPEX closed, executable remains partial; no complete safety or runtime proof.
+
+## E87: PiSmmIpl / S24
+Old1B7C–1EF8→new1B7C–1F54 checked range arithmetic/split path; old2C18–2EE8→new2C74–2F50 section RVA+size overflow guard. Outside ranges 2184 mapped instructions, 93 raw changes only branch/RIP encoding; 281 branch and 78 changed RIP references verified. All 33 DIR64 slots and other sections byte identical; header alignment and .text growth accounted. 32=33. No claim of global overflow safety or hardware equivalence; actual SMM initialization untested.

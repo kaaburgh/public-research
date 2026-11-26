@@ -2,14 +2,12 @@ id	pair	priority	module	section	status	normalized_diff	setup_pattern_hits
 S24-501F30E9-D14F-47DA-AE60-B101E4189D07|1|PE32 image section|1	1.24→1.32	P1	AhciInt13Smm	PE32 image section	частично объяснено		
 S24-8F4B8F82-9B91-4028-86E6-F4DB7D4C1DFF|1|PE32 image section|1	1.24→1.32	P1	Bds	PE32 image section	частично объяснено		
 S24-0C989D41-F4B4-4244-9D7F-E9FFB4163273|1|PE32 image section|1	1.24→1.32	P1	FastBootOption	PE32 image section	частично объяснено		
-S24-634E8DB5-C432-43BE-A653-9CA2922CC458|1|PE32 image section|1	1.24→1.32	P1	Nvme	PE32 image section	частично объяснено (предыдущий разбор)		
-S24-E5E2C9D9-5BF5-497E-8860-94F81A09ADE0|1|MM dependency section|1	1.24→1.32	P1	NvmeSmm	MM dependency section	частично объяснено (предыдущий разбор)		
-S24-E5E2C9D9-5BF5-497E-8860-94F81A09ADE0|1|PE32 image section|1	1.24→1.32	P1	NvmeSmm	PE32 image section	частично объяснено (предыдущий разбор)		
+S24-634E8DB5-C432-43BE-A653-9CA2922CC458|1|PE32 image section|1	1.24→1.32	P1	Nvme	PE32 image section	частично объяснено		
+S24-E5E2C9D9-5BF5-497E-8860-94F81A09ADE0|1|PE32 image section|1	1.24→1.32	P1	NvmeSmm	PE32 image section	частично объяснено		
 S24-1807040D-5934-41A2-A088-8E0F777F71AB|1|PE32 image section|1	1.24→1.32	P1	NvramDxe	PE32 image section	частично объяснено		
 S24-447A1B58-8F3E-4658-ABAA-9E7B2280B90A|1|PE32 image section|1	1.24→1.32	P1	NvramSmm	PE32 image section	частично объяснено		
 S24-68744031-8608-4B25-BBA1-DB4EA319D6EA|1|PE32 image section|1	1.24→1.32	P1	OememDxe	PE32 image section	частично объяснено		
 S24-E94F54CD-81EB-47ED-AEC3-856F5DC157A9|1|PE32 image section|1	1.24→1.32	P1	PiSmmCore	PE32 image section	частично объяснено		
-S24-2FA2A6DA-11D5-4DC3-999A-749648B03C56|1|PE32 image section|1	1.24→1.32	P1	PiSmmIpl	PE32 image section	частично объяснено	6894	0
 S24-899407D7-99FE-43D8-9A21-79EC328CAC21|1|PE32 image section|1	1.24→1.32	P1	Setup	PE32 image section	частично объяснено		
 S24-A46D9EE7-C6B4-42C0-8378-6E4BDC50406B|1|PE32 image section|1	1.24→1.32	P1	SetupLoadDefault	PE32 image section	частично объяснено		
 S24-BE216BA8-38C4-4535-A6CA-5DCA5B43ADDF|1|PE32 image section|1	1.24→1.32	P1	SmiVariable	PE32 image section	частично объяснено		
@@ -102,4 +100,4 @@ S24-5D1C5BFF-3B25-4983-9A33-D4691BB3E9A3|1|PE32 image section|1	1.24→1.32	P2	U
 S24-E4F61863-FE2C-4B56-A8F4-08519BC439DF|1|PE32 image section|1	1.24→1.32	P2	VlanConfigDxe	PE32 image section	не завершено		
 S24-E4F61863-FE2C-4B56-A8F4-08519BC439DF|1|Raw section|1	1.24→1.32	P2	VlanConfigDxe	Raw section	не завершено		
 S24-10E88749-28D1-49A0-AC9E-0324E40211A8|1|PE32 image section|1	1.24→1.32	P2	WMISwSmi	PE32 image section	не завершено		
-S33-A2DF5376-C2ED-49C0-90FF-8B173B0FD066|1|PE32 image section|1	1.32→1.33	P2	EsaFull	PE32 image section	частично объяснено	different after relocation	
+S33-A2DF5376-C2ED-49C0-90FF-8B173B0FD066|1|PE32 image section|1	1.32→1.33	P2	EsaFull	PE32 image section	частично объяснено	different after relocation
