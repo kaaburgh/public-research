@@ -18,3 +18,6 @@ P2-55: Lenovo HT518672 M75n M33KT33A SRWINX64=Y, WMI=N, HT518129 M33KT32A certif
 
 ## E52–54: conditional UMA model and hardware controls
 P2-57 derives 225 modeled size cases from P2-24/25/43; no new disassembly. P2-58 uses kernel sysfs docs and locally tested UMA capture/compare tool (blob 1ed289ae7cf721bebc5503ee4a08c11927730665). P2-59 adds bounded CPU RNG smoke test (blob 73449aa7adefb2a488f142663081d054e5e9ad6b), based on external Picasso report, not M75n evidence. See UMA_RUNTIME_CHECKPOINT.md.
+
+## E55–57: SMI, APOB NV and boot inventory
+P2-60 AMD OSRR #56255 p153 PMCx02B; target measurement pending. P2-61 coreboot PSP guide and AMD EDK2 reference corroborate type63 APOB NV, not target payload validation. P2-62 UEFI Boot Manager/Device Path specs plus read-only boot_inventory.py blob 6a64763c5893691a2e040e212df272b10f1125c8, nine synthetic checks. See SMM_APOB_BOOT_CHECKPOINT.md.

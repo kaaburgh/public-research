@@ -35,3 +35,5 @@ Latest B10 checkpoint P2-53/54: 38/44 changed sections attributed; six partial. 
 Checkpoint P2-55/56: [VENDOR_PCR1_CHECKPOINT.md](VENDOR_PCR1_CHECKPOINT.md) independently corroborates SRWINx64-only factory-key reset support in 1.33 and provides a synthetic-tested read-only PCR1 audit tool. No binary section reclassified; 174 pending rows.
 
 P2-57–59: [UMA_RUNTIME_CHECKPOINT.md](UMA_RUNTIME_CHECKPOINT.md) documents conditional UMA size-gate model, Linux RAM/VRAM observation and an additional bounded RNG regression control. No new ROM analysis; pending counts unchanged.
+
+P2-60–62: [SMM_APOB_BOOT_CHECKPOINT.md](SMM_APOB_BOOT_CHECKPOINT.md) confirms the Picasso SMI PMU event and APOB NV entry type from external documentation, and adds a synthetic-tested read-only boot inventory. No pending reclassification.
