@@ -1,5 +1,5 @@
 # Active backlog
-See data/pending.tsv for machine-generated queue. It has 175 pair-specific records: 168 candidate/partial/open rows for 1.24→1.32 and all 37 non-relocation-equivalent differences for 1.32→1.33 (including non-executable sections). Review of existing evidence is not a claim that every row is unresolved. Review each pair separately; priority is provisional and not measured likelihood. Private P1/P2 blocker fields provide details; historical third-party AFU incident is out of scope.
+See data/pending.tsv for machine-generated queue. It has 174 pair-specific records: 168 candidate/partial/open rows for 1.24→1.32 and all 37 non-relocation-equivalent differences for 1.32→1.33 (including non-executable sections). Review of existing evidence is not a claim that every row is unresolved. Review each pair separately; priority is provisional and not measured likelihood. Private P1/P2 blocker fields provide details; historical third-party AFU incident is out of scope.
 
 | ID | Priority | Work | Completion condition |
 |---|---|---|---|
@@ -12,9 +12,11 @@ See data/pending.tsv for machine-generated queue. It has 175 pair-specific recor
 | B07 | Medium | Remaining USB/NVMe, S3 | resolve residual changed functions, SMI fallback and queue limits; run appropriate tests |
 | B08 | CLOSED | Normalizer discrepancy | Both TE modules differ only at ImageBase byte +0x10. Full normalized images equal; ledger corrected. See REPRODUCTION.md. |
 | B09 | High / partial | Completeness | raw_coverage.py accounts for all 16 MiB per pair, two changed bytes unmapped in 1.24 comparisons; explain these and candidate APOB type 63, embedded raw PE, remaining unknown contained changes. See PLATFORM_REPRODUCTION.md. |
-| B10 | High / partial | Independent 1.32→1.33 | P2-45–52: 30/37 non-reloc sections attributed, plus 7 reloc-only; 7 partial (Setup HII ID, EsaFull, four mailbox modules, 4096-byte block). |
+| B10 | High / partial | Independent 1.32→1.33 | P2-45–54: 31/37 non-reloc sections attributed, plus 7 reloc-only; 6 partial (Setup HII ID, EsaFull expanded GUI, four mailbox modules). |
 | B11 | High / partial | Reproducibility | all core and platform inspectors restored and tested, including selected NVAR link graph, APCB/PSP/microcode, IFR, ACPI and raw accounting. Remaining complete raw NVAR/active-store semantics, more synthetic fixtures and independent function-level semantic verification. |
 | B12 | High | Hardware baseline | before/after same OS/settings: microcode, meminfo, boot entries, Secure Boot, TPM event log/PCRs if present, temperatures, idle W, CPU/memory workloads, PCIe link/AER, USB, NVMe, AC loss; then UMA as separate change |
 | B13 | Blocked | Windows packages | static unpack Inno Setup via innoextract, compare scripts/AFU; not required to assess post-boot changes |
  
 Completion criteria: all inventory differences explained/blocked with justification; raw-region coverage accounted; all critical static conclusions independently reproduced; distinguish unknown runtime effects and measurements. No requirement to solve historical third-party failure or obtain 1.31.
+
+Latest active queue: 174 pair-specific records (168 S24 + 6 S33).

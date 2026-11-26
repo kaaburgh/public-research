@@ -74,3 +74,40 @@ Extract exact FFS sections by GUID, instance and section key in inventory.tsv; c
 **Limits:** No evidence of extra periodic SMI or autonomous reset from new callback without mailbox. Auth policy and request caller authorization need full static mapping; runtime ordering/failure cases not tested. Earlier migration reset P2-16–18 remains independent.
 
 Reproduce: `python3 tools/pe_layout_audit.py old.efi new.efi` (add `--setup` for native Setup). Tested against the five matching 1.32/1.33 payloads with GNU objdump. The program reports residual code and data edits, and validates pointer slots and targets, not arbitrary semantic equivalence. Four further sections attributed, so 37/44 total, seven partial.
+
+## Final B10 follow-up
+
+### P2-53 / 4096-byte signed metadata
+
+**Finding:** Changes fully confined to RSA signature fields
+
+**Evidence:** 414D94AD-998D-47D2-BFCD-4E882241DE32 / 5A88641B-BBB9-4AA6-80F7-498AE407C31F. 4096 bytes. All 511 differences within RSA-2048 signature fields [0x148,0x248),[0x358,0x458). Moduli [0x48,0x148),[0x258,0x358) identical in both bodies, SHA256 8b1fc6ec6379d824de3c85d8c28b619b8531b573704a0fbe9a4065f0ba0450d7. pow(s,65537,n) gives strict PKCS#1 v1.5 SHA-256 DigestInfo in all four cases. Digests 132: 71aef374d15d844b66cc5109fb9096384db834a009ddad6b4f2d196164f48bdc / adb8cc92776e881ca22f0e29df61a9b50b28a4111f07c5551479c79a7229c398; 133: 70c1e88165f23fbc4c6c91f10acbdcf431042e3c466496c0c91d19e9017984f8 / a518d9bea1120007d16b2074b512330ca4fd3ed6b2315ed97f5a70cfd2fd7754. Zero signature fields: identical body SHA256 6f2912c7ff84b3cc0416f03d770e4ad8a19a66458ff84dbcd123617912ab1497.
+
+**Limits:** Signature field attribution only. Signed source ranges and trust chain not recovered or verified; no claim of complete authentication.
+
+### P2-54 / EsaFull UI engine
+
+**Finding:** Layout dominates; real expanded GUI code remains
+
+**Evidence:** EsaFull 2101824→2104512 B; .text raw length 1334016 unchanged, 663171 bytes differ. 3481 int3 chunks each; 347522→347527 nonpadding decoded rows. Candidate normalization masks RIP/direct branch targets and indexed .data addresses (132 0x145e00..0x1dae00;133 ..0x1db780). 3422/3481 normalized chunks multiset match, 339182/347522 old rows (97.6%); unique 3172 chunks,334690 rows. Unique-chunk transfers:59692 consistent targets,821 unmapped,2 incongruent (old caller 0x106fec call 0x1046f8→new 0x108a20 call 0x105a94; old 0x107003 jmp 0x104b44→new 0x108a37 jmp 0x1060b0; unchanged clones at 0x12d264/0x12d528 are not actual targets). Real targets expand from 320→449 and310→482 normalized rows. New loops/scans over 11-byte records, virtual calls +0x2c0/+0x128/+0x148/+0x2e0, object count+0x48/table+0x68. ESA UI engine strings and SkiaPkg/ESACustom Controls source paths. P2-48 HII strings and OEMRevision remain attributed.
+
+**Limits:** 59 chunks/8340 old rows unmatched; clone/reference/data semantics and exact UI behavior unresolved. No evidence of Linux runtime impact; keep partial.
+
+Signature structure reproducibility (apply to each extracted 4096-byte body):
+
+```python
+from hashlib import sha256
+prefix = bytes.fromhex('3031300d060960864801650304020105000420')
+for m, s in [(0x48, 0x148), (0x258, 0x358)]:
+    n = int.from_bytes(body[m:m+256], 'big')
+    sig = int.from_bytes(body[s:s+256], 'big')
+    assert sig < n
+    em = pow(sig, 65537, n).to_bytes(256, 'big')
+    assert em == b'\x00\x01' + b'\xff' * (256-3-len(prefix)-32) + b'\x00' + prefix + em[-32:]
+    print(sha256(body[m:m+256]).hexdigest(), em[-32:].hex())
+normalized = bytearray(body)
+for s in (0x148, 0x358): normalized[s:s+256] = bytes(256)
+print(sha256(normalized).hexdigest())
+```
+
+EsaFull: split GNU objdump .text rows at INT3 padding; remove padding; normalize candidate RIP/branch targets and indexed data addresses only for candidate matching. Compare multisets, then use uniquely paired chunks to map actual call/jump addresses. Do not treat identical clones as actual targets. Inspect the expanded target ranges given above. Remaining branch targets/data and UI semantics not proven. Final B10: 38/44 attributed, six partial.
