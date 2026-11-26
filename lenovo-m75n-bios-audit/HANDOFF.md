@@ -93,3 +93,5 @@ P2-120/E115: native Setup[61] minimal-device Fast Boot vs separate [3C] POST-sta
 P2-121/E116: Uhcd shared callback installation and request-size contract traced, unchanged DXE DEPEX and callback producer; three explicit SMI calls match new filter. Missing-callback scenario remains conditional. 87 pending unchanged. See [USB_CALLBACK_CONTRACT_CHECKPOINT.md](USB_CALLBACK_CONTRACT_CHECKPOINT.md).
 
 P2-122–123/E117–118: new scoped EFI global Timeout/PlatformLang validation, fixed 7-byte SecureBootSetup read no longer retries with increased capacity, and SMM variable communication copies/allocations; successful enumeration size/status path preserved, new allocation-failure paths. 87 pending unchanged. See [NVRAM_VARIABLE_CONTRACT_CHECKPOINT.md](NVRAM_VARIABLE_CONTRACT_CHECKPOINT.md).
+
+P2-124/E119: NVRAM dual-bank physical backend mapping; 18 normalized pieces/1130 instructions match all versions, state-only selector model 16/16 stages. Old bank retained in assumed ordered writes; error after pointer switch and ignored migration result remain conditional. 87 pending unchanged. See [NVRAM_COMMIT_STATE_CHECKPOINT.md](NVRAM_COMMIT_STATE_CHECKPOINT.md).
