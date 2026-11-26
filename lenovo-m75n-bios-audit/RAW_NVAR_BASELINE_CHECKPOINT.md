@@ -33,3 +33,26 @@ Use A75 and the owner-supplied 1.24 dump, never publish generated reports. Forma
 Both copies structurally readable but distinct; cannot treat them as interchangeable backups or decide which is active based on count, free space, FFS state, or physical order alone. Existing Setup-size migration findings remain conditional. To close B11 selection, trace NvramPei and NvramDxe discovery/ordering logic (including file-state tests) and compare with read-only EFI variable observations; later post-update readback separately. Never restore a raw variable store blindly.
 
 Source access: local 1.24 verified; four library ROM entries and both ISO entries lacked authorized raw materialization; direct Lenovo download unavailable in runtime (DNS failure). No 1.32/1.33 re-analysis, no new inventory attribution, no firmware writes or hardware tests. Pending queue remains 92.
+## Active-store selection follow-up (P2-105/E100)
+
+Reconstructed the actual AMI decision instead of applying generic FFS highest-bit rules alone. Binary SHA256 (extracted firmware executables, not machine-specific data): NvramPei TE 0863f780cdb0de0dcc3963f5e92a3765e3dcb2c8f544f8ed859d98b86adbd6dd; NvramDxe PE 5a4f6526be7fedbeb2ad54995998e54f543a96797ac17356b84dbedfd994f957.
+
+- PEI TE raw offset 2E6 retrieves two base addresses via GUID HOB lookup 13DA, fallback first FF021000, second FF041000, first size 0x20000. At 4C2–4D1 first base output is stack+28, second stack+18 (account for pushes). At 4DB–4F0 first passed ECX, second EDX.
+- Helper 1122 checks _FVH, header length 0x48, ext-header offset and length; aligns ext offset+size to 8. Both live FVs have ext offset 0x60 and ext size 0x14, so relative file header 0x78. 116C adds 0x17 to header offset and base, reads FFS state byte, complements it, substitutes 0x20 on zero/error.
+- 118B uses the following exact branch-equivalent logic (a,b normalized state; out_b indicates second structurally usable):
+```python
+def select(a,b):
+    va = bool(a & 4 and not a & 0xe0)
+    vb = bool(b & 4 and not b & 0xe0)
+    if va and vb:
+        if b & 0x10: return True,vb
+        if a & 0x10: return False,vb
+        if a & 8: return bool(b & 8),vb
+    return va,vb
+```
+- Captured raw E0/F0 -> normalized 1F/0F; both usable by this predicate; first deleted bit set, second deleted bit clear. Return false, second usable true. Caller 4F6–50C swaps ESI to second, saves first at stack+24; 515 obtains header offset, 522 adds 0x18, 532 initializes selected descriptor. 6C2–6F6 publishes selected/other addresses and size/header offsets into GUID HOB. Thus the conditional static PEI selection for the actual dump is 0x41000, NVAR body 0x41090.
+- DXE 7E90,7EEC,7F24 implement same FV offset, complemented state, and selection logic. 2DD0–2EB1 reads two headers via protocol, calls predicate and swaps descriptor pointers +48/+58 if first not chosen and second usable; reads selected source at 2EB1–2ECB. No direct hardware confirmation that this exact caller is exercised on the running target.
+- Transcribed logic exercised in Python for seven raw state pairs E0/F0, F0/E0, F8/FF, FF/F8, F0/F8, F8/F0, FF/FF; observed (first chosen, second usable) respectively (False,True),(True,True),(True,False),(False,True),(False,True),(True,True),(False,False). This is model testing, not emulation.
+- Selected-key comparison across both copies (sizes/equality only): Setup 446/446 unequal; AmdSetup 1343/1343 equal; BootOrder 18/20 unequal (9/10 entries); SecureBootSetup 7/7 equal; PK/KEK/db/dbx payloads equal. This confirms baseline selection matters for Setup and BootOrder, not evidence that either is lost by update.
+
+Remaining: HOB address overrides, PEI callback and defaults paths, actual boot variable state, newer migration code and hardware readback. The 1.24 default-path selection is now statically explained; B05/B11 as a whole remain partial. No new S24/S33 attribution, no hardware or writes. This supersedes the earlier uncertainty about the ordinary 1.24 selection predicate in P2-104, not the uncertainty about actual runtime.
