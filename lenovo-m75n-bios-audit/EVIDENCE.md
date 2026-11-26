@@ -21,3 +21,6 @@ P2-57 derives 225 modeled size cases from P2-24/25/43; no new disassembly. P2-58
 
 ## E55–57: SMI, APOB NV and boot inventory
 P2-60 AMD OSRR #56255 p153 PMCx02B; target measurement pending. P2-61 coreboot PSP guide and AMD EDK2 reference corroborate type63 APOB NV, not target payload validation. P2-62 UEFI Boot Manager/Device Path specs plus read-only boot_inventory.py blob 6a64763c5893691a2e040e212df272b10f1125c8, nine synthetic checks. See SMM_APOB_BOOT_CHECKPOINT.md.
+
+## E58–60: restored ROMs
+P2-63 HII ID0x809 = existing Performance Mode, exact forms and normal strings; S33 Setup closed. P2-64 vendor APOB NV erased, live record accounts for 41436 bytes. P2-65 thermal PE/TE exact difference attribution independently repeated. See ROM_RESTORED_CHECKPOINT.md.

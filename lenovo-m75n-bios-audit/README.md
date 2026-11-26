@@ -6,7 +6,7 @@ Start with [HANDOFF.md](HANDOFF.md), [METHODOLOGY.md](METHODOLOGY.md), [EVIDENCE
 
 - [data/inventory.tsv](data/inventory.tsv): 2256 original inventory records, 22 columns; private 1.24 non-executable hashes and free-text conclusions omitted.
 - [data/changes.tsv](data/changes.tsv): 283 changed records (corrected from 284; see REPRODUCTION.md), same schema.
-- [data/pending.tsv](data/pending.tsv): 174 pair-specific rows: 168 open/partial/candidate in 1.24→1.32 and 6 remaining partial sections in 1.32→1.33 (38 of 44 attributed). Heuristic priority, not a finding.
+- [data/pending.tsv](data/pending.tsv): 173 pair-specific rows: 168 open/partial/candidate in 1.24→1.32 and 5 remaining partial sections in 1.32→1.33 (39 of 44 attributed). Heuristic priority, not a finding.
 - [data/p1-public.tsv](data/p1-public.tsv), [data/p2-public.tsv](data/p2-public.tsv): selected historical evidence records; omitted rows remain in private ledger.
 - [tools/audit_verify.py](tools/audit_verify.py): executable hash and relocation verifier.
 - [tools/inventory.py](tools/inventory.py), [tools/compare_inventory.py](tools/compare_inventory.py): independently regenerated inventory and multiset verification.
@@ -37,3 +37,5 @@ Checkpoint P2-55/56: [VENDOR_PCR1_CHECKPOINT.md](VENDOR_PCR1_CHECKPOINT.md) inde
 P2-57–59: [UMA_RUNTIME_CHECKPOINT.md](UMA_RUNTIME_CHECKPOINT.md) documents conditional UMA size-gate model, Linux RAM/VRAM observation and an additional bounded RNG regression control. No new ROM analysis; pending counts unchanged.
 
 P2-60–62: [SMM_APOB_BOOT_CHECKPOINT.md](SMM_APOB_BOOT_CHECKPOINT.md) confirms the Picasso SMI PMU event and APOB NV entry type from external documentation, and adds a synthetic-tested read-only boot inventory. No pending reclassification.
+
+P2-63–65: [ROM_RESTORED_CHECKPOINT.md](ROM_RESTORED_CHECKPOINT.md) verifies source access and Setup internal alias, closes S33 Setup, attributes APOB live-state region and rechecks thermal modules. Current queue 173; 39/44 S33 attributed.

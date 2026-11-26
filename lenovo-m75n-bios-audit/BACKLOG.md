@@ -1,5 +1,5 @@
 # Active backlog
-See data/pending.tsv for machine-generated queue. It has 174 pair-specific records: 168 candidate/partial/open rows for 1.24→1.32 and 6 remaining partial sections for 1.32→1.33 (38 of 44 attributed). Review of existing evidence is not a claim that every row is unresolved. Review each pair separately; priority is provisional and not measured likelihood. Private P1/P2 blocker fields provide details; historical third-party AFU incident is out of scope.
+See data/pending.tsv for machine-generated queue. It has 173 pair-specific records: 168 candidate/partial/open rows for 1.24→1.32 and 5 remaining partial sections for 1.32→1.33 (39 of 44 attributed). Review of existing evidence is not a claim that every row is unresolved. Review each pair separately; priority is provisional and not measured likelihood. Private P1/P2 blocker fields provide details; historical third-party AFU incident is out of scope.
 
 | ID | Priority | Work | Completion condition |
 |---|---|---|---|
@@ -12,17 +12,19 @@ See data/pending.tsv for machine-generated queue. It has 174 pair-specific recor
 | B07 | Medium | Remaining USB/NVMe, S3 | resolve residual changed functions, SMI fallback and queue limits; run appropriate tests |
 | B08 | CLOSED | Normalizer discrepancy | Both TE modules differ only at ImageBase byte +0x10. Full normalized images equal; ledger corrected. See REPRODUCTION.md. |
 | B09 | High / partial | Completeness | raw_coverage.py accounts for all 16 MiB per pair, two changed bytes unmapped in 1.24 comparisons; explain these and candidate APOB type 63, embedded raw PE, remaining unknown contained changes. See PLATFORM_REPRODUCTION.md. |
-| B10 | High / partial | Independent 1.32→1.33 | P2-45–54: 31/37 non-reloc sections attributed, plus 7 reloc-only; 6 partial (Setup HII ID, EsaFull expanded GUI, four mailbox modules). |
+| B10 | High / partial | Independent 1.32→1.33 | P2-45–54: 31/37 non-reloc sections attributed, plus 7 reloc-only; 5 partial (EsaFull expanded GUI, four mailbox modules); P2-63 closes Setup HII ID. |
 | B11 | High / partial | Reproducibility | all core and platform inspectors restored and tested, including selected NVAR link graph, APCB/PSP/microcode, IFR, ACPI and raw accounting. Remaining complete raw NVAR/active-store semantics, more synthetic fixtures and independent function-level semantic verification. |
 | B12 | High | Hardware baseline | before/after same OS/settings: microcode, meminfo, boot entries, Secure Boot, TPM event log/PCRs if present, temperatures, idle W, CPU/memory workloads, PCIe link/AER, USB, NVMe, AC loss; then UMA as separate change |
 | B13 | Blocked | Windows packages | static unpack Inno Setup via innoextract, compare scripts/AFU; not required to assess post-boot changes |
  
 Completion criteria: all inventory differences explained/blocked with justification; raw-region coverage accounted; all critical static conclusions independently reproduced; distinguish unknown runtime effects and measurements. No requirement to solve historical third-party failure or obtain 1.31.
 
-Latest active queue: 174 pair-specific records (168 S24 + 6 S33).
+Latest active queue: 173 pair-specific records (168 S24 + 5 S33).
 
 P2-55/56: B10 mailbox purpose corroborated by Lenovo documentation (SRWINx64 supported; WMI not supported on M75n); exact caller/authorization remains open. B06/B12 read-only PCR1 baseline tool prepared and synthetic-tested; physical data still needed. No change in pending counts. See VENDOR_PCR1_CHECKPOINT.md.
 
 P2-57–59: B04 conditional model and read-only UMA observation prepared; B12 RNG smoke test added. All remain open for actual hardware and binary evidence. B10/B02/B03 cannot progress offline without ROMs. No pending-count change.
 
 P2-60–62: B03 PMU counter 0x2B confirmed in AMD OSRR; B09 type63 is documented APOB NV, payload/active state remains open; B02/B05 boot inventory and B12 experimental controls added. No binary closure. See SMM_APOB_BOOT_CHECKPOINT.md.
+
+P2-63–65: verified ROMs supplied; B10 Setup resolved; B09 APOB NV actual region accounted, cache selection and other residuals open; thermal module prior closure reverified. Next B10 mailbox and EsaFull. See ROM_RESTORED_CHECKPOINT.md.
