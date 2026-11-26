@@ -1,14 +1,14 @@
 # Active backlog
-See data/pending.tsv for machine-generated queue. It has 212 pair-specific records: 175 candidate/partial/open rows for 1.24→1.32 and all 37 non-relocation-equivalent differences for 1.32→1.33 (including non-executable sections). Review of existing evidence is not a claim that every row is unresolved. Review each pair separately; priority is provisional and not measured likelihood. Private P1/P2 blocker fields provide details; historical third-party AFU incident is out of scope.
+See data/pending.tsv for machine-generated queue. It has 205 pair-specific records: 168 candidate/partial/open rows for 1.24→1.32 and all 37 non-relocation-equivalent differences for 1.32→1.33 (including non-executable sections). Review of existing evidence is not a claim that every row is unresolved. Review each pair separately; priority is provisional and not measured likelihood. Private P1/P2 blocker fields provide details; historical third-party AFU incident is out of scope.
 
 | ID | Priority | Work | Completion condition |
 |---|---|---|---|
 | B01 | CLOSED (static) | CPU policy Stibp/CpuPei/CpuDxe | all changed code groups attributed, no new CPU policy operations; runtime B12 remains |
 | B02 | High / partial | FastBootOption/FastBootRuntime, OEM init | FastBootRuntime explained; FastBootOption BootOrder allocation/numbering attributed; remaining trigger/error paths and OEM init |
 | B03 | High / partial | SmiVariable/PiSmmCore/PiSmmIpl, SMM latency | P2-32–34: validation and local copies attributed; residual mapping and actual runtime/legacy path distinction, B12 latency |
-| B04 | High | UMA guard/order/error path, APCB byte 0x125 | prove callback input width, synchronization trigger and fallback; verify on hardware |
-| B05 | High | Setup/NVRAM remaining callbacks, actual boot/Secure Boot | verify boot state after official update, no destructive writes |
-| B06 | High / partial | TPM/AHCI/other OEM handlers | Ahci and AhciInt13Smm DEPEX attributed; verify P2-38 measured-boot size initialization, related TPM modules, event log/PCR1; residual legacy SMM/OEM |
+| B04 | High / partial | UMA guard/order/error path, APCB byte 0x125 | P2-43: recovery guard, protocol notify, transaction order, alternate CBS route identified. Native browser routing, callback delivery, runtime UMA and byte 0x125 remain. |
+| B05 | High / partial | Setup/NVRAM remaining callbacks, actual boot/Secure Boot | P2-44: password algorithm preservation broadened; validate migration/reset, remaining callbacks and actual state. |
+| B06 | High / partial | TPM/AHCI/OEM | P2-39–42: TPM2 PCR1 contract confirmed, legacy PCR7 conditional, seven policy/fTPM sections explained; event log/PCR replay, legacy dispatch, residual TcgDxe/Nvflag and legacy SMM/OEM. |
 | B07 | Medium | Remaining USB/NVMe, S3 | resolve residual changed functions, SMI fallback and queue limits; run appropriate tests |
 | B08 | CLOSED | Normalizer discrepancy | Both TE modules differ only at ImageBase byte +0x10. Full normalized images equal; ledger corrected. See REPRODUCTION.md. |
 | B09 | High / partial | Completeness | raw_coverage.py accounts for all 16 MiB per pair, two changed bytes unmapped in 1.24 comparisons; explain these and candidate APOB type 63, embedded raw PE, remaining unknown contained changes. See PLATFORM_REPRODUCTION.md. |

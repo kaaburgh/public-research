@@ -1,6 +1,5 @@
 id	pair	priority	module	section	status	normalized_diff	setup_pattern_hits
 S24-501F30E9-D14F-47DA-AE60-B101E4189D07|1|PE32 image section|1	1.24→1.32	P1	AhciInt13Smm	PE32 image section	частично объяснено		
-S24-2FC61DE6-1791-479C-8A32-7ABB69A4D8D0|1|TE image section|1	1.24→1.32	P1	AmdPspFtpmPei	TE image section	кандидат на изменение Setup	6	1
 S24-0A9F795E-B9FC-4117-BC4E-138695D16562|1|PE32 image section|1	1.24→1.32	P1	AmdSocFp5RvDxe	PE32 image section	кандидат на изменение Setup	12	1
 S24-01C827C2-7765-42E9-B31C-E03E89A09113|1|TE image section|1	1.24→1.32	P1	AmdSocFp5RvPei	TE image section	кандидат на изменение Setup	15	2
 S24-8F4B8F82-9B91-4028-86E6-F4DB7D4C1DFF|1|PE32 image section|1	1.24→1.32	P1	Bds	PE32 image section	частично объяснено		
@@ -22,10 +21,9 @@ S24-634DF746-6F4B-4684-93E6-526653E7C35A|1|PE32 image section|1	1.24→1.32	P1	S
 S24-DB41E01B-A8B0-4E15-B619-4463975B357B|1|PE32 image section|1	1.24→1.32	P1	SetupDataChecksumErr	PE32 image section	кандидат на изменение Setup	11	1
 S24-19AFD36B-F501-4446-9C9E-0457DB6E7888|1|PE32 image section|1	1.24→1.32	P1	SetupItemLinkageDxe	PE32 image section	кандидат на изменение Setup	3	3
 S24-AE73630A-022D-4884-A696-F728CBF53AEF|1|PE32 image section|1	1.24→1.32	P1	SetupItemLinkageSmm	PE32 image section	кандидат на изменение Setup	3	3
-S24-A46D9EE7-C6B4-42C0-8378-6E4BDC50406B|1|PE32 image section|1	1.24→1.32	P1	SetupLoadDefault	PE32 image section	не завершено		
+S24-A46D9EE7-C6B4-42C0-8378-6E4BDC50406B|1|PE32 image section|1	1.24→1.32	P1	SetupLoadDefault	PE32 image section	частично объяснено		
 S24-BE216BA8-38C4-4535-A6CA-5DCA5B43ADDF|1|PE32 image section|1	1.24→1.32	P1	SmiVariable	PE32 image section	частично объяснено		
 S24-0718AD81-F26A-4850-A6EC-F268E309D707|1|PE32 image section|1	1.24→1.32	P1	Tpm20PlatformDxe	PE32 image section	частично объяснено		
-S24-2D07DCE9-CF98-408F-A13C-20E41746AE95|1|PE32 image section|1	1.24→1.32	P1	TPMHwPresent	PE32 image section	кандидат на изменение Setup	37	3
 S24-580DD900-385D-11D7-883A-00500473D4EB|1|PE32 image section|1	1.24→1.32	P1	Uhcd	PE32 image section	частично объяснено		
 S24-4C006CD9-19BA-4617-8483-609194A1ACFC|1|PE32 image section|1	1.24→1.32	P1	UsbInt13	PE32 image section	не завершено	4	0
 S24-171F43DC-C4D9-47A6-9641-65DDCDD5AA30|1|PE32 image section|1	1.24→1.32	P1	UsbRtDxe	PE32 image section	частично объяснено (предыдущий разбор)		
@@ -49,10 +47,9 @@ S24-16D0A23E-C09C-407D-A14A-AD058FDD0CA1|1|PE32 image section|1	1.24→1.32	P2	A
 S24-1DFB7BFA-BF8E-4D11-9766-2FB0D0442310|1|PE32 image section|1	1.24→1.32	P2	AmiAgesaDxe	PE32 image section	кандидат на изменение Setup	21	1
 S24-586032E3-1386-4ECC-B547-EB285E21066D|1|TE image section|1	1.24→1.32	P2	AmiAgesaPei	TE image section	кандидат на изменение Setup	9	1
 S24-95ECB758-627E-4A2E-B7B8-DC863EFE3425|1|PE32 image section|1	1.24→1.32	P2	AmiDeviceGuardApi	PE32 image section	не завершено	6	0
-S24-D4926BEA-00A3-40E5-A2B9-C317960F31BF|1|TE image section|1	1.24→1.32	P2	AmiPspFtpmPei	TE image section	кандидат на изменение Setup	4	1
 S24-D4395796-6F4C-4C6B-B9D1-92DAA7199A84|1|PE32 image section|1	1.24→1.32	P2	AmiRedFishApi	PE32 image section	не завершено	6	0
-S24-50F6096D-7C98-4C78-9A1D-C5A1833B6A88|1|PE32 image section|1	1.24→1.32	P2	AmiTcgNvflagSample	PE32 image section	не завершено	879	0
-S24-A29A63E3-E4E7-495F-8A6A-07738300CBB3|1|PE32 image section|1	1.24→1.32	P2	AmiTcgPlatformDxe	PE32 image section	не завершено		
+S24-50F6096D-7C98-4C78-9A1D-C5A1833B6A88|1|PE32 image section|1	1.24→1.32	P2	AmiTcgNvflagSample	PE32 image section	частично объяснено	879	0
+S24-A29A63E3-E4E7-495F-8A6A-07738300CBB3|1|PE32 image section|1	1.24→1.32	P1	AmiTcgPlatformDxe	PE32 image section	частично объяснено		
 S24-B1DA0ADF-4F77-4070-A88E-BFFE1C60529A|1|PE32 image section|1	1.24→1.32	P2	AMITSE	PE32 image section	не завершено		
 S24-FE612B72-203C-47B1-8560-A66D946EB371|1|FE612B72-203C-47B1-8560-A66D946EB371|1	1.24→1.32	P2	AMITSESetupData	FE612B72-203C-47B1-8560-A66D946EB371	не завершено		
 S24-529D3F93-E8E9-4E73-B1E1-BDF6A9D50113|1|PE32 image section|1	1.24→1.32	P2	ArpDxe	PE32 image section	не завершено		
@@ -157,11 +154,7 @@ S24-6F9B3CFA-1AF2-4174-A1C7-8F6310D68BE4|1|PE32 image section|1	1.24→1.32	P2	S
 S24-F6C5CE3D-2668-402A-952E-270786150DFB|1|PE32 image section|1	1.24→1.32	P2	SwSmi534D3220	PE32 image section	кандидат на изменение Setup	8	1
 S24-E292BA71-812C-42B9-885D-3F0565B098C7|1|PE32 image section|1	1.24→1.32	P2	SyncSetupCpt	PE32 image section	кандидат на изменение Setup	10	1
 S24-0C9C3169-6F39-409E-990B-5B8B48B9D2B9|1|TE image section|1	1.24→1.32	P2	SyncUpNvramToPostFlag	TE image section	кандидат на изменение Setup	3	1
-S24-39045756-FCA3-49BD-8DAE-C7BAE8389AFF|1|PE32 image section|1	1.24→1.32	P2	Tcg2Dxe	PE32 image section	кандидат на изменение Setup	12	2
-S24-5E9CABA3-F2B1-497A-ADAC-24F575E9CDE9|1|PE32 image section|1	1.24→1.32	P2	TcgDxe	PE32 image section	не завершено		
-S24-0FE9DA53-043D-4265-A94D-FD77FEDE2EB4|1|TE image section|1	1.24→1.32	P2	TcgPlatformSetupPeiPolicy	TE image section	кандидат на изменение Setup	22	1
-S24-196CA3D8-9A5A-4735-B328-8FFC1D93D188|1|PE32 image section|1	1.24→1.32	P2	TcgPlatformSetupPolicy	PE32 image section	кандидат на изменение Setup	28	2
-S24-FD93F9E1-3C73-46E0-B7B8-2BBA3F718F6C|1|PE32 image section|1	1.24→1.32	P2	TcgSmm	PE32 image section	кандидат на изменение Setup	3	1
+S24-5E9CABA3-F2B1-497A-ADAC-24F575E9CDE9|1|PE32 image section|1	1.24→1.32	P2	TcgDxe	PE32 image section	частично объяснено		
 S24-1A7E4468-2F55-4A56-903C-01265EB7622B|1|PE32 image section|1	1.24→1.32	P2	TcpDxe	PE32 image section	не завершено		
 S24-54891A9E-763E-4377-8841-8D5C90D88CDE|1|PE32 image section|1	1.24→1.32	P2	TerminalSrc	PE32 image section	не завершено		
 S24-7CA1024F-EB17-11E5-9DBA-28D2447C4829|1|PE32 image section|1	1.24→1.32	P2	TlsAuthConfigDxe	PE32 image section	не завершено		
