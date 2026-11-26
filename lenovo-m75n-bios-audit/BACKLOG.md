@@ -1,5 +1,5 @@
 # Active backlog
-See data/pending.tsv for machine-generated queue. It has 174 pair-specific records: 168 candidate/partial/open rows for 1.24→1.32 and all 37 non-relocation-equivalent differences for 1.32→1.33 (including non-executable sections). Review of existing evidence is not a claim that every row is unresolved. Review each pair separately; priority is provisional and not measured likelihood. Private P1/P2 blocker fields provide details; historical third-party AFU incident is out of scope.
+See data/pending.tsv for machine-generated queue. It has 174 pair-specific records: 168 candidate/partial/open rows for 1.24→1.32 and 6 remaining partial sections for 1.32→1.33 (38 of 44 attributed). Review of existing evidence is not a claim that every row is unresolved. Review each pair separately; priority is provisional and not measured likelihood. Private P1/P2 blocker fields provide details; historical third-party AFU incident is out of scope.
 
 | ID | Priority | Work | Completion condition |
 |---|---|---|---|
