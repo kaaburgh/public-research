@@ -33,3 +33,5 @@ Further B10: P2-51/52 validate 27,253 actual relocation slots and targets; four 
 Latest B10 checkpoint P2-53/54: 38/44 changed sections attributed; six partial. Active queue 174 rows (168 S24 + 6 S33). The 4096-byte RSA signature metadata block is attributed; EsaFull has real expanded GUI code, not merely layout.
 
 Checkpoint P2-55/56: [VENDOR_PCR1_CHECKPOINT.md](VENDOR_PCR1_CHECKPOINT.md) independently corroborates SRWINx64-only factory-key reset support in 1.33 and provides a synthetic-tested read-only PCR1 audit tool. No binary section reclassified; 174 pending rows.
+
+P2-57–59: [UMA_RUNTIME_CHECKPOINT.md](UMA_RUNTIME_CHECKPOINT.md) documents conditional UMA size-gate model, Linux RAM/VRAM observation and an additional bounded RNG regression control. No new ROM analysis; pending counts unchanged.
