@@ -11,9 +11,9 @@ See data/pending.tsv for machine-generated queue. It has 218 pair-specific recor
 | B06 | Medium | TPM/AHCI/other OEM handlers | attribute register/access changes, interface and reset effects |
 | B07 | Medium | Remaining USB/NVMe, S3 | resolve residual changed functions, SMI fallback and queue limits; run appropriate tests |
 | B08 | CLOSED | Normalizer discrepancy | Both TE modules differ only at ImageBase byte +0x10. Full normalized images equal; ledger corrected. See REPRODUCTION.md. |
-| B09 | High | Completeness | full raw region diff incl PSP/BHD/APCB/APOB/microcode/embedded raw PE, duplicate GUID and unmatched sections; explain all or explicit blockers |
+| B09 | High / partial | Completeness | raw_coverage.py accounts for all 16 MiB per pair, two changed bytes unmapped in 1.24 comparisons; explain these and candidate APOB type 63, embedded raw PE, remaining unknown contained changes. See PLATFORM_REPRODUCTION.md. |
 | B10 | Medium | 1.32→1.33 distinct changes | review each of 24 normalized differences, including crypto, TLS, SecureBootDXE, NVRAM, Setup, BDS |
-| B11 | High / partial | Reproducibility | inventory generator, compare tool, flashmap model, and instruction matcher restored and tested. Remaining specialized NVAR/APCB/PSP/IFR/ACPI parsers, automated tests and independent semantic verification. |
+| B11 | High / partial | Reproducibility | all core and platform inspectors restored and tested, including selected NVAR link graph, APCB/PSP/microcode, IFR, ACPI and raw accounting. Remaining complete raw NVAR/active-store semantics, more synthetic fixtures and independent function-level semantic verification. |
 | B12 | High | Hardware baseline | before/after same OS/settings: microcode, meminfo, boot entries, Secure Boot, temperatures, idle W, CPU/memory workloads, PCIe link/AER, USB, NVMe, AC loss; then UMA as separate change |
 | B13 | Blocked | Windows packages | static unpack Inno Setup via innoextract, compare scripts/AFU; not required to assess post-boot changes |
  

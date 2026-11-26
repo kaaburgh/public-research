@@ -17,3 +17,7 @@ Start with [HANDOFF.md](HANDOFF.md), [METHODOLOGY.md](METHODOLOGY.md), [EVIDENCE
 The owner provides ROMs/AFU dump separately to each new session or agent; absence of those files in Git is expected, not a reproducibility blocker. Never publish personal dumps or generated private inventory.
 
 Do not run flash tools, write EFI variables, or publish personal dumps. Compare binaries offline. Add new evidence with stable IDs, version pair, hash, coordinates, method, uncertainty, and explicit next test. Keep historical corrections rather than deleting them.
+
+## Platform-specific reproduction
+
+[PLATFORM_REPRODUCTION.md](PLATFORM_REPRODUCTION.md) describes six additional tools: AMD directory/APCB/microcode inspection, NVAR graph/defaults inspection, static ACPI comparison, IFR extraction/diff, platform regression tests, and raw-ROM accounting. All were tested on the three owner-supplied images. Keep their generated reports local.
