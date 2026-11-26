@@ -65,3 +65,5 @@ P2-64 follow-up: type63 APOB NV at 0x2BA000 size0x10000 is all FF in both vendor
 P2-70: two changed unmapped bytes localized to EFS page at 0x20000; known directory pointers exact, field semantics unresolved. See MAILBOX_UI_UMA_CHECKPOINT.md.
 
 P2-71: the last unknown live-vendor APCB payload field (0x125) is Data Fabric token0x306, read/written as logical8 by unchanged PciRootBridge. See MMIO_BROWSER_SAVE_CHECKPOINT.md. No claim of physical RAM loss.
+
+P2-104/E99: B11 independent raw NVAR graph on verified 1.24 AFU: 1814 outer + 39 nested defaults records cross-checked, all valid named chains uniquely resolve; detached data chains accounted by invalidated roots. Both stores contain different terminal payloads; FFS state interpretation alone cannot select AMI active store. 91 S24 + 1 S33 =92 pending, unchanged. New ROMs not accessible in this session; next actual active-store selection and USB/NVMe/EsaFull mapping when supplied. See [RAW_NVAR_BASELINE_CHECKPOINT.md](RAW_NVAR_BASELINE_CHECKPOINT.md).
