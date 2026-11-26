@@ -90,3 +90,5 @@ P2-122–123/E117–118: new scoped EFI global Timeout/PlatformLang validation, 
 P2-124/E119: NVRAM dual-bank physical backend mapping; 18 normalized pieces/1130 instructions match all versions, state-only selector model 16/16 stages. Old bank retained in assumed ordered writes; error after pointer switch and ignored migration result remain conditional. 87 pending unchanged. See [NVRAM_COMMIT_STATE_CHECKPOINT.md](NVRAM_COMMIT_STATE_CHECKPOINT.md).
 
 P2-125/E120: NvmeSmm uses returned queue bases, unlike DXE Stop interior-pointer defect; separate conditional duplicate release/stale registration after resource failure. 26/38 normalized pieces matched, all 12 dispatch relocations mapped. 87 pending unchanged. See [NVME_SMM_LIFECYCLE_CHECKPOINT.md](NVME_SMM_LIFECYCLE_CHECKPOINT.md).
+
+P2-126/E121: all named NVAR chains resolved on both banks; generous compact-size model with new defaults fits with ~53% headroom. Owner aggregates private; tool nvar_capacity.py. No exact write emulation or hardware test. 87 pending unchanged. See [NVAR_CAPACITY_CHECKPOINT.md](NVAR_CAPACITY_CHECKPOINT.md).
