@@ -119,3 +119,5 @@ P2-139–142/E134–137: DxeCore PE statically closed; current ROM bounds checke
 P2-143–144/E138–139: ACPI, DxeIpl, PeiCore statically closed. New early LZMA/relocation guards satisfy inspected vendor image bounds. 73 pending. See [ACPI_PEI_LOADER_CHECKPOINT.md](ACPI_PEI_LOADER_CHECKPOINT.md).
 
 P2-145/E140: SmiFlash PE statically closed; request/header/trailer, SMM lookup, stack and backup changes attributed; error and hardware behavior separate. 72 pending. See [SMIFLASH_FINAL_CHECKPOINT.md](SMIFLASH_FINAL_CHECKPOINT.md).
+
+P2-146/E141: five NVMe Start failure paths retain CQ or CQ+SQ fields before common teardown; existing DriverOrder ForceReconnect path traced after EndOfDxe. 72 pending unchanged. See [NVME_START_RECONNECT_CHECKPOINT.md](NVME_START_RECONNECT_CHECKPOINT.md).
