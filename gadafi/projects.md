@@ -8,3 +8,7 @@
 - fxceless/victory-fork — https://github.com/fxceless/victory-fork/blob/46bf5351707b1697c04e5d871c30973ebaa3e973/README.md — активный форк VIctory, использует отдельные изменения victory-amd, E-012: заявлены управляемое прохождение первых миссий и 5–12 FPS на RTX 4070, нестабильность GPU и отсутствие RT-освещения; независимого подтверждения нет.
 
   - Обновление fxceless/victory-fork E-013: pinned https://github.com/fxceless/victory-fork/blob/a20809de366186a5770cb9ff00019537fbcc9eda/README.md; измеренный автором прирост у лодки и переход к GPU bottleneck при экспериментальных настройках, прежний сюжетный milestone без изменений.
+
+- foxhound — https://github.com/readmet3xt-lab/foxhound/blob/b364baa702a7756652f9f0417cab5dddad8975c8/README.md; VIctory lineage, E-014, заявленный 26-минутный тест без RT/FG, 4070 SUPER; CPU copying bottleneck.
+- VIctory-NVIDIA — https://github.com/trustno1-coder/VIctory-NVIDIA/blob/0cef07e9d766df48f0e95f13ce3bbbe2290fe9d3/README.md; база foxhound с 26.11, E-015, 26–30 rendered FPS RTX 5070, RT off, FG separately; заявлены releases, не проверены.
+- fxceless/victory-fork — текущая база VIctory-NVIDIA с 27.11, https://github.com/fxceless/victory-fork/commit/cd9355206de35baeab822ce9bb2bbac7e8354eb6; E-016 RT on 8–15 FPS, прежняя линия историческая.
