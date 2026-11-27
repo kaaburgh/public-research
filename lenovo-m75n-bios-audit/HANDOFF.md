@@ -103,3 +103,5 @@ P2-126/E121: all named NVAR chains resolved on both banks; generous compact-size
 P2-127/E122: owner Setup terminal vs new defaults matched by 287 common named IFR question keys; private thermal/device/boot/security drift list, TPM read-only and OS Optimized Defaults override caveats. 87 pending unchanged. See [SETUP_RESET_DRIFT_CHECKPOINT.md](SETUP_RESET_DRIFT_CHECKPOINT.md).
 
 P2-128/E123: BDS table has root bridge and PCI 06/01 nonrecursive connection before EndOfDxe; no direct early NVMe Start demonstrated. 87 pending unchanged.
+
+P2-129–131/E124–126: close TcgDxe, FlashDriver and FlashDriverSmm static PEs; GPT measurement limits refine P2-42; pending FV header recovery refined; NVMe Map alignment slack predates update, new Stop defect distinct. 83 S24 +1 S33 =84 pending. See [GPT_FLASH_NVME_SCOPE_CHECKPOINT.md](GPT_FLASH_NVME_SCOPE_CHECKPOINT.md).
