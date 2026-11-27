@@ -115,3 +115,5 @@ P2-135–137/E130–132: ReFlash PE and FID/FIDT/SGN metadata statically closed.
 P2-138/E133: exact 2192B DXE PCD v6 reconstruction from 124 to both 132/133. Four removed Ex tokens also removed from traced Uhcd config paths. PcdDxe raw section closed, Uhcd PE partial. 77 pending. See [PCD_RECONSTRUCTION_CHECKPOINT.md](PCD_RECONSTRUCTION_CHECKPOINT.md).
 
 P2-139–142/E134–137: DxeCore PE statically closed; current ROM bounds checked, FPDT producer/consumers aligned. SmiFlash conditional Enhanced Power Saving Mode preservation, EDU size resets and fixed network backup length traced to Ip4Dxe producer. 76 pending. See [DXECORE_SMIFLASH_CONFIG_CHECKPOINT.md](DXECORE_SMIFLASH_CONFIG_CHECKPOINT.md).
+
+P2-143–144/E138–139: ACPI, DxeIpl, PeiCore statically closed. New early LZMA/relocation guards satisfy inspected vendor image bounds. 73 pending. See [ACPI_PEI_LOADER_CHECKPOINT.md](ACPI_PEI_LOADER_CHECKPOINT.md).

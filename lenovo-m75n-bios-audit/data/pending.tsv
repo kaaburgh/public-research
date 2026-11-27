@@ -15,7 +15,6 @@ S24-550CA2B8-4E82-41FF-AAC6-B6373D5DF77F|1|Raw section with PE32 image|1	1.24→
 S24-6C9013D0-4059-4723-AF2A-05E63FFECF19|1|Raw section|1	1.24→1.32	P2	6C9013D0-4059-4723-AF2A-05E63FFECF19	Raw section	частично объяснено		
 S24-72BCFBE0-FCEC-4F0F-8CD2-AC3A424539CD|1|raw file|1	1.24→1.32	P2	72BCFBE0-FCEC-4F0F-8CD2-AC3A424539CD	raw file	частично объяснено		
 S24-3548423A-2B2C-4393-9826-B202959D2362|1|PE32 image section|1	1.24→1.32	P2	AbtCryptoDriver	PE32 image section	не завершено		
-S24-16D0A23E-C09C-407D-A14A-AD058FDD0CA1|1|PE32 image section|1	1.24→1.32	P2	ACPI	PE32 image section	частично объяснено		
 S24-B1DA0ADF-4F77-4070-A88E-BFFE1C60529A|1|PE32 image section|1	1.24→1.32	P2	AMITSE	PE32 image section	не завершено		
 S24-FE612B72-203C-47B1-8560-A66D946EB371|1|FE612B72-203C-47B1-8560-A66D946EB371|1	1.24→1.32	P2	AMITSESetupData	FE612B72-203C-47B1-8560-A66D946EB371	не завершено		
 S24-529D3F93-E8E9-4E73-B1E1-BDF6A9D50113|1|PE32 image section|1	1.24→1.32	P2	ArpDxe	PE32 image section	не завершено		
@@ -30,7 +29,6 @@ S24-DAF4BF89-CE71-4917-B522-C89D32FBC59F|1|AB56DC60-0057-11DA-A8DB-000102EEE626|
 S24-94734718-0BBC-47FB-96A5-EE7A5AE6A2AD|1|PE32 image section|1	1.24→1.32	P2	Dhcp4Dxe	PE32 image section	не завершено		
 S24-95E3669D-34BE-4775-A651-7EA41B69D89E|1|PE32 image section|1	1.24→1.32	P2	Dhcp6Dxe	PE32 image section	не завершено		
 S24-B219E140-DFFC-11E3-B956-0022681E6906|1|PE32 image section|1	1.24→1.32	P2	DnsDxe	PE32 image section	не завершено		
-S24-86D70125-BAA3-4296-A62F-602BEBBB9081|1|TE image section|1	1.24→1.32	P2	DxeIpl	TE image section	не завершено		
 S24-3FEDD4A3-8112-4534-8DB2-E886EB35075E|1|PE32 image section|1	1.24→1.32	P2	ErrorMessage	PE32 image section	не завершено	12734	1
 S24-A2DF5376-C2ED-49C0-90FF-8B173B0FD066|1|PE32 image section|1	1.24→1.32	P2	EsaFull	PE32 image section	не завершено		
 S24-7ECD9C20-68B9-4A6F-B515-D64FF500B109|1|PE32 image section|1	1.24→1.32	P2	FsRecovery	PE32 image section	частично объяснено		
@@ -51,7 +49,6 @@ S24-99F03B99-98D8-49DD-A8D3-3219D0FFE41E|1|PE32 image section|1	1.24→1.32	P2	M
 S24-21891A9E-763E-4377-8841-8D5C90D88C51|1|PE32 image section|1	1.24→1.32	P2	NetworkStackSetupScreen	PE32 image section	не завершено		
 S24-B9C0BEEA-3F1C-45C0-822B-B0908F668F65|1|PE32 image section|1	1.24→1.32	P2	NTFS	PE32 image section	не завершено		
 S24-57E56594-CE95-46AD-9531-3C49310CA7CE|1|PE32 image section|1	1.24→1.32	P2	Ofbd	PE32 image section	не завершено		
-S24-52C05B14-0B98-496C-BC3B-04B50211D680|1|TE image section|1	1.24→1.32	P2	PeiCore	TE image section	не завершено		
 S24-5FECEF6B-5FA4-4570-8163-0CF72A9C04C5|1|PE32 image section|1	1.24→1.32	P2	Ps2Main	PE32 image section	не завершено		
 S24-F80697E9-7FD6-4665-8646-88E33EF71DFC|1|PE32 image section|1	1.24→1.32	P2	SecurityStubDxe	PE32 image section	не завершено		
 S24-B13EDD38-684C-41ED-A305-D7B7E32497DF|1|PE32 image section|1	1.24→1.32	P2	Smbios	PE32 image section	не завершено		
