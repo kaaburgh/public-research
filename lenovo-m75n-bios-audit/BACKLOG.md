@@ -116,3 +116,5 @@ P2-146/E141: five NVMe Start failure paths retain CQ or CQ+SQ fields before comm
 P2-147/E142: NVMe per-namespace PRP and metadata buffer allocations replaced by shared controller buffers; scope and cleanup traced, concurrency/OS memory unproved. 72 pending. See [NVME_NAMESPACE_OWNERSHIP_CHECKPOINT.md](NVME_NAMESPACE_OWNERSHIP_CHECKPOINT.md).
 
 P2-148/E143: common new NVMeSmm/AhciInt13Smm SMRAM descriptor init ignores statuses; conditional failure may leave null table with nonzero count. No observed failure. 72 pending. See [SMM_DESCRIPTOR_INIT_CHECKPOINT.md](SMM_DESCRIPTOR_INIT_CHECKPOINT.md).
+
+P2-149/E144: NvmeSmm .data exact masked mapping, four new GUIDs, legacy/EndOfDxe/ReadyToBoot event scope traced. Executable remains partial. 72 pending. See [NVME_SMM_DATA_EVENT_CHECKPOINT.md](NVME_SMM_DATA_EVENT_CHECKPOINT.md).
