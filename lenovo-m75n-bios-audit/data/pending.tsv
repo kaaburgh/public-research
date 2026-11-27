@@ -52,7 +52,6 @@ S24-99F03B99-98D8-49DD-A8D3-3219D0FFE41E|1|PE32 image section|1	1.24→1.32	P2	M
 S24-21891A9E-763E-4377-8841-8D5C90D88C51|1|PE32 image section|1	1.24→1.32	P2	NetworkStackSetupScreen	PE32 image section	не завершено		
 S24-B9C0BEEA-3F1C-45C0-822B-B0908F668F65|1|PE32 image section|1	1.24→1.32	P2	NTFS	PE32 image section	не завершено		
 S24-57E56594-CE95-46AD-9531-3C49310CA7CE|1|PE32 image section|1	1.24→1.32	P2	Ofbd	PE32 image section	не завершено		
-S24-80CF7257-87AB-47F9-A3FE-D50B76D89541|1|Raw section|1	1.24→1.32	P2	PcdDxe	Raw section	не завершено		
 S24-52C05B14-0B98-496C-BC3B-04B50211D680|1|TE image section|1	1.24→1.32	P2	PeiCore	TE image section	не завершено		
 S24-5FECEF6B-5FA4-4570-8163-0CF72A9C04C5|1|PE32 image section|1	1.24→1.32	P2	Ps2Main	PE32 image section	не завершено		
 S24-F80697E9-7FD6-4665-8646-88E33EF71DFC|1|PE32 image section|1	1.24→1.32	P2	SecurityStubDxe	PE32 image section	не завершено		

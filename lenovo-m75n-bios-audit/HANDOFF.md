@@ -109,3 +109,5 @@ P2-129–131/E124–126: close TcgDxe, FlashDriver and FlashDriverSmm static PEs
 P2-132–134/E127–129: SmiFlashDxe and ReFlashSmm static closures; context ownership transfer and SMM header snapshot confirmed, ReFlash DXE grows communication buffer by 64 KiB and independently resets EDU variable read sizes; remaining DXE attribution open. 82 pending. See [REFLASH_FLOW_CHECKPOINT.md](REFLASH_FLOW_CHECKPOINT.md).
 
 P2-135–137/E130–132: ReFlash PE and FID/FIDT/SGN metadata statically closed. Recovery prefix unchanged; DxeCore four-digit alias 132/133 but raw PCD DBs equal for this pair. External policy and DxeCore remaining mapping open. 78 pending. See [REFLASH_FID_PCD_CHECKPOINT.md](REFLASH_FID_PCD_CHECKPOINT.md).
+
+P2-138/E133: exact 2192B DXE PCD v6 reconstruction from 124 to both 132/133. Four removed Ex tokens also removed from traced Uhcd config paths. PcdDxe raw section closed, Uhcd PE partial. 77 pending. See [PCD_RECONSTRUCTION_CHECKPOINT.md](PCD_RECONSTRUCTION_CHECKPOINT.md).
