@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "source_commit": "5cfc7c245066ced5e7854a191fcd1c06d7f41f62",
+  "artifacts": {
+    "rom132": {
+      "size": 16777216,
+      "sha256": "7d73d99b0b7b7fbe8999d2495b0df7e5adf4936bb3fb003838640fff7e17e145"
+    },
+    "rom133": {
+      "size": 16777216,
+      "sha256": "fe2c8dc35ee74059cddf1fc49fe313a065bc9a1279bb3e090ea28a2d9aa0c498"
+    }
+  },
+  "claims": [
+    {
+      "id": "SB-001",
+      "predicate": "auth_container_pair_v1",
+      "state": "imported_unverified",
+      "selector": {
+        "guid": "CC0F8A3F-3DEA-4376-9679-5426BA0A907E",
+        "section": "Raw section",
+        "expected_occurrences": 1
+      },
+      "inputs": [
+        "rom132",
+        "rom133"
+      ],
+      "expected": {
+        "size_each": 842,
+        "body_sha256": [
+          "8d1ef5a32a826b698e4aa1c433948e28c18f440d3f4959ef372645d52f1d1760",
+          "004035b62688a0fc9579cccafcea872db381e2722743e281dfac1f31355e3592"
+        ],
+        "dwLength_each": 24,
+        "suffix_offset": 40,
+        "suffix_sha256_each": "79ff44aecb43cf487a74a7834454fe33b964cb8d67dc13caaf28930aa067a26a",
+        "allowed_diff_offsets": [
+          0,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "require_nonempty_diff": true
+      },
+      "sources": [
+        {
+          "path": "RELEASE_132_133.md",
+          "anchor": "P2-47"
+        },
+        {
+          "path": "data/inventory.tsv",
+          "anchor": "CC0F8A3F-3DEA-4376-9679-5426BA0A907E / 1 / Raw section / 1"
+        }
+      ]
+    },
+    {
+      "id": "SB-002",
+      "predicate": "auth_container_pair_v1",
+      "state": "imported_unverified",
+      "selector": {
+        "guid": "9FE7DE69-0AEA-470A-B50A-139813649189",
+        "section": "Raw section",
+        "expected_occurrences": 1
+      },
+      "inputs": [
+        "rom132",
+        "rom133"
+      ],
+      "expected": {
+        "size_each": 3908,
+        "body_sha256": [
+          "cde335afcc53dd3ac9d959e9ce99bad7b06f658e057cb57f4ea15721de2da404",
+          "e570d3fc5313bfeae868d86692306b9185d1dafd3f893478b0321770b8f610a5"
+        ],
+        "dwLength_each": 24,
+        "suffix_offset": 40,
+        "suffix_sha256_each": "791aa21abcd4632136d6fb6330063af2e0d2d14b24aff96301567c1a82501221",
+        "allowed_diff_offsets": [
+          0,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "require_nonempty_diff": true
+      },
+      "sources": [
+        {
+          "path": "RELEASE_132_133.md",
+          "anchor": "P2-47"
+        },
+        {
+          "path": "data/inventory.tsv",
+          "anchor": "9FE7DE69-0AEA-470A-B50A-139813649189 / 1 / Raw section / 1"
+        }
+      ]
+    },
+    {
+      "id": "SB-003",
+      "predicate": "auth_container_pair_v1",
+      "state": "imported_unverified",
+      "selector": {
+        "guid": "FBF95065-427F-47B3-8077-D13C60710998",
+        "section": "Raw section",
+        "expected_occurrences": 1
+      },
+      "inputs": [
+        "rom132",
+        "rom133"
+      ],
+      "expected": {
+        "size_each": 9485,
+        "body_sha256": [
+          "0848e78f2e6e9f859cd3ba1206b9df171c78035a09749e7c7417dfa31afa4bf2",
+          "d81634e7642017ce28ee43c9d783dd103b3a90057a224a902ff12ad638ae3094"
+        ],
+        "dwLength_each": 24,
+        "suffix_offset": 40,
+        "suffix_sha256_each": "f0fb458845c395520bca386e03fe377f04cc09492276c1019e34d126683008ed",
+        "allowed_diff_offsets": [
+          0,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "require_nonempty_diff": true
+      },
+      "sources": [
+        {
+          "path": "RELEASE_132_133.md",
+          "anchor": "P2-47"
+        },
+        {
+          "path": "data/inventory.tsv",
+          "anchor": "FBF95065-427F-47B3-8077-D13C60710998 / 1 / Raw section / 1"
+        }
+      ]
+    }
+  ]
+}
