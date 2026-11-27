@@ -54,7 +54,6 @@ S24-F80697E9-7FD6-4665-8646-88E33EF71DFC|1|PE32 image section|1	1.24→1.32	P2	S
 S24-B13EDD38-684C-41ED-A305-D7B7E32497DF|1|PE32 image section|1	1.24→1.32	P2	Smbios	PE32 image section	не завершено		
 S24-E2A74738-8934-48F5-8412-99E948C8DC1B|1|PE32 image section|1	1.24→1.32	P2	SmbiosDmiEdit	PE32 image section	не завершено	12457	0
 S24-AAD04E7E-F6E6-4694-B14F-E2D608740E29|1|PE32 image section|1	1.24→1.32	P2	SmbiosType3	PE32 image section	не завершено		
-S24-BC327DBD-B982-4F55-9F79-056AD7E987C5|1|PE32 image section|1	1.24→1.32	P2	SmiFlash	PE32 image section	частично объяснено		
 S24-2486829B-D3F3-47EC-827A-FC104907FC5C|1|PE32 image section|1	1.24→1.32	P2	SmmGenericSio	PE32 image section	не завершено		
 S24-316B1230-0500-4592-8C09-EABA0FB6B07F|1|PE32 image section|1	1.24→1.32	P2	SmmHddSecurity	PE32 image section	не завершено		
 S24-A2F436EA-A127-4EF8-957C-8048606FF670|1|PE32 image section|1	1.24→1.32	P2	SnpDxe	PE32 image section	не завершено		

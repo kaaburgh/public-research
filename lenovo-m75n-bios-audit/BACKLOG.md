@@ -108,3 +108,5 @@ P2-138/E133: exact 2192B DXE PCD v6 reconstruction from 124 to both 132/133. Fou
 P2-139–142/E134–137: DxeCore PE statically closed; current ROM bounds checked, FPDT producer/consumers aligned. SmiFlash conditional Enhanced Power Saving Mode preservation, EDU size resets and fixed network backup length traced to Ip4Dxe producer. 76 pending. See [DXECORE_SMIFLASH_CONFIG_CHECKPOINT.md](DXECORE_SMIFLASH_CONFIG_CHECKPOINT.md).
 
 P2-143–144/E138–139: ACPI, DxeIpl, PeiCore statically closed. New early LZMA/relocation guards satisfy inspected vendor image bounds. 73 pending. See [ACPI_PEI_LOADER_CHECKPOINT.md](ACPI_PEI_LOADER_CHECKPOINT.md).
+
+P2-145/E140: SmiFlash PE statically closed; request/header/trailer, SMM lookup, stack and backup changes attributed; error and hardware behavior separate. 72 pending. See [SMIFLASH_FINAL_CHECKPOINT.md](SMIFLASH_FINAL_CHECKPOINT.md).
