@@ -1,0 +1,140 @@
+FAIL A00 [ok] Baseline synthetic pair renders
+      expected: handoff exit 0; equal_structural consistent_conditional (leaves make coverage conditional)
+      observed: exit 2 HANDOFF_REJECTED certificate_roles; status consistent_conditional
+ok   A-D1 [fixed] Compressed differing copy inside a pad file
+      expected: pad_file_data issue; C1 BLOCKED
+      observed: issues ['pad_file_data']; C1 BLOCKED
+ok   A-D1b [fixed] Same blob in a RAW FFS file body
+      expected: listed as raw_ffs_body leaf; status conditional, not derived
+      observed: leaf kinds ['raw_ffs_body', 'raw_section']; status consistent_conditional
+ok   A-D2 [fixed] CRC32 GUID-defined section with a plaintext second RAW inside the owner
+      expected: C1 BLOCKED opaque_in_owner
+      observed: C1 BLOCKED opaque_in_owner
+ok   A-D3a [fixed] FV with 20-byte extended header in the leading pad file
+      expected: parsed; C1 PASS; fv_name recorded
+      observed: C1 PASS; fv_name 5C60F367-A505-419A-859E-2A4FF6CA6FE5
+ok   A-D3b [fixed] Nothing found in either ROM
+      expected: multiplicity BLOCKED; P2-47_full not_evaluated
+      observed: multiplicity BLOCKED; P2-47_full not_evaluated
+ok   A-D4 [fixed] Edit C1/multiplicity FAIL->PASS in an equivalence-class run
+      expected: handoff rejects
+      observed: exit 2 HANDOFF_REJECTED certificate_roles
+ok   A-D5 [fixed] Flip all FAIL verdicts to PASS, observations untouched
+      expected: handoff rejects
+      observed: exit 2 HANDOFF_REJECTED certificate_roles
+ok   A-D6 [fixed] Lists changed: semantic summary fields
+      expected: P2-47_full and timestamp_only report refutation
+      observed: P2-47_full conditional_refutation; timestamp_only conditional_refutation
+ok   A-D7 [fixed] 4097 signature lists, expected 1 entry
+      expected: C7 BLOCKED (format uncertain), C8 FAIL (count refuted)
+      observed: C7 BLOCKED, C8 FAIL
+ok   A-D8 [fixed] Deleted container (LZMA) holding older copies
+      expected: deleted body inventoried; selection of live copy unaffected
+      observed: deleted_uninterpreted ['deleted_ffs_body']; C1 PASS
+ok   A-S4 [fixed] Erased pad file named like the target
+      expected: not an owner; C1 PASS
+      observed: C1 PASS, pad_count 1
+ok   A-D1c [fixed] Lowercase target GUID
+      expected: normalised; payload selected
+      observed: selected True
+ok   A-R1 [fixed] Tripwire work on 2048 large-HeaderLength _FVH candidates (1 MiB): via discovery and via explicit root regions
+      expected: both stopped by their checksum budgets (fail closed)
+      observed: {"discovery": "Invalid(discovery_checksum_budget)", "checker": "Invalid(tripwire_checksum_budget)"}
+ok   B1-1 [ok] Phase-A path analogue: FV(ext) > FV-image file > LZMA > FV section > FV(ext) > target > LZMA > RAW
+      expected: C1 PASS, owner fv_name = 5C60F367 (inner FV), LZMA streams for the FV image and each target in lineage
+      observed: C1 PASS; fv_name 5C60F367-A505-419A-859E-2A4FF6CA6FE5; lineage kinds ['artifact', 'lzma_alone', 'lzma_alone', 'lzma_alone', 'lzma_alone']
+ok   B1-2 [ok] Same path with erase polarity 0
+      expected: C1 PASS
+      observed: C1 PASS; coverage leaf_conditional
+ok   B1-3 [note] Inner FV extended header with one EFI_FV_EXT_TYPE_USED_SIZE entry (ExtHeaderSize 0x1C, common in EDK2 builds)
+      expected: whole inner FV opaque (unsupported_fv_ext_entries); all targets BLOCKED — a real-ROM risk if FV_MAIN carries entries
+      observed: opaque reasons ['unsupported_fv_ext_entries']; C1 BLOCKED
+ok   B1-4 [ok] Data after the extended header inside the leading pad file
+      expected: pad_file_data issue
+      observed: issues ['pad_file_data']
+ok   B1-5 [ok] ExtHeaderOffset not 4-byte aligned
+      expected: rejected
+      observed: Invalid(fv_ext_bounds)
+ok   B1-6 [ok] Pad file with data in a nested FV (outside the owner)
+      expected: pad_file_data issue blocks globally
+      observed: issues ['pad_file_data']
+ok   B2-1 [ok] Owner contains an FV image section with an unsupported (FFS3) volume
+      expected: opaque_in_owner
+      observed: opaque_in_owner
+ok   B2-2 [ok] Unsupported compression in an unrelated file (outside the owner)
+      expected: coverage limited, C1 PASS conditional (as specified)
+      observed: C1 PASS [conditional_coverage]
+ok   B2-3 [note] Deleted container holding an UNCOMPRESSED older FV
+      expected: policy says "select valid, report deleted separately"; tripwire sees the plaintext FV inside the deleted body and blocks all targets (inconsistent with the LZMA case A-D8)
+      observed: issues ['untracked_ffs_candidate', 'untracked_fv']; C1 BLOCKED
+ok   B3-1 [ok] Single-field edits (13 kinds), re-canonicalised and renamed by digest
+      expected: all rejected (exit 2)
+      observed: {"verdict C6 PASS->FAIL": 2, "reason text": 2, "observed C2 sizes": 2, "counts data_valid": 2, "owner state": 2, "payload sha": 2, "locator offset": 2, "coverage token": 2, "diagnostic leaf removed (one place)": 2, "root lineage sha": 2, "summary token": 2, "gate status in summary": 2, "tool hash": 2}
+FAIL B3-2 [defect] Edit the recorded root certificate (partition hints) only
+      expected: not validated at all (artifact binding, consistency with unparsed_root rows)
+      observed: exit 2
+FAIL B3-3 [boundary] Coordinated edit of C3 observation AND verdict (true diff [0,2,3]) 
+      expected: accepted although C4_plausibility in the same receipt records bytes 0..15 of a and b, which determine the diff in [0,16)
+      observed: before ('FAIL', [0, 2, 3]); exit 2
+ok   B3-4 [ok] Proposed cross-check (observed bytes 0..39 from C4/C5 vs C3) on genuine vs coordinated-edit receipts
+      expected: genuine: no violation; edited: violation in all three targets
+      observed: genuine []; edited ['SB-001', 'SB-002', 'SB-003']
+FAIL B3-5 [boundary] Coordinated edit of payload + owner RAW hashes to the six reference values
+      expected: accepted with differential_gate all_six_match: the gate in a received receipt is not evidence; only a replay is
+      observed: before mismatch; after exit 2, all_six_match
+FAIL B3-6 [defect] Delete negative evidence (all leaf/opaque rows) consistently, relabel assurance
+      expected: accepted and promoted to derived_within_supported_grammar; cheap invariant missed: every selected RAW locator must appear in uninterpreted_leaves
+      observed: exit 2; status derived_within_supported_grammar
+ok   B3-7 [ok] Proposed invariant (selected RAW locator present among leaves)
+      expected: holds on genuine receipt, fails on stripped one
+      observed: genuine True; stripped False
+FAIL B4-1 [defect] Identical payloads (lists identical, nothing changed)
+      expected: P2-47_full reports a refutation solely because exact C3 ([0,2,3,4,5,6]) is part of the conjunction; lists and timestamp-only are not refuted
+      observed: P2-47_full partial_not_established; equal_structural consistent_conditional; timestamp_only partial_not_established
+FAIL B4-2 [defect] Only year/month/day differ ([0,2,3]); lists identical
+      expected: same mixing: P2-47_full refuted, timestamp_only partial
+      observed: C3 [0, 2, 3]; P2-47_full partial_not_established; timestamp_only partial_not_established
+FAIL B4-3 [defect] EFI_TIME.Pad1 = 1 in both versions (author plausibility hypothesis fails), everything else as expected
+      expected: C4_plausibility FAIL turns P2-47_full into a refutation; a failed hypothesis check is reported like a refuted finding
+      observed: C4_plausibility FAIL; C3 PASS; P2-47_full partial_not_established
+ok   B4-4 [ok] Nanosecond byte also changed (diff [0,2..6,8], all inside EFI_TIME)
+      expected: timestamp_only not refuted; C3 FAIL
+      observed: C3 [0, 2, 3, 4, 5, 6, 8]; timestamp_only partial_not_established
+ok   B4-5 [defect] Exit code when every component passes but the differential gate mismatches (pilot.main logic, line 157-158)
+      expected: exit 0: the gate (the pilot exit criterion) does not influence the exit code
+      observed: gate mismatch; exit 0
+ok   B4-6 [ok] Gate with a/b reference hashes swapped
+      expected: mismatch (role-specific comparison)
+      observed: mismatch
+ok   B5-1 [note] MARKED_FOR_UPDATE without a DATA_VALID duplicate
+      expected: still blocked (PI 2.2.6 would treat it as valid); documented, no PI-effective annotation
+      observed: selection_unresolved {'data_valid': 0, 'deleted': 0, 'marked_for_update': 1, 'raw_per_live': []}
+ok   B5-HEADER_INVALID [ok] Live target + duplicate in state HEADER_INVALID
+      expected: blocks
+      observed: selection_unresolved, issues ['ffs_state', 'untracked_ffs_candidate']
+ok   B5-under construction [ok] Live target + duplicate in state under construction
+      expected: blocks
+      observed: selection_unresolved, issues ['ffs_state', 'untracked_ffs_candidate']
+FAIL B6-1 [defect] An internal consistency check (verdicts.pair_components need()) fires during pilot.main()
+      expected: evaluate() is outside the try: the run dies with a traceback and NO receipt (contradicts "preserve failed/blocked attempts"); 6 of the review mutants were detected only this way
+      observed: returned; receipts written: ['bde4c59a48983e9896a5d602fa0ae801951d1e1db3413344578fb7a1df0770fe.json']
+FAIL B7-1 [defect] Real-ROM style blocker: non-erased inter-file padding (raises Invalid inside fv())
+      expected: role-level diagnostics carry only the code, no stream/offset: the first real blocker cannot be localised from the receipt
+      observed: diagnostics a = {'error': 'ffs_padding', 'stage': 'ffs_padding', 'stream': 0, 'offset': 99, 'lineage': [{'stream': 0, 'kind': 'artifact', 'sha256': '6a9f18d47d0b1b25e72f505caf5d96933868f1e2a5b5c6925bc37cea5d69f8ce', 'size': 65536}]}
+ok   B7-2 [defect] LZMA section with trailing bytes in one target
+      expected: whole role error {"error": code}; no offset, and the two healthy targets in that ROM are blocked too
+      observed: diagnostics a = {'error': 'lzma_bounds_or_trailing', 'stage': 'lzma_input', 'stream': 0, 'offset': 120, 'lineage': [{'stream': 0, 'kind': 'artifact', 'sha256': 'db6949a9fe7ce43d9d385acfb30e0358000ea40ddb43f9f08f12f0f77cb8745f', 'size': 65536}]}; SB-002 C1 BLOCKED
+ok   B7-3 [ok] Determinism: two evaluations of the same inputs
+      expected: canonical results identical (receipts differ only in run_id/utc/runtime): replay comparison is a simple equality test
+      observed: identical: True
+ok   C-1 [ok] Legacy import CLI on original v1 claims + A75 receipt, then handoff
+      expected: exit 0 / 0; byte_observations unverified; legacy_byte_subset consistent_conditional; C3 OPEN
+      observed: import 0 -> f2793d270efa..; handoff 0; unverified / consistent_conditional; C3 OPEN
+ok   C-2 [ok] Generated legacy receipt digest equals the one reported in TEST_RESULTS.md
+      expected: f2793d27...
+      observed: f2793d270efa9f2cbd484358fe33cf0b8d0fe58510a223b3ced87b197327c88c.json
+ok   C-3 [ok] Upgrade legacy C3 to exact PASS using the recorded v1 observation
+      expected: rejected
+      observed: exit 2 HANDOFF_REJECTED legacy_upgrade
+
+36/46 expectations hold

@@ -1,0 +1,64 @@
+x01   author:assert     extra:assert     aborted receipt drops partial results
+x02   author:SURVIVED   extra:assert     aborted receipt drops certificates (keeps digests)
+x03   author:assert     extra:SURVIVED   aborted code sanitisation
+x04   author:assert     extra:SURVIVED   aborted summary marks execution
+x05   author:assert     extra:SURVIVED   stage recorded for summary
+x06   author:SURVIVED   extra:error-only oversize receipt aborted
+x07   author:assert     extra:assert     historical change-occurrence clause
+x08   author:SURVIVED   extra:assert     timestamp_only_bytes bound 16
+x09   author:SURVIVED   extra:assert     historical dwLength = 24
+x10   author:SURVIVED   extra:assert     historical X509 type
+x11   author:SURVIVED   extra:assert     historical X509 count
+x12   author:SURVIVED   extra:SURVIVED   C1 prerequisite for P2-47_full
+x13   author:SURVIVED   extra:SURVIVED   C6 in P2-47_full
+x14   author:SURVIVED   extra:assert     historical bound in P2-47_full
+x15   author:assert     extra:assert     OPEN C4 keeps P2-47_full unestablished
+x16   author:SURVIVED   extra:assert     exit criterion requires completeness
+x17   author:SURVIVED   extra:assert     exit 1 on refutation
+x18   author:SURVIVED   extra:assert     exit 2 on BLOCKED
+x19   author:SURVIVED   extra:SURVIVED   exit_code on aborted receipt (main never calls it)
+x21   author:SURVIVED   extra:assert     LZMA failure located at the LZMA input
+x22   author:error-only extra:assert     lineage attached to structural failure
+x23   author:SURVIVED   extra:assert     stage section_header
+x24   author:SURVIVED   extra:assert     stage ffs_header
+x26   author:SURVIVED   extra:assert     header-prefix vs C3 cross-check
+x28   author:SURVIVED   extra:assert     lineage source range inside parent
+x29   author:SURVIVED   extra:assert     lineage expansion budget
+x30   author:SURVIVED   extra:SURVIVED   locator inside its stream
+x31   author:SURVIVED   extra:assert     opaque root rows match certificate
+x32   author:SURVIVED   extra:SURVIVED   owner opacity subset of opaque
+x33   author:SURVIVED   extra:assert     owner FV offset
+x34   author:SURVIVED   extra:assert     aborted receipt carries no results
+x35   author:SURVIVED   extra:assert     aborted stage vocabulary
+x36   author:SURVIVED   extra:assert     aborted summary fixed
+x37   author:SURVIVED   extra:assert     failed-role location checked
+x38   author:SURVIVED   extra:assert     certificate role set
+x39   author:SURVIVED   extra:assert     no coverage without input
+x40   author:assert     extra:SURVIVED   replay compares results
+x41   author:SURVIVED   extra:assert     replay only for current completed receipts
+x42   author:SURVIVED   extra:assert     replay filename = digest
+x43   author:SURVIVED   extra:assert     replay validates receipts
+x44   author:SURVIVED   extra:assert     replay exit code on mismatch
+x45   author:assert     extra:assert     current-receipt summary bound to results (2nd site of author h02)
+A-p01 author:error-only extra:assert     C6 equality from 40
+A-p01b author:error-only extra:assert     C6 suffix digest from 40
+A-p04 author:error-only extra:SURVIVED   empty signature list invalid
+A-p13 author:error-only extra:assert     length mismatch observed
+A-n14 author:error-only extra:assert     GUID normalisation
+A-v03 author:error-only extra:assert     owner opacity blocks readiness
+A-v05 author:SURVIVED   extra:assert     locators bound to owner RAW
+A-s01 author:SURVIVED   extra:SURVIVED   P2-47_full not_evaluated
+A-z01 author:error-only extra:assert     aborted run receipt persisted
+A-z02 author:error-only extra:assert     structural failure coordinates
+A-z03 author:assert     extra:SURVIVED   gate mismatch exit code
+A-z04 author:assert     extra:SURVIVED   timestamp diff cross-check
+A-z06 author:SURVIVED   extra:assert     certificate and observed root regions
+A-z07 author:SURVIVED   extra:assert     lineage parent ordering
+A-z08 author:error-only extra:assert     leaf conditional category
+A-z09 author:assert     extra:SURVIVED   same checker replay must not promote
+equivalent (excluded): ['A-s01', 'h01', 'h03', 'h04', 'n02', 'n04', 'v07', 'v11', 'x13', 'x19']
+
+mutants 58, non-equivalent 55; author suite: survived 34 ['x02', 'x06', 'x08', 'x09', 'x10', 'x11', 'x12', 'x14', 'x16', 'x17', 'x18', 'x21', 'x23', 'x24', 'x26', 'x28', 'x29', 'x30', 'x31', 'x32', 'x33', 'x34', 'x35', 'x36', 'x37', 'x38', 'x39', 'x41', 'x42', 'x43', 'x44', 'A-v05', 'A-z06', 'A-z07']; detected only via errors 10 ['x22', 'A-p01', 'A-p01b', 'A-p04', 'A-p13', 'A-n14', 'A-v03', 'A-z01', 'A-z02', 'A-z08']
+extra suite test_v032_addendum: survived author+extra 3 ['x12', 'x30', 'x32']
+invalid/stale/timeout: []
+exit=1

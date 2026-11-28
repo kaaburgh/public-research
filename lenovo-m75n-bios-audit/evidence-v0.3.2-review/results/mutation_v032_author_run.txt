@@ -1,0 +1,111 @@
+c01   author:assert     extra:-          FFS header checksum
+c02   author:assert     extra:-          FFS_ATTRIB_CHECKSUM data checksum
+c03   author:assert     extra:-          fixed 0xAA checksum
+c05   author:assert     extra:-          lower State bits required
+c06   author:assert     extra:-          MARKED_FOR_UPDATE blocks
+c07   author:assert     extra:-          deleted not live
+c08   author:assert     extra:-          issues block selection
+c09   author:assert     extra:-          untracked FFS candidate
+c10   author:assert     extra:-          plausible invalid FFS candidate
+c11   author:assert     extra:-          untracked FV
+c12   author:assert     extra:-          tripwire on decompressed streams
+c13   author:assert     extra:-          owner through LZMA
+c14   author:assert     extra:-          unsupported GUID-defined section reported
+c15   author:assert     extra:-          unsupported compression reported
+c16   author:assert     extra:-          unknown section type reported
+c17   author:assert     extra:-          root partition contiguity
+c18   author:assert     extra:-          erased root regions verified
+c19   author:assert     extra:-          LZMA trailing data
+c20   author:assert     extra:-          FV header tail
+c21   author:assert     extra:-          block map
+c22   author:assert     extra:-          inter-file padding
+c23   author:assert     extra:-          inter-section padding
+c24   author:assert     extra:-          FvLength bound to region
+c27   author:assert     extra:-          extended-size section reported
+c28   author:assert     extra:-          deleted body not parsed as live
+c29   author:assert     extra:-          unsupported FFS type reported
+c30   author:assert     extra:-          differing duplicates ambiguous
+c31   author:assert     extra:-          equivalence class labelled
+p01   author:error-only extra:-          C6 equality from 40
+p01b  author:error-only extra:-          C6 suffix digest from 40
+p02   author:assert     extra:-          C3 exact, not subset
+p03   author:assert     extra:-          C5 measures wRevision
+p04   author:error-only extra:-          empty signature list invalid
+p05   author:assert     extra:-          C8 SignatureHeaderSize
+p06   author:assert     extra:-          C8 entry count
+p07   author:assert     extra:-          C4 plausibility measured
+p08   author:assert     extra:-          conditional not promoted
+p09   author:assert     extra:-          conditional refutation reported
+p10   author:assert     extra:-          duplicates fail C1
+p11   author:assert     extra:-          multiplicity compares
+p12   author:assert     extra:-          conditional level
+p13   author:error-only extra:-          length mismatch observed
+h01   author:SURVIVED   extra:-          handoff semantic overclaim
+('h02', 'handoff summary', 'ANCHOR x2', '-')
+h03   author:SURVIVED   extra:-          handoff legacy upgrade
+h04   author:SURVIVED   extra:-          handoff derived inputs
+n01   author:assert     extra:-          ext header 4-byte alignment
+n02   author:SURVIVED   extra:-          ext header after pad header
+n03   author:assert     extra:-          ext entries opaque
+n04   author:SURVIVED   extra:-          ext header must be seen
+n05   author:assert     extra:-          leading pad must be DATA_VALID
+n06   author:assert     extra:-          pad bytes before ext header
+n07   author:assert     extra:-          pad bytes after ext header
+n08   author:assert     extra:-          pad data is an issue (not only opaque)
+n09   author:assert     extra:-          RAW section recorded as leaf
+n10   author:assert     extra:-          other leaf sections recorded
+n11   author:assert     extra:-          opacity of nested FV propagates to owner
+n12   author:assert     extra:-          deleted body inventoried
+n13   author:assert     extra:-          tripwire checksum budget
+n14   author:error-only extra:-          GUID normalisation
+n15   author:assert     extra:-          ext entries reported as opaque
+n16   author:assert     extra:-          FV revision 2 required
+v01   author:assert     extra:-          counts recomputed
+v02   author:assert     extra:-          coverage recomputed
+v03   author:error-only extra:-          owner opacity blocks readiness
+v04   author:assert     extra:-          payload bound to owner RAW
+v05   author:SURVIVED   extra:-          locators bound to owner RAW
+v07   author:SURVIVED   extra:-          C2 observation bound to payload sizes
+v08   author:assert     extra:-          C3/C6 cross-consistency
+v09   author:assert     extra:-          C6 flag vs hashes
+v10   author:assert     extra:-          signature lists consume tail
+v11   author:SURVIVED   extra:-          C7 and C8 share one observation
+v12   author:assert     extra:-          EFI_TIME Pad1 checked
+v13   author:assert     extra:-          count refutation under list limit
+v14   author:assert     extra:-          malformed list is FAIL
+v15   author:assert     extra:-          multiplicity blocked by issues
+v16   author:assert     extra:-          no payload on unresolved selection
+s01   author:SURVIVED   extra:-          P2-47_full not_evaluated
+s02   author:assert     extra:-          timestamp scope bound 16
+s03   author:assert     extra:-          length mismatch refutes timestamp-only
+s04   author:assert     extra:-          timestamp not_evaluated
+s05   author:assert     extra:-          gate mismatch precedes missing
+s06   author:assert     extra:-          gate compares per role
+s07   author:assert     extra:-          historical diff bound not exact
+k01   author:assert     extra:-          CLI ROM identity
+k02   author:assert     extra:-          CLI certificate binding
+k03   author:assert     extra:-          exclusive receipt creation
+k04   author:assert     extra:-          incomplete CLI exit code
+k05   author:assert     extra:-          receipt filename = digest
+k06   author:assert     extra:-          selection vs diagnostics
+k07   author:assert     extra:-          tool identity
+k08   author:assert     extra:-          profile identity
+k09   author:assert     extra:-          artifact identity
+k10   author:assert     extra:-          selection role set
+k11   author:assert     extra:-          legacy byte_observations computed
+k12   author:assert     extra:-          legacy subset status computed
+z01   author:error-only extra:-          aborted run receipt persisted
+z02   author:error-only extra:-          structural failure coordinates
+z03   author:assert     extra:-          gate mismatch exit code
+z04   author:assert     extra:-          timestamp diff cross-check
+z05   author:assert     extra:-          RAW leaf invariant (both sites)
+z06   author:SURVIVED   extra:-          certificate and observed root regions
+z07   author:SURVIVED   extra:-          lineage parent ordering
+z08   author:error-only extra:-          leaf conditional category
+z09   author:assert     extra:-          same checker replay must not promote
+k13   author:assert     extra:-          discovery checksum filter
+equivalent (excluded): ['h01', 'h03', 'h04', 'n02', 'n04', 'v07', 'v11']
+
+mutants 106, non-equivalent 98; author suite: survived 4 ['v05', 's01', 'z06', 'z07']; detected only via errors 9 ['p01', 'p01b', 'p04', 'p13', 'n14', 'v03', 'z01', 'z02', 'z08']
+invalid/stale/timeout: [('h02', 'handoff summary', 'ANCHOR x2', '-')]
+exit=1

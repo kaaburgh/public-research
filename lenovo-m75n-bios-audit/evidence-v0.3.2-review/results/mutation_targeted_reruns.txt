@@ -1,0 +1,15 @@
+Targeted re-run after tightening two addendum tests to named rejection codes (test_locator_bounds, test_owner_opacity).
+Both tests passed on the reviewed code before and after the change; under the full run they passed under x30/x32 because
+another check (selection_payload / receipt_verdict_mismatch) rejected the edited receipt first.
+x30 addendum: FAIL test_locator_bounds (assertion)   -> killed
+x32 addendum: FAIL test_owner_opacity (assertion)    -> killed
+Stricter assertions cannot revive a previously killed mutant (a rejection with a different code still fails assertEqual),
+so the full-run kill set is otherwise unchanged.
+--- second targeted re-run (addendum after tightening test_oversize_receipt_aborts and adding test_empty_signature_list)
+x06    addendum: error-only (errors=1)
+x30    addendum: assert (failures=1)
+x32    addendum: assert (failures=1)
+A-p04  addendum: SURVIVED (OK)
+--- third targeted re-run (test_oversize_receipt_aborts keeps the real summary; empty list with SignatureSize 48)
+x06    addendum: assert (failures=1)
+A-p04  addendum: assert (failures=1)
