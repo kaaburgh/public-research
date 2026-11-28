@@ -110,9 +110,16 @@ def summary(r):
         relevant=[c for row in rows for c in row['components'] if c['id'] in ids]
         if not any(c['verdict'] in ('PASS','FAIL') for c in relevant): return 'not_evaluated'
         return 'partial_not_established' if result=='unverified' else result
-    return {**props,'timestamp_only_semantic_conclusion':conjunction(['C3','C4','C4_plausibility']),
+    return {**props,'timestamp_only_semantic_conclusion':timestamp_scope(rows),
         'variable_roles':'unverified','P2-47_full':conjunction(['C1','C2','C3','C4','C4_plausibility','C5','C6','C7','C8']),
         'differential_gate':differential(r),'non_claims':NON_CLAIMS}
+
+def timestamp_scope(rows):
+    # A different exact offset set does not disprove timestamp-only if all changed bytes remain in EFI_TIME.
+    c=[x for row in rows for x in row['components'] if x['id']=='C3' and x['verdict'] in ('PASS','FAIL')]
+    bad=[x for x in c if isinstance(x['observed'],dict) or any(i>=16 for i in x['observed'])]
+    if bad: return 'refuted_within_supported_grammar' if any(x['assurance']=='derived_in_supported_grammar' for x in bad) else 'conditional_refutation'
+    return 'partial_not_established' if c else 'not_evaluated'
 
 def differential(r):
     matches=[]; mismatches=[]; missing=[]

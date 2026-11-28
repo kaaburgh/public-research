@@ -33,11 +33,15 @@ def validate(r):
         for name in ('pilot.py','checker.py','verdicts.py','discovery.py'): need(r['tool_sha256'][name]==digest(PROFILE_PATH.with_name(name).read_bytes()),'tool_identity')
         for role, sha in ROMS.items():
             a=r['artifacts'].get(role); error=r['input_errors'].get(role)
-            if error is None: need(a is not None and a['sha256']==sha and a['size']==16777216,'artifact_identity')
+            if error is None:
+                need(a is not None and a['sha256']==sha and a['size']==16777216,'artifact_identity')
+                if 'lineage' in r['diagnostics'].get(role,{}):
+                    need(r['diagnostics'][role]['lineage'][0]=={'stream':0,'kind':'artifact','sha256':sha,'size':16777216},'root_lineage_identity')
         for x in r['results']:
             selection=x['selection']
             _,size,count=TARGETS[x['id']]
             need({c['id']:c for c in recompute(x,size,count)}=={c['id']:c for c in x['components']},'receipt_verdict_mismatch')
+            need(set(selection)=={role for role in ('a','b') if 'lineage' in r['diagnostics'].get(role,{}) and role not in r['input_errors']},'selection_role_set')
             for role,s in selection.items():
                 need(role not in r['input_errors'] and role in r['diagnostics'],'selection_without_input')
                 for k in ('coverage','issues','opaque','uninterpreted_leaves','deleted_uninterpreted','pad_count','lineage'):

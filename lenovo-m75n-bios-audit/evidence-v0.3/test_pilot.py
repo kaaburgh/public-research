@@ -1,5 +1,6 @@
 import unittest, struct, lzma, uuid, zlib
 from checker import *
+from discovery import propose
 from pilot import compare_pair, evaluate, summary, signature_lists, TARGETS
 G=next(iter(TARGETS.values()))[0]; OTHER='11111111-2222-3333-4444-555555555555'
 
@@ -75,9 +76,9 @@ class Tests(unittest.TestCase):
     def test_length_refutes_diff(self): self.assertEqual(comps(compare_pair(b'a',b'ab',1,1,'derived_in_supported_grammar'))['C3'],'FAIL')
     def test_diff_limit_refutes(self): self.assertEqual(comps(compare_pair(bytes(5000),b'x'*5000,5000,1,'derived_in_supported_grammar'))['C3'],'FAIL')
     def test_multiplicity_and_summary(self):
-        a=fv(target());b=fv(target())+fv(target());r=evaluate({'a':a,'b':b},{'a':propose(a),'b':propose(b)},{'X':(G,len(payload()),1)});c=comps(r['results'][0]['components']);self.assertEqual(c['C1'],'FAIL');self.assertEqual(c['multiplicity'],'FAIL');self.assertEqual(c['C6'],'PASS');self.assertEqual(summary(r)['equal_structural_signature_lists'],'refuted_within_supported_grammar')
+        a=fv(target());b=fv(target())+fv(target());r=evaluate({'a':a,'b':b},{'a':propose(a),'b':propose(b)},{'X':(G,len(payload()),1)});c=comps(r['results'][0]['components']);self.assertEqual(c['C1'],'FAIL');self.assertEqual(c['multiplicity'],'FAIL');self.assertEqual(c['C6'],'PASS');self.assertEqual(summary(r)['equal_structural_signature_lists'],'conditional_refutation')
     def test_conditional_summary(self):
-        a=fv(target())+b'opaque';b=fv(target())+b'opaque2';r=evaluate({'a':a,'b':b},{'a':propose(a),'b':propose(b)},{'X':(G,len(payload()),1)});self.assertEqual(summary(r)['equal_structural_signature_lists'],'consistent_conditional');self.assertEqual(summary(r)['P2-47_full'],'partial_not_established')
+        a=fv(target())+b'opaque';b=fv(target())+b'opaque2';r=evaluate({'a':a,'b':b},{'a':propose(a),'b':propose(b)},{'X':(G,len(payload()),1)});self.assertEqual(summary(r)['equal_structural_signature_lists'],'consistent_conditional');self.assertEqual(summary(r)['P2-47_full'],'conditional_refutation')
     def test_missing_role(self):
         a=fv(target());r=evaluate({'a':a},{'a':propose(a)},{'X':(G,len(payload()),1)});self.assertEqual(comps(r['results'][0]['components'])['C2'],'BLOCKED');self.assertEqual(r['diagnostics']['b']['error'],'rom_missing')
 
