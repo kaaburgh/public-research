@@ -1,15 +1,16 @@
 """Render computed pilot status from a canonical receipt. Not execution attestation."""
 import argparse, pathlib, sys
 from checker import read_canonical, digest, need, Invalid
-from pilot import summary, TARGETS, PROFILE_PATH, read_bounded, NON_CLAIMS, ROMS
-from legacy_import import CLAIMS_SHA, RECEIPT_SHA, RECEIPT_BLOB, PROTOCOL_COMMIT, RUN_COMMIT
+from pilot import summary, TARGETS, PROFILE_PATH, read_bounded, NON_CLAIMS, ROMS, VERSION
+from verdicts import recompute
+from legacy_import import CLAIMS_SHA, RECEIPT_SHA, RECEIPT_BLOB, PROTOCOL_COMMIT, RUN_COMMIT, legacy_summary
 
 CURRENT_IDS={'C1','C2','C3','C4_plausibility','C4','C5','C6','C7','C8','C9','multiplicity'}
 LEGACY_IDS=CURRENT_IDS|{'legacy_diff_subset','legacy_dwLength'}
 
 def validate(r):
-    legacy=r['version']=='0.3-legacy-import'
-    need(legacy or r['version']=='0.3-draft','receipt_version')
+    legacy=r['version']=='0.3.1-legacy-import'
+    need(legacy or r['version']==VERSION,'receipt_version')
     need(len(r['results'])==3 and {x['id'] for x in r['results']}==set(TARGETS),'receipt_target_set')
     for x in r['results']:
         need(x['guid']==TARGETS[x['id']][0],'receipt_guid')
@@ -23,15 +24,24 @@ def validate(r):
         need(r['legacy_claims_sha256']==CLAIMS_SHA and r['legacy_receipt_sha256']==RECEIPT_SHA and r['legacy_receipt_git_blob']==RECEIPT_BLOB and r['legacy_protocol_commit']==PROTOCOL_COMMIT and r['legacy_run_commit']==RUN_COMMIT,'legacy_reference')
         for x in r['results']:
             for c in x['components']: need(c['verdict']==('PASS' if c['id'] in ('C2','C6','legacy_diff_subset','legacy_dwLength') else 'OPEN'),'legacy_upgrade')
-        expected={'byte_observations':'consistent_conditional_subset_only','equal_structural_signature_lists':'unverified','x509_tag_and_entry_counts':'unverified','P2-47_full':'partial_not_established','non_claims':NON_CLAIMS}
+        old_path=PROFILE_PATH.with_name('historical')/'1983499b83c4049b85ef7a0295b1748e32e77129d89d21117ffb3bb1ffedf25d.json'
+        raw=old_path.read_bytes(); need(digest(raw)==old_path.stem,'legacy_pinned_import')
+        old=read_canonical(raw); old['version']='0.3.1-legacy-import'; old['summary']=legacy_summary(old['results'])
+        need(old==r,'legacy_import_mismatch'); expected=old['summary']
     else:
         need(r['profile_sha256']==digest(PROFILE_PATH.read_bytes()),'profile_identity')
-        for name in ('pilot.py','checker.py'): need(r['tool_sha256'][name]==digest(PROFILE_PATH.with_name(name).read_bytes()),'tool_identity')
+        for name in ('pilot.py','checker.py','verdicts.py','discovery.py'): need(r['tool_sha256'][name]==digest(PROFILE_PATH.with_name(name).read_bytes()),'tool_identity')
         for role, sha in ROMS.items():
             a=r['artifacts'].get(role); error=r['input_errors'].get(role)
             if error is None: need(a is not None and a['sha256']==sha and a['size']==16777216,'artifact_identity')
         for x in r['results']:
             selection=x['selection']
+            _,size,count=TARGETS[x['id']]
+            need({c['id']:c for c in recompute(x,size,count)}=={c['id']:c for c in x['components']},'receipt_verdict_mismatch')
+            for role,s in selection.items():
+                need(role not in r['input_errors'] and role in r['diagnostics'],'selection_without_input')
+                for k in ('coverage','issues','opaque','uninterpreted_leaves','deleted_uninterpreted','pad_count','lineage'):
+                    need(s[k]==r['diagnostics'][role][k],'diagnostic_mismatch')
             ready=set(selection)=={'a','b'} and all('payload' in v and v['derivation']=='verified' and v['selection'] in ('unique','equivalent_content_class') and not v['issues'] for v in selection.values())
             for c in x['components']:
                 if c['id'] in ('C2','C3','C4_plausibility','C5','C6','C7','C8') and c['verdict'] in ('PASS','FAIL'):
@@ -47,9 +57,14 @@ def main():
         path=pathlib.Path(a.receipt); raw=read_bounded(path,8*1024**2);need(path.name==digest(raw)+'.json','receipt_filename_hash');r=read_canonical(raw);s=validate(r)
         print('# P2-47 — generated handoff (not execution attestation)')
         print('Receipt SHA-256:',digest(raw))
-        for k,v in s.items(): print(k+': '+(', '.join(v) if isinstance(v,list) else v))
+        import json
+        for k,v in s.items(): print(k+': '+(', '.join(v) if isinstance(v,list) else json.dumps(v,sort_keys=True) if isinstance(v,dict) else v))
         for x in r['results']:
             print('\n'+x['id']+' '+x['guid'])
+            if isinstance(x['selection'],dict):
+                for role,q in x['selection'].items():
+                    print('  '+role+' coverage: '+q['coverage']+'; opaque='+str(len(q['opaque']))+'; uninterpreted_leaves='+str(len(q['uninterpreted_leaves']))+'; deleted_uninterpreted='+str(len(q['deleted_uninterpreted'])))
+                    print('  '+role+' leaf/opaque ranges: '+json.dumps({'opaque':q['opaque'],'uninterpreted_leaves':q['uninterpreted_leaves'],'deleted_uninterpreted':q['deleted_uninterpreted']},sort_keys=True))
             for c in x['components']: print('  '+c['id']+': '+c['verdict']+' ['+c['assurance']+']'+(' — '+c['reason'] if c['reason'] else ''))
         if 'input_errors' in r: print('\nInput errors:',r['input_errors'])
         return 0

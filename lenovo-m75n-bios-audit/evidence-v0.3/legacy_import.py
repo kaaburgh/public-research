@@ -1,7 +1,7 @@
 """Import the pinned v1 real-ROM receipt as historical conditional evidence; never upgrade it."""
 import argparse, json, hashlib, sys
 from checker import digest, canonical, need, Invalid
-from pilot import TARGETS, ROMS, record, write_receipt, read_bounded, NON_CLAIMS
+from pilot import TARGETS, ROMS, record, write_receipt, read_bounded, NON_CLAIMS, state
 
 CLAIMS_SHA='27b7a694155a3a82b943c47125f001da12356c4cd9f2627bd28b414c5c22dc3f'
 RECEIPT_SHA='e386231e513052d0cfee38922e83c95ecb3bbb1e85834a1b0f665cd7b110147b'
@@ -31,7 +31,10 @@ def import_v1(claim_bytes, receipt_bytes):
         level='adapter_asserted'; comps=[record('C2','PASS',level,o['sizes']),record('C6','PASS',level,o['suffix_sha256']),record('legacy_diff_subset','PASS',level,o['diff_offsets']),record('legacy_dwLength','PASS',level,o['dwLength'])]
         for i in ('C1','C3','C4','C4_plausibility','C5','C7','C8','C9','multiplicity'): comps.append(record(i,'OPEN',level,None,'not_established_by_v1_contract'))
         out.append({'id':c['id'],'guid':c['selector']['guid'],'components':comps,'selection':'adapter_asserted','selected_paths':x['selected_paths']})
-    return {'version':'0.3-legacy-import','source_commit':SOURCE_COMMIT,'legacy_protocol_commit':PROTOCOL_COMMIT,'legacy_run_commit':RUN_COMMIT,'legacy_receipt_sha256':digest(receipt_bytes),'legacy_receipt_git_blob':RECEIPT_BLOB,'legacy_claims_sha256':CLAIMS_SHA,'legacy_verifier_sha256':VERIFIER_SHA,'results':out,'summary':{'byte_observations':'consistent_conditional_subset_only','equal_structural_signature_lists':'unverified','x509_tag_and_entry_counts':'unverified','P2-47_full':'partial_not_established','non_claims':NON_CLAIMS}}
+    return {'version':'0.3.1-legacy-import','source_commit':SOURCE_COMMIT,'legacy_protocol_commit':PROTOCOL_COMMIT,'legacy_run_commit':RUN_COMMIT,'legacy_receipt_sha256':digest(receipt_bytes),'legacy_receipt_git_blob':RECEIPT_BLOB,'legacy_claims_sha256':CLAIMS_SHA,'legacy_verifier_sha256':VERIFIER_SHA,'results':out,'summary':legacy_summary(out)}
+
+def legacy_summary(rows):
+    return {'byte_observations':state(rows,['C2','C3','C6']),'legacy_byte_subset':state(rows,['C2','C6','legacy_diff_subset','legacy_dwLength']),'equal_structural_signature_lists':state(rows,['C1','C5','C6','C7']),'x509_tag_and_entry_counts':state(rows,['C1','C7','C8']),'P2-47_full':'partial_not_established' if any(c['verdict']=='PASS' for row in rows for c in row['components']) else 'not_evaluated','non_claims':NON_CLAIMS}
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('claims');p.add_argument('receipt');p.add_argument('output_dir');a=p.parse_args()
