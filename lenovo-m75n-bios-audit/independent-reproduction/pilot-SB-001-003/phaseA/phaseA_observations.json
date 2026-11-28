@@ -1,0 +1,282 @@
+{
+  "protocol": "INDEPENDENT_REPRODUCTION phase A (pilot SB-001..003)",
+  "tool": {
+    "name": "extract_a.py/1 (stdlib, own FFS/section walker; LZMA via python lzma FORMAT_ALONE)",
+    "python": "3.13.5",
+    "platform": "Linux-6.12.117+deb13-amd64-x86_64-with-glibc2.41"
+  },
+  "scope_note": "FFS GUID matches are counted via recursive walk; cross-check via raw GUID byte occurrence counts.",
+  "roms": [
+    {
+      "path": "ImageM33v32.ROM",
+      "file_name": "ImageM33v32.ROM",
+      "size_bytes": 16777216,
+      "sha256": "7d73d99b0b7b7fbe8999d2495b0df7e5adf4936bb3fb003838640fff7e17e145",
+      "fv_count_top_level": 8,
+      "counters": {
+        "ffs_files_seen": 861,
+        "non_section_ffs_skipped": 28,
+        "lzma_ok": 37
+      },
+      "notes_count": 0,
+      "notes_by_kind": {},
+      "targets": {
+        "SB-001": {
+          "guid": "CC0F8A3F-3DEA-4376-9679-5426BA0A907E",
+          "ffs_match_count": 1,
+          "candidates": [
+            {
+              "path": "ROM > FV@0x2f1000 > FFS@0x3f4ad0:9e21fd93-9c72-4c15-8c4b-e77f1db2d792 > LZMA@0x3f4ae8 > FVSEC@0xc > FV@0x0 > FFS@0xde2698:cc0f8a3f-3dea-4376-9679-5426ba0a907e",
+              "ffs_type": 2,
+              "ffs_attrs": 0,
+              "ffs_size": 824,
+              "ffs_body_size": 800,
+              "ffs_body_sha256": "9d4e7470667cb408cc30ad531c0991615302c8a738cc8c54ff81e1aa01cc3a5a",
+              "section_parse_errors_in_file": 0,
+              "raw_leaf_count": 1,
+              "raw_leaves": [
+                {
+                  "path": "ROM > FV@0x2f1000 > FFS@0x3f4ad0:9e21fd93-9c72-4c15-8c4b-e77f1db2d792 > LZMA@0x3f4ae8 > FVSEC@0xc > FV@0x0 > FFS@0xde2698:cc0f8a3f-3dea-4376-9679-5426ba0a907e > LZMA@0xde26b0 > RAW@0x0",
+                  "body_size": 842,
+                  "body_sha256": "8d1ef5a32a826b698e4aa1c433948e28c18f440d3f4959ef372645d52f1d1760",
+                  "u32_le_at_16": 24,
+                  "offset_16_plus_u32": 40,
+                  "suffix_from_16_plus_u32_len": 802,
+                  "suffix_sha256": "79ff44aecb43cf487a74a7834454fe33b964cb8d67dc13caaf28930aa067a26a"
+                }
+              ]
+            }
+          ]
+        },
+        "SB-002": {
+          "guid": "9FE7DE69-0AEA-470A-B50A-139813649189",
+          "ffs_match_count": 1,
+          "candidates": [
+            {
+              "path": "ROM > FV@0x2f1000 > FFS@0x3f4ad0:9e21fd93-9c72-4c15-8c4b-e77f1db2d792 > LZMA@0x3f4ae8 > FVSEC@0xc > FV@0x0 > FFS@0xde29d0:9fe7de69-0aea-470a-b50a-139813649189",
+              "ffs_type": 2,
+              "ffs_attrs": 0,
+              "ffs_size": 3051,
+              "ffs_body_size": 3027,
+              "ffs_body_sha256": "c33f11253c13e9d01e782545b4dd7a42d90b7ae24ab0a85d73082b33cd0c03a1",
+              "section_parse_errors_in_file": 0,
+              "raw_leaf_count": 1,
+              "raw_leaves": [
+                {
+                  "path": "ROM > FV@0x2f1000 > FFS@0x3f4ad0:9e21fd93-9c72-4c15-8c4b-e77f1db2d792 > LZMA@0x3f4ae8 > FVSEC@0xc > FV@0x0 > FFS@0xde29d0:9fe7de69-0aea-470a-b50a-139813649189 > LZMA@0xde29e8 > RAW@0x0",
+                  "body_size": 3908,
+                  "body_sha256": "cde335afcc53dd3ac9d959e9ce99bad7b06f658e057cb57f4ea15721de2da404",
+                  "u32_le_at_16": 24,
+                  "offset_16_plus_u32": 40,
+                  "suffix_from_16_plus_u32_len": 3868,
+                  "suffix_sha256": "791aa21abcd4632136d6fb6330063af2e0d2d14b24aff96301567c1a82501221"
+                }
+              ]
+            }
+          ]
+        },
+        "SB-003": {
+          "guid": "FBF95065-427F-47B3-8077-D13C60710998",
+          "ffs_match_count": 1,
+          "candidates": [
+            {
+              "path": "ROM > FV@0x2f1000 > FFS@0x3f4ad0:9e21fd93-9c72-4c15-8c4b-e77f1db2d792 > LZMA@0x3f4ae8 > FVSEC@0xc > FV@0x0 > FFS@0xde35c0:fbf95065-427f-47b3-8077-d13c60710998",
+              "ffs_type": 2,
+              "ffs_attrs": 0,
+              "ffs_size": 6462,
+              "ffs_body_size": 6438,
+              "ffs_body_sha256": "95ba3424ad267e719baa1195802c2902da27692c8c10b79cb32611a348852aec",
+              "section_parse_errors_in_file": 0,
+              "raw_leaf_count": 1,
+              "raw_leaves": [
+                {
+                  "path": "ROM > FV@0x2f1000 > FFS@0x3f4ad0:9e21fd93-9c72-4c15-8c4b-e77f1db2d792 > LZMA@0x3f4ae8 > FVSEC@0xc > FV@0x0 > FFS@0xde35c0:fbf95065-427f-47b3-8077-d13c60710998 > LZMA@0xde35d8 > RAW@0x0",
+                  "body_size": 9485,
+                  "body_sha256": "0848e78f2e6e9f859cd3ba1206b9df171c78035a09749e7c7417dfa31afa4bf2",
+                  "u32_le_at_16": 24,
+                  "offset_16_plus_u32": 40,
+                  "suffix_from_16_plus_u32_len": 9445,
+                  "suffix_sha256": "f0fb458845c395520bca386e03fe377f04cc09492276c1019e34d126683008ed"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "byte_level_crosscheck": {
+        "streams_scanned": 38,
+        "SB-001": {
+          "occurrences_total": 4,
+          "occurrences_in_raw_rom": 0
+        },
+        "SB-002": {
+          "occurrences_total": 4,
+          "occurrences_in_raw_rom": 0
+        },
+        "SB-003": {
+          "occurrences_total": 5,
+          "occurrences_in_raw_rom": 0
+        }
+      }
+    },
+    {
+      "path": "ImageM33v33.ROM",
+      "file_name": "ImageM33v33.ROM",
+      "size_bytes": 16777216,
+      "sha256": "fe2c8dc35ee74059cddf1fc49fe313a065bc9a1279bb3e090ea28a2d9aa0c498",
+      "fv_count_top_level": 8,
+      "counters": {
+        "ffs_files_seen": 859,
+        "non_section_ffs_skipped": 26,
+        "lzma_ok": 37
+      },
+      "notes_count": 0,
+      "notes_by_kind": {},
+      "targets": {
+        "SB-001": {
+          "guid": "CC0F8A3F-3DEA-4376-9679-5426BA0A907E",
+          "ffs_match_count": 1,
+          "candidates": [
+            {
+              "path": "ROM > FV@0x2f1000 > FFS@0x3f4ae0:9e21fd93-9c72-4c15-8c4b-e77f1db2d792 > LZMA@0x3f4af8 > FVSEC@0xc > FV@0x0 > FFS@0xde3a38:cc0f8a3f-3dea-4376-9679-5426ba0a907e",
+              "ffs_type": 2,
+              "ffs_attrs": 0,
+              "ffs_size": 824,
+              "ffs_body_size": 800,
+              "ffs_body_sha256": "1c1875e982b3f6e2a59baebf39efd29018569dad8a5d76544d1f4bf1093b6ad5",
+              "section_parse_errors_in_file": 0,
+              "raw_leaf_count": 1,
+              "raw_leaves": [
+                {
+                  "path": "ROM > FV@0x2f1000 > FFS@0x3f4ae0:9e21fd93-9c72-4c15-8c4b-e77f1db2d792 > LZMA@0x3f4af8 > FVSEC@0xc > FV@0x0 > FFS@0xde3a38:cc0f8a3f-3dea-4376-9679-5426ba0a907e > LZMA@0xde3a50 > RAW@0x0",
+                  "body_size": 842,
+                  "body_sha256": "004035b62688a0fc9579cccafcea872db381e2722743e281dfac1f31355e3592",
+                  "u32_le_at_16": 24,
+                  "offset_16_plus_u32": 40,
+                  "suffix_from_16_plus_u32_len": 802,
+                  "suffix_sha256": "79ff44aecb43cf487a74a7834454fe33b964cb8d67dc13caaf28930aa067a26a"
+                }
+              ]
+            }
+          ]
+        },
+        "SB-002": {
+          "guid": "9FE7DE69-0AEA-470A-B50A-139813649189",
+          "ffs_match_count": 1,
+          "candidates": [
+            {
+              "path": "ROM > FV@0x2f1000 > FFS@0x3f4ae0:9e21fd93-9c72-4c15-8c4b-e77f1db2d792 > LZMA@0x3f4af8 > FVSEC@0xc > FV@0x0 > FFS@0xde3d70:9fe7de69-0aea-470a-b50a-139813649189",
+              "ffs_type": 2,
+              "ffs_attrs": 0,
+              "ffs_size": 3052,
+              "ffs_body_size": 3028,
+              "ffs_body_sha256": "e364334063572b44a0e63c158860ef2a246f6afacd2fde54689fea1e967e3449",
+              "section_parse_errors_in_file": 0,
+              "raw_leaf_count": 1,
+              "raw_leaves": [
+                {
+                  "path": "ROM > FV@0x2f1000 > FFS@0x3f4ae0:9e21fd93-9c72-4c15-8c4b-e77f1db2d792 > LZMA@0x3f4af8 > FVSEC@0xc > FV@0x0 > FFS@0xde3d70:9fe7de69-0aea-470a-b50a-139813649189 > LZMA@0xde3d88 > RAW@0x0",
+                  "body_size": 3908,
+                  "body_sha256": "e570d3fc5313bfeae868d86692306b9185d1dafd3f893478b0321770b8f610a5",
+                  "u32_le_at_16": 24,
+                  "offset_16_plus_u32": 40,
+                  "suffix_from_16_plus_u32_len": 3868,
+                  "suffix_sha256": "791aa21abcd4632136d6fb6330063af2e0d2d14b24aff96301567c1a82501221"
+                }
+              ]
+            }
+          ]
+        },
+        "SB-003": {
+          "guid": "FBF95065-427F-47B3-8077-D13C60710998",
+          "ffs_match_count": 1,
+          "candidates": [
+            {
+              "path": "ROM > FV@0x2f1000 > FFS@0x3f4ae0:9e21fd93-9c72-4c15-8c4b-e77f1db2d792 > LZMA@0x3f4af8 > FVSEC@0xc > FV@0x0 > FFS@0xde4960:fbf95065-427f-47b3-8077-d13c60710998",
+              "ffs_type": 2,
+              "ffs_attrs": 0,
+              "ffs_size": 6461,
+              "ffs_body_size": 6437,
+              "ffs_body_sha256": "3e5cd75bf5f6478d0a4be0564afdbdb2f7221d09647b8a5fc7885aab3932466a",
+              "section_parse_errors_in_file": 0,
+              "raw_leaf_count": 1,
+              "raw_leaves": [
+                {
+                  "path": "ROM > FV@0x2f1000 > FFS@0x3f4ae0:9e21fd93-9c72-4c15-8c4b-e77f1db2d792 > LZMA@0x3f4af8 > FVSEC@0xc > FV@0x0 > FFS@0xde4960:fbf95065-427f-47b3-8077-d13c60710998 > LZMA@0xde4978 > RAW@0x0",
+                  "body_size": 9485,
+                  "body_sha256": "d81634e7642017ce28ee43c9d783dd103b3a90057a224a902ff12ad638ae3094",
+                  "u32_le_at_16": 24,
+                  "offset_16_plus_u32": 40,
+                  "suffix_from_16_plus_u32_len": 9445,
+                  "suffix_sha256": "f0fb458845c395520bca386e03fe377f04cc09492276c1019e34d126683008ed"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "byte_level_crosscheck": {
+        "streams_scanned": 38,
+        "SB-001": {
+          "occurrences_total": 4,
+          "occurrences_in_raw_rom": 0
+        },
+        "SB-002": {
+          "occurrences_total": 4,
+          "occurrences_in_raw_rom": 0
+        },
+        "SB-003": {
+          "occurrences_total": 5,
+          "occurrences_in_raw_rom": 0
+        }
+      }
+    }
+  ],
+  "cross_rom_comparison": {
+    "SB-001": {
+      "size_a": 842,
+      "size_b": 842,
+      "sha256_a": "8d1ef5a32a826b698e4aa1c433948e28c18f440d3f4959ef372645d52f1d1760",
+      "sha256_b": "004035b62688a0fc9579cccafcea872db381e2722743e281dfac1f31355e3592",
+      "differing_offsets_count": 6,
+      "differing_offsets": [
+        0,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    "SB-002": {
+      "size_a": 3908,
+      "size_b": 3908,
+      "sha256_a": "cde335afcc53dd3ac9d959e9ce99bad7b06f658e057cb57f4ea15721de2da404",
+      "sha256_b": "e570d3fc5313bfeae868d86692306b9185d1dafd3f893478b0321770b8f610a5",
+      "differing_offsets_count": 6,
+      "differing_offsets": [
+        0,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    "SB-003": {
+      "size_a": 9485,
+      "size_b": 9485,
+      "sha256_a": "0848e78f2e6e9f859cd3ba1206b9df171c78035a09749e7c7417dfa31afa4bf2",
+      "sha256_b": "d81634e7642017ce28ee43c9d783dd103b3a90057a224a902ff12ad638ae3094",
+      "differing_offsets_count": 6,
+      "differing_offsets": [
+        0,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  }
+}

@@ -1,0 +1,2 @@
+self-test PASS (synthetic only)
+exit=0
