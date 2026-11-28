@@ -112,6 +112,16 @@ class ReviewDefects(unittest.TestCase):
         self.assertEqual(handoff.validate(r)['legacy_byte_subset'],'consistent_conditional')
         r['results'][0]['selected_paths'][0]='changed'
         with self.assertRaises(Invalid): handoff.validate(r)
+    def test_signature_limit_distinguishes_predicates(self):
+        a=efi_time(2025,1,2,3,4,5)+auth_hdr()+sig_lists([17]*4097,b'X')
+        v={c['id']:c for c in pilot.compare_pair(a,a,len(a),1,'conditional_coverage')}
+        self.assertEqual(v['C7']['verdict'],'BLOCKED')
+        self.assertEqual(v['C8']['verdict'],'FAIL')
+    def test_timestamp_observation_recomputed(self):
+        r=receipt(pair(rom(False),rom(True)))
+        c=component(r,'SB-001','C4_plausibility'); c['verdict']='FAIL'
+        r['summary']=pilot.summary(r)
+        self.assertFalse(handoff_ok(r))
     def test_tripwire_budget(self):
         a=b'_FVH'* (checker.MAX_NODES+1)
         with self.assertRaises(Invalid): Checker(a,[TARGETS['SB-001'][0]]).run([{'offset':0,'size':len(a),'kind':'opaque'}])

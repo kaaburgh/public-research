@@ -2,7 +2,7 @@
 import argparse, datetime, json, pathlib, sys, uuid, os
 from checker import Checker, Invalid, canonical, read_canonical, digest, need, u, PKCS7, X509, MAX_BYTES
 from discovery import propose
-from verdicts import selection_components, pair_components, record
+from verdicts import selection_components, pair_components, record, timestamp
 
 VERSION='0.3.1-draft'
 ROMS={'a':'7d73d99b0b7b7fbe8999d2495b0df7e5adf4936bb3fb003838640fff7e17e145','b':'fe2c8dc35ee74059cddf1fc49fe313a065bc9a1279bb3e090ea28a2d9aa0c498'}
@@ -20,14 +20,6 @@ def profile():
     need(p['artifact_roles']=={k:{'sha256':v,'size':16777216} for k,v in ROMS.items()} and p['targets']==[{'id':k,'guid':v[0],'size_each':v[1],'x509_entry_count_each':v[2]} for k,v in TARGETS.items()] and p['exact_diff_offsets']==EXPECTED_DIFF and p['non_claims']==NON_CLAIMS and p['reference_payload_sha256']==REFERENCE_HASHES and p['version']==VERSION,'profile_mismatch')
     return p
 
-def timestamp(b):
-    # Plausibility only, not proof that producer interprets bytes as EFI_TIME.
-    if len(b)<16: return False
-    tz=int.from_bytes(b[12:14],'little',signed=True)
-    try: datetime.datetime(u(b,0,2),b[2],b[3],b[4],b[5],b[6])
-    except ValueError: return False
-    return 1900<=u(b,0,2)<=9999 and b[7]==0 and u(b,8,4)<=999999999 and (-1440<=tz<=1440 or tz==2047) and b[14]&~3==0 and b[15]==0
-
 def header_view(b):
     if len(b)<40: return None
     return {'dwLength':u(b,16,4),'wRevision':u(b,20,2),'wCertificateType':u(b,22,2),'CertType':str(uuid.UUID(bytes_le=b[24:40])).upper()}
@@ -41,7 +33,7 @@ def signature_lists(b):
     p=40; out=[]
     while p<len(b):
         if len(b)-p<28: return None
-        if len(out)>=4096: raise Invalid('signature_list_limit')
+        if len(out)>=4096: return {'limit':4096,'parsed_entries':sum(q['entries'] for q in out)}
         size,head,entry=u(b,p+16,4),u(b,p+20,4),u(b,p+24,4)
         if not (28<=size<=len(b)-p and head<=size-28 and entry>16): return None
         data=size-28-head
@@ -60,9 +52,8 @@ def compare_pair(a,b,size,count,level):
             if x!=y:
                 d.append(i)
                 if len(d)>4096: d={'exceeds':4096}; break
-    try: lists=[signature_lists(a),signature_lists(b)]
-    except Invalid: lists=None
-    observations={'C2':sizes,'C3':d,'C4_plausibility':[timestamp(a),timestamp(b)],
+    lists=[signature_lists(a),signature_lists(b)]
+    observations={'C2':sizes,'C3':d,'C4_plausibility':[x[:16].hex() if len(x)>=16 else None for x in (a,b)],
         'C5':[header_view(a),header_view(b)],
         'C6':{'suffix_sha256':[digest(a[40:]),digest(b[40:])],'lengths':[max(0,len(a)-40),max(0,len(b)-40)],'equal':min(sizes)>=40 and a[40:]==b[40:]},
         'C7':lists,'C8':lists}

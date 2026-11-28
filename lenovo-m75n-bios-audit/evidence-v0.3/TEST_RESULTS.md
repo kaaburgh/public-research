@@ -1,3 +1,3 @@
-# Authoring-session verification
+# v0.3.1 test state
 
-Python 3.13.5, local Linux container. `python3 -m unittest -v test_pilot`: 24/24 PASS. These are synthetic fixtures, not factory ROM tests. The actual CLI with both ROM inputs missing returned 2, persisted a canonical BLOCKED receipt; `handoff.py` rendered it (exit 0). The legacy importer was executed on the original GitHub v1 claims and official A75 receipt, transferred byte-exact and verified against pinned SHA-256 and Git blob identity. It produced the receipt in `historical/` and generated HANDOFF.md. The legacy receipt preserves v1's subset relation; exact diff, uniqueness, signature list structure/count and semantic conclusions remain open. No original firmware images, A75 or real adapter used in this session. No fresh v0.3 ROM result or pilot-exit success claimed.
+Authoring: source changes and six reference hashes checked against pinned GitHub source artifacts; the original v0.3 test results belong to PR #4, not this revision. Local Python execution and mutation run have not yet been performed for v0.3.1. No original ROM replay. Record actual test outputs in a separate commit before adoption.

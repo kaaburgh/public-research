@@ -1,6 +1,6 @@
 """Shared decision rules: logical consistency, not execution attestation."""
-import uuid
-from checker import need, PKCS7, X509
+import uuid, datetime
+from checker import need, u, PKCS7, X509
 DIFF=[0,2,3,4,5,6]
 PKCS7_ID=str(uuid.UUID(bytes_le=PKCS7)).upper()
 X509_ID=str(uuid.UUID(bytes_le=X509)).upper()
@@ -14,6 +14,15 @@ def count(x):
 
 def hash_id(x):
     return isinstance(x,str) and len(x)==64 and all(c in '0123456789abcdef' for c in x)
+
+def timestamp(b):
+    # Plausibility only, not proof that producer interprets bytes as EFI_TIME.
+    if len(b)<16: return False
+    tz=int.from_bytes(b[12:14],'little',signed=True)
+    try: datetime.datetime(u(b,0,2),b[2],b[3],b[4],b[5],b[6])
+    except ValueError: return False
+    return 1900<=u(b,0,2)<=9999 and b[7]==0 and u(b,8,4)<=999999999 and (-1440<=tz<=1440 or tz==2047) and b[14]&~3==0 and b[15]==0
+
 
 def inspect_selection(s):
     need(s['derivation']=='verified' and s['scope']=='supported_PI_grammar','selection_scope')
@@ -61,9 +70,11 @@ def pair_components(obs,sizes,expected_size,expected_count,level):
     elif type(d) is dict: need(d=={'exceeds':4096} and sizes[0]>4096,'diff_limit')
     else: need(type(d) is list and len(d)<=4096 and all(count(x) and x<sizes[0] for x in d) and d==sorted(set(d)),'diff_offsets')
     add('C3',d==DIFF,d)
-    t=obs['C4_plausibility']; need(type(t) is list and len(t)==2 and all(type(x) is bool for x in t),'timestamp_observation')
-    need(all(not v or sizes[i]>=16 for i,v in enumerate(t)),'timestamp_bounds')
-    add('C4_plausibility',all(t),t)
+    t=obs['C4_plausibility']; need(type(t) is list and len(t)==2,'timestamp_observation')
+    for i,x in enumerate(t):
+        if sizes[i]<16: need(x is None,'timestamp_bounds')
+        else: need(type(x) is str and len(x)==32 and all(c in '0123456789abcdef' for c in x),'timestamp_bytes')
+    add('C4_plausibility',all(x is not None and timestamp(bytes.fromhex(x)) for x in t),t)
     result.append(record('C4','OPEN','interpretation',None,'timestamp_semantics_not_established'))
     h=obs['C5']; need(type(h) is list and len(h)==2,'header_observation')
     for i,x in enumerate(h):
@@ -73,22 +84,29 @@ def pair_components(obs,sizes,expected_size,expected_count,level):
     tail=obs['C6']; need(type(tail) is dict and set(tail)=={'suffix_sha256','lengths','equal'} and tail['lengths']==[max(0,n-40) for n in sizes] and len(tail['suffix_sha256'])==2 and all(hash_id(x) for x in tail['suffix_sha256']) and type(tail['equal']) is bool,'suffix_observation')
     equal=min(sizes)>=40 and tail['lengths'][0]==tail['lengths'][1] and tail['suffix_sha256'][0]==tail['suffix_sha256'][1]
     need(equal==tail['equal'],'suffix_consistency')
+    if min(sizes)>=40 and sizes[0]==sizes[1] and isinstance(d,list):
+        need(equal==(not any(i>=40 for i in d)),'diff_suffix_consistency')
     add('C6',equal,tail)
-    x,y=obs['C7'],obs['C8']; need(x==y,'list_observation_disagreement')
-    if x is None:
-        for id in ('C7','C8'): result.append(record(id,'BLOCKED','unresolved',None,'signature_list_limit'))
-    else:
-        need(type(x) is list and len(x)==2,'list_observation')
-        for i,z in enumerate(x):
-            if z is None: continue
-            need(type(z) is list and 0<len(z)<=4096,'list_count')
-            total=0
-            for q in z:
-                need(type(q) is dict and set(q)=={'type','header_size','entry_size','entries'} and str(uuid.UUID(q['type'])).upper()==q['type'] and all(count(q[k]) for k in ('header_size','entry_size','entries')) and q['entry_size']>16 and q['entries']>0,'list_fields')
-                total+=28+q['header_size']+q['entry_size']*q['entries']
-            need(total==sizes[i]-40,'list_consumption')
-        add('C7',all(z is not None for z in x),x)
-        add('C8',all(z is not None and all(q['type']==X509_ID and q['header_size']==0 for q in z) and sum(q['entries'] for q in z)==expected_count for z in x),x)
+    x,y=obs['C7'],obs['C8']; need(x==y and type(x) is list and len(x)==2,'list_observation_disagreement')
+    def classify(z,i):
+        if z is None: return 'invalid',False
+        if type(z) is dict:
+            need(set(z)=={'limit','parsed_entries'} and z['limit']==4096 and count(z['parsed_entries']) and z['parsed_entries']>=4096 and sizes[i]>=40+4096*45 and z['parsed_entries']*17<=sizes[i]-40,'list_limit_observation')
+            return 'partial',False if z['parsed_entries']>expected_count else None
+        need(type(z) is list and 0<len(z)<=4096,'list_count')
+        total=0
+        for q in z:
+            need(type(q) is dict and set(q)=={'type','header_size','entry_size','entries'} and str(uuid.UUID(q['type'])).upper()==q['type'] and all(count(q[k]) for k in ('header_size','entry_size','entries')) and q['entry_size']>16 and q['entries']>0,'list_fields')
+            total+=28+q['header_size']+q['entry_size']*q['entries']
+        need(total==sizes[i]-40,'list_consumption')
+        return 'complete',all(q['type']==X509_ID and q['header_size']==0 for q in z) and sum(q['entries'] for q in z)==expected_count
+    info=[classify(z,i) for i,z in enumerate(x)]
+    if any(kind=='invalid' for kind,_ in info): add('C7',False,x)
+    elif all(kind=='complete' for kind,_ in info): add('C7',True,x)
+    else: result.append(record('C7','BLOCKED','unresolved',x,'signature_list_limit'))
+    if any(ok is False for _,ok in info): add('C8',False,x)
+    elif all(ok is True for _,ok in info): add('C8',True,x)
+    else: result.append(record('C8','BLOCKED','unresolved',x,'signature_list_limit'))
     result.append(record('C9','OPEN','interpretation',None,'variable_role_not_established'))
     return result
 

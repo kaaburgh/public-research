@@ -63,12 +63,15 @@ def main():
         print('Receipt SHA-256:',digest(raw))
         import json
         for k,v in s.items(): print(k+': '+(', '.join(v) if isinstance(v,list) else json.dumps(v,sort_keys=True) if isinstance(v,dict) else v))
+        from collections import Counter
+        for role,q in r.get('diagnostics',{}).items():
+            if 'coverage' in q:
+                print('\n'+role+' coverage: '+q['coverage']+'; opaque='+str(len(q['opaque']))+'; uninterpreted_leaves='+str(len(q['uninterpreted_leaves']))+'; deleted_uninterpreted='+str(len(q['deleted_uninterpreted'])))
+                print('  leaf kinds: '+json.dumps(dict(Counter(x['kind'] for x in q['uninterpreted_leaves'])),sort_keys=True))
+                print('  opaque ranges: '+json.dumps(q['opaque'],sort_keys=True))
+                print('  Complete leaf/deleted ranges: in receipt; not proof of global absence.')
         for x in r['results']:
             print('\n'+x['id']+' '+x['guid'])
-            if isinstance(x['selection'],dict):
-                for role,q in x['selection'].items():
-                    print('  '+role+' coverage: '+q['coverage']+'; opaque='+str(len(q['opaque']))+'; uninterpreted_leaves='+str(len(q['uninterpreted_leaves']))+'; deleted_uninterpreted='+str(len(q['deleted_uninterpreted'])))
-                    print('  '+role+' leaf/opaque ranges: '+json.dumps({'opaque':q['opaque'],'uninterpreted_leaves':q['uninterpreted_leaves'],'deleted_uninterpreted':q['deleted_uninterpreted']},sort_keys=True))
             for c in x['components']: print('  '+c['id']+': '+c['verdict']+' ['+c['assurance']+']'+(' — '+c['reason'] if c['reason'] else ''))
         if 'input_errors' in r: print('\nInput errors:',r['input_errors'])
         return 0
