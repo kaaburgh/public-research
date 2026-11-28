@@ -14,9 +14,9 @@ try{
   receipt.runner_sha256=hash(readFileSync(new URL('./verify.mjs',import.meta.url)));
   const p=bounded(packPath,8*1024*1024),o=bounded(obsPath,8*1024*1024);
   receipt.pack_sha256=hash(p);receipt.observations_sha256=hash(o);
-  const pack=validatePack(parseCanonical(p.toString('utf8'))),obs=validateObs(parseCanonical(o.toString('utf8')),pack);
+  const pack=validatePack(parseCanonical(p.toString('utf8'))),obs=validateObs(parseCanonical(o.toString('utf8')),pack,receipt.pack_sha256);
   // Strict canonical ASCII prevents replacement of malformed UTF-8 from passing.
-  receipt.results=evaluate(pack,obs,h=>bounded(join(resolve(store),h),64*1024*1024),hash);
+  receipt.results=evaluate(pack,obs,h=>bounded(join(resolve(store),h),64*1024*1024),hash,receipt.pack_sha256);
   code=receipt.results.some(x=>x.verdict==='FAIL')?1:receipt.results.some(x=>x.verdict==='BLOCKED')?2:0;
 }catch(e){receipt.run_error='invalid_or_unavailable_input';console.error('Validation failed:',e.message);}
 try{

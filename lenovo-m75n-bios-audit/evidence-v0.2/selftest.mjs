@@ -17,10 +17,11 @@ function tests(api){
     {id:"equal",op:"range_equal_v1",args:{left:{input:"a",offset:5,length:"rest"},right:{input:"b",offset:5,length:"rest"}},expected:true},
     {id:"diff",op:"diff_offsets_v1",args:{left:"a",right:"b"},expected:[0]}
   ]}]};
-  const o={version:"0.2",adapter:{id:"test",sha256:"a".repeat(64),toolchain:"test"},entries:[["r1",a],["r2",b]].map(([artifact,x])=>({artifact,selector:"s",coverage:"complete",owner_count:1,raw_node_count:1,leaf_count:1,issues:[],payload:ref(x),locator:"test"}))};
+  const packHash="b".repeat(64);
+  const o={version:"0.2",pack_sha256:packHash,adapter:{id:"test",sha256:"a".repeat(64),toolchain:"test"},entries:[["r1",a],["r2",b]].map(([artifact,x])=>({artifact,selector:"s",coverage:"complete",owner_count:1,raw_node_count:1,leaf_count:1,issues:[],payload:ref(x),locator:"test"}))};
   let n=0;
   function test(name,f){f();n++;}
-  const run=(pp=p,oo=o,rr=read)=>evaluate(pp,oo,rr,digest)[0];
+  const run=(pp=p,oo=o,rr=read)=>evaluate(pp,oo,rr,digest,packHash)[0];
   test("six ops",()=>assert(run().verdict==="PASS","positive"));
   test("different value",()=>{const q=clone(p);q.claims[0].checks[0].expected=7;assert(run(q).verdict==="FAIL","wrong expected");});
   test("extra raw node",()=>{const q=clone(o);q.entries[0].raw_node_count=2;assert(run(p,q).verdict==="BLOCKED","extra");});
@@ -39,6 +40,10 @@ function tests(api){
   test("exact diff",()=>{const q=clone(p);q.claims[0].checks[5].expected=[0,1];assert(run(q).verdict==="FAIL","diff subset");});
   test("noninteger",()=>{const q=clone(p);q.claims[0].checks[0].expected=6.5;expectReject(()=>validatePack(q),"fraction");});
   test("fail and blocked",()=>{const q=clone(p);q.claims[0].checks[0].expected=7;q.claims[0].checks[2].args.offset=5;assert(run(q).verdict==="FAIL","aggregate");});
+  test("wrong pack binding",()=>{const q=clone(o);q.pack_sha256="c".repeat(64);expectReject(()=>run(p,q),"wrong pack");});
+  test("impossible counts",()=>{const q=clone(o);q.entries[0].leaf_count=2;expectReject(()=>run(p,q),"impossible counts");});
+  test("extra field delimiter collision",()=>{const q=clone(p);q.claims[0].checks[0].args={"input|other":"a"};expectReject(()=>validatePack(q),"wrong key");});
+  test("non-ASCII control",()=>expectReject(()=>canon("x\n"),"control character"));
   return n;
 }
 console.log('core synthetic tests passed:',tests({canon,parseCanonical,validatePack,evaluate}));

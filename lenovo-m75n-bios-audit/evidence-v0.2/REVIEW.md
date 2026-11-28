@@ -3,7 +3,7 @@
 Review as a protocol and trust-boundary design, not as a claim that firmware is safe. Compare to v1 (commit 4095d9cf951f79bd0d4ca51f89afe82a350dbb88) and independent run (commit 935daa09485a5fb6ba7b396c1024c027f735ad5c, REPORT.md and PROVENANCE.md). This is a standalone PR based on main; no dependency on merging PR #1.
 
 Please find counterexamples where a misleading PASS can occur. In particular:
-1. Are object identity, extraction lineage, selector scope and evidence acceptance sufficiently separated? Is complete coverage falsifiable, and how should A75 and independent adapters prove it? Should observation manifests bind pack digest directly, not only via receipt?
+1. Are object identity, extraction lineage, selector scope and evidence acceptance sufficiently separated? Is complete coverage falsifiable, and how should A75 and independent adapters prove it? Does directly binding the exact pack digest prevent accidental reuse? What further execution provenance is needed?
 2. Does the selector count every relevant RAW node, including malformed or nested ones, without double counting? How should an unsupported parser feature affect coverage? Propose concrete test vectors.
 3. Audit canonical JSON profile, exact set checks, resource limits, typed comparisons, bounds/undefined cases, mixed verdicts, and exit semantics. Are the primitive operations adequate and safely composable? Is the implementation overly restrictive or underspecified?
 4. Audit evidence lifecycle: immutable identity, historical source vs protocol revision, stale and conflicting receipts, append-only enforcement, blind run freeze, trust and review. How should receipt validation and trust policy be designed?

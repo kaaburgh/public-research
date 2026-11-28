@@ -1,9 +1,9 @@
 // Reference core v0.2. No extraction or attestation; payload verification is conditional on observations.
 function req(ok,msg){if(!ok)throw new Error(msg);}
 
-function obj(x,keys){req(x!==null&&typeof x==="object"&&!Array.isArray(x),"expected object");req(Object.keys(x).sort().join("|")===keys.split(" ").sort().join("|"),"missing or unknown fields");}
+function obj(x,keys){req(x!==null&&typeof x==="object"&&!Array.isArray(x),"expected object");const expected=keys.split(" ");req(Object.keys(x).length===expected.length&&expected.every(k=>Object.prototype.hasOwnProperty.call(x,k)),"missing or unknown fields");}
 
-function ascii(x){return typeof x==="string"&&/^[\x20-\x7e]+$/.test(x)&&x.length<=1024;}
+function ascii(x){return typeof x==="string"&&x.length>0&&!/[^\x20-\x7e]/.test(x)&&x.length<=1024;}
 
 function id(x){return typeof x==="string"&&/^[A-Za-z0-9][A-Za-z0-9_.-]{0,79}$/.test(x);}
 
@@ -70,17 +70,18 @@ function validatePack(p){
   return p;
 }
 
-function validateObs(o,p){
-  obj(o,"version adapter entries");req(o.version==="0.2","observation version");
+function validateObs(o,p,packHash){
+  obj(o,"version pack_sha256 adapter entries");req(o.version==="0.2","observation version");req(sha(packHash)&&o.pack_sha256===packHash,"observation pack identity mismatch");
   obj(o.adapter,"id sha256 toolchain");req(id(o.adapter.id)&&sha(o.adapter.sha256)&&ascii(o.adapter.toolchain),"adapter identity");
   req(Array.isArray(o.entries)&&o.entries.length<=65536,"entries");
   const needed=new Set(p.claims.flatMap(c=>Object.values(c.inputs).map(a=>a+"/"+c.selector)));
   const got=[];
   for(const e of o.entries){
     obj(e,"artifact selector coverage owner_count raw_node_count leaf_count issues payload locator");
-    const key=e.artifact+"/"+e.selector;req(needed.has(key),"unexpected observation key");got.push(key);
+    req(id(e.artifact)&&id(e.selector),"observation identifiers");const key=e.artifact+"/"+e.selector;req(needed.has(key),"unexpected observation key");got.push(key);
     req(["complete","incomplete","unknown"].includes(e.coverage),"coverage");
     req([e.owner_count,e.raw_node_count,e.leaf_count].every(x=>x===null||uint(x)),"counts");
+    req(e.raw_node_count===null||e.leaf_count===null||e.leaf_count<=e.raw_node_count,"inconsistent counts");
     req(Array.isArray(e.issues)&&e.issues.every(id)&&uniq(e.issues),"issue codes");
     if(e.coverage==="complete")req([e.owner_count,e.raw_node_count,e.leaf_count].every(uint),"unknown count for complete");
     if(e.payload!==null){obj(e.payload,"sha256 size");req(sha(e.payload.sha256)&&size(e.payload.size),"payload");}
@@ -110,8 +111,8 @@ function measure(k,inputs,digest){
   throw new Error("unknown op");
 }
 
-function evaluate(pack,obs,readObject,digest){
-  validatePack(pack);validateObs(obs,pack);
+function evaluate(pack,obs,readObject,digest,packHash){
+  validatePack(pack);validateObs(obs,pack,packHash);
   const results=[];
   const cache=new Map();
   function load(ref){
