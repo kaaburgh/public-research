@@ -1,4 +1,4 @@
-"""v0.3.2 restricted PI derivation checker. No firmware execution. Python 3.10+ stdlib."""
+"""v0.3.3 restricted PI derivation checker. No firmware execution. Python 3.10+ stdlib."""
 import hashlib, json, lzma, struct, uuid
 
 FFS2 = uuid.UUID('8c8ce578-8a3d-4f1c-9935-896185c32dd3').bytes_le
@@ -207,6 +207,13 @@ class Checker:
         except Invalid as e:
             e.location={**self.position,'lineage':self.lineage.copy()}
             raise
+        except Exception as e:
+            # Implementation failure, not evidence that input bytes are invalid.
+            name=type(e).__name__
+            if not name.isascii() or not name.replace('_','').isalnum(): name='Exception'
+            failure=Invalid('internal_'+name)
+            failure.location={**self.position,'lineage':self.lineage.copy(),'error_kind':'internal_checker_error'}
+            raise failure from None
     def _run(self, regions):
         self.at('root_partition',0,0)
         need(type(regions) is list and len(regions)<=MAX_NODES,'regions')

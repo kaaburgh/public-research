@@ -4,7 +4,7 @@ from checker import Checker, Invalid, canonical, read_canonical, digest, need, u
 from discovery import propose
 from verdicts import selection_components, pair_components, record, timestamp
 
-VERSION='0.3.2-draft'
+VERSION='0.3.3-draft'
 ROMS={'a':'7d73d99b0b7b7fbe8999d2495b0df7e5adf4936bb3fb003838640fff7e17e145','b':'fe2c8dc35ee74059cddf1fc49fe313a065bc9a1279bb3e090ea28a2d9aa0c498'}
 TARGETS={
  'SB-001':('CC0F8A3F-3DEA-4376-9679-5426BA0A907E',842,1),
@@ -115,28 +115,44 @@ def historical_components(rows):
         out.append({'id':row['id'],'components':row['components']+[clause('historical_diff_bound',scope,d),clause('historical_diff_scope',scope and bool(d),d),clause('timestamp_only_bytes',isinstance(d,list) and all(i<16 for i in d),d),dw,cnt]})
     return out
 
+REFUTED=('conditional_refutation','refuted_within_supported_grammar')
+SUPPORTED=('consistent_conditional','derived_within_supported_grammar')
+HISTORICAL_IDS=['C2','historical_diff_bound','historical_dwLength','C6','C7','historical_x509_count','C4']
+
+def historical_status(row):
+    # A C1 failure alone is not a historical refutation. However, when an
+    # equivalent-content class was actually compared, its measured refutation
+    # remains valid at its recorded (conditional) scope.
+    result=state([row],HISTORICAL_IDS)
+    if result in REFUTED: return result
+    relevant=[c for c in row['components'] if c['id'] in HISTORICAL_IDS]
+    if not any(c['verdict'] in ('PASS','FAIL') for c in relevant): return 'not_evaluated'
+    if state([row],['C1']) not in SUPPORTED or result=='unverified':
+        return 'partial_not_established'
+    return result
+
+def aggregate_historical(statuses):
+    values=list(statuses.values())
+    if 'refuted_within_supported_grammar' in values: return 'refuted_within_supported_grammar'
+    if 'conditional_refutation' in values: return 'conditional_refutation'
+    if not values or all(x=='not_evaluated' for x in values): return 'not_evaluated'
+    if all(x=='derived_within_supported_grammar' for x in values): return 'derived_within_supported_grammar'
+    if all(x in SUPPORTED for x in values): return 'consistent_conditional'
+    return 'partial_not_established'
+
 def summary(r):
     rows=r['results']
     hist=historical_components(rows)
     props={name:state(rows,ids) for name,ids in profile()['propositions'].items()}
-    def conjunction(source,ids):
-        result=state(source,ids)
-        if result in ('conditional_refutation','refuted_within_supported_grammar'): return result
-        relevant=[c for row in source for c in row['components'] if c['id'] in ids]
-        if not any(c['verdict'] in ('PASS','FAIL') for c in relevant): return 'not_evaluated'
-        return 'partial_not_established' if result=='unverified' else result
-    # C1 is a selection prerequisite, not a refutation of the historical byte finding.
-    historical_ids=['C2','historical_diff_bound','historical_dwLength','C6','C7','historical_x509_count','C4']
-    full=conjunction(hist,historical_ids)
-    if state(rows,['C1']) not in ('consistent_conditional','derived_within_supported_grammar'):
-        full='partial_not_established' if any(c['verdict'] in ('PASS','FAIL') for row in rows for c in row['components'] if c['id'] not in ('C1','multiplicity')) else 'not_evaluated'
+    by_target={row['id']:historical_status(row) for row in hist}
+    full=aggregate_historical(by_target)
     gate=differential(r)
     complete={row['id'] for row in rows}==set(TARGETS) and len(rows)==len(TARGETS) and not r.get('input_errors') and not any(c['verdict']=='BLOCKED' for row in rows for c in row['components'])
     return {**props,'exact_diff_set':state(rows,['C3']),'historical_diff_scope':state(hist,['historical_diff_scope']),
         'historical_diff_bound':state(hist,['historical_diff_bound']),'historical_dwLength':state(hist,['historical_dwLength']),
         'historical_x509_count':state(hist,['historical_x509_count']),'timestamp_only_bytes':state(hist,['timestamp_only_bytes']),
         'timestamp_plausibility':state(rows,['C4_plausibility']),'timestamp_only_semantic_conclusion':timestamp_scope(rows),
-        'variable_roles':'unverified','P2-47_full':full,'differential_gate':gate,
+        'variable_roles':'unverified','P2-47_full':full,'P2-47_by_target':by_target,'differential_gate':gate,
         'exit_criterion':'met' if complete and gate['status']=='all_six_match' else 'not_met','non_claims':NON_CLAIMS}
 
 def timestamp_scope(rows):
