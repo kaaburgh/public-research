@@ -4,7 +4,7 @@ from checker import Checker, Invalid, canonical, read_canonical, digest, need, u
 from discovery import propose
 from verdicts import selection_components, pair_components, record, timestamp
 
-VERSION='0.3.1-draft'
+VERSION='0.3.2-draft'
 ROMS={'a':'7d73d99b0b7b7fbe8999d2495b0df7e5adf4936bb3fb003838640fff7e17e145','b':'fe2c8dc35ee74059cddf1fc49fe313a065bc9a1279bb3e090ea28a2d9aa0c498'}
 TARGETS={
  'SB-001':('CC0F8A3F-3DEA-4376-9679-5426BA0A907E',842,1),
@@ -66,8 +66,9 @@ def evaluate(roms,certs,targets=TARGETS):
         try:
             c=Checker(roms[role],[x[0] for x in targets.values()]).run(certs[role])
             selected[role]={id:c.select(x[0]) for id,x in targets.items()}
-            diagnostics[role]={'coverage':c.coverage(),'issues':c.issues,'opaque':c.opaque,'uninterpreted_leaves':c.leaves,'deleted_uninterpreted':c.deleted_leaves,'pad_count':c.pad_count,'lineage':c.lineage}
-        except (Invalid,KeyError) as e: diagnostics[role]={'error':str(e) if isinstance(e,Invalid) else 'certificate_missing'}
+            diagnostics[role]={'coverage':c.coverage(),'issues':c.issues,'opaque':c.opaque,'uninterpreted_leaves':c.leaves,'deleted_uninterpreted':c.deleted_leaves,'pad_count':c.pad_count,'lineage':c.lineage,'root_regions':certs[role]}
+        except Invalid as e: diagnostics[role]=e.diagnostic()
+        except KeyError: diagnostics[role]={'error':'certificate_missing'}
     results=[]
     for id,(g,size,count) in targets.items():
         rows={r:selected[r][id] for r in selected}; assurance={r:v[1] for r,v in rows.items()}
@@ -92,18 +93,51 @@ def state(rows,ids):
     if all(x['assurance']=='derived_in_supported_grammar' for x in c): return 'derived_within_supported_grammar'
     return 'consistent_conditional'
 
+def historical_components(rows):
+    """Derived historical clauses, never upgrades the exact C3 contract."""
+    out=[]
+    for row in rows:
+        by={c['id']:c for c in row['components']}
+        c=by['C3']; d=c['observed']; level=c['assurance']
+        measured=c['verdict'] in ('PASS','FAIL')
+        scope=isinstance(d,list) and set(d)<=set(EXPECTED_DIFF)
+        def clause(id,ok,obs,measured=measured,level=level):
+            return record(id,'PASS' if ok else 'FAIL',level,obs) if measured else record(id,'BLOCKED','unresolved')
+        h=by['C5']; lists=by['C7']
+        hs=h['observed']
+        ls=lists['observed']
+        # The historical report states dwLength and X509 count, not every newer layout hypothesis.
+        dw=clause('historical_dwLength',isinstance(hs,list) and all(x is not None and x['dwLength']==24 for x in hs),hs,h['verdict'] in ('PASS','FAIL'),h['assurance'])
+        expected=TARGETS.get(row['id'],(None,None,None))[2]
+        complete=isinstance(ls,list) and all(isinstance(z,list) for z in ls)
+        x509=str(uuid.UUID(bytes_le=X509)).upper()
+        cnt=clause('historical_x509_count',complete and all(all(q['type']==x509 for q in z) and sum(q['entries'] for q in z)==expected for z in ls),ls,expected is not None and lists['verdict'] in ('PASS','FAIL'),lists['assurance'])
+        out.append({'id':row['id'],'components':row['components']+[clause('historical_diff_bound',scope,d),clause('historical_diff_scope',scope and bool(d),d),clause('timestamp_only_bytes',isinstance(d,list) and all(i<16 for i in d),d),dw,cnt]})
+    return out
+
 def summary(r):
     rows=r['results']
+    hist=historical_components(rows)
     props={name:state(rows,ids) for name,ids in profile()['propositions'].items()}
-    def conjunction(ids):
-        result=state(rows,ids)
+    def conjunction(source,ids):
+        result=state(source,ids)
         if result in ('conditional_refutation','refuted_within_supported_grammar'): return result
-        relevant=[c for row in rows for c in row['components'] if c['id'] in ids]
+        relevant=[c for row in source for c in row['components'] if c['id'] in ids]
         if not any(c['verdict'] in ('PASS','FAIL') for c in relevant): return 'not_evaluated'
         return 'partial_not_established' if result=='unverified' else result
-    return {**props,'timestamp_only_semantic_conclusion':timestamp_scope(rows),
-        'variable_roles':'unverified','P2-47_full':conjunction(['C1','C2','C3','C4','C4_plausibility','C5','C6','C7','C8']),
-        'differential_gate':differential(r),'non_claims':NON_CLAIMS}
+    # C1 is a selection prerequisite, not a refutation of the historical byte finding.
+    historical_ids=['C2','historical_diff_bound','historical_dwLength','C6','C7','historical_x509_count','C4']
+    full=conjunction(hist,historical_ids)
+    if state(rows,['C1']) not in ('consistent_conditional','derived_within_supported_grammar'):
+        full='partial_not_established' if any(c['verdict'] in ('PASS','FAIL') for row in rows for c in row['components'] if c['id'] not in ('C1','multiplicity')) else 'not_evaluated'
+    gate=differential(r)
+    complete=bool(rows) and not r.get('input_errors') and not any(c['verdict']=='BLOCKED' for row in rows for c in row['components'])
+    return {**props,'exact_diff_set':state(rows,['C3']),'historical_diff_scope':state(hist,['historical_diff_scope']),
+        'historical_diff_bound':state(hist,['historical_diff_bound']),'historical_dwLength':state(hist,['historical_dwLength']),
+        'historical_x509_count':state(hist,['historical_x509_count']),'timestamp_only_bytes':state(hist,['timestamp_only_bytes']),
+        'timestamp_plausibility':state(rows,['C4_plausibility']),'timestamp_only_semantic_conclusion':timestamp_scope(rows),
+        'variable_roles':'unverified','P2-47_full':full,'differential_gate':gate,
+        'exit_criterion':'met' if complete and gate['status']=='all_six_match' else 'not_met','non_claims':NON_CLAIMS}
 
 def timestamp_scope(rows):
     # A different exact offset set does not disprove timestamp-only if all changed bytes remain in EFI_TIME.
@@ -151,10 +185,36 @@ def main(argv=None):
             need(type(cert) is dict and set(cert)=={'artifact_sha256','regions'} and cert['artifact_sha256']==actual,'certificate_binding')
             r['certificates'][role]=cert; certs[role]=cert['regions']
         except (OSError,Invalid) as e: errors[role]=str(e) if isinstance(e,Invalid) else 'input_io'; roms.pop(role,None)
-    r.update(evaluate(roms,certs)); r['input_errors']=errors; r['summary']=summary(r)
+    r['input_errors']=errors
+    stage='evaluate'
+    try:
+        r.update(evaluate(roms,certs))
+        stage='summary'; r['summary']=summary(r)
+        stage='receipt_encoding'; need(len(canonical(r))<=8*1024**2,'receipt_size')
+    except Exception as e:
+        # Preserve an attempt, never a fabricated set of measured results. No arbitrary exception strings or private paths.
+        code=str(e) if isinstance(e,Invalid) and str(e).isascii() and str(e).replace('_','').isalnum() else type(e).__name__
+        r['run_error']={'stage':stage,'code':code}
+        r['results']=[]; r['diagnostics']={}
+        r['certificate_sha256']={role:digest(canonical(c)) for role,c in r['certificates'].items()}
+        r['certificates']={}
+        r['summary']=error_summary()
+        return 2 if write_receipt(args.receipts,r) else 3
     if not write_receipt(args.receipts,r): return 3
-    # Exit is execution signal, not acceptance. OPEN interpretations are intentionally not success.
+    return exit_code(r)
+
+def error_summary():
+    return {'P2-47_full':'not_evaluated','exit_criterion':'not_met','execution':'aborted','non_claims':NON_CLAIMS}
+
+def exit_code(r):
+    # 0 = measured checks passed AND differential gate met. 1 = a checked predicate refuted.
+    # 2 = incomplete/aborted, 3 = write failure (main), 4 = complete inputs disagree with reference hashes.
+    if 'run_error' in r: return 2
     states=[x['verdict'] for y in r['results'] for x in y['components'] if x['id'] not in ('C4','C9')]
-    return 1 if 'FAIL' in states else 2 if 'BLOCKED' in states or errors else 0
+    gate=r['summary']['differential_gate']
+    if r.get('input_errors') or gate['missing']: return 2
+    if gate['status']=='mismatch': return 4
+    if 'FAIL' in states: return 1
+    return 2 if 'BLOCKED' in states or r['summary']['exit_criterion']!='met' else 0
 
 if __name__=='__main__': sys.exit(main())
