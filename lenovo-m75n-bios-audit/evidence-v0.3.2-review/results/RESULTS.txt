@@ -1,0 +1,270 @@
+Review of evidence protocol v0.3.2 — PR #8, commit 0cbac26f2b5470071d33cb7949e7c5f499ab81a8
+Environment: Python 3.13.18, Linux container, 2 CPUs; synthetic fixtures only; no firmware images.
+Local paths removed; <evidence-v0.3> = lenovo-m75n-bios-audit/evidence-v0.3 of PR #8, <v1> = 4095d9cf worktree, <935daa0> = independent reproduction worktree.
+
+== 1. Author suite (test_pilot test_v03_regression test_v031_review test_v031_addendum test_v032), with V1_DIR/IR_DIR
+----------------------------------------------------------------------
+Ran 127 tests in 10.028s
+
+OK
+--- without V1_DIR/IR_DIR
+----------------------------------------------------------------------
+Ran 127 tests in 9.662s
+
+OK (skipped=2)
+
+== 2. tests/test_v032_adversarial.py <evidence-v0.3>
+ok   P1-1 [ok] Unexpected exception during input (discovery)
+      expected: aborted receipt stage input, sanitized code, exit 2
+      observed: exit 2, exc None, run_error {'code': 'ValueError', 'stage': 'input'}, path leaked False
+ok   P1-2 [ok] Oversize normal receipt
+      expected: aborted at receipt_encoding, exit 2
+      observed: exit 2, run_error {'code': 'receipt_size', 'stage': 'receipt_encoding'}
+ok   P1-3 [ok] Invalid with a non-ASCII code
+      expected: code replaced by the class name
+      observed: run_error {'code': 'Invalid', 'stage': 'summary'}
+ok   P1-4 [note] Non-Invalid exception inside the checker (implementation bug) during evaluate
+      expected: whole run aborted: diagnostics and parser location of BOTH roles are dropped (only Invalid gets a location)
+      observed: exit 2, run_error {'code': 'IndexError', 'stage': 'evaluate'}, diagnostics {}
+RECEIPT_WRITE_FAILED
+ok   P1-5 [ok] Aborted run whose receipt directory is unwritable
+      expected: exit 3 (receipt on stdout)
+      observed: exit 3 exc None
+ok   P1-6 [note] Profile mismatch before metadata initialisation
+      expected: traceback, no receipt (documented limit)
+      observed: uncaught Invalid(profile_mismatch)
+ok   P1-7 [ok] Handoff on an aborted receipt
+      expected: accepted, prints aborted + exit criterion not_met, no component results
+      observed: exit 0; ['Pilot exit criterion (recorded, not independently replayed): not_met', "Aborted execution: {'code': 'RuntimeError', 'stage': 'summary'}"]
+ok   P1-8 [boundary] A refuting receipt (lists changed) rewritten as an aborted run
+      expected: accepted: a negative result can be hidden as an abort; only replay distinguishes
+      observed: original P2-47_full conditional_refutation; rewritten handoff exit 0
+ok   P2-1 [ok] Malformed section in an LZMA stream nested in another LZMA stream
+      expected: location stream 2 with lineage 2 -> 1 -> 0
+      observed: error section_padding stage section_padding stream 2 offset 846; parents [None, 0, 1]
+ok   P2-2 [ok] Bad block map in an FV inside an LZMA FV-image section
+      expected: stage fv_blockmap in stream 1 at the block-map entry
+      observed: {'error': 'fv_blockmap', 'stage': 'fv_blockmap', 'stream': 1, 'offset': 68}
+ok   P2-3 [ok] Tripwire checksum budget exhausted
+      expected: located at the candidate (stage tripwire_fv)
+      observed: {'error': 'tripwire_checksum_budget', 'stage': 'tripwire_fv', 'stream': 0, 'offset': 589864}
+ok   P2-4 [ok] Handoff of a run with a located structural blocker
+      expected: renders the blocker with stage/stream/offset; exit criterion not met
+      observed: exit 0; ['a structural/input blocker: {"error": "section_padding", "lineage": [{"kind": "artifact", "sha256": "7d73d99b0']; exit_criterion not_met
+
+P3 matrix (gate forced to match so that exit codes reflect the propositions):
+case                                     exact_diff_set historical_dif historical_dif timestamp_only timestamp_only historical_dwL historical_x50 equal_structur x509_tag_and_e     P2-47_full  exit
+identical                                           REF           cons            REF           cons           part           cons           cons           cons           cons           part  1
+subset [0,2,3]                                      REF           cons           cons           cons           part           cons           cons           cons           cons           part  1
+exact (baseline)                                   cons           cons           cons           cons           part           cons           cons           cons           cons           part  0
++ year high byte (1)                                REF            REF            REF           cons           part           cons           cons           cons           cons            REF  1
++ nanosecond byte (8)                               REF            REF            REF           cons           part           cons           cons           cons           cons            REF  1
++ wRevision byte (20)                               REF            REF            REF            REF            REF           cons           cons            REF           cons            REF  1
+wRevision 0x100 both                               cons           cons           cons           cons           part           cons           cons            REF           cons           part  1
+dwLength 25 both                                   cons           cons           cons           cons           part            REF           cons            REF           cons            REF  1
+SignatureHeaderSize 4                              cons           cons           cons           cons           part           cons           cons           cons            REF           part  1
+lists differ                                        REF            REF            REF            REF            REF           cons           cons            REF           cons            REF  1
+length +1                                           REF            REF            REF            REF            REF           cons            REF            REF            REF            REF  1
+EFI_TIME Pad1=1 both                               cons           cons           cons           cons           part           cons           cons           cons           cons           part  1
+equivalence class in b + lists differ               REF            REF            REF            REF            REF           cons           cons            REF            REF           part  1
+
+ok   P3-1 [ok] Identical payloads / subset: exact set refuted, historical bound holds
+      expected: exact REF, bound cons, P2-47_full part (not refuted)
+      observed: identical REF/cons/part; subset part
+ok   P3-2 [ok] No change at all: change-occurrence clause reported separately
+      expected: historical_diff_scope REF while P2-47_full part
+      observed: scope REF
+ok   P3-3 [ok] Bytes 1 or 8 changed (inside EFI_TIME, outside the historical 0,2-6 bound)
+      expected: bound REF -> P2-47_full REF; timestamp_only_bytes cons
+      observed: byte1 REF/cons; byte8 REF/cons
+ok   P3-4 [ok] Stronger hypotheses fail (C5 wRevision both, C8 header size, EFI_TIME Pad1): weaker historical claim not refuted
+      expected: P2-47_full part in all three
+      observed: part/part/part; equal_structural REF; x509_counts(strong) REF vs historical cons
+ok   P3-5 [ok] Historical facts themselves changed (dwLength 25, lists differ, header byte 20, length)
+      expected: P2-47_full REF in all four
+      observed: ['REF', 'REF', 'REF', 'REF']
+ok   P3-6 [defect] Two identical live copies in b (C1 FAIL) whose lists differ from a (C6 FAIL on a well-defined content class)
+      expected: the C1-prerequisite override replaces a measured historical refutation by "partial_not_established"
+      observed: equal_structural REF; byte_obs-level C6 FAIL hidden: P2-47_full part; exit 1
+ok   P3-7 [defect] SB-001 absent from b; SB-002 and SB-003 lists changed (historical bound FAIL there)
+      expected: the C1 override is global over all three targets: a refutation measured on SB-002/003 is reported as partial_not_established
+      observed: per-target historical_diff_bound {'SB-001': 'BLOCKED', 'SB-002': 'FAIL', 'SB-003': 'FAIL'}; C1 ['BLOCKED', 'PASS', 'PASS']; P2-47_full partial_not_established; exit 2
+ok   P4-1 [ok] Exit-code table
+      expected: {"all pass, gate match": 0, "all pass, gate mismatch": 4, "refuted, gate match": 1, "refuted, gate mismatch": 4, "one role blocked": 2, "one payload missing, others match": 2, "one missing, others mismatch": 2, "gate match, a component BLOCKED": 2}
+      observed: {"all pass, gate match": 0, "all pass, gate mismatch": 4, "refuted, gate match": 1, "refuted, gate mismatch": 4, "one role blocked": 2, "one payload missing, others match": 2, "one missing, others mismatch": 2, "gate match, a component BLOCKED": 2}
+ok   P4-3 [defect] Only strengthened hypotheses refuted (exact C3, full C5, C8 header size, plausibility); historical P2-47 intact
+      expected: exit 1 ("checked refutation") although P2-47_full is partial_not_established: the exit code does not separate strengthened from historical refutation
+      observed: {"identical": [1, "part"], "subset [0,2,3]": [1, "part"], "wRevision 0x100 both": [1, "part"], "SignatureHeaderSize 4": [1, "part"], "EFI_TIME Pad1=1 both": [1, "part"]}
+ok   P4-2 [note] Refutation together with a gate mismatch
+      expected: exit 4 dominates 1: the refutation is visible only in the summary
+      observed: 4
+ok   P6-1 [ok] Edits that v0.3.1 accepted or that P6 targets
+      expected: all rejected (exit 2) with a named code
+      observed: {"C3 observed only": "2 HANDOFF_REJECTED diff_timestamp_consistency", "C3 observed + verdict": "2 HANDOFF_REJECTED diff_timestamp_consistency", "remove every leaf, relabel to grammar_complete/derived": "2 HANDOFF_REJECTED raw_leaf_membership", "certificate region size": "2 HANDOFF_REJECTED certificate_partition", "lineage parent forward": "2 HANDOFF_REJECTED lineage_range"}
+ok   P6-2 [boundary] Coordinated three-field edit: C3 observed + verdict + recorded EFI_TIME prefix of b
+      expected: accepted (consistent fabrication)
+      observed: before exact_diff_set conditional_refutation; handoff exit 0
+ok   P6-3 [boundary] Payload + owner RAW digests set to the six reference values
+      expected: accepted, exit_criterion met (a received gate is not evidence)
+      observed: handoff exit 0; gate all_six_match; exit_criterion met; exit_code 0
+ok   P6-4 [boundary] Delete non-root opaque rows (unsupported compression): except_opaque -> leaf_conditional
+      expected: accepted: the P8 distinction can be erased by a consistent edit
+      observed: before except_opaque; handoff exit 0
+ok   P6-5 [boundary] Relabel an opaque root region as erased and drop its unparsed_root row
+      expected: accepted: erased content is not verifiable without the ROM
+      observed: before except_opaque; handoff exit 0
+ok   P7-1 [ok] Two receipts of the same inputs
+      expected: normalized_equal, independence not_attested, no assurance upgrade
+      observed: exit 0; {'normalized_equal': True, 'independence': 'not_attested', 'assurance_upgrade': False}
+ok   P7-2 [defect] The same receipt file compared with itself
+      expected: exit 0 as a "replay"; only same_run_id=true hints at it; should be refused
+      observed: exit 0; same_run_id True; receipt_sha256 equal True
+ok   P7-3 [note] Same inputs, different (equally valid) root hints
+      expected: verdicts and pair observations identical, but replay_compare reports a non-match (certificates/diagnostics/results) without a result-level view
+      observed: verdicts+observations identical True; exit 1; different_fields ['certificates', 'diagnostics', 'results']
+ok   P7-4 [defect] Output field naming
+      expected: 'coverage' holds exit_criterion values, not coverage
+      observed: ['not_met', 'not_met']
+ok   P8-1 [ok] Coverage categories
+      expected: {"leaves only": "leaf_conditional", "unsupported compression elsewhere": "except_opaque", "unparsed root gap": "except_opaque", "pad data": "incomplete"}
+      observed: {"leaves only": "leaf_conditional", "unsupported compression elsewhere": "except_opaque", "unparsed root gap": "except_opaque", "pad data": "incomplete"}
+ok   P8-2 [note] Proposition statuses for leaf_conditional vs except_opaque
+      expected: identical tokens; the distinction lives only in per-role diagnostics (and is erasable, P6-4)
+      observed: consistent_conditional / consistent_conditional
+
+33/33 expectations hold
+
+== 3. V03_DIR=<evidence-v0.3> python3 -m unittest -v test_v032_addendum
+test_aborted_receipt_written (test_v032_addendum.Aborted.test_aborted_receipt_written) ... ok
+test_aborted_stage_vocabulary (test_v032_addendum.Aborted.test_aborted_stage_vocabulary) ... ok
+test_aborted_summary_fixed (test_v032_addendum.Aborted.test_aborted_summary_fixed) ... ok
+test_aborted_with_results_rejected (test_v032_addendum.Aborted.test_aborted_with_results_rejected) ... ok
+test_oversize_receipt_aborts (test_v032_addendum.Aborted.test_oversize_receipt_aborts) ... ok
+test_blocked_component_not_met (test_v032_addendum.ExitCodes.test_blocked_component_not_met) ... ok
+test_refutation_exit_1 (test_v032_addendum.ExitCodes.test_refutation_exit_1) ... ok
+test_certificate_opaque_rows (test_v032_addendum.HandoffConsistency.test_certificate_opaque_rows) ... ok
+test_certificate_roles (test_v032_addendum.HandoffConsistency.test_certificate_roles) ... ok
+test_failed_role_location (test_v032_addendum.HandoffConsistency.test_failed_role_location) ... ok
+test_header_prefix_cross_check (test_v032_addendum.HandoffConsistency.test_header_prefix_cross_check) ... ok
+test_lineage_budget (test_v032_addendum.HandoffConsistency.test_lineage_budget) ... ok
+test_lineage_parent_order_named (test_v032_addendum.HandoffConsistency.test_lineage_parent_order_named) ... ok
+test_lineage_source_range (test_v032_addendum.HandoffConsistency.test_lineage_source_range) ... ok
+test_locator_bounds (test_v032_addendum.HandoffConsistency.test_locator_bounds) ... ok
+test_locator_to_other_raw_leaf (test_v032_addendum.HandoffConsistency.test_locator_to_other_raw_leaf) ... ok
+test_no_coverage_without_input (test_v032_addendum.HandoffConsistency.test_no_coverage_without_input) ... ok
+test_owner_fv_offset (test_v032_addendum.HandoffConsistency.test_owner_fv_offset) ... ok
+test_owner_opacity (test_v032_addendum.HandoffConsistency.test_owner_opacity) ... ok
+test_root_regions_bound_to_certificate (test_v032_addendum.HandoffConsistency.test_root_regions_bound_to_certificate) ... ok
+test_summary_bound_to_results (test_v032_addendum.HandoffConsistency.test_summary_bound_to_results) ... ok
+test_bound_refutes_full (test_v032_addendum.HistoricalClauses.test_bound_refutes_full) ... ok
+test_change_occurrence_clause (test_v032_addendum.HistoricalClauses.test_change_occurrence_clause) ... ok
+test_full_never_established (test_v032_addendum.HistoricalClauses.test_full_never_established) ... ok
+test_historical_dwlength (test_v032_addendum.HistoricalClauses.test_historical_dwlength) ... ok
+test_historical_x509_count (test_v032_addendum.HistoricalClauses.test_historical_x509_count) ... ok
+test_historical_x509_type (test_v032_addendum.HistoricalClauses.test_historical_x509_type) ... ok
+test_timestamp_only_bytes_bound (test_v032_addendum.HistoricalClauses.test_timestamp_only_bytes_bound) ... ok
+test_byte40_and_length (test_v032_addendum.InternalConsistency.test_byte40_and_length) ... ok
+test_empty_signature_list (test_v032_addendum.InternalConsistency.test_empty_signature_list) ... ok
+test_lowercase_guid (test_v032_addendum.InternalConsistency.test_lowercase_guid) ... ok
+test_opaque_in_owner (test_v032_addendum.InternalConsistency.test_opaque_in_owner) ... ok
+test_coverage_categories (test_v032_addendum.Localisation.test_coverage_categories) ... ok
+test_leading_pad_stage (test_v032_addendum.Localisation.test_leading_pad_stage) ... ok
+test_lzma_failure_stage (test_v032_addendum.Localisation.test_lzma_failure_stage) ... ok
+test_nested_location_and_lineage (test_v032_addendum.Localisation.test_nested_location_and_lineage) ... ok
+test_section_size_stage (test_v032_addendum.Localisation.test_section_size_stage) ... ok
+test_replay_filename (test_v032_addendum.Replay.test_replay_filename) ... ok
+test_replay_mismatch_exit (test_v032_addendum.Replay.test_replay_mismatch_exit) ... ok
+test_replay_rejects_aborted (test_v032_addendum.Replay.test_replay_rejects_aborted) ... ok
+test_replay_validates (test_v032_addendum.Replay.test_replay_validates) ... ok
+
+----------------------------------------------------------------------
+Ran 41 tests in 10.380s
+
+OK
+
+== 4. mutation_v032.py (author, 106 mutants) — summary; full output in mutation_v032_author_run.txt
+
+mutants 106, non-equivalent 98; author suite: survived 4 ['v05', 's01', 'z06', 'z07']; detected only via errors 9 ['p01', 'p01b', 'p04', 'p13', 'n14', 'v03', 'z01', 'z02', 'z08']
+invalid/stale/timeout: [('h02', 'handoff summary', 'ANCHOR x2', '-')]
+exit=1
+
+== 5. tests/mutation_v032_review.py --extra test_v032_addendum (58 mutants) — summary; full output in mutation_v032_review_run.txt
+   (addendum version at that time = intermediate; see 6 and 7 for the final version)
+
+mutants 58, non-equivalent 55; author suite: survived 34 ['x02', 'x06', 'x08', 'x09', 'x10', 'x11', 'x12', 'x14', 'x16', 'x17', 'x18', 'x21', 'x23', 'x24', 'x26', 'x28', 'x29', 'x30', 'x31', 'x32', 'x33', 'x34', 'x35', 'x36', 'x37', 'x38', 'x39', 'x41', 'x42', 'x43', 'x44', 'A-v05', 'A-z06', 'A-z07']; detected only via errors 10 ['x22', 'A-p01', 'A-p01b', 'A-p04', 'A-p13', 'A-n14', 'A-v03', 'A-z01', 'A-z02', 'A-z08']
+extra suite test_v032_addendum: survived author+extra 3 ['x12', 'x30', 'x32']
+invalid/stale/timeout: []
+exit=1
+
+== 6. Targeted re-runs during addendum tightening
+Targeted re-run after tightening two addendum tests to named rejection codes (test_locator_bounds, test_owner_opacity).
+Both tests passed on the reviewed code before and after the change; under the full run they passed under x30/x32 because
+another check (selection_payload / receipt_verdict_mismatch) rejected the edited receipt first.
+x30 addendum: FAIL test_locator_bounds (assertion)   -> killed
+x32 addendum: FAIL test_owner_opacity (assertion)    -> killed
+Stricter assertions cannot revive a previously killed mutant (a rejection with a different code still fails assertEqual),
+so the full-run kill set is otherwise unchanged.
+--- second targeted re-run (addendum after tightening test_oversize_receipt_aborts and adding test_empty_signature_list)
+x06    addendum: error-only (errors=1)
+x30    addendum: assert (failures=1)
+x32    addendum: assert (failures=1)
+A-p04  addendum: SURVIVED (OK)
+--- third targeted re-run (test_oversize_receipt_aborts keeps the real summary; empty list with SignatureSize 48)
+x06    addendum: assert (failures=1)
+A-p04  addendum: assert (failures=1)
+
+== 7. tests/rerun_extra.py — final addendum (41 tests) against all 58 mutants; full output in mutation_v032_review_extra_final.txt
+
+equivalent (excluded): ['A-s01', 'h01', 'h03', 'h04', 'n02', 'n04', 'v07', 'v11', 'x13', 'x19']
+non-equivalent 55; combined author+addendum: survived ['x12']; errors-only []; assertion-killed 54
+
+== 8. Review v0.3.1 adversarial suite (PR #7) run unpinned against v0.3.2 — summary; full output in v031_adversarial_on_v032.txt
+FAIL A00 [ok] Baseline synthetic pair renders
+ok   A-D1 [fixed] Compressed differing copy inside a pad file
+ok   A-D1b [fixed] Same blob in a RAW FFS file body
+ok   A-D2 [fixed] CRC32 GUID-defined section with a plaintext second RAW inside the owner
+ok   A-D3a [fixed] FV with 20-byte extended header in the leading pad file
+ok   A-D3b [fixed] Nothing found in either ROM
+ok   A-D4 [fixed] Edit C1/multiplicity FAIL->PASS in an equivalence-class run
+ok   A-D5 [fixed] Flip all FAIL verdicts to PASS, observations untouched
+ok   A-D6 [fixed] Lists changed: semantic summary fields
+ok   A-D7 [fixed] 4097 signature lists, expected 1 entry
+ok   A-D8 [fixed] Deleted container (LZMA) holding older copies
+ok   A-S4 [fixed] Erased pad file named like the target
+ok   A-D1c [fixed] Lowercase target GUID
+ok   A-R1 [fixed] Tripwire work on 2048 large-HeaderLength _FVH candidates (1 MiB): via discovery and via explicit root regions
+ok   B1-1 [ok] Phase-A path analogue: FV(ext) > FV-image file > LZMA > FV section > FV(ext) > target > LZMA > RAW
+ok   B1-2 [ok] Same path with erase polarity 0
+ok   B1-3 [note] Inner FV extended header with one EFI_FV_EXT_TYPE_USED_SIZE entry (ExtHeaderSize 0x1C, common in EDK2 builds)
+ok   B1-4 [ok] Data after the extended header inside the leading pad file
+ok   B1-5 [ok] ExtHeaderOffset not 4-byte aligned
+ok   B1-6 [ok] Pad file with data in a nested FV (outside the owner)
+ok   B2-1 [ok] Owner contains an FV image section with an unsupported (FFS3) volume
+ok   B2-2 [ok] Unsupported compression in an unrelated file (outside the owner)
+ok   B2-3 [note] Deleted container holding an UNCOMPRESSED older FV
+ok   B3-1 [ok] Single-field edits (13 kinds), re-canonicalised and renamed by digest
+FAIL B3-2 [defect] Edit the recorded root certificate (partition hints) only
+FAIL B3-3 [boundary] Coordinated edit of C3 observation AND verdict (true diff [0,2,3]) 
+ok   B3-4 [ok] Proposed cross-check (observed bytes 0..39 from C4/C5 vs C3) on genuine vs coordinated-edit receipts
+FAIL B3-5 [boundary] Coordinated edit of payload + owner RAW hashes to the six reference values
+FAIL B3-6 [defect] Delete negative evidence (all leaf/opaque rows) consistently, relabel assurance
+ok   B3-7 [ok] Proposed invariant (selected RAW locator present among leaves)
+FAIL B4-1 [defect] Identical payloads (lists identical, nothing changed)
+FAIL B4-2 [defect] Only year/month/day differ ([0,2,3]); lists identical
+FAIL B4-3 [defect] EFI_TIME.Pad1 = 1 in both versions (author plausibility hypothesis fails), everything else as expected
+ok   B4-4 [ok] Nanosecond byte also changed (diff [0,2..6,8], all inside EFI_TIME)
+ok   B4-5 [defect] Exit code when every component passes but the differential gate mismatches (pilot.main logic, line 157-158)
+ok   B4-6 [ok] Gate with a/b reference hashes swapped
+ok   B5-1 [note] MARKED_FOR_UPDATE without a DATA_VALID duplicate
+ok   B5-HEADER_INVALID [ok] Live target + duplicate in state HEADER_INVALID
+ok   B5-under construction [ok] Live target + duplicate in state under construction
+FAIL B6-1 [defect] An internal consistency check (verdicts.pair_components need()) fires during pilot.main()
+FAIL B7-1 [defect] Real-ROM style blocker: non-erased inter-file padding (raises Invalid inside fv())
+ok   B7-2 [defect] LZMA section with trailing bytes in one target
+ok   B7-3 [ok] Determinism: two evaluations of the same inputs
+ok   C-1 [ok] Legacy import CLI on original v1 claims + A75 receipt, then handoff
+ok   C-2 [ok] Generated legacy receipt digest equals the one reported in TEST_RESULTS.md
+ok   C-3 [ok] Upgrade legacy C3 to exact PASS using the recorded v1 observation
+36/46 expectations hold
+
+== 9. Real-ROM run: not executed — no folder connected to the session (connectedFolders: []), vendor download blocked by the session proxy. No receipts from real ROMs in this PR.

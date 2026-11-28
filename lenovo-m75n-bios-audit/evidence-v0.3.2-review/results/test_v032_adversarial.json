@@ -1,0 +1,266 @@
+[
+ {
+  "id": "P1-1",
+  "kind": "ok",
+  "title": "Unexpected exception during input (discovery)",
+  "expected": "aborted receipt stage input, sanitized code, exit 2",
+  "observed": "exit 2, exc None, run_error {'code': 'ValueError', 'stage': 'input'}, path leaked False",
+  "holds": true
+ },
+ {
+  "id": "P1-2",
+  "kind": "ok",
+  "title": "Oversize normal receipt",
+  "expected": "aborted at receipt_encoding, exit 2",
+  "observed": "exit 2, run_error {'code': 'receipt_size', 'stage': 'receipt_encoding'}",
+  "holds": true
+ },
+ {
+  "id": "P1-3",
+  "kind": "ok",
+  "title": "Invalid with a non-ASCII code",
+  "expected": "code replaced by the class name",
+  "observed": "run_error {'code': 'Invalid', 'stage': 'summary'}",
+  "holds": true
+ },
+ {
+  "id": "P1-4",
+  "kind": "note",
+  "title": "Non-Invalid exception inside the checker (implementation bug) during evaluate",
+  "expected": "whole run aborted: diagnostics and parser location of BOTH roles are dropped (only Invalid gets a location)",
+  "observed": "exit 2, run_error {'code': 'IndexError', 'stage': 'evaluate'}, diagnostics {}",
+  "holds": true
+ },
+ {
+  "id": "P1-5",
+  "kind": "ok",
+  "title": "Aborted run whose receipt directory is unwritable",
+  "expected": "exit 3 (receipt on stdout)",
+  "observed": "exit 3 exc None",
+  "holds": true
+ },
+ {
+  "id": "P1-6",
+  "kind": "note",
+  "title": "Profile mismatch before metadata initialisation",
+  "expected": "traceback, no receipt (documented limit)",
+  "observed": "uncaught Invalid(profile_mismatch)",
+  "holds": true
+ },
+ {
+  "id": "P1-7",
+  "kind": "ok",
+  "title": "Handoff on an aborted receipt",
+  "expected": "accepted, prints aborted + exit criterion not_met, no component results",
+  "observed": "exit 0; ['Pilot exit criterion (recorded, not independently replayed): not_met', \"Aborted execution: {'code': 'RuntimeError', 'stage': 'summary'}\"]",
+  "holds": true
+ },
+ {
+  "id": "P1-8",
+  "kind": "boundary",
+  "title": "A refuting receipt (lists changed) rewritten as an aborted run",
+  "expected": "accepted: a negative result can be hidden as an abort; only replay distinguishes",
+  "observed": "original P2-47_full conditional_refutation; rewritten handoff exit 0",
+  "holds": true
+ },
+ {
+  "id": "P2-1",
+  "kind": "ok",
+  "title": "Malformed section in an LZMA stream nested in another LZMA stream",
+  "expected": "location stream 2 with lineage 2 -> 1 -> 0",
+  "observed": "error section_padding stage section_padding stream 2 offset 846; parents [None, 0, 1]",
+  "holds": true
+ },
+ {
+  "id": "P2-2",
+  "kind": "ok",
+  "title": "Bad block map in an FV inside an LZMA FV-image section",
+  "expected": "stage fv_blockmap in stream 1 at the block-map entry",
+  "observed": "{'error': 'fv_blockmap', 'stage': 'fv_blockmap', 'stream': 1, 'offset': 68}",
+  "holds": true
+ },
+ {
+  "id": "P2-3",
+  "kind": "ok",
+  "title": "Tripwire checksum budget exhausted",
+  "expected": "located at the candidate (stage tripwire_fv)",
+  "observed": "{'error': 'tripwire_checksum_budget', 'stage': 'tripwire_fv', 'stream': 0, 'offset': 589864}",
+  "holds": true
+ },
+ {
+  "id": "P2-4",
+  "kind": "ok",
+  "title": "Handoff of a run with a located structural blocker",
+  "expected": "renders the blocker with stage/stream/offset; exit criterion not met",
+  "observed": "exit 0; ['a structural/input blocker: {\"error\": \"section_padding\", \"lineage\": [{\"kind\": \"artifact\", \"sha256\": \"7d73d99b0']; exit_criterion not_met",
+  "holds": true
+ },
+ {
+  "id": "P3-1",
+  "kind": "ok",
+  "title": "Identical payloads / subset: exact set refuted, historical bound holds",
+  "expected": "exact REF, bound cons, P2-47_full part (not refuted)",
+  "observed": "identical REF/cons/part; subset part",
+  "holds": true
+ },
+ {
+  "id": "P3-2",
+  "kind": "ok",
+  "title": "No change at all: change-occurrence clause reported separately",
+  "expected": "historical_diff_scope REF while P2-47_full part",
+  "observed": "scope REF",
+  "holds": true
+ },
+ {
+  "id": "P3-3",
+  "kind": "ok",
+  "title": "Bytes 1 or 8 changed (inside EFI_TIME, outside the historical 0,2-6 bound)",
+  "expected": "bound REF -> P2-47_full REF; timestamp_only_bytes cons",
+  "observed": "byte1 REF/cons; byte8 REF/cons",
+  "holds": true
+ },
+ {
+  "id": "P3-4",
+  "kind": "ok",
+  "title": "Stronger hypotheses fail (C5 wRevision both, C8 header size, EFI_TIME Pad1): weaker historical claim not refuted",
+  "expected": "P2-47_full part in all three",
+  "observed": "part/part/part; equal_structural REF; x509_counts(strong) REF vs historical cons",
+  "holds": true
+ },
+ {
+  "id": "P3-5",
+  "kind": "ok",
+  "title": "Historical facts themselves changed (dwLength 25, lists differ, header byte 20, length)",
+  "expected": "P2-47_full REF in all four",
+  "observed": "['REF', 'REF', 'REF', 'REF']",
+  "holds": true
+ },
+ {
+  "id": "P3-6",
+  "kind": "defect",
+  "title": "Two identical live copies in b (C1 FAIL) whose lists differ from a (C6 FAIL on a well-defined content class)",
+  "expected": "the C1-prerequisite override replaces a measured historical refutation by \"partial_not_established\"",
+  "observed": "equal_structural REF; byte_obs-level C6 FAIL hidden: P2-47_full part; exit 1",
+  "holds": true
+ },
+ {
+  "id": "P3-7",
+  "kind": "defect",
+  "title": "SB-001 absent from b; SB-002 and SB-003 lists changed (historical bound FAIL there)",
+  "expected": "the C1 override is global over all three targets: a refutation measured on SB-002/003 is reported as partial_not_established",
+  "observed": "per-target historical_diff_bound {'SB-001': 'BLOCKED', 'SB-002': 'FAIL', 'SB-003': 'FAIL'}; C1 ['BLOCKED', 'PASS', 'PASS']; P2-47_full partial_not_established; exit 2",
+  "holds": true
+ },
+ {
+  "id": "P4-1",
+  "kind": "ok",
+  "title": "Exit-code table",
+  "expected": "{\"all pass, gate match\": 0, \"all pass, gate mismatch\": 4, \"refuted, gate match\": 1, \"refuted, gate mismatch\": 4, \"one role blocked\": 2, \"one payload missing, others match\": 2, \"one missing, others mismatch\": 2, \"gate match, a component BLOCKED\": 2}",
+  "observed": "{\"all pass, gate match\": 0, \"all pass, gate mismatch\": 4, \"refuted, gate match\": 1, \"refuted, gate mismatch\": 4, \"one role blocked\": 2, \"one payload missing, others match\": 2, \"one missing, others mismatch\": 2, \"gate match, a component BLOCKED\": 2}",
+  "holds": true
+ },
+ {
+  "id": "P4-3",
+  "kind": "defect",
+  "title": "Only strengthened hypotheses refuted (exact C3, full C5, C8 header size, plausibility); historical P2-47 intact",
+  "expected": "exit 1 (\"checked refutation\") although P2-47_full is partial_not_established: the exit code does not separate strengthened from historical refutation",
+  "observed": "{\"identical\": [1, \"part\"], \"subset [0,2,3]\": [1, \"part\"], \"wRevision 0x100 both\": [1, \"part\"], \"SignatureHeaderSize 4\": [1, \"part\"], \"EFI_TIME Pad1=1 both\": [1, \"part\"]}",
+  "holds": true
+ },
+ {
+  "id": "P4-2",
+  "kind": "note",
+  "title": "Refutation together with a gate mismatch",
+  "expected": "exit 4 dominates 1: the refutation is visible only in the summary",
+  "observed": "4",
+  "holds": true
+ },
+ {
+  "id": "P6-1",
+  "kind": "ok",
+  "title": "Edits that v0.3.1 accepted or that P6 targets",
+  "expected": "all rejected (exit 2) with a named code",
+  "observed": "{\"C3 observed only\": \"2 HANDOFF_REJECTED diff_timestamp_consistency\", \"C3 observed + verdict\": \"2 HANDOFF_REJECTED diff_timestamp_consistency\", \"remove every leaf, relabel to grammar_complete/derived\": \"2 HANDOFF_REJECTED raw_leaf_membership\", \"certificate region size\": \"2 HANDOFF_REJECTED certificate_partition\", \"lineage parent forward\": \"2 HANDOFF_REJECTED lineage_range\"}",
+  "holds": true
+ },
+ {
+  "id": "P6-2",
+  "kind": "boundary",
+  "title": "Coordinated three-field edit: C3 observed + verdict + recorded EFI_TIME prefix of b",
+  "expected": "accepted (consistent fabrication)",
+  "observed": "before exact_diff_set conditional_refutation; handoff exit 0",
+  "holds": true
+ },
+ {
+  "id": "P6-3",
+  "kind": "boundary",
+  "title": "Payload + owner RAW digests set to the six reference values",
+  "expected": "accepted, exit_criterion met (a received gate is not evidence)",
+  "observed": "handoff exit 0; gate all_six_match; exit_criterion met; exit_code 0",
+  "holds": true
+ },
+ {
+  "id": "P6-4",
+  "kind": "boundary",
+  "title": "Delete non-root opaque rows (unsupported compression): except_opaque -> leaf_conditional",
+  "expected": "accepted: the P8 distinction can be erased by a consistent edit",
+  "observed": "before except_opaque; handoff exit 0",
+  "holds": true
+ },
+ {
+  "id": "P6-5",
+  "kind": "boundary",
+  "title": "Relabel an opaque root region as erased and drop its unparsed_root row",
+  "expected": "accepted: erased content is not verifiable without the ROM",
+  "observed": "before except_opaque; handoff exit 0",
+  "holds": true
+ },
+ {
+  "id": "P7-1",
+  "kind": "ok",
+  "title": "Two receipts of the same inputs",
+  "expected": "normalized_equal, independence not_attested, no assurance upgrade",
+  "observed": "exit 0; {'normalized_equal': True, 'independence': 'not_attested', 'assurance_upgrade': False}",
+  "holds": true
+ },
+ {
+  "id": "P7-2",
+  "kind": "defect",
+  "title": "The same receipt file compared with itself",
+  "expected": "exit 0 as a \"replay\"; only same_run_id=true hints at it; should be refused",
+  "observed": "exit 0; same_run_id True; receipt_sha256 equal True",
+  "holds": true
+ },
+ {
+  "id": "P7-3",
+  "kind": "note",
+  "title": "Same inputs, different (equally valid) root hints",
+  "expected": "verdicts and pair observations identical, but replay_compare reports a non-match (certificates/diagnostics/results) without a result-level view",
+  "observed": "verdicts+observations identical True; exit 1; different_fields ['certificates', 'diagnostics', 'results']",
+  "holds": true
+ },
+ {
+  "id": "P7-4",
+  "kind": "defect",
+  "title": "Output field naming",
+  "expected": "'coverage' holds exit_criterion values, not coverage",
+  "observed": "['not_met', 'not_met']",
+  "holds": true
+ },
+ {
+  "id": "P8-1",
+  "kind": "ok",
+  "title": "Coverage categories",
+  "expected": "{\"leaves only\": \"leaf_conditional\", \"unsupported compression elsewhere\": \"except_opaque\", \"unparsed root gap\": \"except_opaque\", \"pad data\": \"incomplete\"}",
+  "observed": "{\"leaves only\": \"leaf_conditional\", \"unsupported compression elsewhere\": \"except_opaque\", \"unparsed root gap\": \"except_opaque\", \"pad data\": \"incomplete\"}",
+  "holds": true
+ },
+ {
+  "id": "P8-2",
+  "kind": "note",
+  "title": "Proposition statuses for leaf_conditional vs except_opaque",
+  "expected": "identical tokens; the distinction lives only in per-role diagnostics (and is erasable, P6-4)",
+  "observed": "consistent_conditional / consistent_conditional",
+  "holds": true
+ }
+]
