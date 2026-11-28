@@ -41,6 +41,14 @@ def receipt(r):
         for row in rc['results']:
             if role in row['selection']:
                 row['selection'][role]['lineage'][0].update(sha256=sha,size=16777216)
+    # Synthetic test only: complete the recorded partition to the fake pinned artifact size.
+    for role,sha in pilot.ROMS.items():
+        q=rc['diagnostics'].get(role,{})
+        regions=copy.deepcopy(q.get('root_regions',[]))
+        length=sum(x['size'] for x in regions)
+        if length<16777216: regions.append({'offset':length,'size':16777216-length,'kind':'erased'})
+        if 'root_regions' in q: q['root_regions']=regions
+        rc['certificates'][role]={'artifact_sha256':sha,'regions':regions}
     rc['summary'] = pilot.summary(rc)
     return rc
 

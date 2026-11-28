@@ -30,7 +30,7 @@ def inspect_selection(s):
     need(all(o['state'] in ('data_valid','marked_for_update','deleted') for o in owners),'owner_state')
     counts={'data_valid':len(live),'deleted':sum(o['state']=='deleted' for o in owners),'marked_for_update':len(marked),'raw_per_live':[len(o['raw']) for o in live]}
     need(counts==s['counts'],'selection_counts')
-    coverage='incomplete' if s['issues'] else 'except_opaque' if s['opaque'] or s['uninterpreted_leaves'] else 'grammar_complete'
+    coverage='incomplete' if s['issues'] else 'except_opaque' if s['opaque'] else 'leaf_conditional' if s['uninterpreted_leaves'] else 'grammar_complete'
     need(s['coverage']==coverage,'selection_coverage')
     ready=not s['issues'] and not marked and bool(live) and all(len(o['raw'])==1 and not o['opaque'] for o in live)
     raws=[o['raw'][0] for o in live] if ready else []
@@ -80,6 +80,16 @@ def pair_components(obs,sizes,expected_size,expected_count,level):
     for i,x in enumerate(h):
         if sizes[i]<40: need(x is None,'header_bounds')
         else: need(type(x) is dict and set(x)=={'dwLength','wRevision','wCertificateType','CertType'} and all(count(x[k]) for k in ('dwLength','wRevision','wCertificateType')) and x['dwLength']<2**32 and x['wRevision']<2**16 and x['wCertificateType']<2**16 and str(uuid.UUID(x['CertType'])).upper()==x['CertType'],'header_fields')
+    # Redundant recorded bytes must agree with exact diff below offset 40.
+    if sizes[0]==sizes[1] and isinstance(d,list):
+        if all(x is not None for x in t):
+            expected=[i for i,(a,b) in enumerate(zip(bytes.fromhex(t[0]),bytes.fromhex(t[1]))) if a!=b]
+            need([i for i in d if i<16]==expected,'diff_timestamp_consistency')
+        if all(x is not None for x in h):
+            def encode_header(x):
+                return x['dwLength'].to_bytes(4,'little')+x['wRevision'].to_bytes(2,'little')+x['wCertificateType'].to_bytes(2,'little')+uuid.UUID(x['CertType']).bytes_le
+            expected=[16+i for i,(a,b) in enumerate(zip(encode_header(h[0]),encode_header(h[1]))) if a!=b]
+            need([i for i in d if 16<=i<40]==expected,'diff_header_consistency')
     add('C5',all(x=={'dwLength':24,'wRevision':0x200,'wCertificateType':0xef1,'CertType':PKCS7_ID} for x in h),h)
     tail=obs['C6']; need(type(tail) is dict and set(tail)=={'suffix_sha256','lengths','equal'} and tail['lengths']==[max(0,n-40) for n in sizes] and len(tail['suffix_sha256'])==2 and all(hash_id(x) for x in tail['suffix_sha256']) and type(tail['equal']) is bool,'suffix_observation')
     equal=min(sizes)>=40 and tail['lengths'][0]==tail['lengths'][1] and tail['suffix_sha256'][0]==tail['suffix_sha256'][1]

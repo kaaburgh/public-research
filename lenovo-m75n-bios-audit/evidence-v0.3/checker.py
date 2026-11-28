@@ -1,4 +1,4 @@
-"""v0.3.1 restricted PI derivation checker. No firmware execution. Python 3.10+ stdlib."""
+"""v0.3.2 restricted PI derivation checker. No firmware execution. Python 3.10+ stdlib."""
 import hashlib, json, lzma, struct, uuid
 
 FFS2 = uuid.UUID('8c8ce578-8a3d-4f1c-9935-896185c32dd3').bytes_le
@@ -9,7 +9,11 @@ MAX_BYTES = 64 * 1024**2
 MAX_NODES = 100000
 MAX_DEPTH = 16
 
-class Invalid(ValueError): pass
+class Invalid(ValueError):
+    """Stable code; optional parser coordinates, never host paths."""
+    location=None
+    def diagnostic(self):
+        return {'error':str(self),**(self.location or {})}
 
 def need(ok, code):
     if not ok: raise Invalid(code)
@@ -64,7 +68,9 @@ class Checker:
     def __init__(self, rom, targets):
         need(len(rom)<=MAX_BYTES, 'rom_limit')
         self.rom=rom; self.targets={str(uuid.UUID(g)).upper() for g in targets}; self.owners={g:[] for g in self.targets}
-        self.streams=[rom]; self.lineage=[{"stream":0,"kind":"artifact","sha256":digest(rom),"size":len(rom)}]; self.tracked_fv=set(); self.tracked_ffs=set(); self.opaque=[]; self.issues=[]; self.leaves=[]; self.deleted_leaves=[]; self.pad_count=0; self.nodes=0; self.scan_candidates=0; self.scan_work=0; self.expanded=len(rom)
+        self.streams=[rom]; self.lineage=[{"stream":0,"kind":"artifact","sha256":digest(rom),"size":len(rom)}]; self.tracked_fv=set(); self.tracked_ffs=set(); self.opaque=[]; self.issues=[]; self.leaves=[]; self.deleted_leaves=[]; self.pad_count=0; self.nodes=0; self.scan_candidates=0; self.scan_work=0; self.expanded=len(rom); self.position={'stage':'root','stream':0,'offset':0}
+    def at(self,stage,s,o):
+        self.position={'stage':stage,'stream':s,'offset':o}
     def tick(self, depth):
         self.nodes+=1; need(self.nodes<=MAX_NODES and depth<=MAX_DEPTH,'resource_limit')
     def unknown(self,s,o,n,code,owner=None):
@@ -75,12 +81,12 @@ class Checker:
         need(len(self.leaves)+len(self.deleted_leaves)<MAX_NODES,'leaf_limit')
         (self.deleted_leaves if deleted else self.leaves).append({'stream':s,'offset':o,'size':n,'kind':kind})
     def coverage(self):
-        return 'incomplete' if self.issues else 'except_opaque' if self.opaque or self.leaves else 'grammar_complete'
+        return 'incomplete' if self.issues else 'except_opaque' if self.opaque else 'leaf_conditional' if self.leaves else 'grammar_complete'
     def issue(self,s,o,code):
         need(len(self.opaque)+len(self.issues)<MAX_NODES,"diagnostics_limit")
         self.issues.append({'stream':s,'offset':o,'reason':code})
     def fv(self,s,off,n,depth):
-        self.tick(depth); b=self.streams[s]; self.tracked_fv.add((s,off))
+        self.at('fv_header',s,off); self.tick(depth); b=self.streams[s]; self.tracked_fv.add((s,off))
         need(n>=72 and off+n<=len(b) and b[off+40:off+44]==b'_FVH','fv_header')
         f=b[off:off+n]; hl=u(f,48,2)
         need(u(f,32,8)==n and 72<=hl<=n and hl%2==0 and sum(u(f,i,2) for i in range(0,hl,2))%65536==0,'fv_length_checksum')
@@ -88,7 +94,7 @@ class Checker:
             self.unknown(s,off,n,'unsupported_fv'); return
         total=0; end=False
         for p in range(56,hl-7,8):
-            count,bs=u(f,p,4),u(f,p+4,4)
+            self.at('fv_blockmap',s,off+p); count,bs=u(f,p,4),u(f,p+4,4)
             if count==bs==0: end=True; break
             need(count>0 and bs>0,'fv_blockmap'); total+=count*bs
         need(end and total==n,'fv_blockmap')
@@ -96,16 +102,18 @@ class Checker:
         pol=bool(u(f,44,4)&0x800); erase=255 if pol else 0; pos=hl
         ext=u(f,52,2); ext_end=0; ext_seen=False; fv_name=None
         if ext:
+            self.at('fv_ext_pointer',s,off+52)
             need(ext%4==0 and align(hl,8)+24<=ext<=n-20,'fv_ext_bounds')
-            ext_size=u(f,ext+16,4); need(20<=ext_size<=n-ext,'fv_ext_size')
+            self.at('fv_ext_size',s,off+ext+16); ext_size=u(f,ext+16,4); need(20<=ext_size<=n-ext,'fv_ext_size')
             if ext_size!=20:
                 self.unknown(s,off,n,'unsupported_fv_ext_entries'); return
             ext_end=ext+ext_size; fv_name=guid(f[ext:ext+16])
         while pos<n:
-            self.tick(depth); a=align(pos,8)
+            self.at('ffs_padding',s,off+pos); self.tick(depth); a=align(pos,8)
             if a>n: a=n
             need(all(x==erase for x in f[pos:a]),'ffs_padding'); pos=a
             if pos==n or (all(x==erase for x in f[pos:pos+24]) and all(x==erase for x in f[pos:])): break
+            self.at('ffs_header',s,off+pos)
             try: g,t,z,state=header(f,pos,pol)
             except Invalid as e:
                 self.issue(s,off+pos,str(e)); self.unknown(s,off+pos,n-pos,'unparsed_ffs_tail'); return
@@ -131,14 +139,15 @@ class Checker:
                 elif t==1: self.leaf(s,off+body_start,z-24,'raw_ffs_body')
                 else: self.unknown(s,off+body_start,z-24,'unsupported_ffs_type',owner)
             pos+=z
+        self.at('fv_ext_completion',s,off)
         if ext: need(ext_seen,'fv_ext_missing_pad')
     def sections(self,s,off,n,owner,depth):
-        self.tick(depth); b=self.streams[s]; pos=0
+        self.at('sections',s,off); self.tick(depth); b=self.streams[s]; pos=0
         while pos<n:
-            self.tick(depth); a=align(pos,4)
+            self.at('section_padding',s,off+pos); self.tick(depth); a=align(pos,4)
             need(a<=n and all(x==0 for x in b[off+pos:off+a]),'section_padding'); pos=a
             if pos==n: break
-            o=off+pos; need(n-pos>=4,'section_header'); z=u(b,o,3); t=b[o+3]
+            o=off+pos; self.at('section_header',s,o); need(n-pos>=4,'section_header'); z=u(b,o,3); t=b[o+3]
             if z==0xffffff:
                 self.unknown(s,o,n-pos,'extended_section_unsupported',owner); return
             need(4<=z<=n-pos,'section_size'); body=b[o+4:o+z]
@@ -149,10 +158,10 @@ class Checker:
                 before=len(self.opaque); self.fv(s,o+4,len(body),depth+1)
                 if owner is not None: owner['opaque'].extend(self.opaque[before:])
             elif t==2:
-                need(len(body)>=20,'guided_header'); start=u(body,16,2)
+                self.at('guided_header',s,o); need(len(body)>=20,'guided_header'); start=u(body,16,2)
                 need(24<=start<=z,'guided_offset')
                 if body[:16]==LZMA:
-                    remaining=MAX_BYTES-self.expanded
+                    self.at('lzma_input',s,o+start); remaining=MAX_BYTES-self.expanded
                     need(remaining>0,'expansion_budget')
                     try:
                         dec=lzma.LZMADecompressor(format=lzma.FORMAT_ALONE,memlimit=MAX_BYTES)
@@ -164,7 +173,7 @@ class Checker:
                     self.sections(k,0,len(data),owner,depth+1)
                 else: self.unknown(s,o,z,'unsupported_guided_section',owner)
             elif t==1:
-                need(len(body)>=5,'compression_header')
+                self.at('compression_header',s,o); need(len(body)>=5,'compression_header')
                 if body[4]==0:
                     need(u(body,0,4)==len(body)-5,'compression_size'); self.sections(s,o+9,len(body)-5,owner,depth+1)
                 else: self.unknown(s,o,z,'unsupported_compression',owner)
@@ -176,7 +185,7 @@ class Checker:
         for s,b in enumerate(self.streams):
             start=0
             while (j:=b.find(b'_FVH',start))>=0:
-                self.scan_candidates+=1; need(self.scan_candidates<=MAX_NODES,'tripwire_limit')
+                self.at('tripwire_fv',s,j); self.scan_candidates+=1; need(self.scan_candidates<=MAX_NODES,'tripwire_limit')
                 start=j+1; o=j-40
                 if o>=0 and (s,o) not in self.tracked_fv and o+56<=len(b):
                     length=u(b,o+32,8); hl=u(b,o+48,2)
@@ -186,17 +195,24 @@ class Checker:
             for g in sorted(self.targets):
                 pat=uuid.UUID(g).bytes_le; start=0
                 while (j:=b.find(pat,start))>=0:
-                    self.scan_candidates+=1; need(self.scan_candidates<=MAX_NODES,'tripwire_limit')
+                    self.at('tripwire_ffs',s,j); self.scan_candidates+=1; need(self.scan_candidates<=MAX_NODES,'tripwire_limit')
                     start=j+1
                     if (s,j) in self.tracked_ffs or j+24>len(b): continue
                     h=b[j:j+24]; z=u(h,20,3)
                     if (24<=z<=len(b)-j or h[19]&1):
                         if (sum(h)-h[17]-h[23])%256==0: self.issue(s,j,'untracked_ffs_candidate')
                         elif 1<=h[18]<=15 and any((h[23]^p)&0x3f in (3,7,15,23,31,32,63) for p in (0,255)): self.issue(s,j,'unresolved_ffs_candidate')
-    def run(self, regions):
+    def run(self,regions):
+        try: return self._run(regions)
+        except Invalid as e:
+            e.location={**self.position,'lineage':self.lineage.copy()}
+            raise
+    def _run(self, regions):
+        self.at('root_partition',0,0)
         need(type(regions) is list and len(regions)<=MAX_NODES,'regions')
         pos=0
         for r in regions:
+            self.at('root_partition',0,pos)
             need(type(r) is dict and set(r)=={'offset','size','kind'},'region_fields')
             o,n,k=r['offset'],r['size'],r['kind']; need(type(o) is int and type(n) is int and o==pos and 0<n<=len(self.rom)-o,'region_partition')
             if k=='fv': self.fv(0,o,n,0)
@@ -204,6 +220,7 @@ class Checker:
             elif k=='erased': need(all(x==255 for x in self.rom[o:o+n]) or all(x==0 for x in self.rom[o:o+n]),'not_erased')
             else: raise Invalid('region_kind')
             pos+=n
+        self.at('root_partition',0,pos)
         need(pos==len(self.rom),'region_partition'); self.scan(); return self
     def select(self,g):
         g=str(uuid.UUID(g)).upper(); owners=self.owners[g]; live=[o for o in owners if o['state']=='data_valid']; marked=[o for o in owners if o['state']=='marked_for_update']
