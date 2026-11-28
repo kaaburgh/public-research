@@ -66,7 +66,10 @@ class ReviewDefects(unittest.TestCase):
         self.assertEqual(s['timestamp_only_semantic_conclusion'],'conditional_refutation')
     def test_timestamp_subset_does_not_refute_semantics(self):
         r=pair(rom(False),rom(False)); s=pilot.summary(r)
-        self.assertEqual(s['P2-47_full'],'conditional_refutation')
+        self.assertEqual(s['P2-47_full'],'partial_not_established')
+        self.assertEqual(s['exact_diff_set'],'conditional_refutation')
+        self.assertEqual(s['historical_diff_scope'],'conditional_refutation')
+        self.assertEqual(s['historical_diff_bound'],'consistent_conditional')
         self.assertEqual(s['timestamp_only_semantic_conclusion'],'partial_not_established')
     def test_differential_six(self):
         r=pair(rom(False),rom(True))

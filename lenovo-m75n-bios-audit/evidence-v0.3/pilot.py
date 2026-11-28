@@ -63,12 +63,12 @@ def evaluate(roms,certs,targets=TARGETS):
     selected={}; diagnostics={}
     for role in ('a','b'):
         if role not in roms: diagnostics[role]={'error':'rom_missing'}; continue
+        if role not in certs: diagnostics[role]={'error':'certificate_missing'}; continue
         try:
             c=Checker(roms[role],[x[0] for x in targets.values()]).run(certs[role])
             selected[role]={id:c.select(x[0]) for id,x in targets.items()}
             diagnostics[role]={'coverage':c.coverage(),'issues':c.issues,'opaque':c.opaque,'uninterpreted_leaves':c.leaves,'deleted_uninterpreted':c.deleted_leaves,'pad_count':c.pad_count,'lineage':c.lineage,'root_regions':certs[role]}
         except Invalid as e: diagnostics[role]=e.diagnostic()
-        except KeyError: diagnostics[role]={'error':'certificate_missing'}
     results=[]
     for id,(g,size,count) in targets.items():
         rows={r:selected[r][id] for r in selected}; assurance={r:v[1] for r,v in rows.items()}
@@ -131,7 +131,7 @@ def summary(r):
     if state(rows,['C1']) not in ('consistent_conditional','derived_within_supported_grammar'):
         full='partial_not_established' if any(c['verdict'] in ('PASS','FAIL') for row in rows for c in row['components'] if c['id'] not in ('C1','multiplicity')) else 'not_evaluated'
     gate=differential(r)
-    complete=bool(rows) and not r.get('input_errors') and not any(c['verdict']=='BLOCKED' for row in rows for c in row['components'])
+    complete={row['id'] for row in rows}==set(TARGETS) and len(rows)==len(TARGETS) and not r.get('input_errors') and not any(c['verdict']=='BLOCKED' for row in rows for c in row['components'])
     return {**props,'exact_diff_set':state(rows,['C3']),'historical_diff_scope':state(hist,['historical_diff_scope']),
         'historical_diff_bound':state(hist,['historical_diff_bound']),'historical_dwLength':state(hist,['historical_dwLength']),
         'historical_x509_count':state(hist,['historical_x509_count']),'timestamp_only_bytes':state(hist,['timestamp_only_bytes']),
@@ -176,24 +176,26 @@ def main(argv=None):
     profile()
     r={'profile_sha256':digest(PROFILE_PATH.read_bytes()),'version':VERSION,'run_id':str(uuid.uuid4()),'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'runtime':sys.version.split()[0],'tool_sha256':{name:digest(pathlib.Path(__file__).with_name(name).read_bytes()) for name in ('pilot.py','checker.py','verdicts.py','discovery.py')},'artifacts':{},'certificates':{},'diagnostics':{},'results':[]}
     roms={}; certs={}; errors={}
-    for role in ('a','b'):
-        try:
-            b=read_bounded(getattr(args,'rom_'+role),MAX_BYTES); actual=digest(b); r['artifacts'][role]={'sha256':actual,'size':len(b),'expected_sha256':ROMS[role]}
-            need(actual==ROMS[role] and len(b)==16777216,'rom_identity'); roms[role]=b
-            path=getattr(args,'certificate_'+role)
-            cert=read_canonical(read_bounded(path,8*1024**2)) if path else {'artifact_sha256':actual,'regions':propose(b)}
-            need(type(cert) is dict and set(cert)=={'artifact_sha256','regions'} and cert['artifact_sha256']==actual,'certificate_binding')
-            r['certificates'][role]=cert; certs[role]=cert['regions']
-        except (OSError,Invalid) as e: errors[role]=str(e) if isinstance(e,Invalid) else 'input_io'; roms.pop(role,None)
-    r['input_errors']=errors
-    stage='evaluate'
+    stage='input'
     try:
+        for role in ('a','b'):
+            try:
+                b=read_bounded(getattr(args,'rom_'+role),MAX_BYTES); actual=digest(b); r['artifacts'][role]={'sha256':actual,'size':len(b),'expected_sha256':ROMS[role]}
+                need(actual==ROMS[role] and len(b)==16777216,'rom_identity'); roms[role]=b
+                path=getattr(args,'certificate_'+role)
+                cert=read_canonical(read_bounded(path,8*1024**2)) if path else {'artifact_sha256':actual,'regions':propose(b)}
+                need(type(cert) is dict and set(cert)=={'artifact_sha256','regions'} and cert['artifact_sha256']==actual,'certificate_binding')
+                r['certificates'][role]=cert; certs[role]=cert['regions']
+            except (OSError,Invalid) as e: errors[role]=str(e) if isinstance(e,Invalid) else 'input_io'; roms.pop(role,None)
+        r['input_errors']=errors
+        stage='evaluate'
         r.update(evaluate(roms,certs))
         stage='summary'; r['summary']=summary(r)
         stage='receipt_encoding'; need(len(canonical(r))<=8*1024**2,'receipt_size')
     except Exception as e:
         # Preserve an attempt, never a fabricated set of measured results. No arbitrary exception strings or private paths.
         code=str(e) if isinstance(e,Invalid) and str(e).isascii() and str(e).replace('_','').isalnum() else type(e).__name__
+        r['input_errors']=errors
         r['run_error']={'stage':stage,'code':code}
         r['results']=[]; r['diagnostics']={}
         r['certificate_sha256']={role:digest(canonical(c)) for role,c in r['certificates'].items()}

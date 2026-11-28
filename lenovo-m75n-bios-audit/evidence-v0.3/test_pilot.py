@@ -78,7 +78,7 @@ class Tests(unittest.TestCase):
     def test_multiplicity_and_summary(self):
         a=fv(target());b=fv(target())+fv(target());r=evaluate({'a':a,'b':b},{'a':propose(a),'b':propose(b)},{'X':(G,len(payload()),1)});c=comps(r['results'][0]['components']);self.assertEqual(c['C1'],'FAIL');self.assertEqual(c['multiplicity'],'FAIL');self.assertEqual(c['C6'],'PASS');self.assertEqual(summary(r)['equal_structural_signature_lists'],'conditional_refutation')
     def test_conditional_summary(self):
-        a=fv(target())+b'opaque';b=fv(target())+b'opaque2';r=evaluate({'a':a,'b':b},{'a':propose(a),'b':propose(b)},{'X':(G,len(payload()),1)});self.assertEqual(summary(r)['equal_structural_signature_lists'],'consistent_conditional');self.assertEqual(summary(r)['P2-47_full'],'conditional_refutation')
+        a=fv(target())+b'opaque';b=fv(target())+b'opaque2';r=evaluate({'a':a,'b':b},{'a':propose(a),'b':propose(b)},{'X':(G,len(payload()),1)});self.assertEqual(summary(r)['equal_structural_signature_lists'],'consistent_conditional');self.assertEqual(summary(r)['P2-47_full'],'partial_not_established')
     def test_missing_role(self):
         a=fv(target());r=evaluate({'a':a},{'a':propose(a)},{'X':(G,len(payload()),1)});self.assertEqual(comps(r['results'][0]['components'])['C2'],'BLOCKED');self.assertEqual(r['diagnostics']['b']['error'],'rom_missing')
 
