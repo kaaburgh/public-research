@@ -1,0 +1,181 @@
+# Outputs captured 2026-11-28T08:29:50Z; Python 3.13.18; PR #4 @3c3c555c
+
+$ (cd evidence-v0.3 && python3 -m unittest -v test_pilot)
+----------------------------------------------------------------------
+Ran 24 tests in 0.014s
+
+OK
+
+$ python3 test_v03_adversarial.py <v0.3> <v1> <935daa0>
+ok   B01 [ok] Independent builder: three targets, exact P2-47 sizes and layout, 1.32-like vs 1.33-like time fields
+      expected: all measured components PASS; equal_structural_signature_lists = derived_within_supported_grammar
+      observed: coverage {'a': 'grammar_complete', 'b': 'grammar_complete'}; C1..C8 ['PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS']; summary derived_within_supported_grammar
+ok   B02 [ok] handoff renders the baseline receipt
+      expected: exit 0
+      observed: exit 0 
+ok   K1a [ok] Erased flash with a certificate claiming an FV (v0.2 N03 analogue)
+      expected: rejected
+      observed: Invalid(fv_header)
+ok   K1b [ok] Certificate region with an extra "payload" field (v0.2 N04 analogue)
+      expected: rejected: certificate cannot carry payloads
+      observed: Invalid(region_fields)
+ok   D1 [defect] Same zlib-compressed differing copy: inside a pad file vs in an unparsed root gap
+      expected: pad file data violates PI ("must not have any data written into the data space"); v0.3 reports it as grammar_complete and gives the STRONGEST status, while the root-gap case is conditional
+      observed: pad: coverage {'a': 'grammar_complete', 'b': 'grammar_complete'}, status derived_within_supported_grammar; gap: coverage {'a': 'except_opaque', 'b': 'except_opaque'}, status consistent_conditional
+ok   D1c [note] Checker target given as lowercase GUID string
+      expected: no normalisation: owners never match, selection silently unresolved (safe direction, but a profile typo yields BLOCKED with no diagnostic)
+      observed: owners 0, issues []
+ok   D1b [defect] Same blob in an FFS RAW file (type 0x01) body
+      expected: uninterpreted leaf bytes are not listed anywhere; status derived_within_supported_grammar
+      observed: coverage {'a': 'grammar_complete', 'b': 'grammar_complete'}, status derived_within_supported_grammar
+ok   D2 [defect] Owner has RAW #1 plus a CRC32 GUID-defined section (PROCESSING_REQUIRED=0) holding a plaintext RAW #2
+      expected: C1 "exactly one RAW in each owner" should be BLOCKED (opaque inside selector scope); v0.3 gives C1 PASS [conditional_coverage]
+      observed: C1 PASS [conditional_coverage], opaque reasons ['unsupported_guided_section', 'unsupported_guided_section'], status consistent_conditional
+ok   D3a [defect] Standard FV with ExtHeaderOffset -> ext header in leading pad file (as in FVs named 4F1C52D3.../5C60F367... in the v1 A75 paths)
+      expected: whole FV opaque (unsupported_fv); targets not found; predicts BLOCKED on the real ROMs
+      observed: opaque ['unsupported_fv'], C1 BLOCKED
+ok   D3b [defect] Multiplicity when nothing was found in either ROM
+      expected: vacuous 0 == 0 reported as PASS while C1 is BLOCKED
+      observed: multiplicity PASS [conditional_coverage], counts {'data_valid': 0, 'deleted': 0, 'marked_for_update': 0, 'raw_per_live': []}
+ok   D3c [defect] Generated handoff for that run
+      expected: shows "multiplicity: PASS" next to C1 BLOCKED
+      observed: exit 0; line: multiplicity: PASS [conditional_coverage]
+ok   D4 [defect] Equivalence class (two identical live copies in b): edit C1 and multiplicity FAIL->PASS, recompute summary, rename by hash
+      expected: handoff should reject (counts in the same receipt show data_valid=2); it accepts and prints the promoted status
+      observed: before refuted_within_supported_grammar; after: exit 0, derived_within_supported_grammar; counts b {'data_valid': 2, 'deleted': 0, 'marked_for_update': 0, 'raw_per_live': [1, 1]}
+ok   D5 [defect] Certificate lists differ (C6/C3 FAIL); flip verdicts to PASS, keep observed suffix hashes
+      expected: handoff does not recompute verdicts from observed values; accepts
+      observed: exit 0; C6 observed suffix hashes equal: False; summary derived_within_supported_grammar
+ok   D6 [defect] Run that refutes C3/C6 (lists and diff set changed)
+      expected: P2-47_full and timestamp_only stay constant ("partial_not_established"/"unverified") instead of refuted
+      observed: equal_structural refuted_within_supported_grammar; byte_observations refuted_within_supported_grammar; P2-47_full partial_not_established; timestamp_only unverified
+ok   D7 [defect] Verified payload with 4097 signature lists; expected 1 entry
+      expected: C8 is definitely false; v0.3 reports C7/C8 BLOCKED (v0.2 finding B4 reappears)
+      observed: C7 BLOCKED, C8 BLOCKED
+ok   D8 [defect] Deleted FV-image file holding older target copies (LZMA)
+      expected: selection correct (deleted is not live), but the deleted body is neither interpreted nor listed: deleted-copy inventory says 0, coverage grammar_complete
+      observed: counts {'data_valid': 1, 'deleted': 0, 'marked_for_update': 0, 'raw_per_live': [1]}; coverage {'a': 'grammar_complete', 'b': 'grammar_complete'}; opaque []
+ok   S1 [ok] FFS_ATTRIB_CHECKSUM: correct and corrupted file data checksum (branch not exercised by test_pilot.py)
+      expected: correct -> selected; corrupted -> issue, not selected
+      observed: good unique; bad selection_unresolved, issues ['ffs_data_checksum', 'untracked_ffs_candidate']
+ok   S2-0x23 [ok] Live target + duplicate in state HEADER_INVALID
+      expected: blocks uniqueness (PI: such a file is skipped; v0.3 is stricter)
+      observed: selection_unresolved, issues ['ffs_state', 'untracked_ffs_candidate']
+ok   S2-0x3 [ok] Live target + duplicate in state under construction (HEADER_VALID only)
+      expected: blocks uniqueness (PI: such a file is skipped; v0.3 is stricter)
+      observed: selection_unresolved, issues ['ffs_state', 'untracked_ffs_candidate']
+ok   S3 [note] MARKED_FOR_UPDATE file with NO duplicate
+      expected: PI 1.8 Vol.3 2.2.6 EarlyFfsUpdateCheck: the marked file is the valid one; v0.3 blocks (conservative deviation)
+      observed: selection_unresolved, counts {'data_valid': 0, 'deleted': 0, 'marked_for_update': 1, 'raw_per_live': []}
+ok   S4 [defect] Pad file (type 0xF0, erased body) whose Name equals the target GUID, otherwise valid images
+      expected: PI: pad-file names are not identities ("No checks for duplicate files should be performed on pad files"); v0.3 counts it as a second DATA_VALID owner -> C1 FAIL, proposition refuted (false refutation)
+      observed: C1 FAIL [derived_in_supported_grammar], counts {'data_valid': 2, 'deleted': 0, 'marked_for_update': 0, 'raw_per_live': [1, 0]}, status refuted_within_supported_grammar
+ok   S5 [ok] Plaintext FFS3 large-file header with target GUID in an unparsed root gap
+      expected: tripwire flags it, selection blocked
+      observed: issues ['unresolved_ffs_candidate']
+ok   R1 [note] Tripwire on _FVH candidates with HeaderLength 0xFFFE (64 candidates in 128 KiB)
+      expected: scan() is outside MAX_NODES; cost grows with candidates x HeaderLength
+      observed: 0.41s, 6.5 ms/candidate; a 16 MiB image with a candidate every 4 bytes ~ 8 h
+ok   L1 [ok] Re-run legacy import on the original git objects (4095d9c claims.json, 935daa0 receipt)
+      expected: byte-identical to the committed historical receipt
+      observed: 1983499b83c4049b85ef7a0295b1748e32e77129d89d21117ffb3bb1ffedf25d exists: True, identical: True
+ok   L2 [defect] Legacy summary is authored, not computed
+      expected: generic state() over the same legacy components gives a weaker byte_observations status than the stored token
+      observed: stored consistent_conditional_subset_only; computed unverified
+ok   L3 [note] v1 receipt already records the exact observed diff list
+      expected: C3 could be evaluated (adapter_asserted) on the recorded observation like C2/C6 are; importer keeps it OPEN — inconsistent use of recorded observations
+      observed: observed [0, 2, 3, 4, 5, 6]; C3 in import: OPEN
+ok   L4 [defect] Legacy-import receipt with altered selected_paths (lineage) re-hashed
+      expected: handoff checks legacy hashes and verdict pattern but not the imported observations/paths against the pinned v1 receipt; accepted
+      observed: exit 0
+
+27/27 expectations hold
+
+$ V03_DIR=... V1_DIR=... IR_DIR=... python3 -m unittest -v test_v03_regression
+test_c3_is_exact_not_subset (test_v03_regression.Components.test_c3_is_exact_not_subset) ... ok
+test_c4_plausibility_rejects_invalid_month (test_v03_regression.Components.test_c4_plausibility_rejects_invalid_month) ... ok
+test_c5_checks_certificate_type (test_v03_regression.Components.test_c5_checks_certificate_type) ... ok
+test_c6_starts_at_40 (test_v03_regression.Components.test_c6_starts_at_40) ... ok
+test_c7_rejects_empty_list (test_v03_regression.Components.test_c7_rejects_empty_list) ... ok
+test_c8_entry_count (test_v03_regression.Components.test_c8_entry_count) ... ok
+test_c8_signature_header_size (test_v03_regression.Components.test_c8_signature_header_size) ... ok
+test_conditional_refutation (test_v03_regression.Components.test_conditional_refutation) ... ok
+test_data_valid_without_header_bits (test_v03_regression.FFSIntegrity.test_data_valid_without_header_bits) ... ok
+test_deleted_container_is_not_traversed (test_v03_regression.FFSIntegrity.test_deleted_container_is_not_traversed) ... ok
+test_fixed_checksum_must_be_0xAA (test_v03_regression.FFSIntegrity.test_fixed_checksum_must_be_0xAA) ... ok
+test_reserved_state_bits (test_v03_regression.FFSIntegrity.test_reserved_state_bits) ... ok
+test_blockmap_must_cover_fv (test_v03_regression.FVAndSectionGrammar.test_blockmap_must_cover_fv) ... ok
+test_extended_size_section_reported (test_v03_regression.FVAndSectionGrammar.test_extended_size_section_reported) ... ok
+test_header_tail_after_blockmap (test_v03_regression.FVAndSectionGrammar.test_header_tail_after_blockmap) ... ok
+test_inter_file_padding_must_be_erased (test_v03_regression.FVAndSectionGrammar.test_inter_file_padding_must_be_erased) ... ok
+test_inter_section_padding_must_be_zero (test_v03_regression.FVAndSectionGrammar.test_inter_section_padding_must_be_zero) ... ok
+test_lzma_trailing_bytes_rejected (test_v03_regression.FVAndSectionGrammar.test_lzma_trailing_bytes_rejected) ... ok
+test_oem_file_type_reported (test_v03_regression.FVAndSectionGrammar.test_oem_file_type_reported) ... ok
+test_partition_must_be_contiguous_not_just_total (test_v03_regression.FVAndSectionGrammar.test_partition_must_be_contiguous_not_just_total) ... ok
+test_root_fv_size_must_equal_fvlength (test_v03_regression.FVAndSectionGrammar.test_root_fv_size_must_equal_fvlength) ... ok
+test_tripwire_scans_decompressed_streams (test_v03_regression.FVAndSectionGrammar.test_tripwire_scans_decompressed_streams) ... ok
+test_unknown_section_type_reported (test_v03_regression.FVAndSectionGrammar.test_unknown_section_type_reported) ... ok
+test_baseline_accepted (test_v03_regression.Handoff.test_baseline_accepted) ... ok
+test_legacy_upgrade_rejected (test_v03_regression.Handoff.test_legacy_upgrade_rejected) ... ok
+test_result_without_payload_rejected (test_v03_regression.Handoff.test_result_without_payload_rejected) ... ok
+test_semantic_overclaim_rejected (test_v03_regression.Handoff.test_semantic_overclaim_rejected) ... ok
+test_summary_mismatch_rejected (test_v03_regression.Handoff.test_summary_mismatch_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 0.201s
+
+OK
+
+$ python3 mutation_v03.py <v0.3> <v1> <935daa0>
+c01  author:killed    adversarial:SURVIVED  regression:SURVIVED  FFS header checksum not verified
+c02  author:SURVIVED  adversarial:killed    regression:SURVIVED  FFS_ATTRIB_CHECKSUM data checksum not verified
+c03  author:SURVIVED  adversarial:SURVIVED  regression:killed    fixed 0xAA file checksum not verified
+c04  author:SURVIVED  adversarial:SURVIVED  regression:SURVIVED  reserved State bits not checked
+c05  author:SURVIVED  adversarial:SURVIVED  regression:killed    lower State bits not required
+c06  author:killed    adversarial:SURVIVED  regression:SURVIVED  MARKED_FOR_UPDATE no longer blocks
+c07  author:killed    adversarial:SURVIVED  regression:SURVIVED  deleted owners counted as live
+c08  author:killed    adversarial:killed    regression:killed    tripwire issues ignored by selection
+c09  author:killed    adversarial:SURVIVED  regression:killed    untracked valid FFS candidates ignored
+c10  author:SURVIVED  adversarial:killed    regression:SURVIVED  plausible invalid FFS candidates ignored
+c11  author:killed    adversarial:SURVIVED  regression:SURVIVED  untracked FV ignored
+c12  author:SURVIVED  adversarial:SURVIVED  regression:killed    tripwire skips decompressed streams
+c13  author:killed    adversarial:SURVIVED  regression:SURVIVED  owner lost through LZMA
+c14  author:SURVIVED  adversarial:killed    regression:SURVIVED  unsupported GUID-defined section silently skipped
+c15  author:killed    adversarial:SURVIVED  regression:SURVIVED  unsupported compression silently skipped
+c16  author:SURVIVED  adversarial:SURVIVED  regression:killed    unknown section type silently skipped
+c17  author:SURVIVED  adversarial:SURVIVED  regression:killed    root partition contiguity not enforced
+c18  author:killed    adversarial:SURVIVED  regression:SURVIVED  erased regions not verified
+c19  author:SURVIVED  adversarial:SURVIVED  regression:killed    LZMA trailing data / truncation accepted
+c20  author:SURVIVED  adversarial:SURVIVED  regression:killed    FV header tail not checked
+c21  author:SURVIVED  adversarial:SURVIVED  regression:killed    block map not checked
+c22  author:SURVIVED  adversarial:SURVIVED  regression:killed    inter-file padding not checked
+c23  author:SURVIVED  adversarial:SURVIVED  regression:killed    inter-section padding not checked
+c24  author:SURVIVED  adversarial:SURVIVED  regression:killed    FvLength not bound to region size
+c25  author:SURVIVED  adversarial:killed    regression:SURVIVED  ExtHeaderOffset ignored (FV with ext header parsed from HeaderLength)
+c26  author:SURVIVED  adversarial:SURVIVED  regression:SURVIVED  FFS 8-byte alignment not checked
+c27  author:SURVIVED  adversarial:SURVIVED  regression:killed    extended-size section silently ends stream
+c28  author:SURVIVED  adversarial:SURVIVED  regression:killed    deleted file bodies parsed as live
+c29  author:SURVIVED  adversarial:SURVIVED  regression:killed    unsupported FFS types silently skipped
+c30  author:killed    adversarial:SURVIVED  regression:SURVIVED  differing duplicate payloads not ambiguous
+c31  author:killed    adversarial:SURVIVED  regression:SURVIVED  equivalence class reported as unique
+p01  author:SURVIVED  adversarial:SURVIVED  regression:killed    C6 compares from offset 41
+p02  author:SURVIVED  adversarial:SURVIVED  regression:killed    C3 exact set weakened to subset (v1 semantics)
+p03  author:SURVIVED  adversarial:SURVIVED  regression:killed    C5 ignores wCertificateType
+p04  author:SURVIVED  adversarial:SURVIVED  regression:killed    empty signature lists accepted
+p05  author:SURVIVED  adversarial:SURVIVED  regression:killed    C8 ignores SignatureHeaderSize
+p06  author:SURVIVED  adversarial:SURVIVED  regression:killed    C8 ignores entry count
+p07  author:SURVIVED  adversarial:SURVIVED  regression:killed    C4 plausibility always PASS
+p08  author:killed    adversarial:killed    regression:SURVIVED  conditional coverage promoted to derived
+p09  author:SURVIVED  adversarial:SURVIVED  regression:killed    conditional refutation reported as unverified
+p10  author:killed    adversarial:killed    regression:SURVIVED  duplicates pass C1
+p11  author:killed    adversarial:SURVIVED  regression:SURVIVED  multiplicity always PASS
+p12  author:killed    adversarial:killed    regression:killed    opaque coverage labelled derived
+p13  author:killed    adversarial:SURVIVED  regression:SURVIVED  length mismatch passes C3
+h01  author:SURVIVED  adversarial:SURVIVED  regression:killed    handoff accepts C4/C9 PASS
+h02  author:SURVIVED  adversarial:SURVIVED  regression:killed    handoff accepts any summary
+h03  author:SURVIVED  adversarial:SURVIVED  regression:killed    handoff accepts upgraded legacy verdicts
+h04  author:SURVIVED  adversarial:SURVIVED  regression:killed    handoff accepts results without derived inputs
+l01  author:SURVIVED  adversarial:SURVIVED  regression:SURVIVED  importer ignores v1 diff observation
+
+mutants 49 (3 equivalent: {'c26': 'fv() aligns pos to 8 before every header() call', 'c04': 'a reserved bit 0x40/0x80 is always the highest set bit, so highest-bit check rejects it anyway', 'l01': 'pinned SHA-256 of the v1 receipt makes the observation check redundant'})
+non-equivalent 46: survived author suite 30; survived regression suite 17 ['c01', 'c02', 'c06', 'c07', 'c10', 'c11', 'c13', 'c14', 'c15', 'c18', 'c25', 'c30', 'c31', 'p08', 'p10', 'p11', 'p13']; survived all three 0 []
