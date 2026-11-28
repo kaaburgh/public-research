@@ -1,0 +1,316 @@
+# Outputs captured 2026-11-28T11:59:29Z; Python 3.13.18; PR #6 @985eb325 (code identical to 7fcedc38)
+
+$ git diff --stat 7fcedc3 985eb32
+ .../evidence-v0.3/TEST_RESULTS.md                  | 33 ++++++++++++++++++++--
+ 1 file changed, 31 insertions(+), 2 deletions(-)
+
+$ (cd evidence-v0.3 && V1_DIR=<v1> IR_DIR=<935daa0> python3 -m unittest -q test_pilot test_v03_regression test_v031_review)
+Ran 73 tests in 0.868s
+
+OK
+$ same without V1_DIR/IR_DIR
+
+OK (skipped=1)
+
+$ (cd evidence-v0.3 && V1_DIR=... IR_DIR=... python3 mutation_v031.py)
+mutants 26 survived [] invalid []
+
+$ python3 -I gate_refs_check.py <repo> <evidence-v0.3>
+SB-001 profile==A75==phaseA==inventory: True | phaseA owners [1, 1] raw leaves [1, 1] | inventory rows 1
+SB-002 profile==A75==phaseA==inventory: True | phaseA owners [1, 1] raw leaves [1, 1] | inventory rows 1
+SB-003 profile==A75==phaseA==inventory: True | phaseA owners [1, 1] raw leaves [1, 1] | inventory rows 1
+ALL_SIX_AGREE
+
+$ python3 test_v031_adversarial.py <evidence-v0.3> <v1> <935daa0>
+ok   A00 [ok] Baseline synthetic pair renders
+      expected: handoff exit 0; equal_structural consistent_conditional (leaves make coverage conditional)
+      observed: exit 0 ; status consistent_conditional
+ok   A-D1 [fixed] Compressed differing copy inside a pad file
+      expected: pad_file_data issue; C1 BLOCKED
+      observed: issues ['pad_file_data']; C1 BLOCKED
+ok   A-D1b [fixed] Same blob in a RAW FFS file body
+      expected: listed as raw_ffs_body leaf; status conditional, not derived
+      observed: leaf kinds ['raw_ffs_body', 'raw_section']; status consistent_conditional
+ok   A-D2 [fixed] CRC32 GUID-defined section with a plaintext second RAW inside the owner
+      expected: C1 BLOCKED opaque_in_owner
+      observed: C1 BLOCKED opaque_in_owner
+ok   A-D3a [fixed] FV with 20-byte extended header in the leading pad file
+      expected: parsed; C1 PASS; fv_name recorded
+      observed: C1 PASS; fv_name 5C60F367-A505-419A-859E-2A4FF6CA6FE5
+ok   A-D3b [fixed] Nothing found in either ROM
+      expected: multiplicity BLOCKED; P2-47_full not_evaluated
+      observed: multiplicity BLOCKED; P2-47_full not_evaluated
+ok   A-D4 [fixed] Edit C1/multiplicity FAIL->PASS in an equivalence-class run
+      expected: handoff rejects
+      observed: exit 2 HANDOFF_REJECTED receipt_verdict_mismatch
+ok   A-D5 [fixed] Flip all FAIL verdicts to PASS, observations untouched
+      expected: handoff rejects
+      observed: exit 2 HANDOFF_REJECTED receipt_verdict_mismatch
+ok   A-D6 [fixed] Lists changed: semantic summary fields
+      expected: P2-47_full and timestamp_only report refutation
+      observed: P2-47_full conditional_refutation; timestamp_only conditional_refutation
+ok   A-D7 [fixed] 4097 signature lists, expected 1 entry
+      expected: C7 BLOCKED (format uncertain), C8 FAIL (count refuted)
+      observed: C7 BLOCKED, C8 FAIL
+ok   A-D8 [fixed] Deleted container (LZMA) holding older copies
+      expected: deleted body inventoried; selection of live copy unaffected
+      observed: deleted_uninterpreted ['deleted_ffs_body']; C1 PASS
+ok   A-S4 [fixed] Erased pad file named like the target
+      expected: not an owner; C1 PASS
+      observed: C1 PASS, pad_count 1
+ok   A-D1c [fixed] Lowercase target GUID
+      expected: normalised; payload selected
+      observed: selected True
+ok   A-R1 [fixed] Tripwire work on 2048 large-HeaderLength _FVH candidates (1 MiB): via discovery and via explicit root regions
+      expected: both stopped by their checksum budgets (fail closed)
+      observed: {"discovery": "Invalid(discovery_checksum_budget)", "checker": "Invalid(tripwire_checksum_budget)"}
+ok   B1-1 [ok] Phase-A path analogue: FV(ext) > FV-image file > LZMA > FV section > FV(ext) > target > LZMA > RAW
+      expected: C1 PASS, owner fv_name = 5C60F367 (inner FV), LZMA streams for the FV image and each target in lineage
+      observed: C1 PASS; fv_name 5C60F367-A505-419A-859E-2A4FF6CA6FE5; lineage kinds ['artifact', 'lzma_alone', 'lzma_alone', 'lzma_alone', 'lzma_alone']
+ok   B1-2 [ok] Same path with erase polarity 0
+      expected: C1 PASS
+      observed: C1 PASS; coverage except_opaque
+ok   B1-3 [note] Inner FV extended header with one EFI_FV_EXT_TYPE_USED_SIZE entry (ExtHeaderSize 0x1C, common in EDK2 builds)
+      expected: whole inner FV opaque (unsupported_fv_ext_entries); all targets BLOCKED — a real-ROM risk if FV_MAIN carries entries
+      observed: opaque reasons ['unsupported_fv_ext_entries']; C1 BLOCKED
+ok   B1-4 [ok] Data after the extended header inside the leading pad file
+      expected: pad_file_data issue
+      observed: issues ['pad_file_data']
+ok   B1-5 [ok] ExtHeaderOffset not 4-byte aligned
+      expected: rejected
+      observed: Invalid(fv_ext_bounds)
+ok   B1-6 [ok] Pad file with data in a nested FV (outside the owner)
+      expected: pad_file_data issue blocks globally
+      observed: issues ['pad_file_data']
+ok   B2-1 [ok] Owner contains an FV image section with an unsupported (FFS3) volume
+      expected: opaque_in_owner
+      observed: opaque_in_owner
+ok   B2-2 [ok] Unsupported compression in an unrelated file (outside the owner)
+      expected: coverage limited, C1 PASS conditional (as specified)
+      observed: C1 PASS [conditional_coverage]
+ok   B2-3 [note] Deleted container holding an UNCOMPRESSED older FV
+      expected: policy says "select valid, report deleted separately"; tripwire sees the plaintext FV inside the deleted body and blocks all targets (inconsistent with the LZMA case A-D8)
+      observed: issues ['untracked_ffs_candidate', 'untracked_fv']; C1 BLOCKED
+ok   B3-1 [ok] Single-field edits (13 kinds), re-canonicalised and renamed by digest
+      expected: all rejected (exit 2)
+      observed: {"verdict C6 PASS->FAIL": 2, "reason text": 2, "observed C2 sizes": 2, "counts data_valid": 2, "owner state": 2, "payload sha": 2, "locator offset": 2, "coverage token": 2, "diagnostic leaf removed (one place)": 2, "root lineage sha": 2, "summary token": 2, "gate status in summary": 2, "tool hash": 2}
+ok   B3-2 [defect] Edit the recorded root certificate (partition hints) only
+      expected: not validated at all (artifact binding, consistency with unparsed_root rows)
+      observed: exit 0
+ok   B3-3 [boundary] Coordinated edit of C3 observation AND verdict (true diff [0,2,3]) 
+      expected: accepted although C4_plausibility in the same receipt records bytes 0..15 of a and b, which determine the diff in [0,16)
+      observed: before ('FAIL', [0, 2, 3]); exit 0
+ok   B3-4 [ok] Proposed cross-check (observed bytes 0..39 from C4/C5 vs C3) on genuine vs coordinated-edit receipts
+      expected: genuine: no violation; edited: violation in all three targets
+      observed: genuine []; edited ['SB-001', 'SB-002', 'SB-003']
+ok   B3-5 [boundary] Coordinated edit of payload + owner RAW hashes to the six reference values
+      expected: accepted with differential_gate all_six_match: the gate in a received receipt is not evidence; only a replay is
+      observed: before mismatch; after exit 0, all_six_match
+ok   B3-6 [defect] Delete negative evidence (all leaf/opaque rows) consistently, relabel assurance
+      expected: accepted and promoted to derived_within_supported_grammar; cheap invariant missed: every selected RAW locator must appear in uninterpreted_leaves
+      observed: exit 0; status derived_within_supported_grammar
+ok   B3-7 [ok] Proposed invariant (selected RAW locator present among leaves)
+      expected: holds on genuine receipt, fails on stripped one
+      observed: genuine True; stripped False
+ok   B4-1 [defect] Identical payloads (lists identical, nothing changed)
+      expected: P2-47_full reports a refutation solely because exact C3 ([0,2,3,4,5,6]) is part of the conjunction; lists and timestamp-only are not refuted
+      observed: P2-47_full conditional_refutation; equal_structural consistent_conditional; timestamp_only partial_not_established
+ok   B4-2 [defect] Only year/month/day differ ([0,2,3]); lists identical
+      expected: same mixing: P2-47_full refuted, timestamp_only partial
+      observed: C3 [0, 2, 3]; P2-47_full conditional_refutation; timestamp_only partial_not_established
+ok   B4-3 [defect] EFI_TIME.Pad1 = 1 in both versions (author plausibility hypothesis fails), everything else as expected
+      expected: C4_plausibility FAIL turns P2-47_full into a refutation; a failed hypothesis check is reported like a refuted finding
+      observed: C4_plausibility FAIL; C3 PASS; P2-47_full conditional_refutation
+ok   B4-4 [ok] Nanosecond byte also changed (diff [0,2..6,8], all inside EFI_TIME)
+      expected: timestamp_only not refuted; C3 FAIL
+      observed: C3 [0, 2, 3, 4, 5, 6, 8]; timestamp_only partial_not_established
+ok   B4-5 [defect] Exit code when every component passes but the differential gate mismatches (pilot.main logic, line 157-158)
+      expected: exit 0: the gate (the pilot exit criterion) does not influence the exit code
+      observed: gate mismatch; exit 0
+ok   B4-6 [ok] Gate with a/b reference hashes swapped
+      expected: mismatch (role-specific comparison)
+      observed: mismatch
+ok   B5-1 [note] MARKED_FOR_UPDATE without a DATA_VALID duplicate
+      expected: still blocked (PI 2.2.6 would treat it as valid); documented, no PI-effective annotation
+      observed: selection_unresolved {'data_valid': 0, 'deleted': 0, 'marked_for_update': 1, 'raw_per_live': []}
+ok   B5-HEADER_INVALID [ok] Live target + duplicate in state HEADER_INVALID
+      expected: blocks
+      observed: selection_unresolved, issues ['ffs_state', 'untracked_ffs_candidate']
+ok   B5-under construction [ok] Live target + duplicate in state under construction
+      expected: blocks
+      observed: selection_unresolved, issues ['ffs_state', 'untracked_ffs_candidate']
+ok   B6-1 [defect] An internal consistency check (verdicts.pair_components need()) fires during pilot.main()
+      expected: evaluate() is outside the try: the run dies with a traceback and NO receipt (contradicts "preserve failed/blocked attempts"); 6 of the review mutants were detected only this way
+      observed: uncaught Invalid(suffix_consistency); receipts written: []
+ok   B7-1 [defect] Real-ROM style blocker: non-erased inter-file padding (raises Invalid inside fv())
+      expected: role-level diagnostics carry only the code, no stream/offset: the first real blocker cannot be localised from the receipt
+      observed: diagnostics a = {'error': 'ffs_padding'}
+ok   B7-2 [defect] LZMA section with trailing bytes in one target
+      expected: whole role error {"error": code}; no offset, and the two healthy targets in that ROM are blocked too
+      observed: diagnostics a = {'error': 'lzma_bounds_or_trailing'}; SB-002 C1 BLOCKED
+ok   B7-3 [ok] Determinism: two evaluations of the same inputs
+      expected: canonical results identical (receipts differ only in run_id/utc/runtime): replay comparison is a simple equality test
+      observed: identical: True
+ok   C-1 [ok] Legacy import CLI on original v1 claims + A75 receipt, then handoff
+      expected: exit 0 / 0; byte_observations unverified; legacy_byte_subset consistent_conditional; C3 OPEN
+      observed: import 0 -> f2793d270efa..; handoff 0; unverified / consistent_conditional; C3 OPEN
+ok   C-2 [ok] Generated legacy receipt digest equals the one reported in TEST_RESULTS.md
+      expected: f2793d27...
+      observed: f2793d270efa9f2cbd484358fe33cf0b8d0fe58510a223b3ced87b197327c88c.json
+ok   C-3 [ok] Upgrade legacy C3 to exact PASS using the recorded v1 observation
+      expected: rejected
+      observed: exit 2 HANDOFF_REJECTED legacy_upgrade
+
+46/46 expectations hold
+
+$ V03_DIR=... V1_DIR=... IR_DIR=... python3 -m unittest -v test_v031_addendum
+test_tripwire_checksum_budget (test_v031_addendum.Budgets.test_tripwire_checksum_budget) ... ok
+test_cli_exit_and_binding (test_v031_addendum.CLIAndLegacy.test_cli_exit_and_binding) ... ok
+test_discovery_skips_bad_checksum (test_v031_addendum.CLIAndLegacy.test_discovery_skips_bad_checksum) ... ok
+test_legacy_byte_observations_unverified (test_v031_addendum.CLIAndLegacy.test_legacy_byte_observations_unverified) ... ok
+test_receipt_exclusive_create (test_v031_addendum.CLIAndLegacy.test_receipt_exclusive_create) ... bb157861a164e35cdde9d726b0af9ce2765a8f530c35d9e45732b94ee65e9557.json
+ok
+test_wrong_rom_identity (test_v031_addendum.CLIAndLegacy.test_wrong_rom_identity) ... ok
+test_ext_alignment (test_v031_addendum.ExtendedHeader.test_ext_alignment) ... ok
+test_ext_entries_opaque (test_v031_addendum.ExtendedHeader.test_ext_entries_opaque) ... ok
+test_ext_must_follow_pad_header (test_v031_addendum.ExtendedHeader.test_ext_must_follow_pad_header) ... ok
+test_leading_pad_must_be_data_valid (test_v031_addendum.ExtendedHeader.test_leading_pad_must_be_data_valid) ... ok
+test_pad_bytes_after_ext (test_v031_addendum.ExtendedHeader.test_pad_bytes_after_ext) ... ok
+test_pad_bytes_before_ext (test_v031_addendum.ExtendedHeader.test_pad_bytes_before_ext) ... ok
+test_attr_checksum (test_v031_addendum.FFSAndGrammar.test_attr_checksum) ... ok
+test_fv_revision_required (test_v031_addendum.FFSAndGrammar.test_fv_revision_required) ... ok
+test_leaf_sections_listed (test_v031_addendum.FFSAndGrammar.test_leaf_sections_listed) ... ok
+test_plausible_invalid_candidate (test_v031_addendum.FFSAndGrammar.test_plausible_invalid_candidate) ... ok
+test_unsupported_compression_reported (test_v031_addendum.FFSAndGrammar.test_unsupported_compression_reported) ... ok
+test_artifact_identity (test_v031_addendum.HandoffConsistency.test_artifact_identity) ... ok
+test_baseline (test_v031_addendum.HandoffConsistency.test_baseline) ... ok
+test_c6_flag (test_v031_addendum.HandoffConsistency.test_c6_flag) ... ok
+test_c6_suffix_vs_c3 (test_v031_addendum.HandoffConsistency.test_c6_suffix_vs_c3) ... ok
+test_counts_edit (test_v031_addendum.HandoffConsistency.test_counts_edit) ... ok
+test_coverage_relabel_with_leaves (test_v031_addendum.HandoffConsistency.test_coverage_relabel_with_leaves) ... ok
+test_filename_must_be_digest (test_v031_addendum.HandoffConsistency.test_filename_must_be_digest) ... ok
+test_list_consumption (test_v031_addendum.HandoffConsistency.test_list_consumption) ... ok
+test_locator_edit (test_v031_addendum.HandoffConsistency.test_locator_edit) ... ok
+test_payload_edit (test_v031_addendum.HandoffConsistency.test_payload_edit) ... ok
+test_payload_on_unresolved_selection (test_v031_addendum.HandoffConsistency.test_payload_on_unresolved_selection) ... ok
+test_profile_identity (test_v031_addendum.HandoffConsistency.test_profile_identity) ... ok
+test_selection_role_hidden (test_v031_addendum.HandoffConsistency.test_selection_role_hidden) ... ok
+test_selection_role_without_input (test_v031_addendum.HandoffConsistency.test_selection_role_without_input) ... ok
+test_selection_vs_diagnostics (test_v031_addendum.HandoffConsistency.test_selection_vs_diagnostics) ... ok
+test_tool_identity (test_v031_addendum.HandoffConsistency.test_tool_identity) ... ok
+test_multiplicity_blocked_by_issues (test_v031_addendum.OwnerScope.test_multiplicity_blocked_by_issues) ... ok
+test_nested_unsupported_fv_in_owner (test_v031_addendum.OwnerScope.test_nested_unsupported_fv_in_owner) ... ok
+test_c5_revision (test_v031_addendum.Semantics.test_c5_revision) ... ok
+test_efi_time_pad1 (test_v031_addendum.Semantics.test_efi_time_pad1) ... ok
+test_gate_mismatch_precedes_missing (test_v031_addendum.Semantics.test_gate_mismatch_precedes_missing) ... ok
+test_gate_per_role (test_v031_addendum.Semantics.test_gate_per_role) ... ok
+test_timestamp_scope_header_change (test_v031_addendum.Semantics.test_timestamp_scope_header_change) ... ok
+test_timestamp_scope_length (test_v031_addendum.Semantics.test_timestamp_scope_length) ... ok
+
+----------------------------------------------------------------------
+Ran 41 tests in 13.079s
+
+OK
+
+$ python3 mutation_v031_review.py <evidence-v0.3> <v1> <935daa0> --extra test_v031_addendum
+c01   author:assert     extra:SURVIVED   FFS header checksum
+c02   author:SURVIVED   extra:assert     FFS_ATTRIB_CHECKSUM data checksum
+c03   author:assert     extra:SURVIVED   fixed 0xAA checksum
+c05   author:assert     extra:SURVIVED   lower State bits required
+c06   author:assert     extra:SURVIVED   MARKED_FOR_UPDATE blocks
+c07   author:assert     extra:SURVIVED   deleted not live
+c08   author:assert     extra:assert     issues block selection
+c09   author:assert     extra:SURVIVED   untracked FFS candidate
+c10   author:SURVIVED   extra:assert     plausible invalid FFS candidate
+c11   author:assert     extra:SURVIVED   untracked FV
+c12   author:assert     extra:SURVIVED   tripwire on decompressed streams
+c13   author:assert     extra:SURVIVED   owner through LZMA
+c14   author:assert     extra:SURVIVED   unsupported GUID-defined section reported
+c15   author:SURVIVED   extra:assert     unsupported compression reported
+c16   author:assert     extra:SURVIVED   unknown section type reported
+c17   author:assert     extra:SURVIVED   root partition contiguity
+c18   author:assert     extra:SURVIVED   erased root regions verified
+c19   author:assert     extra:SURVIVED   LZMA trailing data
+c20   author:assert     extra:SURVIVED   FV header tail
+c21   author:assert     extra:SURVIVED   block map
+c22   author:assert     extra:SURVIVED   inter-file padding
+c23   author:assert     extra:SURVIVED   inter-section padding
+c24   author:assert     extra:SURVIVED   FvLength bound to region
+c27   author:assert     extra:SURVIVED   extended-size section reported
+c28   author:assert     extra:SURVIVED   deleted body not parsed as live
+c29   author:assert     extra:SURVIVED   unsupported FFS type reported
+c30   author:assert     extra:SURVIVED   differing duplicates ambiguous
+c31   author:assert     extra:SURVIVED   equivalence class labelled
+p01   author:error-only extra:SURVIVED   C6 equality from 40
+p01b  author:error-only extra:SURVIVED   C6 suffix digest from 40
+p02   author:assert     extra:SURVIVED   C3 exact, not subset
+p03   author:SURVIVED   extra:assert     C5 measures wRevision
+p04   author:error-only extra:SURVIVED   empty signature list invalid
+p05   author:assert     extra:SURVIVED   C8 SignatureHeaderSize
+p06   author:assert     extra:SURVIVED   C8 entry count
+p07   author:assert     extra:assert     C4 plausibility measured
+p08   author:assert     extra:SURVIVED   conditional not promoted
+p09   author:assert     extra:SURVIVED   conditional refutation reported
+p10   author:assert     extra:SURVIVED   duplicates fail C1
+p11   author:assert     extra:SURVIVED   multiplicity compares
+p12   author:assert     extra:assert     conditional level
+p13   author:error-only extra:error-only length mismatch observed
+h01   author:SURVIVED   extra:SURVIVED   handoff semantic overclaim
+h02   author:assert     extra:SURVIVED   handoff summary
+h03   author:SURVIVED   extra:SURVIVED   handoff legacy upgrade
+h04   author:SURVIVED   extra:SURVIVED   handoff derived inputs
+n01   author:SURVIVED   extra:assert     ext header 4-byte alignment
+n02   author:SURVIVED   extra:SURVIVED   ext header after pad header
+n03   author:SURVIVED   extra:assert     ext entries opaque
+n04   author:SURVIVED   extra:SURVIVED   ext header must be seen
+n05   author:SURVIVED   extra:assert     leading pad must be DATA_VALID
+n06   author:SURVIVED   extra:assert     pad bytes before ext header
+n07   author:SURVIVED   extra:assert     pad bytes after ext header
+n08   author:assert     extra:SURVIVED   pad data is an issue (not only opaque)
+n09   author:assert     extra:assert     RAW section recorded as leaf
+n10   author:SURVIVED   extra:assert     other leaf sections recorded
+n11   author:SURVIVED   extra:assert     opacity of nested FV propagates to owner
+n12   author:assert     extra:SURVIVED   deleted body inventoried
+n13   author:SURVIVED   extra:assert     tripwire checksum budget
+n14   author:error-only extra:SURVIVED   GUID normalisation
+n15   author:SURVIVED   extra:assert     ext entries reported as opaque
+n16   author:SURVIVED   extra:assert     FV revision 2 required
+v01   author:SURVIVED   extra:assert     counts recomputed
+v02   author:SURVIVED   extra:assert     coverage recomputed
+v03   author:error-only extra:SURVIVED   owner opacity blocks readiness
+v04   author:SURVIVED   extra:assert     payload bound to owner RAW
+v05   author:SURVIVED   extra:assert     locators bound to owner RAW
+v07   author:SURVIVED   extra:SURVIVED   C2 observation bound to payload sizes
+v08   author:SURVIVED   extra:assert     C3/C6 cross-consistency
+v09   author:SURVIVED   extra:assert     C6 flag vs hashes
+v10   author:SURVIVED   extra:assert     signature lists consume tail
+v11   author:SURVIVED   extra:SURVIVED   C7 and C8 share one observation
+v12   author:SURVIVED   extra:assert     EFI_TIME Pad1 checked
+v13   author:assert     extra:SURVIVED   count refutation under list limit
+v14   author:assert     extra:SURVIVED   malformed list is FAIL
+v15   author:SURVIVED   extra:assert     multiplicity blocked by issues
+v16   author:SURVIVED   extra:assert     no payload on unresolved selection
+s01   author:assert     extra:SURVIVED   P2-47_full not_evaluated
+s02   author:SURVIVED   extra:assert     timestamp scope bound 16
+s03   author:SURVIVED   extra:assert     length mismatch refutes timestamp-only
+s04   author:assert     extra:SURVIVED   timestamp not_evaluated
+s05   author:SURVIVED   extra:assert     gate mismatch precedes missing
+s06   author:SURVIVED   extra:assert     gate compares per role
+s07   author:assert     extra:SURVIVED   exact C3 part of P2-47_full
+k01   author:SURVIVED   extra:assert     CLI ROM identity
+k02   author:SURVIVED   extra:assert     CLI certificate binding
+k03   author:SURVIVED   extra:assert     exclusive receipt creation
+k04   author:SURVIVED   extra:assert     CLI exit code
+k05   author:SURVIVED   extra:assert     receipt filename = digest
+k06   author:SURVIVED   extra:assert     selection vs diagnostics
+k07   author:SURVIVED   extra:assert     tool identity
+k08   author:SURVIVED   extra:assert     profile identity
+k09   author:SURVIVED   extra:assert     artifact identity
+k10   author:SURVIVED   extra:assert     selection role set
+k11   author:SURVIVED   extra:assert     legacy byte_observations computed
+k12   author:assert     extra:SURVIVED   legacy subset status computed
+k13   author:SURVIVED   extra:assert     discovery checksum filter
+equivalent (excluded): ['h01', 'h03', 'h04', 'n02', 'n04', 'v07', 'v11']
+
+mutants 97, non-equivalent 90; author suite: survived 40 ['c02', 'c10', 'c15', 'p03', 'n01', 'n03', 'n05', 'n06', 'n07', 'n10', 'n11', 'n13', 'n15', 'n16', 'v01', 'v02', 'v04', 'v05', 'v08', 'v09', 'v10', 'v12', 'v15', 'v16', 's02', 's03', 's05', 's06', 'k01', 'k02', 'k03', 'k04', 'k05', 'k06', 'k07', 'k08', 'k09', 'k10', 'k11', 'k13']; detected only via errors 6 ['p01', 'p01b', 'p04', 'p13', 'n14', 'v03']
+extra suite test_v031_addendum: survived author+extra 0 []
