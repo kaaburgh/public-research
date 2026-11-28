@@ -1,0 +1,87 @@
+# Outputs captured 2026-11-28T07:24:50Z; Node v22.23.5; Python 3.13.18
+
+$ node selftest.mjs (PR #2 @23419c1)
+core synthetic tests passed: 22
+
+$ node tests/negative_tests.mjs <evidence-v0.2>
+ok   N01 [baseline] CLI end-to-end PASS with real SHA-256
+      expected: exit 0, one receipt, verdict PASS
+      observed: exit 0, verdict PASS, receipt keys: engine_sha256,observations_sha256,pack_sha256,platform,results,run_error,run_id,runner_sha256,runtime,utc,version
+ok   N01b [design] Receipt omits adapter identity, coverage, counts, locator and payload refs
+      expected: receipt is not self-contained; lineage only via observations_sha256
+      observed: adapter/locator/coverage present in receipt: false
+ok   N02 [false-PASS] Two artifact IDs with identical digest: "1.32 vs 1.33 unchanged" passes by comparing a ROM with itself
+      expected: pack validation should reject duplicate artifact digests or a==b by content; currently accepted
+      observed: validatePack accepted: true; CLI exit 0, verdict PASS
+ok   N03 [false-PASS] Selected payload has no relation to the ROM (ROM is erased flash without the GUID); ROM hash verified, then ignored
+      expected: kernel has no derivation check: PASS
+      observed: GUID bytes in ROM a/b: false/false; exit 0, verdict PASS
+ok   N04 [false-PASS] Adapter loop bug copies 1.32 payload ref into the 1.33 entry; real 1.33 payload changed
+      expected: no cross-check of payload vs artifact: PASS
+      observed: exit 0, verdict PASS
+ok   N05 [trust-boundary] Adapter hash "000..0", toolchain "x"; observation for pack P1 rebound to P2 by editing pack_sha256
+      expected: accepted (documented limitation); binding only detects accidental reuse
+      observed: exit 0, verdict PASS
+ok   N06a [semantics] Claim "a and b differ at no offset"; b is one byte longer (proposition is false on verified bytes)
+      expected: should be FAIL; v0.2 gives BLOCKED (exit 2)
+      observed: exit 2, verdict BLOCKED, reason operation_undefined_or_limit
+ok   N06b [semantics] Claim "differ exactly at 0,2..6"; payloads differ at all 5000 offsets
+      expected: should be FAIL (observed set larger than any expected set); v0.2 gives BLOCKED at the 4097th offset
+      observed: exit 2, verdict BLOCKED
+ok   N06c [semantics] Claim "u32 at 16 equals 24"; verified payload is 2 bytes long
+      expected: arguably FAIL (no such field); v0.2 gives BLOCKED
+      observed: exit 2, verdict BLOCKED
+ok   N07 [lost-negative] Duplicate FFS GUID (research finding) vs ROM missing from store vs corrupted payload object
+      expected: three different causes should be distinguishable in the receipt; v0.2 results[] are byte-identical
+      observed: results identical: true; reason: input_or_selection_unverified; exit codes 2/2/2
+ok   N07b [lost-negative] Same three runs: does anything outside results[] distinguish them?
+      expected: only observations_sha256 differs for the duplicate-GUID case; ROM-missing and corrupt-payload receipts differ only in run_id/utc
+      observed: b vs c identical except run_id/utc: true
+ok   N08 [lost-negative] Unknown operation in pack vs observation bound to another pack
+      expected: both produce the same run_error; cause only on stderr (not retained)
+      observed: run_error: "invalid_or_unavailable_input" / "invalid_or_unavailable_input"; stderr: "Validation failed: unknown operation" / "Validation failed: observation pack identity mismatch"
+ok   N09 [compat] One claim FAIL, another BLOCKED
+      expected: v0.2 exits 1; v1 verify.py exits 2 for the same mix (precedence inverted)
+      observed: exit 1, verdicts FAIL/BLOCKED
+ok   N10 [lost-negative] Receipt directory unwritable while the claim FAILs
+      expected: exit 2 and no durable record of the FAIL (stdout carries nothing)
+      observed: exit 2, stdout "", stderr "Receipt write failed: EEXIST: file already exists, mkdir '<tmp>/15/receipts-is-a-file'"
+ok   N11 [privacy] Absolute local path with serial number in locator; non-repository-relative source path
+      expected: spec says avoid local paths / repository-relative; validator accepts both
+      observed: exit 0
+ok   N12 [dos] Document of 6000001 bytes with nesting depth 3000000 (under the 8 MiB limit)
+      expected: rejected by an exception (no crash); nesting depth is not part of the profile
+      observed: RangeError: Maximum call stack size exceeded
+ok   N13 [test-quality] selftest digest: [4d] and [4d 00] collide
+      expected: collision (tests cannot detect trailing-zero truncation/extension)
+      observed: true
+ok   N14 [scale] 2256 inventory keys in one pack
+      expected: rejected (limit 1024 claims/selectors): sharding and cross-pack identity required
+      observed: claims
+ok   N15 [hardening-ok] Canonical profile rejects 15 non-canonical encodings
+      expected: all rejected, canonical accepted
+      observed: accepted: [], canonical ok: true
+
+19/19 expectations hold. Temp dir: <tmp>
+
+$ python3 -I tests/migration_check.py ...
+artifact rom132 matches v1: True
+artifact rom133 matches v1: True
+SB-001-v02 <- SB-001 {'guid': True, 'size': True, 'hash': True, 'u32@16': True, 'suffix_off': True, 'suffix_hash': True, 'diff': True, 'diff_equals_v1_allowed_set': True}
+SB-002-v02 <- SB-002 {'guid': True, 'size': True, 'hash': True, 'u32@16': True, 'suffix_off': True, 'suffix_hash': True, 'diff': True, 'diff_equals_v1_allowed_set': True}
+SB-003-v02 <- SB-003 {'guid': True, 'size': True, 'hash': True, 'u32@16': True, 'suffix_off': True, 'suffix_hash': True, 'diff': True, 'diff_equals_v1_allowed_set': True}
+PROBLEMS 0
+
+$ python3 -I tests/derivation_poc.py
+ok   P1 honest certificate; unique owner; DEPEX GUID operand is benign: PASS-eligible  (owners=1 raw=1 coverage=complete issues=[] opaque=[] benign_guid=2)
+     payload derived by checker == fixture payload: True
+ok   P2 erased flash + certificate claiming an FV (N03 analogue): REJECTED  (no FV header at 0x1000)
+ok   P3 backup FV with a second copy omitted from the certificate: REJECTED  (unexplained bytes at end of image [0x5000,0x10000))
+ok   P4 backup FV declared opaque 'vendor_data': BLOCKED  (owners=1 raw=1 coverage=incomplete issues=['untracked_ffs_header:top+0x9048', 'untracked_fv:top+0x9000'] opaque=['top@0x9000+0x1000:vendor_data'] benign_guid=2)
+ok   P5 adapter leaves the LZMA section holding the target unexpanded: BLOCKED  (owners=0 raw=0 coverage=incomplete issues=['unexpanded_encapsulation:FV@0x1000/FFS@0xc0/S0x02@0x0:claimed_unsupported'] opaque=['FV@0x1000/FFS@0xc0/S0x02@0x0:claimed_unsupported'] benign_guid=1)
+ok   P6 deleted duplicate owner present (policy must be explicit): BLOCKED  (owners=2 raw=2 coverage=incomplete issues=['deleted_owner_present:FV@0x9000/FFS@0x48'] opaque=[] benign_guid=2)
+ok   P7 adapter points a node at the wrong offset: REJECTED  (unexplained bytes in FV FV@0x1000 [0x48,0x50))
+ok   P8 zlib-compressed copy inside an opaque region: invisible; result is explicitly conditional: CONDITIONAL  (owners=1 raw=1 coverage=complete_except_opaque issues=[] opaque=['top@0x9000+0x1000:vendor_data'] benign_guid=2)
+ok   P9 no target in image (absence is not proven, only 'no owner in verified tree'): BLOCKED  (owners=0 raw=0 coverage=complete issues=[] opaque=[] benign_guid=3)
+
+10/10 expectations hold
