@@ -1,12 +1,10 @@
-# Review v0.3.1 (PR #5 follow-up)
+# Review v0.3.2
 
-Base: v0.3 commit 3c3c555c6c84f11b8f26b8580adf74851b831f8e; review commit 3ae7117aa64401e0805cbc6be398f67cfe444c1e. PR #5 remains historical. Review changes against R1–R9 and additional R10–R14, not just a new feature list.
+Follow-up to PR #7 (97f188d30a1f9e73f594a23a13911706478f83af), based on PR #6 (985eb325131c87c8ffab8d38d9e7de63abca27fe). Focus on P1–P8, not another redesign. P9/P10 deferred until actual ROM blockers. Review the v0.3.2 normative section in PROTOCOL.md and TEST_RESULTS.md.
 
-1. Run all three suites and version-specific mutation script; check baseline, stale mutation anchors, syntactic validity, actual test failures and surviving mutants. Retest original adversarial vectors (expect fixed defects to fail closed, not the old bad outcomes). Regression tests/fixtures were imported from PR #5 with explicit adaptation to new API/coverage.
-2. Attack pad data/name, FV extension bounds/checksums, both erase polarities, opacity within owner, deletion and visible duplicate tripwire. Check whether conservative leaf coverage is appropriate and whether new diagnostics are complete.
-3. Attack handoff: independently edit a verdict, reason, observed value, count, selection, root identity, legacy path, summary, differential status; recanonicalize and rename by digest. Distinguish inconsistencies from fabricated but internally consistent receipts; replay is needed for the latter.
-4. Check C3 exact set, C4 field plausibility vs semantics, C5, C6 exact tail, C7 list layout, C8 counts, resource limit behavior, empty runs and multiplicity. Ensure weaker v1 subset cannot silently upgrade to exact C3.
-5. Run real ROMs if accessible and compare all six hashes with A75 and phase A. Preserve all failures; do not modify expectations or ignore diagnostics. If blocked, identify the first unsupported/malformed structure with exact offset and proposed reviewed grammar addition. No binaries/private paths in Git.
-6. Evaluate whether v0.3.1 is sufficient to proceed to real-ROM replay, not whether the complete general protocol is done. Publish report in separate branch/PR; leave source and main untouched.
-
-Historical sources and tests: PR #5 (3ae7117a), PR #4 (3c3c555c), PR #1 (4095d9cf), independent run 935daa09. Original historical import file is preserved; use legacy_import.py with exact original v1 inputs to generate a v0.3.1 receipt. Historical HANDOFF.md still describes v0.3.
+1. Verify full suite and adaptation of the 41 addendum tests. Run mutation_v032.py, distinguish surviving, equivalent, invalid and errors-only mutations; review changed anchors and equivalences. Historical test scripts are preserved by commit.
+2. Inject internal errors during input/evaluate/summary/encoding; verify aborted receipt, exit codes, handoff and no promoted result. Check parser errors at nested LZMA stream offsets and diagnostics on blocked roles.
+3. Check exact vs historical scope, identical payload, subset, changed forbidden bytes, differing length, new header/plausibility hypotheses, counts. Check gate mismatch and missing combinations, not merely all-pass cases.
+4. Attack coordinated edits to C3/prefixes, leaves, root hints and lineage. Fully fabricated internally coherent receipt is outside consistency verification. Compare two independently run receipts; no assurance promotion.
+5. If real ROMs available: verify SHA-256, run pilot, retain receipt even if BLOCKED; identify first actual blocker by stream/offset/lineage, compare six hashes with A75 and phase A; preserve expectations. No binaries or private paths in public Git.
+6. Report readiness for real run and remaining substantive blockers only. Save separate PR against main; do not modify prior branches or main.
